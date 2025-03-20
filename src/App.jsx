@@ -7,11 +7,17 @@ import Day1 from "./pages/Day1";
 const App = () => {
   return (
     <Router>
-      <div className="flex">
+      <div className="flex h-screen bg-gray-900">
+        {/* Sidebar */}
         <Sidebar />
-        <div className="flex-1">
+
+        {/* Main Content Area */}
+        <div className="flex flex-col flex-1">
+          {/* Header */}
           <Header />
-          <div className="p-6">
+
+          {/* Page Content */}
+          <div className="flex-1 p-6 bg-gray-900 border-l border-gray-700">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/day1" element={<Day1 />} />
