@@ -2,21 +2,50 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 
 const Sidebar = () => {
-  const [open, setOpen] = useState(true);
-  
+  const [openDay, setOpenDay] = useState({});
+
+  const toggleDropdown = (day) => {
+    setOpenDay((prev) => ({ ...prev, [day]: !prev[day] }));
+  };
+
   return (
-    <div className={`bg-gray-900 text-white w-64 min-h-screen p-4 ${open ? "block" : "hidden"} md:block`}>
-      <h2 className="text-xl font-bold">Guide</h2>
-      <ul className="mt-4">
-        <li><Link to="/" className="block py-2">Welcome</Link></li>
-        <li><Link to="/day1" className="block py-2">Day 1: IAM</Link></li>
-        <li><Link to="/day2" className="block py-2">Day 2: Network Security</Link></li>
-        <li><Link to="/day3" className="block py-2">Day 3: App Security</Link></li>
-        <li><Link to="/day4" className="block py-2">Day 4: VM Security</Link></li>
-        <li><Link to="/day5" className="block py-2">Day 5: Data Security</Link></li>
-        <li><Link to="/day6" className="block py-2">Day 6: Monitoring</Link></li>
-        <li><Link to="/day7" className="block py-2">Day 7: Capstone</Link></li>
-      </ul>
+    <div className="w-64 bg-gray-800 text-white h-screen p-4">
+      <h2 className="text-xl font-bold">Azure Cloud Security</h2>
+      <nav className="mt-4">
+        <ul>
+          <li>
+            <Link to="/" className="block px-3 py-2 rounded hover:bg-gray-700">
+              Welcome
+            </Link>
+          </li>
+
+          {[1, 2, 3, 4, 5, 6, 7].map((day) => (
+            <li key={day}>
+              <button
+                onClick={() => toggleDropdown(day)}
+                className="w-full text-left px-3 py-2 rounded flex justify-between items-center hover:bg-gray-700"
+              >
+                Day {day}
+                <span>{openDay[day] ? "▼" : "►"}</span>
+              </button>
+              {openDay[day] && (
+                <ul className="ml-4 mt-2 border-l border-gray-600">
+                  <li>
+                    <Link to={`/day${day}`} className="block px-3 py-1 hover:bg-gray-700">
+                      Overview
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to={`/day${day}/task`} className="block px-3 py-1 hover:bg-gray-700">
+                      Task
+                    </Link>
+                  </li>
+                </ul>
+              )}
+            </li>
+          ))}
+        </ul>
+      </nav>
     </div>
   );
 };
