@@ -22,10 +22,13 @@ const App = () => {
   return (
     <Router>
       <div className="flex h-screen bg-gray-900">
+        {/* Sidebar */}
         <Sidebar />
-        <div className="flex flex-col flex-1">
+
+        {/* Main Content */}
+        <div className="flex flex-col flex-1 h-screen overflow-hidden">
           <Header />
-          <div className="flex-1 p-6 bg-gray-900 border-l border-gray-700">
+          <div className="flex-1 overflow-y-auto p-6 bg-gray-900 border-l border-gray-700">
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/day1" element={<Day1 />} />
@@ -44,7 +47,7 @@ const App = () => {
               <Route path="/day7/task" element={<Task7 />} />
             </Routes>
           </div>
-          <Footer /> {/* Moved inside flex-1 container */}
+          <Footer />
         </div>
       </div>
     </Router>

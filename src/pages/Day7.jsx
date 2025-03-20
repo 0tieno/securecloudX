@@ -3,7 +3,7 @@ import Content from "../components/Content";
 const Day7 = () => {
   return (
     <Content>
-      <h2 className="text-3xl font-bold text-white">Day 7: Capstone Project - Secure Azure Deployment 🏆</h2>
+      <h2 className="text-3xl font-bold text-gray-300">Day 7: Capstone Project - Secure Azure Deployment 🏆</h2>
       <p className="mt-2 text-gray-300">
         Apply everything you've learned throughout the challenge by securing an Azure deployment.
       </p>

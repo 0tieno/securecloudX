@@ -3,7 +3,7 @@ import Content from "../components/Content";
 const Day1 = () => {
   return (
     <Content>
-      <h2 className="text-3xl font-bold text-white">Day 1: Identity & Access Management (IAM) 🔐</h2>
+      <h2 className="text-3xl font-bold text-gray-300">Day 1: Identity & Access Management (IAM) 🔐</h2>
       <p className="mt-2 text-gray-300">
         Learn how to manage identities, access controls, and authentication using Azure Active Directory.
       </p>

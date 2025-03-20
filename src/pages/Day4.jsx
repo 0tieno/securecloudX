@@ -3,7 +3,7 @@ import Content from "../components/Content";
 const Day4 = () => {
   return (
     <Content>
-      <h2 className="text-3xl font-bold text-white">Day 4: Application Security in Azure 🛡️</h2>
+      <h2 className="text-3xl font-bold text-gray-300">Day 4: Application Security in Azure 🛡️</h2>
       <p className="mt-2 text-gray-300">
         Learn how to secure applications deployed in Azure using security best practices.
       </p>

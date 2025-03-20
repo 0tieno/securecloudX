@@ -3,7 +3,7 @@ import Content from "../components/Content";
 const Day6 = () => {
   return (
     <Content>
-      <h2 className="text-3xl font-bold text-white">Day 6: Incident Response & Monitoring 🚨</h2>
+      <h2 className="text-3xl font-bold text-gray-300">Day 6: Incident Response & Monitoring 🚨</h2>
       <p className="mt-2 text-gray-300">
         Learn how to monitor security events, detect threats, and respond to incidents in Azure.
       </p>
