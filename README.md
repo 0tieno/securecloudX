@@ -1,20 +1,7 @@
-<<<<<<< HEAD
-# React + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
-=======
 # 📌 30-Day DevSecOps & Cloud Security Study Log (Azure-Focused)
 
 ## 🛠 Study Plan Overview
+
 🕒 **Daily Study Time:** 2 Hours (1 Hour Cloud Security + 1 Hour DevSecOps)
 
 | **Day** | **Cloud Security Task** 🌩️ | **DevSecOps Task** 🔒 | **Status** ✅ |
@@ -43,86 +30,99 @@ If you are developing a production application, we recommend using TypeScript an
 | **Day 26-28** | **Documentation & Best Practices Guide** | **Blog or Presentation on Findings** | [ ] |
 | **Day 29-30** | **Final Review & Next Steps** | **Final Review & Next Steps** | [ ] |
 
-
-# 🔬 Labs for 30-Day DevSecOps & Cloud Security Study Plan (Azure-Focused)
+## 🔬 Labs for 30-Day DevSecOps & Cloud Security Study Plan (Azure-Focused)
 
 ## Identity & Access Management (IAM)
+
 - [Microsoft Learn: Protect identities](https://learn.microsoft.com/en-us/training/modules/secure-identities/)
 - [Azure PIM Hands-On Lab](https://microsoftlearning.github.io/AZ-500-Azure-Security/Instructions/Labs/LAB_02_Privileged_Identity_Management.html)
 
 ## Network Security & Firewalls
+
 - [NSG Lab - Configure and Test NSGs](https://learn.microsoft.com/en-us/azure/virtual-network/tutorial-filter-network-traffic)
 - [Firewall Lab - Deploy Azure Firewall](https://learn.microsoft.com/en-us/azure/firewall/tutorial-firewall-deploy-portal)
 
 ## Cloud Security & Monitoring
+
 - [Microsoft Defender Hands-On Lab](https://microsoftlearning.github.io/AZ-500-Azure-Security/Instructions/Labs/LAB_04_Defender_for_Cloud.html)
 - [Azure Monitor Lab - Configure Monitoring](https://learn.microsoft.com/en-us/training/modules/monitor-diagnose-azure/)
 - [Azure Logging Lab - Configure Log Analytics](https://learn.microsoft.com/en-us/training/modules/monitor-security-threats/)
 
 ## Compliance & Policy Management
+
 - [Azure Policy Lab - Implement Security Policies](https://learn.microsoft.com/en-us/azure/governance/policy/tutorials/)
 
 ## Threat Detection & Incident Response
+
 - [Sentinel Lab - Detect & Respond to Threats](https://learn.microsoft.com/en-us/training/modules/intro-to-azure-sentinel/)
 - [Incident Response Hands-On Lab](https://microsoftlearning.github.io/AZ-500-Azure-Security/Instructions/Labs/LAB_06_Incident_Response.html)
 
 
-
-# 🔐 Labs on Securing CI/CD Pipelines with Azure DevOps
+## 🔐 Labs on Securing CI/CD Pipelines with Azure DevOps
 
 ## 1. Implement Security Through a Pipeline Using Azure DevOps
+
 - **Description:** Learn how to configure secure access to pipeline resources, validate permissions, and manage identities within Azure Pipelines.
 - **Lab Link:** [Implement Security Through a Pipeline Using Azure DevOps](https://learn.microsoft.com/en-us/credentials/applied-skills/implement-security-through-pipeline-using-devops/)
 
 ## 2. Working with GitHub Advanced Security for Azure DevOps
+
 - **Description:** Explore integrating GitHub Advanced Security features into Azure DevOps to enhance code security during the CI/CD process.
 - **Lab Link:** [Working with GitHub Advanced Security for Azure DevOps](https://www.azuredevopslabs.com/labs/github/githubsecurity/)
 
 ## 3. Configuring Pipelines as Code with YAML
+
 - **Description:** Understand how to define and configure Azure Pipelines using YAML, enabling version control and enhancing pipeline security.
 - **Lab Link:** [Configuring Pipelines as Code with YAML](https://www.azuredevopslabs.com/labs/azuredevops/yaml/)
 
 ## 4. Enabling Continuous Integration with Azure Pipelines
+
 - **Description:** Set up continuous integration in Azure Pipelines to automatically build and test code, ensuring early detection of security issues.
 - **Lab Link:** [Enabling Continuous Integration with Azure Pipelines](https://www.azuredevopslabs.com/labs/azuredevops/continuousintegration/)
 
 ## 5. Embracing Continuous Delivery with Azure Pipelines
+
 - **Description:** Implement continuous delivery practices in Azure Pipelines to automate deployments while incorporating security checks.
 - **Lab Link:** [Embracing Continuous Delivery with Azure Pipelines](https://www.azuredevopslabs.com/labs/azuredevops/continuousdelivery/)
 
 ## 6. Using Secrets from Azure Key Vault in a Pipeline
+
 - **Description:** Learn to securely manage and use secrets in your Azure Pipelines by integrating with Azure Key Vault.
 - **Lab Link:** [Using Secrets from Azure Key Vault in a Pipeline](https://www.azuredevopslabs.com/labs/vstsextend/keyvault/)
 
 ## 7. Managing Technical Debt with SonarQube and Azure DevOps
+
 - **Description:** Integrate SonarQube with Azure DevOps to analyze code quality and security vulnerabilities, helping to manage technical debt.
 - **Lab Link:** [Managing Technical Debt with SonarQube and Azure DevOps](https://www.azuredevopslabs.com/labs/azuredevops/sonarqube/)
 
 ## 8. Automating Infrastructure Deployments in the Cloud with Terraform and Azure Pipelines
+
 - **Description:** Automate infrastructure deployments using Terraform in Azure Pipelines, ensuring infrastructure as code practices with security in mind.
 - **Lab Link:** [Automating Infrastructure Deployments in the Cloud with Terraform and Azure Pipelines](https://www.azuredevopslabs.com/labs/vstsextend/terraform/)
 
 ## 9. Feature Flag Management with LaunchDarkly
+
 - **Description:** Implement feature flags in Azure DevOps pipelines using LaunchDarkly to control feature rollouts securely.
 - **Lab Link:** [Feature Flag Management with LaunchDarkly](https://www.azuredevopslabs.com/labs/vstsextend/launchdarkly/)
 
 ## 10. Deploying a Multi-Container Application to Azure Kubernetes Services
+
 - **Description:** Learn to deploy secure multi-container applications to Azure Kubernetes Services (AKS) using Azure DevOps pipelines.
 - **Lab Link:** [Deploying a Multi-Container Application to Azure Kubernetes Services](https://www.azuredevopslabs.com/labs/azuredevops/kubernetes/)
-
-
-
 
 ---
 📌 **Stay consistent—Security never stops evolving! 🚀**
 
 
 ## 📝 Notes & Reflections
+
 - **Challenges Faced:**
 - **New Concepts Learned:**
 - **Useful Resources:**
 
 ## 🎯 Next Steps After 30 Days
+
+- Pursue **AZ-500 (Microsoft Certified: Azure Security Engineer Associate)**
 - Implement DevSecOps & Security in real-world projects
 - Pursue **AZ-500 (Microsoft Certified: Azure Security Engineer Associate)**
 - Participate in **cloud security hackathons**
@@ -131,4 +131,3 @@ If you are developing a production application, we recommend using TypeScript an
 
 ---
 🔥 **Stay consistent—Security never stops evolving! 🚀**
->>>>>>> 6ceaebdaa367360dddb8e9b124d4c6da584abef3
