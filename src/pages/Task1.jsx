@@ -3,14 +3,14 @@ import Content from "../components/Content";
 const Task1 = () => {
   return (
     <Content>
-      <h2 className="text-2xl font-bold text-white">Day 1 Task: Restrict Azure VM Access</h2>
+      <h2 className="text-2xl font-bold text-gray">Day 1 Task: Restrict Azure VM Access</h2>
       <p className="mt-2 text-gray-300">
         In this task, you'll configure **RBAC (Role-Based Access Control) and MFA (Multi-Factor Authentication)** to **secure an Azure Virtual Machine (VM)** from unauthorized access.
       </p>
 
       {/* Task Breakdown */}
       <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
-        <h3 className="text-xl sm:text-2xl font-semibold text-white">What You’ll Do</h3>
+        <h3 className="text-xl sm:text-2xl font-semibold text-gray">What You’ll Do</h3>
         <ul className="list-disc pl-5 text-gray-300 mt-2 space-y-2">
           <li>Assign **RBAC roles** to control access to the Azure VM.</li>
           <li>Enable **MFA** to require extra authentication before accessing the VM.</li>
@@ -20,7 +20,7 @@ const Task1 = () => {
 
       {/* Step-by-Step Guide */}
       <div className="mt-6">
-        <h3 className="text-xl sm:text-2xl font-semibold text-white">Step-by-Step Guide</h3>
+        <h3 className="text-xl sm:text-2xl font-semibold text-gray">Step-by-Step Guide</h3>
 
         {/* Step 1: Set Up Azure AD */}
         <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
