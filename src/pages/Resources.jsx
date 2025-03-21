@@ -4,83 +4,95 @@ import Content from "../components/Content";
 const resourcesData = {
   1: {
     topic: "Identity & Access Management",
-    links: [
-      { title: "Azure Active Directory Overview", url: "https://learn.microsoft.com/en-us/azure/active-directory/" },
-      { title: "Role-Based Access Control (RBAC)", url: "https://learn.microsoft.com/en-us/azure/role-based-access-control/" },
-      { title: "Multi-Factor Authentication (MFA)", url: "https://learn.microsoft.com/en-us/azure/active-directory/authentication/concept-mfa-howitworks" }
+    resources: [
+      { title: "Azure Active Directory Overview", description: "Learn about Azure Active Directory and its features.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/active-directory/" },
+      { title: "Role-Based Access Control (RBAC)", description: "Understand Role-Based Access Control and its use in Azure.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/role-based-access-control/" },
+      { title: "Multi-Factor Authentication (MFA)", description: "Learn about MFA and how to configure it in Azure.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/active-directory/authentication/concept-mfa-howitworks" }
     ]
   },
   2: {
     topic: "Network Security & Perimeter Defense",
-    links: [
-      { title: "Azure Virtual Network (VNet)", url: "https://learn.microsoft.com/en-us/azure/virtual-network/" },
-      { title: "Network Security Groups (NSG)", url: "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview" },
-      { title: "Azure DDoS Protection", url: "https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview" }
+    resources: [
+      { title: "Azure Virtual Network (VNet)", description: "Learn about setting up and managing virtual networks in Azure.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/virtual-network/" },
+      { title: "Network Security Groups (NSG)", description: "Understand how to use NSGs to secure Azure networks.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview" },
+      { title: "Azure DDoS Protection", description: "Learn how to protect Azure resources from DDoS attacks.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview" }
     ]
   },
   3: {
     topic: "Data Protection & Encryption",
-    links: [
-      { title: "Azure Storage Security", url: "https://learn.microsoft.com/en-us/azure/storage/common/storage-security-guide" },
-      { title: "Data Encryption in Azure", url: "https://learn.microsoft.com/en-us/azure/security/fundamentals/encryption-overview" },
-      { title: "Azure Key Vault Overview", url: "https://learn.microsoft.com/en-us/azure/key-vault/general/overview" }
+    resources: [
+      { title: "Azure Storage Security", description: "Learn how to secure Azure storage accounts and data.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/storage/common/storage-security-guide" },
+      { title: "Data Encryption in Azure", description: "Understand encryption methods and how to apply them in Azure.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/security/fundamentals/encryption-overview" },
+      { title: "Azure Key Vault Overview", description: "Learn how to use Azure Key Vault to manage secrets and keys.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/key-vault/general/overview" }
     ]
   },
   4: {
     topic: "Threat Detection & Monitoring",
-    links: [
-      { title: "Azure Security Center", url: "https://learn.microsoft.com/en-us/azure/security-center/security-center-introduction" },
-      { title: "Azure Sentinel (SIEM)", url: "https://learn.microsoft.com/en-us/azure/sentinel/" },
-      { title: "Log Analytics & Monitoring", url: "https://learn.microsoft.com/en-us/azure/azure-monitor/" }
+    resources: [
+      { title: "Azure Security Center", description: "Learn about Azure Security Center and its threat detection features.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/security-center/security-center-introduction" },
+      { title: "Azure Sentinel (SIEM)", description: "Learn about Azure Sentinel, a cloud-native SIEM solution.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/sentinel/" },
+      { title: "Log Analytics & Monitoring", description: "Understand how to monitor and analyze logs using Azure Monitor.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/azure-monitor/" }
     ]
   },
   5: {
     topic: "Incident Response & Recovery",
-    links: [
-      { title: "Azure Backup & Restore", url: "https://learn.microsoft.com/en-us/azure/backup/backup-overview" },
-      { title: "Incident Response Planning", url: "https://learn.microsoft.com/en-us/security/compass/incident-response-playbook" },
-      { title: "Azure Disaster Recovery", url: "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview" }
+    resources: [
+      { title: "Azure Backup & Restore", description: "Learn how to configure Azure Backup and restore data.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/backup/backup-overview" },
+      { title: "Incident Response Planning", description: "Learn how to create an incident response plan for Azure.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/security/compass/incident-response-playbook" },
+      { title: "Azure Disaster Recovery", description: "Learn how to implement disaster recovery with Azure Site Recovery.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview" }
     ]
   },
   6: {
     topic: "Compliance & Governance",
-    links: [
-      { title: "Azure Policy & Governance", url: "https://learn.microsoft.com/en-us/azure/governance/" },
-      { title: "Microsoft Defender for Cloud", url: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/" },
-      { title: "Compliance in Azure", url: "https://learn.microsoft.com/en-us/azure/compliance/" }
+    resources: [
+      { title: "Azure Policy & Governance", description: "Learn how to manage policies and governance in Azure.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/governance/" },
+      { title: "Microsoft Defender for Cloud", description: "Learn about Microsoft Defender for Cloud and its security features.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/" },
+      { title: "Compliance in Azure", description: "Understand Azure's compliance offerings and how to use them.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/compliance/" }
     ]
   },
   7: {
     topic: "Capstone Project",
-    links: [
-      { title: "Final Project Guide", url: "https://learn.microsoft.com/en-us/training/paths/azure-security/" },
-      { title: "Azure Security Best Practices", url: "https://learn.microsoft.com/en-us/security/benchmark/azure/" },
-      { title: "Case Studies & Real-World Scenarios", url: "https://techcommunity.microsoft.com/t5/security-compliance-and-identity/bd-p/security-compliance-identity" }
+    resources: [
+      { title: "Final Project Guide", description: "Step-by-step guide for completing the capstone project.", type: "Video", url: "https://learn.microsoft.com/en-us/training/paths/azure-security/" },
+      { title: "Azure Security Best Practices", description: "Learn security best practices in Azure.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/security/benchmark/azure/" },
+      { title: "Case Studies & Real-World Scenarios", description: "Explore case studies and real-world scenarios to apply your knowledge.", type: "Video", url: "https://techcommunity.microsoft.com/t5/security-compliance-and-identity/bd-p/security-compliance-identity" }
     ]
   }
 };
 
 const Resources = () => {
-    const { day } = useParams();
-    const resource = resourcesData[Number(day)];
+  const { day } = useParams();
+  const resource = resourcesData[Number(day)];
 
   return (
     <Content>
       {resource ? (
         <>
           <h2 className="text-3xl font-bold text-white">Day {day}: {resource.topic} Resources 📚</h2>
-          <p className="mt-2 text-gray-300">Expand your knowledge with the following resources:</p>
-          
-          <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md">
-            <ul className="list-disc pl-5 text-gray-300">
-              {resource.links.map((link, index) => (
-                <li key={index} className="mt-2">
-                  <a href={link.url} target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
-                    {link.title}
-                  </a>
-                </li>
-              ))}
-            </ul>
+          <p className="mt-2 text-gray-300">Explore the following resources to deepen your understanding:</p>
+
+          {/* Resources Table */}
+          <div className="mt-6 overflow-x-auto">
+            <table className="min-w-full table-auto bg-gray-800 rounded-lg shadow-md">
+              <thead className="bg-gray-700">
+                <tr>
+                  <th className="px-6 py-3 text-left text-white">Title</th>
+                  <th className="px-6 py-3 text-left text-white">Description</th>
+                  <th className="px-6 py-3 text-left text-white">Type of Content</th>
+                </tr>
+              </thead>
+              <tbody>
+                {resource.resources.map((res, index) => (
+                  <tr key={index} className="border-b border-gray-600">
+                    <td className="px-6 py-4 text-blue-400 hover:underline">
+                      <a href={res.url} target="_blank" rel="noopener noreferrer">{res.title}</a>
+                    </td>
+                    <td className="px-6 py-4 text-gray-300">{res.description}</td>
+                    <td className="px-6 py-4 text-gray-300">{res.type}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </>
       ) : (
