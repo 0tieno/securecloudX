@@ -59,7 +59,7 @@ const Sidebar = () => {
         ref={sidebarRef}
         className={`fixed md:static top-0 left-0 h-full w-64 bg-gray-800 text-gray-300 flex flex-col border-r border-gray-700 transition-transform duration-300 ${isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}`}
       >
-        <h2 className="text-xl font-bold p-4">Azure Cloud Security</h2>
+        <h2 className="text-xl font-bold p-4">Guide</h2>
         <nav className="flex-1 overflow-y-auto">
           <ul>
             <li>
