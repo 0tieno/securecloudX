@@ -17,6 +17,7 @@ import Task6 from "./pages/Task6";
 import Day7 from "./pages/Day7";
 import Task7 from "./pages/Task7";
 import Footer from "./components/Footer";
+import Resources from "./pages/Resources";
 
 const App = () => {
   return (
@@ -45,6 +46,8 @@ const App = () => {
               <Route path="/day6/task" element={<Task6 />} />
               <Route path="/day7" element={<Day7 />} />
               <Route path="/day7/task" element={<Task7 />} />
+              <Route path="/day/:day/resources" element={<Resources />} />
+
             </Routes>
           </div>
           <Footer />
