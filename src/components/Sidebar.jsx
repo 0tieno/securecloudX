@@ -92,7 +92,7 @@ const Sidebar = () => {
                     </li>
                     <li>
                       <Link to={`/day${day}/task`} className="block px-4 py-1 hover:bg-gray-700" onClick={closeSidebar}>
-                        Task
+                        Lab
                       </Link>
                     </li>
                     <li>
@@ -120,9 +120,15 @@ const Sidebar = () => {
               </button>
               {openNextSteps && (
                 <ul className="ml-4 border-l-2 border-gray-600">
-                  <li>
+                  {/* <li>
                     <Link to="/next-steps" className="block px-4 py-1 hover:bg-gray-700" onClick={closeSidebar}>
                       Explore More
+                    </Link>
+                  </li> */}
+                  {/* New Explore Page Link */}
+                  <li>
+                    <Link to="/explore" className="block px-4 py-1 hover:bg-gray-700" onClick={closeSidebar}>
+                      what next?
                     </Link>
                   </li>
                 </ul>
