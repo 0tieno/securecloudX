@@ -14,50 +14,40 @@ const Day7 = () => {
         <p><strong>Goal:</strong> Secure an end-to-end Azure deployment by integrating security best practices.</p>
       </div>
 
-      {/* Capstone Project Steps */}
-      {/* <div className="mt-6">
-        <h3 className="text-2xl font-semibold text-white">Capstone Project Steps</h3>
-
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md">
-          <h4 className="text-xl font-semibold text-blue-400">1. Deploy a Secure Virtual Machine</h4>
-          <ul className="list-disc pl-5 text-gray-300 mt-2">
-            <li>Deploy an Azure Virtual Machine (VM).</li>
-            <li>Attach a Network Security Group (NSG) with restrictive rules.</li>
-          </ul>
-        </div>
-
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md">
-          <h4 className="text-xl font-semibold text-blue-400">2. Implement Identity & Access Management</h4>
-          <ul className="list-disc pl-5 text-gray-300 mt-2">
-            <li>Enable Role-Based Access Control (RBAC) for least privilege access.</li>
-            <li>Enforce Multi-Factor Authentication (MFA) for user logins.</li>
-          </ul>
-        </div>
-
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md">
-          <h4 className="text-xl font-semibold text-blue-400">3. Configure Network & Data Security</h4>
-          <ul className="list-disc pl-5 text-gray-300 mt-2">
-            <li>Deploy Azure Firewall to filter traffic.</li>
-            <li>Enable Azure DDoS Protection for resilience.</li>
-            <li>Encrypt sensitive data using Azure Key Vault.</li>
-          </ul>
-        </div>
-
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md">
-          <h4 className="text-xl font-semibold text-blue-400">4. Monitor & Respond to Security Events</h4>
-          <ul className="list-disc pl-5 text-gray-300 mt-2">
-            <li>Enable Azure Security Center recommendations.</li>
-            <li>Set up Azure Sentinel to detect threats and analyze security logs.</li>
-          </ul>
-        </div>
-      </div> */}
-
-      {/* Final Task Section */}
-      <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
-        <h3 className="text-2xl font-semibold text-white">Final Task</h3>
-        <p className="text-gray-300 mt-2">
-          Implement a fully secured Azure environment following best practices from the past six days.
+      {/* Overview: What & Why */}
+      <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
+        <h3 className="text-xl sm:text-2xl font-semibold text-white">Overview</h3>
+        <p className="text-gray-300 text-sm sm:text-base mt-2">
+          **What is this Capstone Project?**  
+          The capstone project brings everything together. You'll secure a full Azure deployment using all the tools, configurations, and strategies learned over the last 6 days.
         </p>
+        <p className="text-gray-300 text-sm sm:text-base mt-3">
+          **Why is this important?**  
+          A secure deployment ensures that your environment is protected from external and internal threats, preventing data breaches and operational disruptions.
+        </p>
+
+        {/* Real-World Scenario */}
+        <div className="mt-4 p-3 bg-gray-700 rounded-md">
+          <h4 className="text-lg font-semibold text-yellow-400">Real-World Scenario</h4>
+          <p className="text-gray-300 text-sm sm:text-base mt-2">
+            You are a cloud security engineer tasked with securing a new Azure deployment for a large healthcare provider. The company handles sensitive patient data and is required to comply with strict privacy regulations. Your job is to implement a comprehensive security posture across identity, network, and data layers to ensure confidentiality, integrity, and availability.
+          </p>
+        </div>
+      </div>
+
+      {/* Task Section */}
+      <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
+        <h3 className="text-xl sm:text-2xl font-semibold text-white">Final Task</h3>
+        <p className="text-gray-300 text-sm sm:text-base mt-2">
+          Today, you’ll secure an Azure environment by applying security best practices. Your task includes:
+        </p>
+        <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2 space-y-2">
+          <li>Configure **identity management** with **RBAC** and **MFA** for all users and roles.</li>
+          <li>Set up **network security** with **NSGs** and **Azure Firewall** to monitor and control traffic.</li>
+          <li>Ensure **data protection** by configuring **encryption** for sensitive data in transit and at rest.</li>
+          <li>Deploy **Azure Sentinel** and configure alerts for real-time threat detection.</li>
+          <li>Conduct a security audit to identify any vulnerabilities and ensure compliance with industry standards (e.g., HIPAA, GDPR).</li>
+        </ul>
       </div>
 
       {/* Final Evaluation */}
@@ -65,10 +55,13 @@ const Day7 = () => {
         <h3 className="text-xl sm:text-2xl font-semibold text-white">Final Evaluation</h3>
         <p className="text-gray-300 text-sm sm:text-base mt-2">
           ✅ Were all unnecessary access points removed?<br />
-          ✅ Is identity management secured with RBAC & MFA?<br />
-          ✅ Is network traffic monitored and protected against threats?<br />
-          ✅ Are sensitive data and secrets encrypted?<br />
-          ✅ Is threat detection active with Azure Sentinel & Security Center?
+          ✅ Is identity management secured with **RBAC** & **MFA**?<br />
+          ✅ Is network traffic monitored and protected against threats using **NSGs** and **Azure Firewall**?<br />
+          ✅ Are sensitive data and secrets encrypted with **Azure Encryption**?<br />
+          ✅ Is **threat detection** active with **Azure Sentinel** & **Microsoft Defender for Cloud**?
+        </p>
+        <p className="text-gray-300 text-sm sm:text-base mt-3">
+          **Success Criteria:** Successfully securing the Azure deployment will be evaluated based on the configurations above, and any remaining gaps should be identified for further enhancement.
         </p>
       </div>
     </Content>
