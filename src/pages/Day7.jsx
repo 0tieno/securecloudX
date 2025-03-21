@@ -15,7 +15,7 @@ const Day7 = () => {
       </div>
 
       {/* Capstone Project Steps */}
-      <div className="mt-6">
+      {/* <div className="mt-6">
         <h3 className="text-2xl font-semibold text-white">Capstone Project Steps</h3>
 
         <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md">
@@ -50,7 +50,7 @@ const Day7 = () => {
             <li>Set up Azure Sentinel to detect threats and analyze security logs.</li>
           </ul>
         </div>
-      </div>
+      </div> */}
 
       {/* Final Task Section */}
       <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">

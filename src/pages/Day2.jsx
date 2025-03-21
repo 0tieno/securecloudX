@@ -15,7 +15,7 @@ const Day2 = () => {
       </div>
 
       {/* Step-by-Step Guide */}
-      <div className="mt-6">
+      {/* <div className="mt-6">
         <h3 className="text-xl sm:text-2xl font-semibold text-white">Step-by-Step Guide</h3>
 
         <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md">
@@ -48,7 +48,7 @@ const Day2 = () => {
             <li>Deploy <strong>Azure Firewall</strong> and configure rules to block unauthorized traffic.</li>
           </ul>
         </div>
-      </div>
+      </div> */}
 
       {/* Task Section */}
       <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
