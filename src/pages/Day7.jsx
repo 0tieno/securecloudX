@@ -14,7 +14,7 @@ const Day7 = () => {
         <p><strong>Goal:</strong> Secure an end-to-end Azure deployment by integrating security best practices.</p>
       </div>
 
-      {/* Step-by-Step Guide */}
+      {/* Capstone Project Steps */}
       <div className="mt-6">
         <h3 className="text-2xl font-semibold text-white">Capstone Project Steps</h3>
 
@@ -57,6 +57,18 @@ const Day7 = () => {
         <h3 className="text-2xl font-semibold text-white">Final Task</h3>
         <p className="text-gray-300 mt-2">
           Implement a fully secured Azure environment following best practices from the past six days.
+        </p>
+      </div>
+
+      {/* Final Evaluation */}
+      <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-green-500">
+        <h3 className="text-xl sm:text-2xl font-semibold text-white">Final Evaluation</h3>
+        <p className="text-gray-300 text-sm sm:text-base mt-2">
+          ✅ Were all unnecessary access points removed?<br />
+          ✅ Is identity management secured with RBAC & MFA?<br />
+          ✅ Is network traffic monitored and protected against threats?<br />
+          ✅ Are sensitive data and secrets encrypted?<br />
+          ✅ Is threat detection active with Azure Sentinel & Security Center?
         </p>
       </div>
     </Content>
