@@ -3,14 +3,14 @@ import Content from "../components/Content";
 const Task4 = () => {
   return (
     <Content>
-      <h2 className="text-2xl font-bold text-white">Day 4 Task: Secure Web Applications</h2>
+      <h2 className="text-2xl font-bold text-gray">Day 4 Task: Secure Web Applications</h2>
       <p className="mt-2 text-gray-300">
         Implement security controls for web applications and APIs in Azure using Web Application Firewall (WAF) and Managed Identities.
       </p>
 
       {/* Task Breakdown */}
       <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
-        <h3 className="text-xl sm:text-2xl font-semibold text-white">What You’ll Do</h3>
+        <h3 className="text-xl sm:text-2xl font-semibold text-gray">What You’ll Do</h3>
         <ul className="list-disc pl-5 text-gray-300 mt-2 space-y-2">
           <li>Deploy **Azure Web Application Firewall (WAF)** to protect web applications.</li>
           <li>Use **Managed Identities** to enhance application security.</li>
@@ -20,7 +20,7 @@ const Task4 = () => {
 
       {/* Step-by-Step Guide */}
       <div className="mt-6">
-        <h3 className="text-xl sm:text-2xl font-semibold text-white">Step-by-Step Guide</h3>
+        <h3 className="text-xl sm:text-2xl font-semibold text-gray">Step-by-Step Guide</h3>
 
         {/* Step 1: Deploy Azure WAF */}
         <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">

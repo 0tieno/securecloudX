@@ -68,7 +68,7 @@ const Resources = () => {
     <Content>
       {resource ? (
         <>
-          <h2 className="text-3xl font-bold text-white">Day {day}: {resource.topic} Resources 📚</h2>
+          <h2 className="text-3xl font-bold text-gray-400">Day {day}: {resource.topic} Resources 📚</h2>
           <p className="mt-2 text-gray-300">Explore the following resources to deepen your understanding:</p>
 
           {/* Resources Table */}
@@ -76,9 +76,9 @@ const Resources = () => {
             <table className="min-w-full table-auto bg-gray-800 rounded-lg shadow-md">
               <thead className="bg-gray-700">
                 <tr>
-                  <th className="px-6 py-3 text-left text-white">Title</th>
-                  <th className="px-6 py-3 text-left text-white">Description</th>
-                  <th className="px-6 py-3 text-left text-white">Type of Content</th>
+                  <th className="px-6 py-3 text-left text-gray">Title</th>
+                  <th className="px-6 py-3 text-left text-gray">Description</th>
+                  <th className="px-6 py-3 text-left text-gray">Type of Content</th>
                 </tr>
               </thead>
               <tbody>

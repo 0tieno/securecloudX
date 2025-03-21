@@ -3,7 +3,7 @@ import Content from "../components/Content";
 const Task3 = () => {
   return (
     <Content>
-      <h2 className="text-2xl font-bold text-white">Day 3 Task: Data Security & Encryption</h2>
+      <h2 className="text-2xl font-bold text-gray">Day 3 Task: Data Security & Encryption</h2>
       <p className="mt-2 text-gray-300">
         Secure data at rest and in transit using encryption and access control mechanisms.
       </p>
@@ -14,7 +14,7 @@ const Task3 = () => {
       </ul>
 
       <div className="mt-6">
-        <h3 className="text-xl sm:text-2xl font-semibold text-white">Step-by-Step Guide</h3>
+        <h3 className="text-xl sm:text-2xl font-semibold text-gray">Step-by-Step Guide</h3>
 
         <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
           <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 1: Enable Data Encryption</h4>

@@ -12,7 +12,7 @@ const Day6 = () => {
 
       {/* Task Breakdown */}
       <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
-        <h3 className="text-xl sm:text-2xl font-semibold text-white">What You’ll Do</h3>
+        <h3 className="text-xl sm:text-2xl font-semibold text-gray">What You’ll Do</h3>
         <ul className="list-disc pl-5 text-gray-300 mt-2 space-y-2">
           <li>Enable **Microsoft Defender for Cloud** and configure security recommendations.</li>
           <li>Deploy **Azure Sentinel** and connect data sources.</li>
@@ -23,7 +23,7 @@ const Day6 = () => {
 
       {/* Step-by-Step Guide */}
       <div className="mt-6">
-        <h3 className="text-xl sm:text-2xl font-semibold text-white">Step-by-Step Guide</h3>
+        <h3 className="text-xl sm:text-2xl font-semibold text-gray">Step-by-Step Guide</h3>
 
         {/* Step 1: Enable Microsoft Defender for Cloud */}
         <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
