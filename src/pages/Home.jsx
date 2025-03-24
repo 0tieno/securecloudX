@@ -3,10 +3,10 @@ import Content from "../components/Content";
 const Home = () => {
   return (
     <Content className="bg-gray-900 text-white p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-4xl mx-auto">
-      <h1 className="text-2xl md:text-4xl font-bold mb-4 text-start">🌥️ Welcome to learnCloudSecurity</h1>
+      <h1 className="text-2xl md:text-4xl font-bold mb-4 text-start">🌥️ Welcome to secureCloudX</h1>
       
       <p className="text-gray-300 text-base md:text-lg text-start">
-        This is a junior 7-day challenge designed to help you get started with cloud security using Azure.
+        This is a junior learnCloudSecurity 7-day challenge designed to help you get started with cloud security using Azure.
         You will learn key security concepts, best practices, and hands-on skills to secure cloud environments.
       </p>
 
