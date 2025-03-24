@@ -99,6 +99,17 @@ const Resources = () => {
   <h3 className="text-lg sm:text-xl font-semibold text-yellow-400">💡 Security Starts with Understanding</h3>
   <p className="text-gray-300 text-sm sm:text-base mt-2">
   Always remember, you cannot secure what you do not understand. Make sure to grasp the architectural and core components of the cloud so that you can properly secure them.
+            </p>
+            
+            <p className="mt-3">
+    <a 
+      href="https://blog.christophetd.fr/cloud-security-breaches-and-vulnerabilities-2021-in-review/" 
+      className="text-blue-400 hover:underline"
+      target="_blank" 
+      rel="noopener noreferrer"
+    >
+      🔗 Cloud Security Breaches and Vulnerabilities (Blog)
+    </a>
   </p>
 </div>
 
