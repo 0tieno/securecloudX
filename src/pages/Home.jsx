@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Content from "../components/Content";
 
 const Home = () => {
@@ -6,9 +7,21 @@ const Home = () => {
       <h1 className="text-2xl md:text-4xl font-bold mb-4 text-start">🌥️ Welcome to secureCloudX</h1>
       
       <p className="text-gray-300 text-base md:text-lg text-start">
-        This is a junior learnCloudSecurity 7-day challenge designed to help you get started with cloud security using Azure.
-        You will learn key security concepts, best practices, and hands-on skills to secure cloud environments.
-      </p>
+  Welcome to <strong>secureCloudX</strong>—a 7-day hands-on journey into cloud security,  
+  designed by <a href="https://ronneyotieno.me" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">$!rronn3y</a> to help you  get started with cloud security using Azure. 
+  Throughout this challenge, you’ll explore key security concepts, best practices, and real-world skills to protect cloud infrastructures.
+</p>
+
+
+
+      <div className="mt-6 p-4 bg-gray-800 border-l-4 border-yellow-500 rounded-lg shadow-md">
+  <h3 className="text-lg sm:text-xl font-semibold text-yellow-400">🔒 Cloud Security Matters</h3>
+  <p className="text-gray-300 text-sm sm:text-base mt-2">
+    Security is the biggest challenge in cloud computing. As cloud adoption continues to grow,  
+    cloud security incidents and vulnerabilities are equally on the rise.
+  </p>
+</div>
+
 
       <h2 className="text-xl md:text-3xl font-bold mt-6 text-start">🛡️ Why Take This Challenge?</h2>
       <ul className="mt-4 text-gray-300 space-y-3 text-sm md:text-base">
@@ -53,10 +66,12 @@ const Home = () => {
       </div>
       
       <h2 className="text-xl md:text-3xl font-bold mt-6 text-start">🚀 Get Started</h2>
-      <p className="text-gray-300 text-base md:text-lg text-start">
-        Ready to begin? Start with{" "}
-        <span className="text-blue-400 font-semibold">Day 1: Identity & Access Management</span>.
-      </p>
+<p className="text-gray-300 text-base md:text-lg text-start">
+  Ready to begin? Start with{" "}
+  <Link to="/Day1" className="text-blue-400 font-semibold hover:underline">
+    Day 1: Identity & Access Management
+  </Link>.
+</p>
     </Content>
   );
 };

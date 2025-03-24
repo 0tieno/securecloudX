@@ -94,6 +94,14 @@ const Resources = () => {
               </tbody>
             </table>
           </div>
+
+          <div className="mt-6 p-4 bg-gray-800 border-l-4 border-yellow-500 rounded-lg shadow-md">
+  <h3 className="text-lg sm:text-xl font-semibold text-yellow-400">💡 Security Starts with Understanding</h3>
+  <p className="text-gray-300 text-sm sm:text-base mt-2">
+  Always remember, you cannot secure what you do not understand. Make sure to grasp the architectural and core components of the cloud so that you can properly secure them.
+  </p>
+</div>
+
         </>
       ) : (
         <h2 className="text-3xl font-bold text-red-500">Resources not found for Day {day} ❌</h2>

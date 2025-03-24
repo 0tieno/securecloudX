@@ -7,7 +7,7 @@ const Day1 = () => {
         Day 1: Identity & Access Management (IAM) 🔐
       </h2>
       <p className="mt-2 text-gray-300 text-sm sm:text-base">
-        Learn how to manage identities, access controls, and authentication using Azure Active Directory.
+        Learn how to manage identities, access controls, and authentication using Microsoft Entra ID (Azure Active Directory).
       </p>
 
       {/* Domain & Goal */}
@@ -25,7 +25,7 @@ const Day1 = () => {
         <h3 className="text-xl sm:text-2xl font-semibold text-white">Overview</h3>
         <p className="text-gray-300 text-sm sm:text-base mt-2">
           **What is IAM?**  
-          Identity & Access Management (IAM) is a **framework of policies and technologies** that ensures **the right people have the right access** to resources. In Azure, IAM is managed using **Azure Active Directory (Azure AD)** and **Role-Based Access Control (RBAC)**.
+          Identity & Access Management (IAM) is a **framework of policies and technologies** that ensures **the right people have the right access** to resources. In Azure, IAM is managed using **Microsoft Entra ID (Azure Active Directory)** and **Role-Based Access Control (RBAC)**.
         </p>
         <p className="text-gray-300 text-sm sm:text-base mt-3">
           **Why is IAM important?**  
@@ -45,7 +45,7 @@ const Day1 = () => {
       <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-green-500">
         <h3 className="text-xl sm:text-2xl font-semibold text-white">Key Notes</h3>
         <ul className="list-disc list-inside text-gray-300 text-sm sm:text-base mt-2 space-y-2">
-          <li><strong>Azure AD</strong> is the core identity provider in Azure.</li>
+          <li><strong>Microsoft Entra ID (Azure AD)</strong> is the core identity provider in Azure.</li>
           <li><strong>RBAC</strong> allows you to control who can access which resources.</li>
           <li><strong>MFA (Multi-Factor Authentication)</strong> adds an extra layer of security.</li>
           <li>IAM policies help organizations **prevent data breaches** and **maintain compliance**.</li>

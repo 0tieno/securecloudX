@@ -55,7 +55,7 @@ const Task1 = () => {
             **Why?** RBAC ensures that users have only the **minimum required access** to resources.
           </p>
           <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-            <li>Navigate to the **Azure VM** you want to secure.</li>
+            <li>Navigate to the **Azure VM** you want to secure or create one if you don't have.</li>
             <li>Go to <strong>IAM (Access Control) &gt; Role Assignments &gt; Add role assignment</strong>.</li>
             <li>Assign a **Reader** role to a group/user (instead of Owner).</li>
             <li>Ensure that **only administrators** have full access.</li>
