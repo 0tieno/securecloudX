@@ -5,16 +5,16 @@ const Task2 = () => {
     <Content>
       <h2 className="text-2xl font-bold text-gray">Day 2 Task: Secure an Azure VM with NSG & Firewall</h2>
       <p className="mt-2 text-gray-300">
-        In this task, you'll configure **Network Security Groups (NSGs) and Azure Firewall** to **protect an Azure Virtual Machine (VM) from unauthorized access**.
+        In this task, you'll configure <strong>Network Security Groups (NSGs) and Azure Firewall</strong> to <strong>protect an Azure Virtual Machine (VM) from unauthorized access</strong>.
       </p>
 
       {/* Task Breakdown */}
       <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
         <h3 className="text-xl sm:text-2xl font-semibold text-gray">What You’ll Do</h3>
         <ul className="list-disc pl-5 text-gray-300 mt-2 space-y-2">
-          <li>Create a **Virtual Network (VNet)** and define subnets.</li>
-          <li>Set up **Network Security Groups (NSGs)** to filter traffic.</li>
-          <li>Deploy **Azure Firewall** to block unauthorized access.</li>
+          <li>Create a <strong>Virtual Network (VNet)</strong> and define subnets.</li>
+          <li>Set up <strong>Network Security Groups (NSGs)</strong> to filter traffic.</li>
+          <li>Deploy <strong>Azure Firewall</strong> to block unauthorized access.</li>
           <li>Test security settings to ensure protection.</li>
         </ul>
       </div>
@@ -27,11 +27,14 @@ const Task2 = () => {
         <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
           <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 1: Create a Virtual Network (VNet)</h4>
           <p className="text-gray-300 text-sm sm:text-base mt-2">
-            **Why?** A VNet provides network isolation and segmentation.
+            <strong>Why?</strong> A VNet provides network isolation and segmentation.
           </p>
           <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-            <li>Go to <strong>Azure Portal &gt; Virtual Networks &gt; Create</strong>.</li>
-            <li>Define subnets for better security and organization.</li>
+            <li>Sign in to <a href="https://portal.azure.com" className="text-blue-400">Azure Portal</a>.</li>
+            <li>Go to <strong>Virtual Networks</strong> and click <strong>Create</strong>.</li>
+            <li>Choose a <strong>Resource Group</strong> and provide a unique <strong>VNet Name</strong>.</li>
+            <li>Define a subnet (e.g., <strong>subnet1</strong> with 10.0.0.0/24 CIDR block).</li>
+            <li>Click <strong>Review + Create</strong> and then <strong>Create</strong>.</li>
           </ul>
         </div>
 
@@ -39,12 +42,18 @@ const Task2 = () => {
         <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
           <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 2: Configure Network Security Groups (NSGs)</h4>
           <p className="text-gray-300 text-sm sm:text-base mt-2">
-            **Why?** NSGs act as a firewall to control inbound and outbound traffic.
+            <strong>Why?</strong> NSGs act as a firewall to control inbound and outbound traffic.
           </p>
           <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-            <li>Navigate to **NSGs &gt; Create a new NSG**.</li>
-            <li>Add **inbound/outbound rules** to allow only necessary traffic.</li>
-            <li>Restrict RDP/SSH access to specific IP addresses.</li>
+            <li>Navigate to <strong>Network Security Groups</strong> in the Azure Portal.</li>
+            <li>Click <strong>Create</strong> and assign it to the same <strong>Resource Group</strong> as your VNet.</li>
+            <li>Go to <strong>Inbound Security Rules</strong> and add rules:
+              <ul className="list-disc pl-5 mt-2">
+                <li>Allow <strong>RDP (3389)</strong> or <strong>SSH (22)</strong> only for specific IPs.</li>
+                <li>Block all other incoming traffic by default.</li>
+              </ul>
+            </li>
+            <li>Associate the NSG with the VM’s subnet.</li>
           </ul>
         </div>
 
@@ -52,12 +61,17 @@ const Task2 = () => {
         <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
           <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 3: Deploy Azure Firewall</h4>
           <p className="text-gray-300 text-sm sm:text-base mt-2">
-            **Why?** Azure Firewall provides centralized traffic control and protection.
+            <strong>Why?</strong> Azure Firewall provides centralized traffic control and protection.
           </p>
           <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-            <li>Go to **Azure Firewall &gt; Create a new firewall**.</li>
-            <li>Attach the firewall to your Virtual Network.</li>
-            <li>Define rules to **block or allow traffic** based on security needs.</li>
+            <li>Go to <strong>Azure Firewall</strong> and click <strong>Create</strong>.</li>
+            <li>Assign it to the same VNet and subnet.</li>
+            <li>Define rules:
+              <ul className="list-disc pl-5 mt-2">
+                <li><strong>Deny all inbound traffic</strong> except for allowed services.</li>
+                <li>Allow only essential outbound traffic.</li>
+              </ul>
+            </li>
           </ul>
         </div>
 
@@ -65,12 +79,12 @@ const Task2 = () => {
         <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-green-500">
           <h4 className="text-lg sm:text-xl font-semibold text-green-400">Step 4: Test & Validate</h4>
           <p className="text-gray-300 text-sm sm:text-base mt-2">
-            **Why?** Testing ensures that security policies work as expected.
+            <strong>Why?</strong> Testing ensures that security policies work as expected.
           </p>
           <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-            <li>Try accessing the VM from an **unauthorized IP** – it should be blocked.</li>
-            <li>Verify that only **allowed users/IPs** can access the VM.</li>
-            <li>Check logs to confirm blocked and allowed traffic.</li>
+            <li>Try accessing the VM from an <strong>unauthorized IP</strong> – it should be blocked.</li>
+            <li>Verify that only <strong>allowed users/IPs</strong> can access the VM.</li>
+            <li>Check <strong>Azure Monitor Logs</strong> to confirm blocked and allowed traffic.</li>
           </ul>
           <p className="text-gray-300 text-sm sm:text-base mt-3">
             <strong>Success Criteria:</strong> Unauthorized access is blocked, and only permitted traffic flows through.

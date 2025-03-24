@@ -14,13 +14,25 @@ const Home = () => {
 
 
 
-      <div className="mt-6 p-4 bg-gray-800 border-l-4 border-yellow-500 rounded-lg shadow-md">
+<div className="mt-6 p-4 bg-gray-800 border-l-4 border-yellow-500 rounded-lg shadow-md">
   <h3 className="text-lg sm:text-xl font-semibold text-yellow-400">🔒 Cloud Security Matters</h3>
   <p className="text-gray-300 text-sm sm:text-base mt-2">
-    Security is the biggest challenge in cloud computing. As cloud adoption continues to grow,  
-    cloud security incidents and vulnerabilities are equally on the rise.
+    Security remains one of the biggest challenges in cloud computing. As cloud adoption grows,  
+    security incidents and vulnerabilities continue to rise.
+  </p>
+  
+  <p className="mt-3">
+    <a 
+      href="https://www.nojones.net/posts/breaking-into-cloudsec" 
+      className="text-blue-400 hover:underline"
+      target="_blank" 
+      rel="noopener noreferrer"
+    >
+      🔗 Breaking into Cloud Security (Blog)
+    </a>
   </p>
 </div>
+
 
 
       <h2 className="text-xl md:text-3xl font-bold mt-6 text-start">🛡️ Why Take This Challenge?</h2>
