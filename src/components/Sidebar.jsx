@@ -5,10 +5,10 @@ import { ChevronRight, ChevronDown, Menu, X } from "lucide-react"; // Import ico
 const topics = {
   1: "Identity & Access Management",
   2: "Network Security & Perimeter Defense",
-  3: "Data Protection & Encryption",
-  4: "Threat Detection & Monitoring",
-  5: "Incident Response & Recovery",
-  6: "Compliance & Governance",
+  3: "Data Security",
+  4: "Application Security",
+  5: "Incident Response & Threat Detection ",
+  6: "Security Monitoring & Threat Intelligence",
   7: "Capstone Project",
 };
 

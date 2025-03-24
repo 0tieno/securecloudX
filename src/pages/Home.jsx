@@ -3,10 +3,10 @@ import Content from "../components/Content";
 const Home = () => {
   return (
     <Content className="bg-gray-900 text-white p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-4xl mx-auto">
-      <h1 className="text-2xl md:text-4xl font-bold mb-4 text-start">🌥️ Welcome to Azure Cloud Security</h1>
+      <h1 className="text-2xl md:text-4xl font-bold mb-4 text-start">🌥️ Welcome to learnCloudSecurity</h1>
       
       <p className="text-gray-300 text-base md:text-lg text-start">
-        This is a 7-day challenge designed to help you get started with cloud security using Azure.
+        This is a junior 7-day challenge designed to help you get started with cloud security using Azure.
         You will learn key security concepts, best practices, and hands-on skills to secure cloud environments.
       </p>
 
@@ -40,6 +40,18 @@ const Home = () => {
         ))}
       </ul>
 
+
+      <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-green-500">
+          <h4 className="text-lg sm:text-xl font-semibold text-green-400">Document Your Learning For each Day</h4>
+          <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
+            <li>Remember to use either blogs, videos, github or any social media platform of your choice to document what you've learnt each day.</li>
+            <li>Be an expert and let the world know.</li>
+          </ul>
+          {/* <p className="text-gray-300 text-sm sm:text-base mt-3">
+            <strong>Success Criteria:</strong> The Azure deployment is secure, with the appropriate monitoring tools detecting and responding to any incidents.
+          </p> */}
+      </div>
+      
       <h2 className="text-xl md:text-3xl font-bold mt-6 text-start">🚀 Get Started</h2>
       <p className="text-gray-300 text-base md:text-lg text-start">
         Ready to begin? Start with{" "}
