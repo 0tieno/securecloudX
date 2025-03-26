@@ -1,17 +1,17 @@
-import { useState } from "react";
+// import { useState } from "react";
 import { Link } from "react-router-dom";
 import Content from "../components/Content";
 
 const Home = () => {
-  const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
 
-  const handleSubscribe = (e) => {
-    e.preventDefault();
-    console.log("Subscribed email:", email);
-    // TODO: Integrate with backend/email service
-    setEmail("");
-    alert("Thanks for subscribing! You'll receive reminders.");
-  };
+  // const handleSubscribe = (e) => {
+  //   e.preventDefault();
+  //   console.log("Subscribed email:", email);
+  //   // TODO: Integrate with backend/email service
+  //   setEmail("");
+  //   alert("Thanks for subscribing! You'll receive reminders.");
+  // };
 
   return (
     <Content className="bg-gray-900 text-white p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-4xl mx-auto">
