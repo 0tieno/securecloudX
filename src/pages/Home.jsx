@@ -19,9 +19,7 @@ const Home = () => {
       
       <p className="text-gray-300 text-base md:text-lg text-start">
         Welcome to <strong>secureCloudX</strong>—a 7-day hands-on journey into cloud security,  
-        designed by <a href="https://ronneyotieno.me" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">$!rronn3y</a> 
-        to help you get started with cloud security using Azure. 
-        Throughout this challenge, you’ll explore key security concepts, best practices, and real-world skills to protect cloud infrastructures.
+        designed by <a href="https://ronneyotieno.me" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">$!rronn3y</a> to help you get started with cloud security using Azure. Throughout this challenge, you’ll explore key security concepts, best practices, and real-world skills to protect cloud infrastructures. Participants who successfully completes the capstone project will be certified - Microsoft.
       </p>
 
       {/* Cloud Security Matters Section */}
@@ -45,11 +43,14 @@ const Home = () => {
 
       {/* Why Take This Challenge */}
       <h2 className="text-xl md:text-3xl font-bold mt-6 text-start">🛡️ Why Take This Challenge?</h2>
-      <ul className="mt-4 text-gray-300 space-y-3 text-sm md:text-base">
-        <li><span className="text-white font-semibold">🔹 Hands-on Learning:</span> Work on real-world security scenarios.</li>
-        <li><span className="text-white font-semibold">🔹 Practical Skills:</span> Learn how to secure cloud workloads using Azure tools.</li>
-        <li><span className="text-white font-semibold">🔹 Capstone Project:</span> Apply your knowledge in a final project.</li>
-      </ul>
+<ul className="mt-4 text-gray-300 space-y-3 text-sm md:text-base">
+  <li><span className="text-white font-semibold">🔹 Hands-on Learning:</span> Work on real-world security scenarios.</li>
+  <li><span className="text-white font-semibold">🔹 Practical Skills:</span> Learn how to secure cloud workloads using Azure tools.</li>
+  <li><span className="text-white font-semibold">🔹 Capstone Project:</span> Apply your knowledge in a final project.</li>
+  <li><span className="text-white font-semibold">🤖 AI-Powered Learning:</span> Use specially designed prompts to enhance your learning with AI.</li>
+  <li><span className="text-white font-semibold">🌍 Join the Community:</span> Connect with fellow learners in our <a href="https://x.com/securecloudX" target="_blank" className="text-blue-400 hover:underline">X Community</a> to share progress, ask questions, and collaborate.</li>
+</ul>
+
 
       {/* Challenge Structure */}
       <h2 className="text-xl md:text-3xl font-bold mt-6 text-start">📅 Challenge Structure</h2>
@@ -73,13 +74,14 @@ const Home = () => {
       <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-green-500">
         <h4 className="text-lg sm:text-xl font-semibold text-green-400">Document Your Learning For Each Day</h4>
         <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-          <li>Use blogs, videos, GitHub, or social media to document what you've learned.</li>
+        <li>Share your daily progress on X, follow the channel for daily updates, and use the hashtag <strong>#securecloudX</strong>.</li>
+          <li>Use blogs to document what you've learned.</li>
           <li>Be an expert and let the world know.</li>
         </ul>
       </div>
 
        {/* Email Subscription Form */}
-       <div className="mt-8 p-6 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
+       {/* <div className="mt-8 p-6 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
         <h3 className="text-lg sm:text-xl font-semibold text-blue-400">📩 Stay Updated</h3>
         <p className="text-gray-300 text-sm sm:text-base mt-2">
           Enter your email to receive daily reminders about the challenge.
@@ -100,7 +102,24 @@ const Home = () => {
             Subscribe
           </button>
         </form>
-      </div>
+      </div> */}
+
+      {/* Email Subscription Form */}
+<div className="mt-8 p-6 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
+  <h3 className="text-lg sm:text-xl font-semibold text-blue-400">📩 Stay Updated</h3>
+  <p className="text-gray-300 text-sm sm:text-base mt-2">
+    Enter your email to receive daily reminders about the challenge.
+  </p>
+  <a 
+    href="https://forms.office.com/r/5yqb8Xw5GK" 
+    target="_blank" 
+    rel="noopener noreferrer"
+    className="mt-4 inline-block px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold transition duration-200"
+  >
+    Subscribe via Microsoft Forms
+  </a>
+</div>
+
 
       {/* Get Started */}
       <h2 className="text-xl md:text-3xl font-bold mt-6 text-start">🚀 Get Started</h2>
