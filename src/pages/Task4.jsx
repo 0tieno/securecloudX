@@ -3,7 +3,7 @@ import Content from "../components/Content";
 const Task4 = () => {
   return (
     <Content>
-      <h2 className="text-2xl font-bold text-gray">Day 4 Task: Secure Web Applications</h2>
+      <h2 className="text-2xl font-bold text-gray">Day 4 Lab: Secure Web Applications</h2>
       <p className="mt-2 text-gray-300">
         Implement security controls for web applications and APIs in Azure using Web Application Firewall (WAF) and Managed Identities.
       </p>

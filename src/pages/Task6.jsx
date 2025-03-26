@@ -4,7 +4,7 @@ const Day6 = () => {
   return (
     <Content>
       <h2 className="text-2xl sm:text-3xl font-bold text-gray-300">
-        Day 6: Security Monitoring & Threat Intelligence 📊
+        Day 6 Lab: Security Monitoring & Threat Intelligence 📊
       </h2>
       <p className="mt-2 text-gray-300 text-sm sm:text-base">
         Learn how to continuously monitor security events, detect threats, and use threat intelligence in Azure.

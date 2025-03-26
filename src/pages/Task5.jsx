@@ -3,7 +3,7 @@ import Content from "../components/Content";
 const Task5 = () => {
   return (
     <Content>
-      <h2 className="text-2xl font-bold text-gray">Day 5 Task: Incident Response & Threat Detection</h2>
+      <h2 className="text-2xl font-bold text-gray">Day 5 Lab: Incident Response & Threat Detection</h2>
       <p className="mt-2 text-gray-300">
         Set up Azure Sentinel, configure security alerts, and create an automated incident response playbook.
       </p>

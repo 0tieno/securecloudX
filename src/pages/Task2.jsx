@@ -3,7 +3,7 @@ import Content from "../components/Content";
 const Task2 = () => {
   return (
     <Content>
-      <h2 className="text-2xl font-bold text-gray">Day 2 Task: Secure an Azure VM with NSG & Firewall</h2>
+      <h2 className="text-2xl font-bold text-gray">Day 2 Lab: Secure an Azure VM with NSG & Firewall</h2>
       <p className="mt-2 text-gray-300">
         In this task, you'll configure <strong>Network Security Groups (NSGs) and Azure Firewall</strong> to <strong>protect an Azure Virtual Machine (VM) from unauthorized access</strong>.
       </p>

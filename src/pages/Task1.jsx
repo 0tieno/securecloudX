@@ -3,7 +3,7 @@ import Content from "../components/Content";
 const Task1 = () => {
   return (
     <Content>
-      <h2 className="text-2xl font-bold text-gray">Day 1 Task: Restrict Azure VM Access</h2>
+      <h2 className="text-2xl font-bold text-gray">Day 1 Lab: Restrict Azure VM Access</h2>
       <p className="mt-2 text-gray-300">
         In this task, you'll configure **RBAC (Role-Based Access Control) and MFA (Multi-Factor Authentication)** to **secure an Azure Virtual Machine (VM)** from unauthorized access.
       </p>
