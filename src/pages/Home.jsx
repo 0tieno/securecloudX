@@ -51,12 +51,27 @@ const Home = () => {
   <li><span className="text-white font-semibold">🌍 Join the Community:</span> Connect with fellow learners in our <a href="https://x.com/securecloudX" target="_blank" className="text-blue-400 hover:underline">X Community</a> to share progress, ask questions, and collaborate.</li>
 </ul>
 
+      {/* Prerequisites Section */}
+<div className="mt-8 p-6 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
+  <h2 className="text-lg sm:text-xl font-semibold text-yellow-400">⚙️ Prerequisites</h2>
+  <p className="text-gray-300 text-sm sm:text-base mt-2">
+    Before starting, have:
+  </p>
+  
+  <ul className="mt-4 text-gray-300 space-y-3 text-sm sm:text-base">
+    <li>✅ Basic knowledge of **Cloud Computing** (Azure preferred)</li>
+    <li>✅ An **Azure Free Tier Account** (recommended)</li>
+    <li>✅ Willingness to experiment and learn! 🚀</li>
+  </ul>
+</div>
+
+
 
       {/* Challenge Structure */}
       <h2 className="text-xl md:text-3xl font-bold mt-6 text-start">📅 Challenge Structure</h2>
       <ul className="mt-4 text-gray-300 space-y-2 text-sm md:text-base">
         {[
-          "Identity & Access Management",
+          "IAM",
           "Network Security",
           "Data Security",
           "Application Security",
