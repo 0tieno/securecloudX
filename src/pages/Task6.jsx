@@ -21,6 +21,18 @@ const Day6 = () => {
         </ul>
       </div>
 
+
+       {/* AI Assistance Prompt */}
+       <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
+        <h3 className="text-xl sm:text-2xl font-semibold text-yellow-400">Use AI to Guide You</h3>
+        <p className="text-gray-300 text-sm sm:text-base mt-2">
+          Copy and paste this prompt into an AI assistant to get interactive guidance while completing the lab:
+        </p>
+        <blockquote className="mt-3 p-3 bg-gray-900 rounded-md text-gray-300 italic border-l-4 border-yellow-400">
+        "Provide a step-by-step hands-on lab on Security Monitoring & Threat Intelligence using Azure. The lab should include enabling Microsoft Defender for Cloud, deploying Azure Sentinel, using Log Analytics for security monitoring, and integrating threat intelligence for proactive defense. Include instructions on how to test and validate security alerts by simulating suspicious activities."
+        </blockquote>
+      </div>
+
       {/* Step-by-Step Guide */}
       <div className="mt-6">
         <h3 className="text-xl sm:text-2xl font-semibold text-gray">Step-by-Step Guide</h3>

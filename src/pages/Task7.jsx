@@ -18,8 +18,39 @@ const Task7 = () => {
           <li>Configure **RBAC** and enforce **MFA** for user logins.</li>
           <li>Set up **Azure Firewall** and **DDoS Protection** for network security.</li>
           <li>Ensure sensitive data is protected with **Azure Key Vault**.</li>
+          <li>Secure API keys by storing and retrieving them via **Azure Key Vault**.</li>
           <li>Enable **Azure Sentinel** to monitor and respond to security events.</li>
         </ul>
+      </div>
+
+
+       {/* AI Assistance Prompt */}
+       <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
+        <h3 className="text-xl sm:text-2xl font-semibold text-yellow-400">Use AI to Guide You</h3>
+        <p className="text-gray-300 text-sm sm:text-base mt-2">
+          Copy and paste this prompt into an AI assistant to get interactive guidance while completing the lab:
+        </p>
+        <blockquote className="mt-3 p-3 bg-gray-900 rounded-md text-gray-300 italic border-l-4 border-yellow-400">
+        "I’m working on my Capstone Project for securing an Azure deployment, and I need a hands-on, step-by-step guide to help me apply everything I’ve learned. The guide should walk me through deploying a secure Azure Virtual Machine (VM) with proper network security controls like Network Security Groups (NSGs), Azure Firewall, and DDoS Protection.
+
+I also need to configure identity security by setting up Role-Based Access Control (RBAC) and Multi-Factor Authentication (MFA) to ensure only authorized users can access resources. Additionally, I want to store and retrieve API keys securely using Azure Key Vault in a real-world scenario.
+
+For security monitoring, I need to set up Azure Sentinel to track security events, create alerts, and automate responses. A critical part of this project will be testing everything—simulating unauthorized access attempts and other security threats to validate that my setup detects and mitigates risks effectively.
+
+Finally, I need guidance on how to document my work in a structured report, including:
+
+A brief overview of my secure deployment
+
+The implementation steps I followed
+
+Screenshots of configurations (RBAC, MFA, Firewall, Sentinel, etc.)
+
+Testing & validation results
+
+Challenges I faced and key takeaways
+
+I want this to feel like a real-world security project where I’m learning by doing. The guide should be easy to follow, engaging, and help me gain practical Azure security skills that I can confidently apply in future projects. Thanks!"
+        </blockquote>
       </div>
 
       {/* Step-by-Step Guide */}
@@ -48,12 +79,22 @@ const Task7 = () => {
           <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
             <li>Deploy **Azure Firewall** to filter and control traffic to and from your network.</li>
             <li>Enable **Azure DDoS Protection** to mitigate distributed denial-of-service attacks.</li>
-            <li>Store sensitive data in **Azure Key Vault** to ensure it’s encrypted and securely managed.</li>
+            <li>Store sensitive data and **API keys** in **Azure Key Vault** to ensure they’re encrypted and securely managed.</li>
           </ul>
         </div>
 
         <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
-          <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 4: Enable Security Monitoring</h4>
+          <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 4: Secure API Keys with Azure Key Vault</h4>
+          <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
+            <li>Generate a **dummy API key** for testing.</li>
+            <li>Store the API key securely in **Azure Key Vault**.</li>
+            <li>Retrieve the API key using a **Python script** or an **Azure Function**.</li>
+            <li>Use the retrieved API key to make a **secure API request**.</li>
+          </ul>
+        </div>
+
+        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
+          <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 5: Enable Security Monitoring</h4>
           <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
             <li>Enable **Azure Security Center** to provide security recommendations and threat detection.</li>
             <li>Set up **Azure Sentinel** to monitor security events and investigate potential threats.</li>
@@ -61,7 +102,7 @@ const Task7 = () => {
         </div>
 
         <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-green-500">
-          <h4 className="text-lg sm:text-xl font-semibold text-green-400">Step 5: Test & Validate</h4>
+          <h4 className="text-lg sm:text-xl font-semibold text-green-400">Step 6: Test & Validate</h4>
           <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
             <li>Perform tests, such as **simulating unauthorized access** or **malicious activity**, to verify detection and response mechanisms.</li>
             <li>Ensure that **alerts** and **logs** are properly configured to notify you of suspicious behavior.</li>
@@ -76,18 +117,29 @@ const Task7 = () => {
       <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-purple-500">
         <h3 className="text-xl sm:text-2xl font-semibold text-purple-400">Submission</h3>
         <p className="text-gray-300 text-sm sm:text-base mt-2">
-          Upload your **lab report** to the designated **Microsoft Form**. Your report should include:
+          Your report should include:
         </p>
         <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
           <li><strong>Overview:</strong> Brief summary of your secure Azure deployment.</li>
           <li><strong>Implementation Steps:</strong> Detailed description of how you deployed and configured security measures.</li>
-          <li><strong>Screenshots:</strong> Proof of configurations, including RBAC, MFA, Firewall, Sentinel, and Security Center.</li>
+          <li><strong>Screenshots:</strong> Proof of configurations, including RBAC, MFA, Firewall, Sentinel, Security Center, and Key Vault API key security.</li>
           <li><strong>Testing & Validation:</strong> Details of security tests performed and their outcomes.</li>
           <li><strong>Challenges & Learnings:</strong> Any difficulties faced and insights gained during the process.</li>
         </ul>
-        <p className="text-gray-300 text-sm sm:text-base mt-3">
-          <strong>Submit your report via:</strong> <a href="https://forms.microsoft.com/" className="text-blue-400">Microsoft Forms</a>
-        </p>
+       
+        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
+  <h4 className="text-lg sm:text-xl font-semibold text-yellow-400">🎯 Submit Your Report & Get Certified!</h4>
+  <p className="text-gray-300 text-sm sm:text-base mt-2">
+    Complete your **detailed report** and submit it to **receive your official Certificate** from Microsoft Learn.  
+  </p>
+  <a 
+    href="https://forms.microsoft.com/" 
+    className="inline-block mt-3 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition duration-200"
+  >
+    📝 Submit Report
+  </a>
+</div>
+
       </div>
     </Content>
   );

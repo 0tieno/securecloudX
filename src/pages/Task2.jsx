@@ -19,6 +19,19 @@ const Task2 = () => {
         </ul>
       </div>
 
+       {/* AI Assistance Prompt */}
+       <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
+        <h3 className="text-xl sm:text-2xl font-semibold text-yellow-400">Use AI to Guide You</h3>
+        <p className="text-gray-300 text-sm sm:text-base mt-2">
+          Copy and paste this prompt into an AI assistant to get interactive guidance while completing the lab:
+        </p>
+        <blockquote className="mt-3 p-3 bg-gray-900 rounded-md text-gray-300 italic border-l-4 border-yellow-400">
+        "Guide me step-by-step through a lab on securing an Azure Virtual Machine (VM) using Network Security Groups (NSGs) and Azure Firewall. The lab includes creating a Virtual Network (VNet), configuring NSGs to filter traffic, deploying Azure Firewall for additional protection, and testing security settings to ensure only authorized access is allowed. Please explain each step in simple terms and include Azure portal navigation instructions where necessary."
+        </blockquote>
+      </div>
+
+      
+
       {/* Step-by-Step Guide */}
       <div className="mt-6">
         <h3 className="text-xl sm:text-2xl font-semibold text-gray">Step-by-Step Guide</h3>

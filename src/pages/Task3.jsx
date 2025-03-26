@@ -13,6 +13,18 @@ const Task3 = () => {
         <li>Secure data in transit using **HTTPS and private endpoints**.</li>
       </ul>
 
+       {/* AI Assistance Prompt */}
+       <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
+        <h3 className="text-xl sm:text-2xl font-semibold text-yellow-400">Use AI to Guide You</h3>
+        <p className="text-gray-300 text-sm sm:text-base mt-2">
+          Copy and paste this prompt into an AI assistant to get interactive guidance while completing the lab:
+        </p>
+        <blockquote className="mt-3 p-3 bg-gray-900 rounded-md text-gray-300 italic border-l-4 border-yellow-400">
+          "Guide me step-by-step through a lab on Data Security & Encryption in Azure. The lab covers enabling server-side encryption, configuring access control using RBAC and SAS tokens, and securing data in transit with HTTPS and private endpoints. Also, help me test and validate security settings to ensure encryption and access control are working correctly. Please explain each step in simple terms and provide relevant Azure portal navigation instructions."
+        </blockquote>
+      </div>
+      
+
       <div className="mt-6">
         <h3 className="text-xl sm:text-2xl font-semibold text-gray">Step-by-Step Guide</h3>
 

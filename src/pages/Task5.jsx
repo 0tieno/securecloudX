@@ -19,6 +19,18 @@ const Task5 = () => {
         </ul>
       </div>
 
+
+       {/* AI Assistance Prompt */}
+       <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
+        <h3 className="text-xl sm:text-2xl font-semibold text-yellow-400">Use AI to Guide You</h3>
+        <p className="text-gray-300 text-sm sm:text-base mt-2">
+          Copy and paste this prompt into an AI assistant to get interactive guidance while completing the lab:
+        </p>
+        <blockquote className="mt-3 p-3 bg-gray-900 rounded-md text-gray-300 italic border-l-4 border-yellow-400">
+        "Guide me through a hands-on lab on setting up Incident Response and Threat Detection using Azure Sentinel. The lab should include enabling Azure Security Center and Microsoft Defender for Cloud, deploying Azure Sentinel, configuring custom detection rules, investigating security alerts, and automating responses using Azure Logic Apps playbooks. Provide step-by-step instructions, including how to simulate security incidents for testing."
+        </blockquote>
+      </div>
+
       {/* Step-by-Step Guide */}
       <div className="mt-6">
         <h3 className="text-xl sm:text-2xl font-semibold text-gray">Step-by-Step Guide</h3>
