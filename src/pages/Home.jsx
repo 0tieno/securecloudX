@@ -1,17 +1,30 @@
-// import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Content from "../components/Content";
 
-const Home = () => {
-  // const [email, setEmail] = useState("");
+// const Home = () => {
+//   // const [email, setEmail] = useState("");
 
-  // const handleSubscribe = (e) => {
-  //   e.preventDefault();
-  //   console.log("Subscribed email:", email);
-  //   // TODO: Integrate with backend/email service
-  //   setEmail("");
-  //   alert("Thanks for subscribing! You'll receive reminders.");
-  // };
+//   // const handleSubscribe = (e) => {
+//   //   e.preventDefault();
+//   //   console.log("Subscribed email:", email);
+//   //   // TODO: Integrate with backend/email service
+//   //   setEmail("");
+//   //   alert("Thanks for subscribing! You'll receive reminders.");
+//   // };
+
+  
+const CHALLENGE_START_DATE = new Date("2025-04-08T00:00:00Z");
+
+const Home = () => {
+  const [currentUnlockedDay, setCurrentUnlockedDay] = useState(0);
+
+  useEffect(() => {
+    const today = new Date();
+    const timeDiff = today - CHALLENGE_START_DATE;
+    const daysSinceStart = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+    setCurrentUnlockedDay(Math.min(daysSinceStart + 1, 7));
+  }, []);
 
   return (
     <Content className="bg-gray-900 text-white p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-4xl mx-auto">
@@ -119,7 +132,7 @@ const Home = () => {
         </form>
       </div> */}
 
-      {/* Email Subscription Form */}
+ {/* Email Subscription Form */}
 <div className="mt-8 p-6 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
   <h3 className="text-lg sm:text-xl font-semibold text-blue-400">📩 Stay Updated</h3>
   <p className="text-gray-300 text-sm sm:text-base mt-2">
@@ -129,20 +142,31 @@ const Home = () => {
     href="https://forms.office.com/r/5yqb8Xw5GK" 
     target="_blank" 
     rel="noopener noreferrer"
-    className="mt-4 inline-block px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg font-semibold transition duration-200"
+    className="mt-4 inline-block px-4 py-2 bg-gradient-to-r from-blue-500 to-purple-500 
+                 hover:from-purple-500 hover:to-blue-500 text-white rounded-lg font-semibold 
+                 transition duration-300 ease-in-out"
   >
     Subscribe via Microsoft Forms
   </a>
 </div>
 
 
+
       {/* Get Started */}
-      <h2 className="text-xl md:text-3xl font-bold mt-6 text-start">🚀 Get Started</h2>
+     {/* 🚀 Get Started */}
+     <h2 className="text-xl md:text-3xl font-bold mt-6 text-start">🚀 Get Started</h2>
       <p className="text-gray-300 text-base md:text-lg text-start">
         Ready to begin? Start with{" "}
-        <Link to="/Day1" className="text-blue-400 font-semibold hover:underline">
-          Day 1: Identity & Access Management
-        </Link>.
+        {currentUnlockedDay >= 1 ? (
+          <Link to="/Day1" className="text-blue-400 font-semibold hover:underline">
+            Day 1: Identity & Access Management
+          </Link>
+        ) : (
+          <span className="text-gray-500 font-semibold cursor-not-allowed" title="Day 1 is locked">
+            Day 1: Identity & Access Management 🔒
+          </span>
+        )}
+        .
       </p>
     </Content>
   );
