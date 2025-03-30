@@ -124,9 +124,9 @@ const Home = () => {
   </p>
   
   <ul className="mt-4 text-gray-300 space-y-3 text-sm sm:text-base">
-    <li>✅ Basic knowledge of **Cloud Computing** (Azure preferred)</li>
-    <li>✅ An **Azure Free Tier Account** (recommended)</li>
-    <li>✅ Willingness to experiment and learn! 🚀</li>
+    <li>1. Basic knowledge of Cloud Computing (Azure preferred)</li>
+    <li>2. An Azure Free Tier Account (recommended)</li>
+    <li>3. Willingness to experiment and learn!</li>
   </ul>
 </div>
 
@@ -150,6 +150,7 @@ const Home = () => {
           </li>
         ))}
       </ul>
+
 
       {/* Document Your Learning */}
       <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-green-500">
@@ -184,6 +185,18 @@ const Home = () => {
           </button>
         </form>
       </div> */}
+
+
+<div className="mt-6 p-4 bg-gray-800 border-l-4 border-yellow-500 rounded-lg shadow-md">
+  <h3 className="text-lg sm:text-xl font-semibold text-yellow-400">🚀 Challenge Pre-Launch</h3>
+  <p className="text-gray-300 text-sm sm:text-base mt-2">
+    The pre-launch event is happening on  
+    <span className="font-semibold text-white"> 8th April</span> on microsoft teams, where we will  
+    <span className="font-semibold text-white"> announce the official launch date</span> of the challenge.  
+    Stay tuned!
+  </p>
+</div>
+
 
  {/* Email Subscription Form */}
 <div className="mt-8 p-6 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
