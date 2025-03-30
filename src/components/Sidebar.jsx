@@ -78,7 +78,12 @@ const Sidebar = () => {
           isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
         }`}
       >
-        <h2 className="text-xl font-bold p-4">Guide</h2>
+     <h2 className="text-xl font-bold p-4 flex justify-between items-center">
+  Guide
+  <Link to="/" title="SecureCloudX">
+    <img src="/favicon-32x32.png" alt="Logo" className="h-6 w-auto cursor-pointer" />
+  </Link>
+</h2>
         <nav className="flex-1 overflow-y-auto">
           <ul>
             <li>
