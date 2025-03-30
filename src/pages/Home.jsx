@@ -193,7 +193,7 @@ const Home = () => {
     The pre-launch event is happening on  
     <span className="font-semibold text-white"> 8th April</span> on microsoft teams, where we will  
     <span className="font-semibold text-white"> announce the official launch date</span> of the challenge.  
-    Stay tuned!
+    Stay tuned! Meanwhile follow our  <a href="https://x.com/securecloudX" target="_blank" className="text-blue-400 hover:underline">X Community</a> to get updates.
   </p>
 </div>
 
