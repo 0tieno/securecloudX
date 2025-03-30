@@ -188,7 +188,7 @@ const Home = () => {
 
 
 <div className="mt-6 p-4 bg-gray-800 border-l-4 border-yellow-500 rounded-lg shadow-md">
-  <h3 className="text-lg sm:text-xl font-semibold text-yellow-400">🚀 Challenge Pre-Launch</h3>
+  <h3 className="text-lg sm:text-xl font-semibold text-yellow-400">Challenge Pre-Launch</h3>
   <p className="text-gray-300 text-sm sm:text-base mt-2">
     The pre-launch event is happening on  
     <span className="font-semibold text-white"> 8th April</span> on microsoft teams, where we will  
