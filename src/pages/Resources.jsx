@@ -11,7 +11,7 @@ const resourcesData = {
       { title: "Assign Azure roles using the Azure portal", description: "practical how to guide", type: "Tutorial", url: "https://learn.microsoft.com/azure/role-based-access-control/role-assignments-portal/?wt.mc_id=studentamb_387261" },
       { title: "What are managed identities for Azure resources?", description: "practical how to guide", type: "Tutorial", url: "https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview/?wt.mc_id=studentamb_387261" },
       { title: "How it works: Microsoft Entra multifactor authentication", description: "practical how to guide", type: "Tutorial", url: "https://learn.microsoft.com/entra/identity/authentication/concept-mfa-howitworks/?wt.mc_id=studentamb_387261" },
-      { title: "Security defaults in Microsoft Entra ID - MFA", description: "practical how to guide", type: "Tutorial", url: "https://learn.microsoft.com/entra/fundamentals/security-defaults/?wt.mc_id=studentamb_387261" },
+      { title: "Security defaults in Microsoft Entra ID - MFA", description: "practical video with demo", type: "Tutorial", url: "https://learn.microsoft.com/entra/fundamentals/security-defaults/?wt.mc_id=studentamb_387261" },
       { title: "Azure IAM from Basics | Azure Managed Identities Demo with Microsoft Entra (With Notes)", description: "practical how to guide", type: "Video Tutorial", url: "https://www.youtube.com/watch?v=ng5n4MsymRE" }
     ]
   },
