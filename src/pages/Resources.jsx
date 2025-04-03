@@ -5,9 +5,13 @@ const resourcesData = {
   1: {
     topic: "Identity & Access Management",
     resources: [
-      { title: "Azure Active Directory Overview", description: "Learn about Azure Active Directory and its features.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/active-directory/" },
-      { title: "Role-Based Access Control (RBAC)", description: "Understand Role-Based Access Control and its use in Azure.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/role-based-access-control/" },
-      { title: "Multi-Factor Authentication (MFA)", description: "Learn about MFA and how to configure it in Azure.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/active-directory/authentication/concept-mfa-howitworks" }
+      { title: "Describe Azure role-based access control", description: "Learn about role-based access control.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/training/modules/describe-azure-identity-access-security/6-role-based-access-control/" },
+      { title: "What is Azure role-based access control (Azure RBAC)?", description: "Understand Role-Based Access Control and its use in Azure.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/role-based-access-control/overview" },
+      { title: "Grant a user access to Azure resources using the Azure portal", description: "practical tutorial", type: "Tutorial", url: "https://learn.microsoft.com/en-us/azure/role-based-access-control/quickstart-assign-role-user-portal" },
+      { title: "Assign Azure roles using the Azure portal", description: "practical how to guide", type: "Tutorial", url: "https://learn.microsoft.com/en-us/azure/role-based-access-control/role-assignments-portal" },
+      { title: "What are managed identities for Azure resources?", description: "practical how to guide", type: "Tutorial", url: "https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview" },
+      { title: "How it works: Microsoft Entra multifactor authentication", description: "practical how to guide", type: "Tutorial", url: "https://learn.microsoft.com/en-us/entra/identity/authentication/concept-mfa-howitworks" },
+      { title: "Security defaults in Microsoft Entra ID - MFA", description: "practical how to guide", type: "Tutorial", url: "https://learn.microsoft.com/en-us/entra/fundamentals/security-defaults" }
     ]
   },
   2: {
