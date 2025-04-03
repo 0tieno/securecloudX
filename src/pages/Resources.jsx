@@ -40,19 +40,19 @@ const resourcesData = {
     ]
   },
   5: {
+    topic: "Security Monitoring",
+    resources: [
+      { title: "Azure Policy & Governance", description: "Learn how to manage policies and governance in Azure.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/governance/" },
+      { title: "Microsoft Defender for Cloud", description: "Learn about Microsoft Defender for Cloud and its security features.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/" },
+      { title: "Compliance in Azure", description: "Understand Azure's compliance offerings and how to use them.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/compliance/" }
+    ]
+  },
+  6: {
     topic: "Incident Response & Recovery",
     resources: [
       { title: "Azure Backup & Restore", description: "Learn how to configure Azure Backup and restore data.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/backup/backup-overview" },
       { title: "Incident Response Planning", description: "Learn how to create an incident response plan for Azure.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/security/compass/incident-response-playbook" },
       { title: "Azure Disaster Recovery", description: "Learn how to implement disaster recovery with Azure Site Recovery.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview" }
-    ]
-  },
-  6: {
-    topic: "Compliance & Governance",
-    resources: [
-      { title: "Azure Policy & Governance", description: "Learn how to manage policies and governance in Azure.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/governance/" },
-      { title: "Microsoft Defender for Cloud", description: "Learn about Microsoft Defender for Cloud and its security features.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/" },
-      { title: "Compliance in Azure", description: "Understand Azure's compliance offerings and how to use them.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/compliance/" }
     ]
   },
   7: {
