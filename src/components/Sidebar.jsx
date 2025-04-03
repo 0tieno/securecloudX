@@ -13,7 +13,7 @@ const topics = {
 };
 
 // Set the challenge start date (YYYY-MM-DD format)
-const CHALLENGE_START_DATE = new Date("2025-04-08T00:00:00Z"); // Adjust to your actual start date
+const CHALLENGE_START_DATE = new Date("2025-03-08T00:00:00Z"); // Adjust to your actual start date
 
 const Sidebar = () => {
   const [openDay, setOpenDay] = useState({});
