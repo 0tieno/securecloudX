@@ -101,7 +101,7 @@ const Resources = () => {
   Always remember, you cannot secure what you do not understand. Make sure to grasp the architectural and core components of the cloud so that you can properly secure them.
             </p>
             
-            <p className="mt-3">
+            {/* <p className="mt-3">
     <a 
       href="https://blog.christophetd.fr/cloud-security-breaches-and-vulnerabilities-2021-in-review/" 
       className="text-blue-400 hover:underline"
@@ -110,7 +110,7 @@ const Resources = () => {
     >
       🔗 Cloud Security Breaches and Vulnerabilities (Blog)
     </a>
-  </p>
+  </p> */}
 </div>
 
         </>
