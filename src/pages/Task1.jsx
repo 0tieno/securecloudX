@@ -106,10 +106,11 @@ const Task1 = () => {
           <p className="text-gray-300 text-sm sm:text-base mt-3">
             <strong>Success Criteria:</strong> Unauthorized users cannot access the VM, and MFA prompts appear for the authorized users.
           </p>
-          <p className="text-gray-300 text-sm sm:text-base mt-3">
+        </div>
+
+        <p className="text-green-300 text-sm sm:text-base mt-3">
             <strong>congrats!</strong> you just finished day 1. Ensure to document your learning and findings. You will need them in the capstone project. See you on day 2.
           </p>
-        </div>
       </div>
     </Content>
   );

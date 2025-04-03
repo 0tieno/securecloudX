@@ -103,6 +103,10 @@ const Task2 = () => {
             <strong>Success Criteria:</strong> Unauthorized access is blocked, and only permitted traffic flows through.
           </p>
         </div>
+
+        <p className="text-green-300 text-sm sm:text-base mt-3">
+            <strong>congrats!</strong> you just finished day 2. Ensure to document your learning and findings. You will need them in the capstone project. See you on day 3.
+          </p>
       </div>
     </Content>
   );
