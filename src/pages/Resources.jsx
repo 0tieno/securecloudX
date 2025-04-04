@@ -5,9 +5,14 @@ const resourcesData = {
   1: {
     topic: "Identity & Access Management",
     resources: [
-      { title: "Azure Active Directory Overview", description: "Learn about Azure Active Directory and its features.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/active-directory/" },
-      { title: "Role-Based Access Control (RBAC)", description: "Understand Role-Based Access Control and its use in Azure.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/role-based-access-control/" },
-      { title: "Multi-Factor Authentication (MFA)", description: "Learn about MFA and how to configure it in Azure.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/active-directory/authentication/concept-mfa-howitworks" }
+      { title: "Describe Azure role-based access control", description: "Learn about role-based access control.", type: "Learning Module", url: "https://learn.microsoft.com/training/modules/describe-azure-identity-access-security/6-role-based-access-control/?wt.mc_id=studentamb_387261" },
+      { title: "What is Azure role-based access control (Azure RBAC)?", description: "Understand Role-Based Access Control and its use in Azure.", type: "Learning Module", url: "https://learn.microsoft.com/azure/role-based-access-control/overview/?wt.mc_id=studentamb_387261" },
+      { title: "Grant a user access to Azure resources using the Azure portal", description: "practical tutorial", type: "Tutorial", url: "https://learn.microsoft.com/azure/role-based-access-control/quickstart-assign-role-user-portal/?wt.mc_id=studentamb_387261" },
+      { title: "Assign Azure roles using the Azure portal", description: "practical how to guide", type: "Tutorial", url: "https://learn.microsoft.com/azure/role-based-access-control/role-assignments-portal/?wt.mc_id=studentamb_387261" },
+      { title: "What are managed identities for Azure resources?", description: "practical how to guide", type: "Tutorial", url: "https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview/?wt.mc_id=studentamb_387261" },
+      { title: "How it works: Microsoft Entra multifactor authentication", description: "practical how to guide", type: "Tutorial", url: "https://learn.microsoft.com/entra/identity/authentication/concept-mfa-howitworks/?wt.mc_id=studentamb_387261" },
+      { title: "Security defaults in Microsoft Entra ID - MFA", description: "practical how to guide", type: "Tutorial", url: "https://learn.microsoft.com/entra/fundamentals/security-defaults/?wt.mc_id=studentamb_387261" },
+      { title: "Azure IAM from Basics | Azure Managed Identities Demo with Microsoft Entra (With Notes)", description: "practical video with demo", type: "Video Tutorial", url: "https://www.youtube.com/watch?v=ng5n4MsymRE" }
     ]
   },
   2: {
@@ -35,19 +40,19 @@ const resourcesData = {
     ]
   },
   5: {
+    topic: "Security Monitoring",
+    resources: [
+      { title: "Azure Policy & Governance", description: "Learn how to manage policies and governance in Azure.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/governance/" },
+      { title: "Microsoft Defender for Cloud", description: "Learn about Microsoft Defender for Cloud and its security features.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/" },
+      { title: "Compliance in Azure", description: "Understand Azure's compliance offerings and how to use them.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/compliance/" }
+    ]
+  },
+  6: {
     topic: "Incident Response & Recovery",
     resources: [
       { title: "Azure Backup & Restore", description: "Learn how to configure Azure Backup and restore data.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/backup/backup-overview" },
       { title: "Incident Response Planning", description: "Learn how to create an incident response plan for Azure.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/security/compass/incident-response-playbook" },
       { title: "Azure Disaster Recovery", description: "Learn how to implement disaster recovery with Azure Site Recovery.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/site-recovery/site-recovery-overview" }
-    ]
-  },
-  6: {
-    topic: "Compliance & Governance",
-    resources: [
-      { title: "Azure Policy & Governance", description: "Learn how to manage policies and governance in Azure.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/governance/" },
-      { title: "Microsoft Defender for Cloud", description: "Learn about Microsoft Defender for Cloud and its security features.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/" },
-      { title: "Compliance in Azure", description: "Understand Azure's compliance offerings and how to use them.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/compliance/" }
     ]
   },
   7: {
@@ -101,7 +106,7 @@ const Resources = () => {
   Always remember, you cannot secure what you do not understand. Make sure to grasp the architectural and core components of the cloud so that you can properly secure them.
             </p>
             
-            <p className="mt-3">
+            {/* <p className="mt-3">
     <a 
       href="https://blog.christophetd.fr/cloud-security-breaches-and-vulnerabilities-2021-in-review/" 
       className="text-blue-400 hover:underline"
@@ -110,7 +115,7 @@ const Resources = () => {
     >
       🔗 Cloud Security Breaches and Vulnerabilities (Blog)
     </a>
-  </p>
+  </p> */}
 </div>
 
         </>

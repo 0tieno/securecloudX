@@ -8,9 +8,9 @@ const Task3 = () => {
         Secure data at rest and in transit using encryption and access control mechanisms.
       </p>
       <ul className="list-disc pl-5 text-gray-300 mt-2">
-        <li>Enable **server-side encryption** for storage accounts.</li>
-        <li>Configure **RBAC and SAS tokens** for access control.</li>
-        <li>Secure data in transit using **HTTPS and private endpoints**.</li>
+        <li>Enable server-side encryption for storage accounts.</li>
+        <li>Configure RBAC and SAS tokens for access control.</li>
+        <li>Secure data in transit using HTTPS and private endpoints.</li>
       </ul>
 
        {/* AI Assistance Prompt */}
@@ -60,15 +60,19 @@ const Task3 = () => {
           Verify that encryption and access controls are correctly configured.
         </p>
         <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-          <li>Check **Azure Storage settings** to confirm encryption is enabled.</li>
-          <li>Attempt accessing storage **without proper RBAC permissions** – access should be denied.</li>
-          <li>Test SAS tokens to ensure **they expire as expected** and follow the defined permissions.</li>
-          <li>Use network monitoring tools to verify **data is only transmitted over HTTPS**.</li>
+          <li>Check Azure Storage settings to confirm encryption is enabled.</li>
+          <li>Attempt accessing storage without proper RBAC permissions – access should be denied.</li>
+          <li>Test SAS tokens to ensure they expire as expected and follow the defined permissions.</li>
+          <li>Use network monitoring tools to verify data is only transmitted over HTTPS.</li>
         </ul>
         <p className="text-gray-300 text-sm sm:text-base mt-3">
           <strong>Success Criteria:</strong> Unauthorized users cannot access data, encryption is enforced, and SAS policies work as intended.
         </p>
       </div>
+
+      <p className="text-green-300 text-sm sm:text-base mt-3">
+            <strong>congrats!</strong> you just finished day 3. Ensure to document your learning and findings. You will need them in the capstone project. See you on day 4.
+          </p>
     </Content>
   );
 };

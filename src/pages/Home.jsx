@@ -101,6 +101,17 @@ const Home = () => {
     <h4 className="text-md sm:text-lg font-semibold text-yellow-400">📢 What’s Next?</h4>
     <p className="text-gray-300 text-sm sm:text-base mt-2">
       Ready to explore cloud security? Take this secureCloudX challenge and start your journey. Follow the latest trends and real-world insights:
+          </p>
+          
+          <p className="mt-3">
+      <a 
+        href="https://blog.christophetd.fr/cloud-security-breaches-and-vulnerabilities-2021-in-review/" 
+        className="text-blue-400 hover:underline"
+        target="_blank" 
+        rel="noopener noreferrer"
+      >
+        🔗 Cloud Security Breaches and Vulnerabilities (Blog)
+      </a>
     </p>
   </div>
 </div>

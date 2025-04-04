@@ -14,13 +14,13 @@ const Explore = () => {
           Continue your learning journey with the following certifications, projects, and resources.
         </p> */}
         <p className="text-gray-300 mb-6">
-  Keep building! Experiment, break things, and rebuild—learning happens in the process. 🚀
+  Keep building! Experiment, break things, and rebuild—learning happens in the process.
 </p>
 
 
         {/* Next Steps Section */}
         <div className="mt-8 bg-gray-800 p-6 rounded-lg shadow-md border-l-4 border-blue-500">
-          <h3 className="text-2xl font-semibold text-blue-400 mb-4">Next Steps 🚀</h3>
+          <h3 className="text-2xl font-semibold text-blue-400 mb-4">Next Steps</h3>
           <p className="text-gray-300 mb-4">Advance your skills with these certifications and projects:</p>
           
           {/* Certifications */}

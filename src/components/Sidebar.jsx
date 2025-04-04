@@ -2,15 +2,16 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ChevronRight, ChevronDown, Lock, Menu, X } from "lucide-react"; // Added Lock icon
 
-const topics = {
-  1: "Identity & Access Management",
-  2: "Network Security & Perimeter Defense",
-  3: "Data Security",
-  4: "Application Security",
-  5: "Incident Response & Threat Detection ",
-  6: "Security Monitoring & Threat Intelligence",
-  7: "Capstone Project",
-};
+const topics = [
+  { day: 1, title: "Identity & Access Management" },
+  { day: 2, title: "Network Security & Perimeter Defense" },
+  { day: 3, title: "Data Security" },
+  { day: 4, title: "Application Security" },
+  { day: 5, title: "Security Monitoring & Threat Intelligence" },
+  { day: 6, title: "Incident Response & Threat Detection" },
+  { day: 7, title: "Capstone Project" },
+];
+
 
 // Set the challenge start date (YYYY-MM-DD format)
 const CHALLENGE_START_DATE = new Date("2025-04-08T00:00:00Z"); // Adjust to your actual start date
@@ -99,7 +100,7 @@ const Sidebar = () => {
               </Link>
             </li>
 
-            {Object.entries(topics).map(([day, topic]) => {
+            {topics.map(({ day, title }) => {
               const isUnlocked = Number(day) <= currentUnlockedDay;
               return (
                 <li key={day}>
@@ -114,7 +115,7 @@ const Sidebar = () => {
                     title={isUnlocked ? `Open Day ${day}` : "This day is locked"}
                   >
                     <span>
-                      <strong>Day {day}:</strong> {topic}
+                    <strong>Day {day}:</strong> {title}
                     </span>
                     {isUnlocked ? (
                       openDay[day] ? <ChevronDown size={18} /> : <ChevronRight size={18} />
