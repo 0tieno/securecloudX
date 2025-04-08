@@ -59,7 +59,7 @@ const Home = () => {
 {/* Youtube welcome video */}
 
 
-<section className="max-w-4xl mx-auto px-4 py-10">
+<section className="max-w-4xl  px-4 py-10">
       {/* <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center text-white">
         Pre-launch meeting - recording
       </h2> */}
