@@ -54,6 +54,28 @@ const Home = () => {
         </p>
       </div> */}
 
+
+
+{/* Youtube welcome video */}
+
+
+<section className="max-w-4xl mx-auto px-4 py-10">
+      {/* <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center text-white">
+        Pre-launch meeting - recording
+      </h2> */}
+
+      <div className="w-full h-[140px] sm:h-[260px] md:h-[450px] lg:h-[300px] rounded-lg overflow-hidden shadow-lg border border-gray-700">
+        <iframe
+          src="https://www.youtube.com/embed/myZ2TjbEZmQ"
+          title="product pre-launch"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          className="w-full h-full"
+        ></iframe>
+      </div>
+    </section>
+
+
       {/* Is Cloud Security for You? */}
 <div className="mt-6 p-4 bg-gray-800 border-l-4 border-yellow-500 rounded-lg shadow-md">
   <h3 className="text-lg sm:text-xl font-semibold text-yellow-400">🔒 Is Cloud Security for You?</h3>
@@ -198,7 +220,7 @@ const Home = () => {
       </div> */}
 
 
-<div className="mt-6 p-4 bg-gray-800 border-l-4 border-yellow-500 rounded-lg shadow-md">
+{/* <div className="mt-6 p-4 bg-gray-800 border-l-4 border-yellow-500 rounded-lg shadow-md">
   <h3 className="text-lg sm:text-xl font-semibold text-yellow-400">Challenge Pre-Launch</h3>
   <p className="text-gray-300 text-sm sm:text-base mt-2">
     The pre-launch event is happening on  
@@ -206,7 +228,7 @@ const Home = () => {
     <span className="font-semibold text-white"> announce the official launch date</span> of the challenge.  
     Stay tuned! Meanwhile follow our  <a href="https://x.com/securecloudX" target="_blank" className="text-blue-400 hover:underline">X Community</a> to get updates and <span className="font-semibold text-green-400"> most importantly ensure to register your email below to receive meeting link and way forward after that.</span> 
   </p>
-</div>
+</div> */}
 
 
  {/* Email Subscription Form */}
