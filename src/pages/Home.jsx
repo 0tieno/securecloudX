@@ -14,7 +14,7 @@ import Content from "../components/Content";
 //   // };
 
   
-const CHALLENGE_START_DATE = new Date("2025-03-10T00:00:00Z");
+const CHALLENGE_START_DATE = new Date("2025-04-10T00:00:00Z");
 
 const Home = () => {
   const [currentUnlockedDay, setCurrentUnlockedDay] = useState(0);
