@@ -1,1 +1,1 @@
-🔥 **Stay consistent—Security never stops evolving! 🚀**
+🔥 **Stay consistent—Security never stops evolving!**
