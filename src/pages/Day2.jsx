@@ -39,6 +39,22 @@ const Day2 = () => {
             A company deployed a web application on Azure, but their VMs had open RDP (3389) and SSH (22) ports. Attackers exploited these to gain access. By implementing NSGs, firewalls, and DDoS protection, the company was able to prevent future breaches and secure their infrastructure.
           </p>
         </div>
+
+         {/* must read Section */}
+      <div className="mt-6 p-4 bg-gray-800 border-l-4 border-yellow-500 rounded-lg shadow-md">
+        <h3 className="text-lg sm:text-xl font-semibold text-yellow-400">🔒 must read</h3>
+        <p className="mt-3">
+          <a 
+            href="https://learn.microsoft.com/azure/private-link/network-security-perimeter-concepts/?wt.mc_id=studentamb_387261" 
+            className="text-blue-400 hover:underline"
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            🔗 What is a network security perimeter?
+            (article by microsoft)
+          </a>
+        </p>
+      </div>
       </div>
 
       {/* Notes Section */}
@@ -68,6 +84,22 @@ const Day2 = () => {
         <p className="text-gray-300 text-sm sm:text-base mt-3">
           By completing this, you’ll understand how to protect cloud environments from network-based attacks.
         </p>
+
+         {/* must read Section */}
+      <div className="mt-6 p-4 bg-gray-800 border-l-4 border-yellow-500 rounded-lg shadow-md">
+        <h3 className="text-lg sm:text-xl font-semibold text-yellow-400">before you proceed to the lab</h3>
+        <p className="mt-3">
+          <a 
+            href="https://learn.microsoft.com/azure/private-link/create-network-security-perimeter-portal/?wt.mc_id=studentamb_387261" 
+            className="text-blue-400 hover:underline"
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            🔗 Create your first network security perimeter
+            (quickstart step by step guide)
+          </a>
+        </p>
+      </div>
       </div>
     </Content>
   );

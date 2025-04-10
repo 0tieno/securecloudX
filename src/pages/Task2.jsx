@@ -5,7 +5,7 @@ const Task2 = () => {
     <Content>
       <h2 className="text-2xl font-bold text-gray">Day 2 Lab: Secure an Azure VM with NSG & Firewall</h2>
       <p className="mt-2 text-gray-300">
-        In this task, you'll configure <strong>Network Security Groups (NSGs) and Azure Firewall</strong> to <strong>protect an Azure Virtual Machine (VM) from unauthorized access</strong>.
+        In this task, you'll configure <strong>Network Security Groups (NSGs) and Azure Firewall</strong> to <strong>protect an Azure Virtual Machine (VM) from unauthorized access.</strong>. Refer to resources page when stuck.
       </p>
 
       {/* Task Breakdown */}
@@ -43,7 +43,7 @@ const Task2 = () => {
             <strong>Why?</strong> A VNet provides network isolation and segmentation.
           </p>
           <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-            <li>Sign in to <a href="https://portal.azure.com" className="text-blue-400">Azure Portal</a>.</li>
+            <li>Sign in to <a href="https://portal.azure.com/?wt.mc_id=studentamb_387261" className="text-blue-400">Azure Portal</a>.</li>
             <li>Go to <strong>Virtual Networks</strong> and click <strong>Create</strong>.</li>
             <li>Choose a <strong>Resource Group</strong> and provide a unique <strong>VNet Name</strong>.</li>
             <li>Define a subnet (e.g., <strong>subnet1</strong> with 10.0.0.0/24 CIDR block).</li>
