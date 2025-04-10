@@ -18,9 +18,17 @@ const resourcesData = {
   2: {
     topic: "Network Security & Perimeter Defense",
     resources: [
-      { title: "Azure Virtual Network (VNet)", description: "Learn about setting up and managing virtual networks in Azure.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/virtual-network/" },
-      { title: "Network Security Groups (NSG)", description: "Understand how to use NSGs to secure Azure networks.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/virtual-network/network-security-groups-overview" },
-      { title: "Azure DDoS Protection", description: "Learn how to protect Azure resources from DDoS attacks.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/ddos-protection/ddos-protection-overview" }
+      { title: "Quickstart step by step tutorial guide", description: "Use the Azure portal to create a virtual network", type: "Quickstart", url: "https://learn.microsoft.com/azure/virtual-network/quick-create-portal/?wt.mc_id=studentamb_387261" },
+      { title: "Network Security Groups (NSG)", description: "Understand how to use NSGs to secure Azure networks.", type: "Learning Module", url: "https://learn.microsoft.com/azure/virtual-network/network-security-groups-overview/?wt.mc_id=studentamb_387261" },
+      { title: "Monitor Azure Virtual Network", description: "Monitor Azure Virtual Network.", type: "docs", url: "https://learn.microsoft.com/azure/virtual-network/monitor-virtual-network/?wt.mc_id=studentamb_387261" },
+      { title: "network security groups", description: "How network security groups filter network traffic", type: "docs", url: "https://learn.microsoft.com/azure/virtual-network/network-security-group-how-it-works/?wt.mc_id=studentamb_387261" },
+      { title: "Fundamentals of Network Security", description: "Fundamentals of Network Security", type: "Learning Module", url: "https://learn.microsoft.com/training/modules/network-fundamentals-2/?wt.mc_id=studentamb_387261" },
+      { title: "Implement network security in Azure", description: "Implement network security in Azure", type: "Learning Module", url: "https://learn.microsoft.com/training/paths/implement-network-security/?wt.mc_id=studentamb_387261" },
+      { title: "Design and implement network security", description: "Design and implement network security", type: "Learning Module", url: "https://learn.microsoft.com/training/modules/design-implement-network-security-monitoring/?wt.mc_id=studentamb_387261" },
+      { title: "Introduction to key Azure network security services", description: "Introduction to key Azure network security services", type: "Learning Module", url: "https://learn.microsoft.com/training/paths/introduction-azure-networking-services/?wt.mc_id=studentamb_387261" },
+      { title: "Configure network security groups", description: "Configure network security groups", type: "Learning Module", url: "https://learn.microsoft.com/training/modules/configure-network-security-groups/?wt.mc_id=studentamb_387261" },
+      { title: "Azure Networking Demo", description: "Azure Networking Demo | Azure VNet, Firewall, NSG and Bastion | Beginner Level Azure Project", type: "Video", url: "https://www.youtube.com/watch?v=jJSRYQQEUQc" },
+      { title: "Best practices", description: "Azure best practices for network security", type: "Quickstart", url: "https://learn.microsoft.com/azure/security/fundamentals/network-best-practices/?wt.mc_id=studentamb_387261" }
     ]
   },
   3: {
