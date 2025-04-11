@@ -34,9 +34,16 @@ const resourcesData = {
   3: {
     topic: "Data Protection & Encryption",
     resources: [
-      { title: "Azure Storage Security", description: "Learn how to secure Azure storage accounts and data.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/storage/common/storage-security-guide" },
-      { title: "Data Encryption in Azure", description: "Understand encryption methods and how to apply them in Azure.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/security/fundamentals/encryption-overview" },
-      { title: "Azure Key Vault Overview", description: "Learn how to use Azure Key Vault to manage secrets and keys.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/key-vault/general/overview" }
+      { title: "Azure data Security", description: "Azure data security and encryption best practices.", type: "Docs", url: "https://learn.microsoft.com/en-us/azure/security/fundamentals/data-encryption-best-practices/?wt.mc_id=studentamb_387261" },
+      { title: "Azure customer data protection", description: "Azure customer data protection.", type: "Learning Module", url: "https://learn.microsoft.com/en-us/azure/security/fundamentals/protection-customer-data/?wt.mc_id=studentamb_387261" },
+      { title: "Security recommendations for Blob storage", description: "Security recommendations for Blob storage.", type: "Docs", url: "https://learn.microsoft.com/en-us/azure/storage/blobs/security-recommendations/?wt.mc_id=studentamb_387261" },
+      { title: "What is Azure Blob storage?", description: "What is Azure Blob storage?.", type: "Docs", url: "https://learn.microsoft.com/en-us/azure/storage/blobs/storage-blobs-overview/?wt.mc_id=studentamb_387261" },
+      { title: "Blob storage security", description: "Quickstart: Upload, download, and list blobs with the Azure portal.", type: "Quickstart step by step guide", url: "https://learn.microsoft.com/en-us/azure/storage/blobs/storage-quickstart-blobs-portal/?wt.mc_id=studentamb_387261" },
+      { title: "Plan and implement security for storage", description: "Plan and implement security for storage.", type: "Learning module", url: "https://learn.microsoft.com/en-us/training/modules/security-storage/?wt.mc_id=studentamb_387261" },
+      { title: "Configure Azure Storage security", description: "Configure Azure Storage security.", type: "Learning module", url: "https://learn.microsoft.com/en-us/training/modules/configure-storage-security/?wt.mc_id=studentamb_387261" },
+      { title: "Microsoft Defender for Storage", description: "What is Microsoft Defender for Storage", type: "Docs", url: "https://learn.microsoft.com/en-us/azure/defender-for-cloud/defender-for-storage-introduction/?wt.mc_id=studentamb_387261" },
+      { title: "Developers Must Know this", description: "Secure your cloud data", type: "Learning module", url: "https://learn.microsoft.com/en-us/training/paths/secure-your-cloud-data/?wt.mc_id=studentamb_387261" },
+      { title: "Configure Storage Security", description: "Configure Storage Security", type: "Instructor led - Learn Live", url: "https://learn.microsoft.com/en-us/shows/on-demand-instructor-led-training-series/az-104-module-19/?wt.mc_id=studentamb_387261" },
     ]
   },
   4: {
