@@ -127,7 +127,24 @@ const Task2 = () => {
 
         <p className="text-green-300 text-sm sm:text-base mt-3">
             <strong>congrats!</strong> you just finished day 2. Ensure to document your learning and findings. You will need them in the capstone project. See you on day 3.
-          </p>
+        </p>
+        
+        {/* Youtube  video */}
+
+
+<section className="max-w-4xl  mx-auto px-4 py-10">
+      
+
+      <div className="w-full h-[140px] sm:h-[260px] md:h-[450px] lg:h-[300px] rounded-lg overflow-hidden shadow-lg border border-gray-700">
+        <iframe
+          src="https://www.youtube.com/embed/m1LQmlcoUIM"
+          title="product pre-launch"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+          allowFullScreen
+          className="w-full h-full"
+        ></iframe>
+      </div>
+    </section>
       </div>
     </Content>
   );
