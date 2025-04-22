@@ -19,6 +19,23 @@ const Task2 = () => {
         </ul>
       </div>
 
+
+      <div className="mt-6 p-4 bg-gray-800 border-l-4 border-yellow-500 rounded-lg shadow-md">
+        <h3 className="text-lg sm:text-xl font-semibold text-yellow-400">before you proceed to the lab</h3>
+        <p className="mt-3">
+          <a 
+            href="https://learn.microsoft.com/azure/private-link/create-network-security-perimeter-portal/?wt.mc_id=studentamb_387261" 
+            className="text-blue-400 hover:underline"
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            🔗 Create your first network security perimeter
+            (quickstart step by step guide)
+          </a>
+        </p>
+      </div>
+
+
        {/* AI Assistance Prompt */}
        <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
         <h3 className="text-xl sm:text-2xl font-semibold text-yellow-400">Use AI to Guide You</h3>
