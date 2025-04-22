@@ -31,7 +31,7 @@ const Home = () => {
       <h1 className="text-2xl md:text-4xl font-bold mb-4 text-start">Welcome</h1>
       
       <p className="text-gray-300 text-base md:text-lg text-start">
-      <strong>secureCloudX</strong> is a free, hands-on platform built by  
+      <strong>securecloudX</strong> is a free, hands-on platform built by  
   <a href="https://ronneyotieno.me" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline"> $!rronn3y</a> to help you get started and master Cloud Security. Through structured challenges, you'll learn key security concepts, best practices, and real-world skills to secure cloud environments. Complete the capstone project to earn a Microsoft-recognized certificate.
       </p>
 
