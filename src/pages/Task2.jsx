@@ -20,17 +20,16 @@ const Task2 = () => {
       </div>
 
 
-      <div className="mt-6 p-4 bg-gray-800 border-l-4 border-yellow-500 rounded-lg shadow-md">
-        <h3 className="text-lg sm:text-xl font-semibold text-yellow-400">before you proceed to the lab</h3>
+      <div className="mt-6 p-4 border-l-4 rounded-lg shadow-md">
+        <h3 className="text-lg sm:text-xl font-semibold text-yellow-400">Do this practical before starting the lab</h3>
         <p className="mt-3">
           <a 
-            href="https://learn.microsoft.com/azure/private-link/create-network-security-perimeter-portal/?wt.mc_id=studentamb_387261" 
+            href="https://learn.microsoft.com/en-us/azure/firewall/tutorial-firewall-deploy-portal-policy/?wt.mc_id=studentamb_387261" 
             className="text-blue-400 hover:underline"
             target="_blank" 
             rel="noopener noreferrer"
           >
-            🔗 Create your first network security perimeter
-            (quickstart step by step guide)
+            🔗Tutorial: Deploy and configure Azure Firewall and policy using the Azure portal
           </a>
         </p>
       </div>
@@ -54,7 +53,7 @@ const Task2 = () => {
         <h3 className="text-xl sm:text-2xl font-semibold text-gray">Step-by-Step Guide</h3>
 
         {/* Step 1: Create a Virtual Network (VNet) */}
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
+        <div className="mt-4 p-4  rounded-lg shadow-md border-l-4 border-blue-500">
           <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 1: Create a Virtual Network (VNet)</h4>
           <p className="text-gray-300 text-sm sm:text-base mt-2">
             <strong>Why?</strong> A VNet provides network isolation and segmentation.
@@ -69,7 +68,7 @@ const Task2 = () => {
         </div>
 
         {/* Step 2: Configure NSGs */}
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
+        <div className="mt-4 p-4 rounded-lg shadow-md border-l-4 border-blue-500">
           <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 2: Configure Network Security Groups (NSGs)</h4>
           <p className="text-gray-300 text-sm sm:text-base mt-2">
             <strong>Why?</strong> NSGs act as a firewall to control inbound and outbound traffic.
@@ -88,7 +87,7 @@ const Task2 = () => {
         </div>
 
         {/* Step 3: Deploy Azure Firewall */}
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
+        <div className="mt-4 p-4 rounded-lg shadow-md border-l-4 border-blue-500">
           <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 3: Deploy Azure Firewall</h4>
           <p className="text-gray-300 text-sm sm:text-base mt-2">
             <strong>Why?</strong> Azure Firewall provides centralized traffic control and protection.
@@ -103,6 +102,11 @@ const Task2 = () => {
               </ul>
             </li>
           </ul>
+        </div>
+
+         {/* Step 4: Deploy a Test-VM */}
+         <div className="mt-4 p-4 rounded-lg shadow-md border-l-4 border-blue-500">
+          <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 4: Deploy a Test-VM</h4>
         </div>
 
         {/* Step 4: Test Security Settings */}
