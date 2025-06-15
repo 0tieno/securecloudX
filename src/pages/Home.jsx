@@ -30,12 +30,27 @@ const Home = () => {
     <Content className="bg-gray-900 text-white p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-4xl mx-auto">
       <h1 className="text-2xl md:text-4xl font-bold mb-4 text-start">Welcome</h1>
 
-      <p>Creator | <a href="https://ronneyotieno.me" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline"> ron</a></p>
+      <p className="mb-2 text-gray-400 text-sm">
+    Creator:{" "}
+    <a
+      href="https://ronneyotieno.me"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="text-blue-400 hover:underline"
+    >
+      ron
+    </a>
+  </p>
       
-      <p className="text-gray-300 text-base md:text-lg text-start">
-      <strong>securecloudX</strong>In a world full of endless courses, securecloudX says: “Give us 7 days, and we’ll give you momentum with structured and digestible challenge based practical guide to learn and master cloud security and DevSecOps”
-       Complete the capstone project to earn a Microsoft-recognized certificate.
-      </p>
+       <p className="text-gray-300 text-base md:text-lg text-start leading-relaxed">
+    In a world full of endless courses, <strong className="text-gray font-semibold">securecloudX</strong> says: {" "} <span className="underline decoration-gray-400 decoration-2 underline-offset-2">
+  “Give us 7 days, and we’ll give you momentum with structured and digestible challenge-based practical guide to help you learn and master cloud security and DevSecOps.”
+</span>
+    <br className="hidden md:block" />
+    <span className="block mt-2">
+      Complete the capstone project to earn a <strong>Microsoft-recognized certificate</strong>.
+    </span>
+  </p>
 
 
 {/* Youtube welcome video */}
