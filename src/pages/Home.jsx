@@ -29,10 +29,13 @@ const Home = () => {
   return (
     <Content className="bg-gray-900 text-white p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-4xl mx-auto">
       <h1 className="text-2xl md:text-4xl font-bold mb-4 text-start">Welcome</h1>
+
+      <p>Creator | <a href="https://ronneyotieno.me" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline"> ron</a></p>
       
       <p className="text-gray-300 text-base md:text-lg text-start">
-      <strong>securecloudX</strong> is a free, hands-on platform built by  
-  <a href="https://ronneyotieno.me" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline"> $!rronn3y</a> to help you get started and master Cloud Security. Through structured challenges, you'll learn key security concepts, best practices, and real-world skills to secure cloud environments. Complete the capstone project to earn a Microsoft-recognized certificate.
+      <strong>securecloudX</strong>In a world full of endless courses, SecureCloudX says: “Give us 7 days, and we’ll give you momentum.”
+  
+ Complete the capstone project to earn a Microsoft-recognized certificate.
       </p>
 
       {/* Cloud Security Matters Section */}
@@ -59,11 +62,7 @@ const Home = () => {
 {/* Youtube welcome video */}
 
 
-<section className="max-w-4xl  px-4 py-10">
-      {/* <h2 className="text-2xl md:text-3xl font-bold mb-6 text-center text-white">
-        Pre-launch meeting - recording
-      </h2> */}
-
+{/* <section className="max-w-4xl  px-4 py-10">
       <div className="w-full h-[140px] sm:h-[260px] md:h-[450px] lg:h-[300px] rounded-lg overflow-hidden shadow-lg border border-gray-700">
         <iframe
           src="https://www.youtube.com/embed/myZ2TjbEZmQ"
@@ -73,7 +72,7 @@ const Home = () => {
           className="w-full h-full"
         ></iframe>
       </div>
-    </section>
+    </section> */}
 
 
       {/* Is Cloud Security for You? */}
@@ -104,7 +103,7 @@ const Home = () => {
       <li><strong>Get Hands-on Experience:</strong> build! Experiment, break things, and rebuild</li>
       <li><strong>Stay Updated:</strong> cloud security is constantly evolving—follow trends and stay updated.</li>
       <li><strong>Earn Certifications:</strong> Industry-recognized certs like AZ-500, CISSP, CCSP, and Security+ boost credibility.</li>
-      <li><strong>🤝 Build Your Network:</strong> Engage with professionals, attend cybersecurity events, and join online communities.</li>
+      <li><strong>Build Your Network:</strong> Engage with professionals, attend cybersecurity events, and join online communities.</li>
           </ul>
           <p className="mt-3">
       <a 
