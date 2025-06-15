@@ -73,7 +73,7 @@ const Home = () => {
 <div className="mt-6 p-4 bg-gray-800 border-l-4 border-yellow-500 rounded-lg shadow-md">
   <h3 className="text-lg sm:text-xl font-semibold text-yellow-400">🔒 Is Cloud Security for You?</h3>
   <p className="text-gray-300 text-sm sm:text-base mt-2">
-    Cloud security is one of the most in-demand skills in tech. With businesses shifting to the cloud, securing digital assets is no longer optional—it's a necessity. This could be one of the best decisions in your career this year
+    Cloud security is one of the most in-demand skills in tech. With businesses shifting to the cloud, securing digital assets is no longer optional—it's a necessity. This could be one of the best decisions in your career this year.
   </p>
 
   {/* What It Takes to Become a Cloud Security Expert */}
@@ -124,10 +124,11 @@ const Home = () => {
       {/* Why Take This Challenge */}
       <h2 className="text-xl md:text-3xl font-bold mt-6 text-start">Why Take This Challenge?</h2>
 <ul className="mt-4 text-gray-300 space-y-3 text-sm md:text-base">
-  <li><span className="text-white font-semibold">Hands-on Learning:</span> Work on real-world security scenarios.</li>
-  <li><span className="text-white font-semibold">Practical Skills:</span> Learn how to secure cloud workloads using Azure tools.</li>
+  <li><span className="text-white font-semibold">Focused on practice with purpose:</span> balanced hands-on learning with carefully integrated theory.</li>
+  <li><span className="text-white font-semibold">Designed to guide, not handhold:</span> We provide essential details while leaving intentional gaps to foster critical thinking, problem-solving.</li>
   <li><span className="text-white font-semibold">Capstone Project:</span> Apply your knowledge in a final project.</li>
   <li><span className="text-white font-semibold">AI-Powered Learning:</span> Use specially designed prompts to enhance your learning with AI.</li>
+  <li><span className="text-white font-semibold">Constantly evolving:</span> Expect updates that keep it relevant and aligned with industry standards.</li>
   <li><span className="text-white font-semibold">Join the Community:</span> Connect with fellow learners in our <a href="https://x.com/securecloudX" target="_blank" className="text-blue-400 hover:underline">X Community</a> to share progress, ask questions, and collaborate.</li>
 </ul>
 
@@ -148,7 +149,7 @@ const Home = () => {
 
 
       {/* Challenge Structure */}
-      <h2 className="text-xl md:text-3xl font-bold mt-6 text-start">Challenge Structure</h2>
+      {/* <h2 className="text-xl md:text-3xl font-bold mt-6 text-start">Challenge Structure</h2>
       <p>Each day has an: Overview with key notes, Labs and specific resources</p>
       <ul className="mt-4 text-gray-300 space-y-2 text-sm md:text-base">
         {[
@@ -164,7 +165,7 @@ const Home = () => {
             <span className="text-blue-400 font-semibold mr-2">Day {index + 1}:</span> {item}
           </li>
         ))}
-      </ul>
+      </ul> */}
 
 
       {/* Document Your Learning */}
@@ -179,7 +180,7 @@ const Home = () => {
 
 
  {/* Email Subscription Form */}
-<div className="mt-8 p-6 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
+<div className="mt-8 p-6 bg-gray-800 rounded-lg shadow-md border-b-4 border-blue-500">
   <h3 className="text-lg sm:text-xl font-semibold text-blue-400">📩 Stay Updated</h3>
   <p className="text-gray-300 text-sm sm:text-base mt-2">
     Be sure to enter your email to receive updates and tips about the labs.
