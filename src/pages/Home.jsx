@@ -33,30 +33,9 @@ const Home = () => {
       <p>Creator | <a href="https://ronneyotieno.me" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline"> ron</a></p>
       
       <p className="text-gray-300 text-base md:text-lg text-start">
-      <strong>securecloudX</strong>In a world full of endless courses, SecureCloudX says: “Give us 7 days, and we’ll give you momentum.”
-  
- Complete the capstone project to earn a Microsoft-recognized certificate.
+      <strong>securecloudX</strong>In a world full of endless courses, securecloudX says: “Give us 7 days, and we’ll give you momentum with structured and digestible challenge based practical guide to learn and master cloud security and DevSecOps”
+       Complete the capstone project to earn a Microsoft-recognized certificate.
       </p>
-
-      {/* Cloud Security Matters Section */}
-      {/* <div className="mt-6 p-4 bg-gray-800 border-l-4 border-yellow-500 rounded-lg shadow-md">
-        <h3 className="text-lg sm:text-xl font-semibold text-yellow-400">🔒 Cloud Security Matters</h3>
-        <p className="text-gray-300 text-sm sm:text-base mt-2">
-          Security remains one of the biggest challenges in cloud computing. As cloud adoption grows,  
-          security incidents and vulnerabilities continue to rise.
-        </p>
-        <p className="mt-3">
-          <a 
-            href="https://www.nojones.net/posts/breaking-into-cloudsec" 
-            className="text-blue-400 hover:underline"
-            target="_blank" 
-            rel="noopener noreferrer"
-          >
-            🔗 Breaking into Cloud Security (Blog)
-          </a>
-        </p>
-      </div> */}
-
 
 
 {/* Youtube welcome video */}
