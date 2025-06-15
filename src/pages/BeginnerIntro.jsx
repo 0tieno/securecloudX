@@ -8,7 +8,7 @@ const BeginnerIntro = () => {
       <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center">New to Cloud? Start Here 🚀</h1>
 
       <p className="text-lg md:text-xl mb-6 leading-relaxed text-gray-300">
-        If you're completely new to cloud and cloud concepts, we highly recommend starting with these short beginner-friendly resources:
+        If you're completely new to cloud and cloud concepts, I highly recommend starting with these short beginner-friendly resources:
       </p>
 
       <ul className="list-disc pl-6 space-y-4 mb-6">

@@ -124,8 +124,9 @@ const Home = () => {
       {/* Why Take This Challenge */}
       <h2 className="text-xl md:text-3xl font-bold mt-6 text-start">Why Take This Challenge?</h2>
 <ul className="mt-4 text-gray-300 space-y-3 text-sm md:text-base">
+   <li>It's free of course!</li>
   <li><span className="text-white font-semibold">Focused on practice with purpose:</span> balanced hands-on learning with carefully integrated theory.</li>
-  <li><span className="text-white font-semibold">Designed to guide, not handhold:</span> We provide essential details while leaving intentional gaps to foster critical thinking, problem-solving.</li>
+  <li><span className="text-white font-semibold">Designed to guide, not handhold:</span> I provide essential details while leaving intentional gaps to foster critical thinking, problem-solving.</li>
   <li><span className="text-white font-semibold">Capstone Project:</span> Apply your knowledge in a final project.</li>
   <li><span className="text-white font-semibold">AI-Powered Learning:</span> Use specially designed prompts to enhance your learning with AI.</li>
   <li><span className="text-white font-semibold">Constantly evolving:</span> Expect updates that keep it relevant and aligned with industry standards.</li>
