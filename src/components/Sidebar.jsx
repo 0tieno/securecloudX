@@ -100,6 +100,18 @@ const Sidebar = () => {
               </Link>
             </li>
 
+
+            <li>
+  <Link
+    to="/start"
+    className={`block px-4 py-2 hover:bg-gray-600 ${location.pathname === "/start" ? "bg-gray-700 text-white" : ""}`}
+    onClick={closeSidebar}
+    title="Cloud Basics"
+  >
+    Starting From Zero
+  </Link>
+</li>
+
             {topics.map(({ day, title }) => {
               const isUnlocked = Number(day) <= currentUnlockedDay;
               return (

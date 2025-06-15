@@ -19,6 +19,8 @@ import Task7 from "./pages/Task7";
 import Footer from "./components/Footer";
 import Resources from "./pages/Resources";
 import Explore from "./pages/Explore"
+import BeginnerIntro from "./pages/BeginnerIntro"; 
+
 
 const App = () => {
   return (
@@ -49,6 +51,8 @@ const App = () => {
               <Route path="/day7/task" element={<Task7 />} />
               <Route path="/day/:day/resources" element={<Resources />} />
               <Route path="/explore" element={<Explore />} />
+              <Route path="/start" element={<BeginnerIntro />} />
+
 
             </Routes>
           </div>
