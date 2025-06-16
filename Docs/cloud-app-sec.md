@@ -1,3 +1,6 @@
+Application security aims to protect software application code and data against cyber threats. You can and should apply application security during all phases of development, including design, development, and deployment.
+     
+     
      CODE     →    CONTAINER   →   REGISTRY   →   AZURE   →   SECURE   →   MONITOR   →   ATTACK
   (Vulnerable)    (Dockerfile)     (ACR)         (AppSvc)     (Hardened)   (Insights)   (Test)
 
