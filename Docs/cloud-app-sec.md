@@ -1,4 +1,12 @@
 Application security aims to protect software application code and data against cyber threats. You can and should apply application security during all phases of development, including design, development, and deployment.
+
+
+Your team just shipped a weather forecast app — frontend + API — for logistics companies. It works, but security was an afterthought.
+Now, secrets are exposed, inputs aren’t validated, containers are misconfigured, and it's live on Azure.
+Hackers don’t care that it’s “just weather” — they see an open door.
+
+Your mission: Secure the app end-to-end — from code to cloud — before it becomes the weak link.
+
      
      
      CODE     →    CONTAINER   →   REGISTRY   →   AZURE   →   SECURE   →   MONITOR   →   ATTACK
