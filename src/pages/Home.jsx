@@ -4,31 +4,32 @@ import Content from "../components/Content";
 import useChallengeUnlock from "../hooks/useChallengeUnlock";
 
   
-const CHALLENGE_START_DATE = new Date("2025-06-22T00:00:00Z");
-const weeklyTopic = "Network Security in the Cloud!";
+// const weeklyTopic = "Network Security in the Cloud!";
+
+const topics = [
+  { day: 1, title: "Identity & Access Management" },
+  { day: 2, title: "Network Security In the Cloud" },
+  { day: 3, title: "Data Security" },
+  { day: 4, title: "Application Security" },
+  { day: 5, title: "Security Monitoring & Threat Intelligence" },
+  { day: 6, title: "Incident Response & Threat Detection" },
+  { day: 7, title: "Capstone Project" },
+];
 
 
 const Home = () => {
-  // const currentUnlockedDay = useChallengeUnlock();
   const unlockedDays = useChallengeUnlock();
 
-// const isUnlocked = unlockedDays.includes(day);
+  const currentDay = unlockedDays[unlockedDays.length - 1] || 1;
+  const currentTopic = topics.find(t => t.day === currentDay)?.title || "Cloud Security Challenge";
 
 
-  // const [currentUnlockedDay, setCurrentUnlockedDay] = useState(0);
-
-  // useEffect(() => {
-  //   const today = new Date();
-  //   const timeDiff = today - CHALLENGE_START_DATE;
-  //   const daysSinceStart = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-  //   setCurrentUnlockedDay(Math.min(daysSinceStart + 1, 7));
-  // }, []);
 
   return (
     <>
-    <Link to="/day2">
+   <Link to={`/day${currentDay}`}>
       <div className="bg-yellow-400 text-gray-900 font-semibold text-center py-2 animate-pulse hover:bg-yellow-300 transition-colors duration-300">
-        This Week's ongoing challenge: {weeklyTopic} → Click to Join
+        This Week's ongoing challenge: {currentTopic} → Click to Join
       </div>
     </Link>
 
@@ -133,7 +134,7 @@ const Home = () => {
   <li><span className="text-white font-semibold">Capstone Project:</span> Apply your knowledge in a final project.</li>
   <li><span className="text-white font-semibold">AI-Powered Learning:</span> Use specially designed prompts to enhance your learning with AI.</li>
   <li><span className="text-white font-semibold">Constantly evolving:</span> Expect updates that keep it relevant and aligned with industry standards.</li>
-  <li><span className="text-white font-semibold">Join the Community:</span> Connect with fellow learners in our <a href="https://x.com/securecloudX" target="_blank" className="text-blue-400 hover:underline">X Community</a> to share progress, ask questions, and collaborate.</li>
+  <li><span className="text-white font-semibold">Join the Community:</span> Connect with fellow learners in our <a href="https://x.com/securecloudX" target="_blank" className="text-blue-400 hover:underline">X </a> and <a href="https://x.com/securecloudX" target="_blank" className="text-blue-400 hover:underline">Whatsapp Community</a> to share progress, ask questions, and collaborate.</li>
 </ul>
 
       {/* Prerequisites Section */}
