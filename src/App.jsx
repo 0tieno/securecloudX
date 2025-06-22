@@ -1,4 +1,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ProtectedDayRoute from "./routes/ProtectedDayRoute";
+import ProtectedDayResources from "./routes/ProtectedDayResources";
+
+
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import Home from "./pages/Home";
@@ -35,22 +39,38 @@ const App = () => {
           <div className="flex-1 overflow-y-auto p-6 bg-gray-900 border-l border-gray-700">
             <Routes>
               <Route path="/" element={<Home />} />
-              <Route path="/day1" element={<Day1 />} />
-              <Route path="/day1/task" element={<Task1 />} />
-              <Route path="/day2" element={<Day2 />} />
-              <Route path="/day2/task" element={<Task2 />} />
-              <Route path="/day3" element={<Day3 />} />
-              <Route path="/day3/task" element={<Task3 />} />
-              <Route path="/day4" element={<Day4 />} />
-              <Route path="/day4/task" element={<Task4 />} />
-              <Route path="/day5" element={<Day5 />} />
-              <Route path="/day5/task" element={<Task5 />} />
-              <Route path="/day6" element={<Day6 />} />
-              <Route path="/day6/task" element={<Task6 />} />
-              <Route path="/day7" element={<Day7 />} />
-              <Route path="/day7/task" element={<Task7 />} />
-              <Route path="/day/:day/resources" element={<Resources />} />
-              <Route path="/explore" element={<Explore />} />
+              <Route path="/day1" element={<ProtectedDayRoute day={1}><Day1 /></ProtectedDayRoute>} />
+<Route path="/day1/task" element={<ProtectedDayRoute day={1}><Task1 /></ProtectedDayRoute>} />
+
+<Route path="/day2" element={<ProtectedDayRoute day={2}><Day2 /></ProtectedDayRoute>} />
+<Route path="/day2/task" element={<ProtectedDayRoute day={2}><Task2 /></ProtectedDayRoute>} />
+
+<Route path="/day3" element={<ProtectedDayRoute day={3}><Day3 /></ProtectedDayRoute>} />
+<Route path="/day3/task" element={<ProtectedDayRoute day={3}><Task3 /></ProtectedDayRoute>} />
+
+<Route path="/day4" element={<ProtectedDayRoute day={4}><Day4 /></ProtectedDayRoute>} />
+<Route path="/day4/task" element={<ProtectedDayRoute day={4}><Task4 /></ProtectedDayRoute>} />
+
+<Route path="/day5" element={<ProtectedDayRoute day={5}><Day5 /></ProtectedDayRoute>} />
+<Route path="/day5/task" element={<ProtectedDayRoute day={5}><Task5 /></ProtectedDayRoute>} />
+
+<Route path="/day6" element={<ProtectedDayRoute day={6}><Day6 /></ProtectedDayRoute>} />
+<Route path="/day6/task" element={<ProtectedDayRoute day={6}><Task6 /></ProtectedDayRoute>} />
+
+<Route path="/day7" element={<ProtectedDayRoute day={7}><Day7 /></ProtectedDayRoute>} />
+<Route path="/day7/task" element={<ProtectedDayRoute day={7}><Task7 /></ProtectedDayRoute>} />
+
+              <Route path="/day/:day/resources" element={<ProtectedDayResources />} />
+
+              <Route
+  path="/explore"
+  element={
+    <ProtectedDayRoute day={7}>
+      <Explore />
+    </ProtectedDayRoute>
+  }
+/>
+
               <Route path="/start" element={<BeginnerIntro />} />
 
 
