@@ -101,18 +101,9 @@ const Home = () => {
       >
         🔗 Breaking into Cloud Security (Blog)
       </a>
-    </p>
-  </div>
-
-  {/* Next Steps */}
-  <div className="mt-4 p-4 bg-gray-700 rounded-lg shadow-md border-l-4 border-yellow-400">
-    <h4 className="text-md sm:text-lg font-semibold text-yellow-400">📢 What’s Next?</h4>
-    <p className="text-gray-300 text-sm sm:text-base mt-2">
-      Ready to explore cloud security? Take this secureCloudX challenge and start your journey.
-          </p>
-          
-          <p className="mt-3">
-      <a 
+            </p>
+            <p className= "mt-3">
+               <a 
         href="https://blog.christophetd.fr/cloud-security-breaches-and-vulnerabilities-2021-in-review/" 
         className="text-blue-400 hover:underline"
         target="_blank" 
@@ -120,8 +111,27 @@ const Home = () => {
       >
         🔗 Cloud Security Breaches and Vulnerabilities (Blog)
       </a>
-    </p>
+            </p>
   </div>
+
+  {/* Next Steps */}
+<div className="mt-4 p-4 bg-gray-700 rounded-lg shadow-md border-l-4 border-yellow-400">
+  <h4 className="text-md sm:text-lg font-semibold text-yellow-400">📢 What’s Next?</h4>
+  <p className="text-gray-300 text-sm sm:text-base mt-2">
+    Explore cloud security with SecureCloudX. <br />
+    Join our ongoing weekly challenge in preparation for the upcoming hackathon—learn deeply, one lab at a time.
+  </p>
+
+  <p className="mt-3">
+    <Link
+      to={`/day${currentDay}`}
+      className="text-blue-400 hover:underline"
+    >
+      🔗 Go to this week's challenge (Day {currentDay})
+    </Link>
+  </p>
+</div>
+
 </div>
 
 
