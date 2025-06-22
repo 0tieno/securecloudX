@@ -1,32 +1,38 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Content from "../components/Content";
-
-// const Home = () => {
-//   // const [email, setEmail] = useState("");
-
-//   // const handleSubscribe = (e) => {
-//   //   e.preventDefault();
-//   //   console.log("Subscribed email:", email);
-//   //   // TODO: Integrate with backend/email service
-//   //   setEmail("");
-//   //   alert("Thanks for subscribing! You'll receive reminders.");
-//   // };
+import useChallengeUnlock from "../hooks/useChallengeUnlock";
 
   
-const CHALLENGE_START_DATE = new Date("2025-04-10T00:00:00Z");
+// const weeklyTopic = "Network Security in the Cloud!";
+
+const topics = [
+  { day: 1, title: "Identity & Access Management" },
+  { day: 2, title: "Network Security In the Cloud" },
+  { day: 3, title: "Data Security" },
+  { day: 4, title: "Application Security" },
+  { day: 5, title: "Security Monitoring & Threat Intelligence" },
+  { day: 6, title: "Incident Response & Threat Detection" },
+  { day: 7, title: "Capstone Project" },
+];
+
 
 const Home = () => {
-  const [currentUnlockedDay, setCurrentUnlockedDay] = useState(0);
+  const unlockedDays = useChallengeUnlock();
 
-  useEffect(() => {
-    const today = new Date();
-    const timeDiff = today - CHALLENGE_START_DATE;
-    const daysSinceStart = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-    setCurrentUnlockedDay(Math.min(daysSinceStart + 1, 7));
-  }, []);
+  const currentDay = unlockedDays[unlockedDays.length - 1] || 1;
+  const currentTopic = topics.find(t => t.day === currentDay)?.title || "Cloud Security Challenge";
+
+
 
   return (
+    <>
+   <Link to={`/day${currentDay}`}>
+      <div className="bg-yellow-400 text-gray-900 font-semibold text-center py-2 animate-pulse hover:bg-yellow-300 transition-colors duration-300">
+        This Week's ongoing challenge: {currentTopic} → Click to Join
+      </div>
+    </Link>
+
     <Content className="bg-gray-900 text-white p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-4xl mx-auto">
       <h1 className="text-2xl md:text-4xl font-bold mb-4 text-start">Welcome</h1>
 
@@ -43,9 +49,7 @@ const Home = () => {
   </p>
       
        <p className="text-gray-300 text-base md:text-lg text-start leading-relaxed">
-    In a world full of endless courses, <strong className="text-gray font-semibold">securecloudX</strong> says: {" "} <span className="underline decoration-gray-400 decoration-2 underline-offset-2">
-  “Give us 7 days, and we’ll give you momentum with structured and digestible challenge-based practical guide to help you learn and master cloud security and DevSecOps.”
-</span> Perfect for absolute beginners and intermediates.
+    This platform is built on the strong belief that with the right discipline, anyone can master cloud security and DevSecOps—through practical, hands-on learning. And that's what we do here!
     <br className="hidden md:block" />
     <span className="block mt-2">
       Complete the capstone project to earn a <strong>Microsoft-recognized certificate</strong>.
@@ -130,7 +134,7 @@ const Home = () => {
   <li><span className="text-white font-semibold">Capstone Project:</span> Apply your knowledge in a final project.</li>
   <li><span className="text-white font-semibold">AI-Powered Learning:</span> Use specially designed prompts to enhance your learning with AI.</li>
   <li><span className="text-white font-semibold">Constantly evolving:</span> Expect updates that keep it relevant and aligned with industry standards.</li>
-  <li><span className="text-white font-semibold">Join the Community:</span> Connect with fellow learners in our <a href="https://x.com/securecloudX" target="_blank" className="text-blue-400 hover:underline">X Community</a> to share progress, ask questions, and collaborate.</li>
+  <li><span className="text-white font-semibold">Join the Community:</span> Connect with fellow learners in our <a href="https://x.com/securecloudX" target="_blank" className="text-blue-400 hover:underline">X </a> and <a href="https://chat.whatsapp.com/Llp1Z8uw8xP5NIByASUV7V" target="_blank" className="text-blue-400 hover:underline">Whatsapp Community</a> to share progress, ask questions, and collaborate.</li>
 </ul>
 
       {/* Prerequisites Section */}
@@ -146,38 +150,6 @@ const Home = () => {
     <li>3. Willingness to experiment and learn!</li>
   </ul>
 </div>
-
-
-
-      {/* Challenge Structure */}
-      {/* <h2 className="text-xl md:text-3xl font-bold mt-6 text-start">Challenge Structure</h2>
-      <p>Each day has an: Overview with key notes, Labs and specific resources</p>
-      <ul className="mt-4 text-gray-300 space-y-2 text-sm md:text-base">
-        {[
-          "IAM",
-          "Network Security",
-          "Data Security",
-          "Application Security",
-          "Security Monitoring",
-          "Incident Response",
-          "Capstone Project",
-        ].map((item, index) => (
-          <li key={index} className="flex items-start">
-            <span className="text-blue-400 font-semibold mr-2">Day {index + 1}:</span> {item}
-          </li>
-        ))}
-      </ul> */}
-
-
-      {/* Document Your Learning */}
-      {/* <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-green-500">
-        <h4 className="text-lg sm:text-xl font-semibold text-green-400">Document Your Learning For Each Day</h4>
-        <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-        <li>Share your daily progress on X, follow the channel for daily updates, and use the hashtag <strong>#securecloudX</strong>.</li>
-          <li>Use blogs to document what you've learned.</li>
-          <li>Be an expert and let the world know.</li>
-        </ul>
-      </div> */}
 
 
  {/* Email Subscription Form */}
@@ -201,23 +173,30 @@ const Home = () => {
 
 
       {/* Get Started */}
-     {/* 🚀 Get Started */}
-     <h2 className="text-xl md:text-3xl font-bold mt-6 text-start">🚀 Get Started</h2>
-      <p className="text-gray-300 text-base md:text-lg text-start">
-        Ready to begin? Start with{" "}
-        {currentUnlockedDay >= 1 ? (
-          <Link to="/Day1" className="text-blue-400 font-semibold hover:underline">
-            Day 1: Identity & Access Management
-          </Link>
-        ) : (
-          <span className="text-gray-500 font-semibold cursor-not-allowed" title="Day 1 is locked">
-            Day 1: Identity & Access Management 🔒
-          </span>
-        )}
-        .
-      </p>
+    {/* 🚀 Get Started */}
+<h2 className="text-xl md:text-3xl font-bold mt-6 text-start">🚀 Get Started</h2>
+<p className="text-gray-300 text-base md:text-lg text-start">
+  Ready to begin? Start with{" "}
+  {unlockedDays.includes(1) ? (
+    <Link to="/day1" className="text-blue-400 font-semibold hover:underline">
+      Day 1: Identity & Access Management
+    </Link>
+  ) : (
+    <span className="text-gray-500 font-semibold cursor-not-allowed" title="Day 1 is locked">
+      Day 1: Identity & Access Management 🔒
+    </span>
+  )}
+  .
+</p>
+
+        
+  
+
+
     </Content>
+    </>
   );
+  
 };
 
 export default Home;

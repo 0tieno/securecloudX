@@ -45,13 +45,12 @@ const Day2 = () => {
         <h3 className="text-lg sm:text-xl font-semibold text-yellow-400">🔒 must read</h3>
         <p className="mt-3">
           <a 
-            href="https://learn.microsoft.com/azure/private-link/network-security-perimeter-concepts/?wt.mc_id=studentamb_387261" 
+            href="https://learn.microsoft.com/en-us/training/modules/network-fundamentals-2/?wt.mc_id=studentamb_387261" 
             className="text-blue-400 hover:underline"
             target="_blank" 
             rel="noopener noreferrer"
           >
-            🔗 What is a network security perimeter?
-            (article by microsoft)
+            🔗 Fundamentals of Network Security
           </a>
         </p>
       </div>
@@ -60,6 +59,9 @@ const Day2 = () => {
       {/* Notes Section */}
       <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-green-500">
         <h3 className="text-xl sm:text-2xl font-semibold text-white">Key Notes</h3>
+        <p className="text-gray-300 text-sm sm:text-base mt-2">
+         Go to the resources page of this day to read more about these concepts just in case you are not familiar with them.
+        </p>
         <ul className="list-disc list-inside text-gray-300 text-sm sm:text-base mt-2 space-y-2">
           <li><strong>Virtual Networks (VNet)</strong> allow resources to communicate securely.</li>
           <li><strong>Network Security Groups (NSGs)</strong> control inbound and outbound traffic.</li>
@@ -79,7 +81,14 @@ const Day2 = () => {
           <li>Create a Virtual Network (VNet) to organize resources.</li>
           <li>Configure Network Security Groups (NSGs) to restrict access.</li>
           <li>Deploy Azure Firewall to control outbound and inbound traffic.</li>
-          <li>Enable DDoS Protection to prevent attack floods.</li>
+          <li>Enable DDoS Protection to prevent attack floods. (Advanced - not covered in the lab)  <a 
+            href="https://learn.microsoft.com/en-us/training/modules/introduction-azure-ddos-protection/?wt.mc_id=studentamb_387261" 
+            className="text-blue-400 hover:underline"
+            target="_blank" 
+            rel="noopener noreferrer"
+          >
+            🔗 read more about it here.
+          </a> </li>
         </ul>
         <p className="text-gray-300 text-sm sm:text-base mt-3">
           By completing this, you’ll understand how to protect cloud environments from network-based attacks.
@@ -90,13 +99,12 @@ const Day2 = () => {
         <h3 className="text-lg sm:text-xl font-semibold text-yellow-400">before you proceed to the lab</h3>
         <p className="mt-3">
           <a 
-            href="https://learn.microsoft.com/azure/private-link/create-network-security-perimeter-portal/?wt.mc_id=studentamb_387261" 
+            href="https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility/?wt.mc_id=studentamb_387261" 
             className="text-blue-400 hover:underline"
             target="_blank" 
             rel="noopener noreferrer"
           >
-            🔗 Create your first network security perimeter
-            (quickstart step by step guide)
+            🔗 Read: Shared responsibility in the cloud (network security)
           </a>
         </p>
       </div>
