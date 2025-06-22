@@ -2,17 +2,6 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Content from "../components/Content";
 
-// const Home = () => {
-//   // const [email, setEmail] = useState("");
-
-//   // const handleSubscribe = (e) => {
-//   //   e.preventDefault();
-//   //   console.log("Subscribed email:", email);
-//   //   // TODO: Integrate with backend/email service
-//   //   setEmail("");
-//   //   alert("Thanks for subscribing! You'll receive reminders.");
-//   // };
-
   
 const CHALLENGE_START_DATE = new Date("2025-04-10T00:00:00Z");
 
@@ -146,38 +135,6 @@ const Home = () => {
     <li>3. Willingness to experiment and learn!</li>
   </ul>
 </div>
-
-
-
-      {/* Challenge Structure */}
-      {/* <h2 className="text-xl md:text-3xl font-bold mt-6 text-start">Challenge Structure</h2>
-      <p>Each day has an: Overview with key notes, Labs and specific resources</p>
-      <ul className="mt-4 text-gray-300 space-y-2 text-sm md:text-base">
-        {[
-          "IAM",
-          "Network Security",
-          "Data Security",
-          "Application Security",
-          "Security Monitoring",
-          "Incident Response",
-          "Capstone Project",
-        ].map((item, index) => (
-          <li key={index} className="flex items-start">
-            <span className="text-blue-400 font-semibold mr-2">Day {index + 1}:</span> {item}
-          </li>
-        ))}
-      </ul> */}
-
-
-      {/* Document Your Learning */}
-      {/* <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-green-500">
-        <h4 className="text-lg sm:text-xl font-semibold text-green-400">Document Your Learning For Each Day</h4>
-        <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-        <li>Share your daily progress on X, follow the channel for daily updates, and use the hashtag <strong>#securecloudX</strong>.</li>
-          <li>Use blogs to document what you've learned.</li>
-          <li>Be an expert and let the world know.</li>
-        </ul>
-      </div> */}
 
 
  {/* Email Subscription Form */}
