@@ -11,7 +11,9 @@ const Task2 = () => {
       {/* Task Breakdown */}
       <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
         <h3 className="text-xl sm:text-2xl font-semibold text-gray">What You’ll Do</h3>
+        The list does not follow the order of the lab, but it gives you an idea of what you will do in this lab.
         <ul className="list-disc pl-5 text-gray-300 mt-2 space-y-2">
+          <li>Create a <strong>Virtual Machine (VM)</strong>.</li>
           <li>Create a <strong>Virtual Network (VNet)</strong> and define subnets.</li>
           <li>Set up <strong>Network Security Groups (NSGs)</strong> to filter traffic.</li>
           <li>Deploy <strong>Azure Firewall</strong> to block unauthorized access.</li>
@@ -118,7 +120,7 @@ const Task2 = () => {
           <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
             <li>Try accessing the VM from an <strong>unauthorized IP</strong> – it should be blocked.</li>
             <li>Verify that only <strong>allowed users/IPs</strong> can access the VM.</li>
-            <li>Check <strong>Azure Monitor Logs</strong> to confirm blocked and allowed traffic.</li>
+            <li>Check <strong>Azure Monitor Logs</strong> to confirm blocked and allowed traffic. (this requires setting up azure monitoring for the network)</li>
           </ul>
           <p className="text-gray-300 text-sm sm:text-base mt-3">
             <strong>Success Criteria:</strong> Unauthorized access is blocked, and only permitted traffic flows through.
