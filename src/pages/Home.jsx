@@ -4,6 +4,8 @@ import Content from "../components/Content";
 
   
 const CHALLENGE_START_DATE = new Date("2025-04-10T00:00:00Z");
+const weeklyTopic = "Network Security in the Cloud!";
+
 
 const Home = () => {
   const [currentUnlockedDay, setCurrentUnlockedDay] = useState(0);
@@ -16,6 +18,13 @@ const Home = () => {
   }, []);
 
   return (
+    <>
+    <Link to="/day2">
+      <div className="bg-yellow-400 text-gray-900 font-semibold text-center py-2 animate-pulse hover:bg-yellow-300 transition-colors duration-300">
+        This Week's ongoing challenge: {weeklyTopic} → Click to Join
+      </div>
+    </Link>
+
     <Content className="bg-gray-900 text-white p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-4xl mx-auto">
       <h1 className="text-2xl md:text-4xl font-bold mb-4 text-start">Welcome</h1>
 
@@ -32,9 +41,7 @@ const Home = () => {
   </p>
       
        <p className="text-gray-300 text-base md:text-lg text-start leading-relaxed">
-    In a world full of endless courses, <strong className="text-gray font-semibold">securecloudX</strong> says: {" "} <span className="underline decoration-gray-400 decoration-2 underline-offset-2">
-  “Give us 7 days, and we’ll give you momentum with structured and digestible challenge-based practical guide to help you learn and master cloud security and DevSecOps.”
-</span> Perfect for absolute beginners and intermediates.
+    This platform is built on the belief that with the right discipline, anyone can master cloud security and DevSecOps—through practical, hands-on learning. And that's what we do here!
     <br className="hidden md:block" />
     <span className="block mt-2">
       Complete the capstone project to earn a <strong>Microsoft-recognized certificate</strong>.
@@ -174,7 +181,9 @@ const Home = () => {
         .
       </p>
     </Content>
+    </>
   );
+  
 };
 
 export default Home;
