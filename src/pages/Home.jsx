@@ -134,7 +134,7 @@ const Home = () => {
   <li><span className="text-white font-semibold">Capstone Project:</span> Apply your knowledge in a final project.</li>
   <li><span className="text-white font-semibold">AI-Powered Learning:</span> Use specially designed prompts to enhance your learning with AI.</li>
   <li><span className="text-white font-semibold">Constantly evolving:</span> Expect updates that keep it relevant and aligned with industry standards.</li>
-  <li><span className="text-white font-semibold">Join the Community:</span> Connect with fellow learners in our <a href="https://x.com/securecloudX" target="_blank" className="text-blue-400 hover:underline">X </a> and <a href="https://x.com/securecloudX" target="_blank" className="text-blue-400 hover:underline">Whatsapp Community</a> to share progress, ask questions, and collaborate.</li>
+  <li><span className="text-white font-semibold">Join the Community:</span> Connect with fellow learners in our <a href="https://x.com/securecloudX" target="_blank" className="text-blue-400 hover:underline">X </a> and <a href="https://chat.whatsapp.com/Llp1Z8uw8xP5NIByASUV7V" target="_blank" className="text-blue-400 hover:underline">Whatsapp Community</a> to share progress, ask questions, and collaborate.</li>
 </ul>
 
       {/* Prerequisites Section */}
@@ -173,21 +173,22 @@ const Home = () => {
 
 
       {/* Get Started */}
-     {/* 🚀 Get Started */}
-     <h2 className="text-xl md:text-3xl font-bold mt-6 text-start">🚀 Get Started</h2>
-      <p className="text-gray-300 text-base md:text-lg text-start">
-        Ready to begin? Start with{" "}
-        {unlockedDays >= 1 ? (
-          <Link to="/Day1" className="text-blue-400 font-semibold hover:underline">
-            Day 1: Identity & Access Management
-          </Link>
-        ) : (
-          <span className="text-gray-500 font-semibold cursor-not-allowed" title="Day 1 is locked">
-            Day 1: Identity & Access Management 🔒
-          </span>
-        )}
-        .
-        </p>
+    {/* 🚀 Get Started */}
+<h2 className="text-xl md:text-3xl font-bold mt-6 text-start">🚀 Get Started</h2>
+<p className="text-gray-300 text-base md:text-lg text-start">
+  Ready to begin? Start with{" "}
+  {unlockedDays.includes(1) ? (
+    <Link to="/day1" className="text-blue-400 font-semibold hover:underline">
+      Day 1: Identity & Access Management
+    </Link>
+  ) : (
+    <span className="text-gray-500 font-semibold cursor-not-allowed" title="Day 1 is locked">
+      Day 1: Identity & Access Management 🔒
+    </span>
+  )}
+  .
+</p>
+
         
   
 
