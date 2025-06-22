@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { ChevronRight, ChevronDown, Lock, Menu, X } from "lucide-react"; // Added Lock icon
+import useChallengeUnlock from "../hooks/useChallengeUnlock";
+
 
 const topics = [
   { day: 1, title: "Identity & Access Management" },
@@ -14,31 +16,38 @@ const topics = [
 
 
 // Set the challenge start date (YYYY-MM-DD format)
-const CHALLENGE_START_DATE = new Date("2025-04-10T00:00:00Z"); // Adjust to your actual start date
+// const CHALLENGE_START_DATE = new Date("2025-04-10T00:00:00Z"); 
 
 const Sidebar = () => {
+  // const currentUnlockedDay = useChallengeUnlock();
+  const unlockedDays = useChallengeUnlock();
+
+// const isUnlocked = unlockedDays.includes(day);
+
+
   const [openDay, setOpenDay] = useState({});
   const [openNextSteps, setOpenNextSteps] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  const [currentUnlockedDay, setCurrentUnlockedDay] = useState(0);
+  // const [currentUnlockedDay, setCurrentUnlockedDay] = useState(0);
   const sidebarRef = useRef(null);
 
   // Get current route
   const location = useLocation();
 
   // Calculate unlocked days
-  useEffect(() => {
-    const today = new Date();
-    const timeDiff = today - CHALLENGE_START_DATE;
-    const daysSinceStart = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-    setCurrentUnlockedDay(Math.min(daysSinceStart + 1, 7));
-  }, []);
+  // useEffect(() => {
+  //   const today = new Date();
+  //   const timeDiff = today - CHALLENGE_START_DATE;
+  //   const daysSinceStart = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+  //   setCurrentUnlockedDay(Math.min(daysSinceStart + 1, 7));
+  // }, []);
 
-  const toggleDropdown = (day) => {
-    if (day <= currentUnlockedDay) {
-      setOpenDay((prev) => ({ ...prev, [day]: !prev[day] }));
-    }
-  };
+ const toggleDropdown = (day) => {
+  if (unlockedDays.includes(day)) {
+    setOpenDay((prev) => ({ ...prev, [day]: !prev[day] }));
+  }
+};
+
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -113,7 +122,7 @@ const Sidebar = () => {
 </li>
 
             {topics.map(({ day, title }) => {
-              const isUnlocked = Number(day) <= currentUnlockedDay;
+              const isUnlocked = unlockedDays.includes(day); // ✅ This is correct now
               return (
                 <li key={day}>
                   <button
@@ -185,25 +194,25 @@ const Sidebar = () => {
 <li>
   <button
     onClick={() => {
-      if (currentUnlockedDay >= 7) {
+     if (unlockedDays.includes(7)) {
         setOpenNextSteps(!openNextSteps);
       }
     }}
     className={`w-full text-left px-4 py-2 flex justify-between items-center ${
-      currentUnlockedDay >= 7 ? "hover:bg-gray-700" : "text-gray-500 cursor-not-allowed"
+      (unlockedDays.includes(7)) ? "hover:bg-gray-700" : "text-gray-500 cursor-not-allowed"
     } mt-4`}
-    disabled={currentUnlockedDay < 7}
-    title={currentUnlockedDay >= 7 ? "Explore next steps" : "Unlocks after Day 7"}
+    disabled={!unlockedDays.includes(7)}
+    title={(unlockedDays.includes(7)) ? "Explore next steps" : "Unlocks after Day 7"}
   >
     <span>Next Steps</span>
-    {currentUnlockedDay >= 7 ? (
+    {(unlockedDays.includes(7)) ? (
       openNextSteps ? <ChevronDown size={18} /> : <ChevronRight size={18} />
     ) : (
       <Lock size={18} />
     )}
   </button>
 
-  {openNextSteps && currentUnlockedDay >= 7 && (
+  {openNextSteps && (unlockedDays.includes(7)) && (
     <ul className="ml-4 border-l-2 border-gray-600">
       <li>
         <Link

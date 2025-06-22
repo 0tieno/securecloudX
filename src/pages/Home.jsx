@@ -1,21 +1,28 @@
-import { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Content from "../components/Content";
+import useChallengeUnlock from "../hooks/useChallengeUnlock";
 
   
-const CHALLENGE_START_DATE = new Date("2025-04-10T00:00:00Z");
+const CHALLENGE_START_DATE = new Date("2025-06-22T00:00:00Z");
 const weeklyTopic = "Network Security in the Cloud!";
 
 
 const Home = () => {
-  const [currentUnlockedDay, setCurrentUnlockedDay] = useState(0);
+  // const currentUnlockedDay = useChallengeUnlock();
+  const unlockedDays = useChallengeUnlock();
 
-  useEffect(() => {
-    const today = new Date();
-    const timeDiff = today - CHALLENGE_START_DATE;
-    const daysSinceStart = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-    setCurrentUnlockedDay(Math.min(daysSinceStart + 1, 7));
-  }, []);
+// const isUnlocked = unlockedDays.includes(day);
+
+
+  // const [currentUnlockedDay, setCurrentUnlockedDay] = useState(0);
+
+  // useEffect(() => {
+  //   const today = new Date();
+  //   const timeDiff = today - CHALLENGE_START_DATE;
+  //   const daysSinceStart = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+  //   setCurrentUnlockedDay(Math.min(daysSinceStart + 1, 7));
+  // }, []);
 
   return (
     <>
@@ -169,7 +176,7 @@ const Home = () => {
      <h2 className="text-xl md:text-3xl font-bold mt-6 text-start">🚀 Get Started</h2>
       <p className="text-gray-300 text-base md:text-lg text-start">
         Ready to begin? Start with{" "}
-        {currentUnlockedDay >= 1 ? (
+        {unlockedDays >= 1 ? (
           <Link to="/Day1" className="text-blue-400 font-semibold hover:underline">
             Day 1: Identity & Access Management
           </Link>
@@ -179,7 +186,11 @@ const Home = () => {
           </span>
         )}
         .
-      </p>
+        </p>
+        
+  
+
+
     </Content>
     </>
   );
