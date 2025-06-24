@@ -1,4 +1,5 @@
 import Content from "../components/Content";
+import { Link } from "react-router-dom";
 
 const Day6 = () => {
   return (
@@ -69,6 +70,24 @@ const Day6 = () => {
           By completing this, you’ll gain hands-on experience in continuous security monitoring.
         </p>
       </div>
+
+
+
+      <div className="mt-10 flex justify-between text-sm sm:text-base">
+  <Link
+    to="/day4"
+    className="text-blue-400 hover:underline hover:text-blue-300"
+  >
+    ← Previous: Day 4
+  </Link>
+  <Link
+    to="/day5/task"
+    className="text-blue-400 hover:underline hover:text-blue-300"
+  >
+    Next: Start Lab →
+  </Link>
+</div>
+
     </Content>
   );
 };

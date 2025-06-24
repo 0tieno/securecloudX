@@ -1,4 +1,5 @@
 import Content from "../components/Content";
+import { Link } from "react-router-dom";
 
 const Day3 = () => {
   return (
@@ -69,6 +70,22 @@ const Day3 = () => {
           By completing this, you’ll understand how encryption and access controls protect cloud data.
         </p>
       </div>
+
+      <div className="mt-10 flex justify-between text-sm sm:text-base">
+  <Link
+    to="/day2"
+    className="text-blue-400 hover:underline hover:text-blue-300"
+  >
+    ← Previous: Day 2
+  </Link>
+  <Link
+    to="/day3/task"
+    className="text-blue-400 hover:underline hover:text-blue-300"
+  >
+    Next: Start Lab →
+  </Link>
+</div>
+
     </Content>
   );
 };

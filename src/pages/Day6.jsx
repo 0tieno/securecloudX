@@ -1,4 +1,5 @@
 import Content from "../components/Content";
+import { Link } from "react-router-dom";
 
 const Day5 = () => {
   return (
@@ -69,6 +70,23 @@ const Day5 = () => {
           By completing this, you’ll gain hands-on experience in detecting and responding to security incidents in Azure.
         </p>
       </div>
+
+
+      <div className="mt-10 flex justify-between text-sm sm:text-base">
+  <Link
+    to="/day5"
+    className="text-blue-400 hover:underline hover:text-blue-300"
+  >
+    ← Previous: Day 5
+  </Link>
+  <Link
+    to="/day6/task"
+    className="text-blue-400 hover:underline hover:text-blue-300"
+  >
+    Next: Start Lab →
+  </Link>
+</div>
+
     </Content>
   );
 };

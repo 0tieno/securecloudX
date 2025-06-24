@@ -1,4 +1,5 @@
 import Content from "../components/Content";
+import { Link } from "react-router-dom";
 
 const Day7 = () => {
   return (
@@ -64,6 +65,24 @@ const Day7 = () => {
           Success Criteria: Successfully securing the Azure deployment will be evaluated based on the configurations above, and any remaining gaps should be identified for further enhancement.
         </p>
       </div>
+
+
+
+      <div className="mt-10 flex justify-between text-sm sm:text-base">
+  <Link
+    to="/day6"
+    className="text-blue-400 hover:underline hover:text-blue-300"
+  >
+    ← Previous: Day 6
+  </Link>
+  <Link
+    to="/day7/task"
+    className="text-blue-400 hover:underline hover:text-blue-300"
+  >
+    Next: Start Lab →
+  </Link>
+</div>
+
     </Content>
   );
 };
