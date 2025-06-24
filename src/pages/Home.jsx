@@ -188,8 +188,8 @@ const Home = () => {
 <p className="text-gray-300 text-base md:text-lg text-start">
   Ready to begin? Start with{" "}
   {unlockedDays.includes(1) ? (
-    <Link to="/day1" className="text-blue-400 font-semibold hover:underline">
-      Day 1: Identity & Access Management
+    <Link to="/start" className="text-blue-400 font-semibold hover:underline">
+      Day 0: Starting From Zero
     </Link>
   ) : (
     <span className="text-gray-500 font-semibold cursor-not-allowed" title="Day 1 is locked">
