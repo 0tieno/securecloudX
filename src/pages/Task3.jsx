@@ -1,4 +1,5 @@
 import Content from "../components/Content";
+import { Link } from "react-router-dom";
 
 const Task3 = () => {
   return (
@@ -73,6 +74,23 @@ const Task3 = () => {
       <p className="text-green-300 text-sm sm:text-base mt-3">
             <strong>congrats!</strong> you just finished day 3. Ensure to document your learning and findings. You will need them in the capstone project. See you on day 4.
           </p>
+
+
+      <div className="mt-10 flex justify-between text-sm sm:text-base">
+  <Link
+    to="/day3"
+    className="text-blue-400 hover:underline hover:text-blue-300"
+  >
+    ← Back to Overview
+  </Link>
+  <Link
+    to="/day/3/resources"
+    className="text-blue-400 hover:underline hover:text-blue-300"
+  >
+    Resources →
+  </Link>
+</div>
+
     </Content>
   );
 };
