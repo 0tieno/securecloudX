@@ -1,4 +1,5 @@
 import Content from "../components/Content";
+import { Link } from "react-router-dom";
 
 const Task7 = () => {
   return (
@@ -146,6 +147,24 @@ I want this to feel like a real-world security project where I’m learning by d
       <p className="text-green-300 text-sm sm:text-base mt-3">
             <strong>congratulations!</strong> on making it to the end. It was challenging, but you tried anyway. Nonetheless who is hired to do easy peasy stuff. See what next page...
           </p>
+
+
+<div className="mt-10 flex justify-between text-sm sm:text-base">
+  <Link
+    to="/day7"
+    className="text-blue-400 hover:underline hover:text-blue-300"
+  >
+    ← Back to Overview
+  </Link>
+  <Link
+    to="/day/7/resources"
+    className="text-blue-400 hover:underline hover:text-blue-300"
+  >
+    Day 7 Resources →
+  </Link>
+</div>
+
+      
     </Content>
   );
 };

@@ -1,4 +1,5 @@
 import Content from "../components/Content";
+import { Link } from "react-router-dom";
 
 const Task2 = () => {
   return (
@@ -148,6 +149,21 @@ const Task2 = () => {
       </div>
     </section>
       </div>
+
+ <div className="mt-10 flex justify-between text-sm sm:text-base">
+  <Link
+    to="/day2"
+    className="text-blue-400 hover:underline hover:text-blue-300"
+  >
+    ← Back to Overview
+  </Link>
+  <Link
+    to="/day/2/resources"
+    className="text-blue-400 hover:underline hover:text-blue-300"
+  >
+    Day 2 Resources →
+  </Link>
+</div>
     </Content>
   );
 };

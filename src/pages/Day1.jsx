@@ -1,4 +1,6 @@
 import Content from "../components/Content";
+import { Link } from "react-router-dom";
+import React from "react";
 
 const Day1 = () => {
   return (
@@ -68,6 +70,24 @@ const Day1 = () => {
           By completing this, you’ll understand how IAM protects cloud environments from unauthorized access.
         </p>
       </div>
+
+
+
+      <div className="mt-10 flex justify-between text-sm sm:text-base">
+  <Link
+    to="/start"
+    className="text-blue-400 hover:underline hover:text-blue-300"
+  >
+    ← Previous: start
+  </Link>
+  <Link
+    to="/day1/task"
+    className="text-blue-400 hover:underline hover:text-blue-300"
+  >
+    Next: Start Lab →
+  </Link>
+</div>
+
     </Content>
   );
 };
