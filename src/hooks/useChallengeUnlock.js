@@ -2,8 +2,6 @@ import { useState, useEffect } from "react";
 import { CHALLENGE_START_DATE } from "../constants/challengeConfig";
 
 
-// const CHALLENGE_START_DATE = new Date("2025-06-15T00:00:00Z");
-
 const useChallengeUnlock = () => {
   const [unlockedDays, setUnlockedDays] = useState([]);
 
