@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import Content from "../components/Content";
+import { Link } from "react-router-dom";
 
 const resourcesData = {
   1: {
@@ -120,18 +121,36 @@ const Resources = () => {
   <p className="text-gray-300 text-sm sm:text-base mt-2">
   Always remember, you cannot secure what you do not understand. Make sure to grasp the architectural and core components of the cloud so that you can properly secure them.
             </p>
-            
-            {/* <p className="mt-3">
-    <a 
-      href="https://blog.christophetd.fr/cloud-security-breaches-and-vulnerabilities-2021-in-review/" 
-      className="text-blue-400 hover:underline"
-      target="_blank" 
-      rel="noopener noreferrer"
-    >
-      🔗 Cloud Security Breaches and Vulnerabilities (Blog)
-    </a>
-  </p> */}
+          
 </div>
+
+          <div className="mt-10 flex justify-between text-sm sm:text-base">
+  <Link
+    to={`/day${day}/task`}
+    className="text-blue-400 hover:underline hover:text-blue-300"
+  >
+    ← Back to Lab
+  </Link>
+
+  {Number(day) < 7 && (
+    <Link
+      to={`/day${Number(day) + 1}`}
+      className="text-blue-400 hover:underline hover:text-blue-300"
+    >
+      Next Day →
+    </Link>
+  )}
+
+  {Number(day) === 7 && (
+    <Link
+      to="/explore"
+      className="text-blue-400 hover:underline hover:text-blue-300"
+    >
+      🚀 Next Steps →
+    </Link>
+  )}
+</div>
+
 
         </>
       ) : (
