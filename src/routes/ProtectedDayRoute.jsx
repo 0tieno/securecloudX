@@ -1,21 +1,63 @@
-import { Navigate, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { CHALLENGE_START_DATE } from "../constants/challengeConfig";
 
-const isDayUnlocked = (day) => {
-  const today = new Date();
-  const diffInDays = Math.floor((today - CHALLENGE_START_DATE) / (1000 * 60 * 60 * 24));
-  const unlockDay = (day - 1) * 7;
-  return diffInDays >= unlockDay;
+const getUnlockDate = (day) => {
+  // Each day unlocks every 7 days
+  const unlockDayOffset = (day - 1) * 7; // in days
+  const unlockDate = new Date(CHALLENGE_START_DATE);
+  unlockDate.setDate(unlockDate.getDate() + unlockDayOffset);
+  return unlockDate;
+};
+
+const getTimeLeft = (unlockDate) => {
+  const now = new Date();
+  const diff = unlockDate - now;
+
+  if (diff <= 0) return null;
+
+  const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((diff / (1000 * 60)) % 60);
+  const seconds = Math.floor((diff / 1000) % 60);
+
+  return { days, hours, minutes, seconds };
 };
 
 const ProtectedDayRoute = ({ day, children }) => {
-  const location = useLocation();
-  return isDayUnlocked(day) ? children : <Navigate to="/" state={{ from: location }} replace />;
+  const unlockDate = getUnlockDate(day);
+  const [timeLeft, setTimeLeft] = useState(getTimeLeft(unlockDate));
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setTimeLeft(getTimeLeft(unlockDate));
+    }, 1000);
+
+    return () => clearInterval(interval);
+  }, [unlockDate]);
+
+  const isUnlocked = !timeLeft;
+
+  if (isUnlocked) return children;
+
+  return (
+    <div className="p-6 text-center bg-gray-900 text-gray-300 h-full">
+      <div className="max-w-xl mx-auto mt-20 p-6 border-l-4 border-yellow-400 bg-gray-800 rounded-lg shadow">
+        <h2 className="text-2xl font-bold text-yellow-400 mb-2">⏳ Hold On!</h2>
+        <p className="text-base sm:text-lg mb-1">Day {day} is still locked.</p>
+        <p className="text-base sm:text-lg">
+          It will unlock in:
+        </p>
+        {timeLeft && (
+          <p className="text-yellow-400 font-mono text-xl mt-3">
+            {timeLeft.days}d {timeLeft.hours}h {timeLeft.minutes}m {timeLeft.seconds}s
+          </p>
+        )}
+        <p className="text-sm mt-4 text-gray-400">
+          Check back soon to continue your cloud security journey.
+        </p>
+      </div>
+    </div>
+  );
 };
 
 export default ProtectedDayRoute;
-// This component checks if the specified day is unlocked based on the challenge start date.
-// If the day is unlocked, it renders the children components; otherwise, it redirects to the home page.
-// The `isDayUnlocked` function calculates whether the current date is past the unlock date for the specified day.
-// The `ProtectedDayRoute` component uses React Router's `Navigate` to redirect users if they try to access a locked day.
-// The `useLocation` hook is used to preserve the current location in the state, allowing users to return to their previous page after unlocking the day
