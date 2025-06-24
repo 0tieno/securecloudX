@@ -160,7 +160,7 @@ I want this to feel like a real-world security project where I’m learning by d
     to="/day/7/resources"
     className="text-blue-400 hover:underline hover:text-blue-300"
   >
-    Resources →
+    Day 7 Resources →
   </Link>
 </div>
 

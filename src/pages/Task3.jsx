@@ -87,7 +87,7 @@ const Task3 = () => {
     to="/day/3/resources"
     className="text-blue-400 hover:underline hover:text-blue-300"
   >
-    Resources →
+    Day 3 Resources →
   </Link>
 </div>
 

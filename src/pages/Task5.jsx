@@ -119,7 +119,7 @@ const Day6 = () => {
     to="/day/5/resources"
     className="text-blue-400 hover:underline hover:text-blue-300"
   >
-    Resources →
+    Day 5 Resources →
   </Link>
 </div>
 
