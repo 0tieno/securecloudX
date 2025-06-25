@@ -14,6 +14,9 @@ const Day2 = () => {
         Day 2: Network Security & Perimeter Defense
       </h2>
       <p className="mt-2 text-gray-300 text-sm sm:text-base">
+        Without a thorough understanding of network security, an organization is vulnerable to attacks and performance issues on its network. This vulnerability can negatively affect the organization's finances and reputation.
+      </p>
+      <p className="mt-2 text-gray-300 text-sm sm:text-base">
         Learn how to secure Azure resources by implementing Virtual Networks (VNet), Network Security Groups (NSG), Azure Firewall, and DDoS protection.
       </p>
 
