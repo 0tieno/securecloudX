@@ -34,11 +34,15 @@ const Task1 = () => {
       <div className="mt-6">
         <h3 className="text-xl sm:text-2xl font-semibold text-gray">Step-by-Step Guide</h3>
 
+          <p className="mt-3">⚠️ Heads up: The steps has some intentional gaps. These are designed to encourage critical thinking and problem-solving
+
+</p>
+
         {/* Step 1: Set Up Azure AD */}
         <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
           <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 1: Set Up Azure Active Directory (AD)</h4>
           <p className="text-gray-300 text-sm sm:text-base mt-2">
-            **Why?** Azure AD manages user identities and access permissions across cloud resources.
+            Why? Azure AD manages user identities and access permissions across cloud resources.
           </p>
           <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
             <li>Go to <strong>Azure Portal</strong> (<a href="https://portal.azure.com" className="text-blue-400">https://portal.azure.com</a>).</li>
@@ -51,7 +55,7 @@ const Task1 = () => {
         <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
           <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 2: Create Users & Groups</h4>
           <p className="text-gray-300 text-sm sm:text-base mt-2">
-            **Why?** Assigning users to groups allows for easier role management instead of assigning permissions individually.
+            Why Assigning users to groups allows for easier role management instead of assigning permissions individually.
           </p>
           <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
             <li>Add a new user: <strong>IAM &gt; Users &gt; New User</strong>.</li>
@@ -64,7 +68,7 @@ const Task1 = () => {
         <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
           <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 3: Assign RBAC Roles</h4>
           <p className="text-gray-300 text-sm sm:text-base mt-2">
-            **Why?** RBAC ensures that users have only the minimum required access to resources.
+            Why RBAC ensures that users have only the minimum required access to resources.
           </p>
           <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
             <li>Navigate to the Azure VM you want to secure or create one if you don't have already.</li>
@@ -81,7 +85,7 @@ const Task1 = () => {
         <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
           <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 4: Enable Multi-Factor Authentication (MFA)</h4>
           <p className="text-gray-300 text-sm sm:text-base mt-2">
-            **Why?** MFA reduces the risk of account compromise even if passwords are leaked.
+            Why MFA reduces the risk of account compromise even if passwords are leaked.
           </p>
           <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
             <li>Go to Azure Active Directory &gt; Security &gt; Conditional Access.</li>
@@ -97,7 +101,7 @@ const Task1 = () => {
         <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-green-500">
           <h4 className="text-lg sm:text-xl font-semibold text-green-400">Step 5: Test & Validate</h4>
           <p className="text-gray-300 text-sm sm:text-base mt-2">
-            **Why?** Always verify security settings to ensure they work as expected.
+            Why Always verify security settings to ensure they work as expected.
           </p>
           <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
             <li>Try accessing the VM without MFA – it should be blocked.</li>
