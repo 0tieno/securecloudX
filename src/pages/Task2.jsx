@@ -154,6 +154,23 @@ const Task2 = () => {
     </section>
       </div>
 
+       {/* Step 4: Guided Project */}
+         <div className="mt-4 p-4 rounded-lg shadow-md border-l-4">
+  <h4 className="text-lg sm:text-xl font-semibold text-blue-400">
+    Guided Project for your portfolio
+    <a 
+      className="underline decoration-gray-400 hover:no-underline" 
+      target="_blank" 
+      rel="noopener noreferrer"
+      href="https://learn.microsoft.com/training/modules/guided-project-configure-secure-access-workloads/?wt.mc_id=studentamb_387261"
+    >
+      <br />
+      Configure secure access to workloads with Azure virtual networking services
+    </a>
+  </h4>
+</div>
+
+
  <div className="mt-10 flex justify-between text-sm sm:text-base">
   <Link
     to="/day2"
