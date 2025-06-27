@@ -132,9 +132,9 @@ const Task2 = () => {
           </p>
         </div>
 
-        <p className="text-green-300 text-sm sm:text-base mt-3">
+        {/* <p className="text-green-300 text-sm sm:text-base mt-3">
             <strong>congrats!</strong> you just finished day 2. Ensure to document your learning and findings. You will need them in the capstone project. See you on day 3.
-        </p>
+        </p> */}
         
         {/* Youtube  video */}
 
@@ -154,20 +154,19 @@ const Task2 = () => {
     </section>
       </div>
 
-       {/* Step 4: Guided Project */}
-         <div className="mt-4 p-4 rounded-lg shadow-md border-l-4">
-  <h4 className="text-lg sm:text-xl font-semibold text-blue-400">
-    Guided Project for your portfolio
-    <a 
-      className="underline decoration-gray-400 hover:no-underline" 
-      target="_blank" 
-      rel="noopener noreferrer"
-      href="https://learn.microsoft.com/training/modules/guided-project-configure-secure-access-workloads/?wt.mc_id=studentamb_387261"
-    >
-      <br />
-      Configure secure access to workloads with Azure virtual networking services
-    </a>
+      {/* Step 4: Guided Project */}
+<div className="mt-6 p-6 rounded-lg shadow-md border-b-4 border-gray-300 text-center">
+  <h4 className="text-lg sm:text-xl font-semibold text-gray-400 mb-2">
+    Guided Project for Your Portfolio
   </h4>
+  <a 
+    className="underline decoration-gray-400 hover:no-underline text-blue-500 transition-all duration-200"
+    target="_blank" 
+    rel="noopener noreferrer"
+    href="https://learn.microsoft.com/training/modules/guided-project-configure-secure-access-workloads/?wt.mc_id=studentamb_387261"
+  >
+    Configure secure access to workloads with Azure virtual networking services
+  </a>
 </div>
 
 
