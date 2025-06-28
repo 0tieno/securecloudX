@@ -77,14 +77,14 @@ const Sidebar = () => {
   return (
     <>
       {/* Hamburger Menu Button */}
-      <button onClick={toggleSidebar} className="md:hidden p-4 text-gray-300">
+      <button onClick={toggleSidebar} className="md:hidden p-4 text-gray-300 relative z-50">
         {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
       {/* Sidebar */}
       <div
         ref={sidebarRef}
-        className={`fixed md:static top-0 left-0 h-full w-64 bg-gray-800 text-gray-300 flex flex-col border-r border-gray-700 transition-transform duration-300 ${
+        className={`fixed md:static top-0 left-0 h-full w-64 bg-gray-800 text-gray-300 flex flex-col border-r border-gray-700 transition-transform duration-300 z-50 ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
         }`}
       >
