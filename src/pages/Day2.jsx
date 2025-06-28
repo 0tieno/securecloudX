@@ -7,7 +7,7 @@ const Day2 = () => {
     <Content>
       
       <div className="bg-yellow-400 text-gray-900 font-semibold text-center mb-3 py-2 animate-pulse hover:bg-yellow-300 transition-colors duration-300">
-        This Week's ongoing challenge:  → 23rd June 2025 - 30th June 2025
+        This Week's ongoing challenge 
       </div>
     
       <h2 className="text-2xl sm:text-3xl font-bold text-gray-300">
