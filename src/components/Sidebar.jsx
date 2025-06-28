@@ -89,7 +89,7 @@ const Sidebar = () => {
         }`}
       >
      <h2 className="text-xl font-bold p-4 flex justify-between items-center">
-  Guide
+  <span>Guide<span className="text-xs bg-gray-600 text-white px-2 py-0.5 rounded ml-2">SCX</span></span>
   <Link to="/" title="SecureCloudX">
     <img src="/favicon-32x32.png" alt="Logo" className="h-6 w-auto cursor-pointer" />
   </Link>
