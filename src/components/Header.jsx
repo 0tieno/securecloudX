@@ -2,7 +2,7 @@ const Header = () => {
   return (
     <header className="w-full bg-gray-800 p-4 text-gray-300 shadow-md flex justify-between items-center">
       <div>
-        <h1 className="text-xl font-bold">securecloudX</h1>
+        <h1 className="text-xl font-bold">securecloudX<span className="text-xs bg-gray-600 text-white px-2 py-0.5 rounded ml-2 md:hidden">SCX</span></h1>
         <p className="text-sm text-gray-400">Master cloud security. Build secure systems.</p>
       </div>
 
