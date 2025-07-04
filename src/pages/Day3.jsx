@@ -54,20 +54,10 @@ const Day3 = () => {
       </div>
 
       {/* Task Section */}
-      <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
-        <h3 className="text-xl sm:text-2xl font-semibold text-white">Your Task</h3>
-        <p className="text-gray-300 text-sm sm:text-base mt-2">
-          Today, you will encrypt Azure Storage and configure secure access using SAS and RBAC.  
-          You’ll:
-        </p>
-        <ul className="list-disc list-inside text-gray-300 text-sm sm:text-base mt-2 space-y-2">
-          <li>Enable Server-Side Encryption with Microsoft-managed or customer-managed keys.</li>
-          <li>Configure RBAC roles to limit access to storage resources.</li>
-          <li>Create a Shared Access Signature (SAS) to provide secure access.</li>
-          <li>Test your setup to ensure unauthorized users cannot access the data.</li>
-        </ul>
+      <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-b-4 border-blue-500">
+        
         <p className="text-gray-300 text-sm sm:text-base mt-3">
-          By completing this, you’ll understand how encryption and access controls protect cloud data.
+          By completing the following labs, you’ll understand how encryption and access controls protect cloud data.
         </p>
       </div>
 

@@ -1,8 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ChevronRight, ChevronDown, Lock, Menu, X } from "lucide-react"; // Added Lock icon
+import { ChevronRight, ChevronDown, Lock, Menu, X } from "lucide-react";
 import useChallengeUnlock from "../hooks/useChallengeUnlock";
-
 
 const topics = [
   { day: 1, title: "Identity & Access Management" },
@@ -14,40 +13,20 @@ const topics = [
   { day: 7, title: "Capstone Project" },
 ];
 
-
-// Set the challenge start date (YYYY-MM-DD format)
-// const CHALLENGE_START_DATE = new Date("2025-04-10T00:00:00Z"); 
-
 const Sidebar = () => {
-  // const currentUnlockedDay = useChallengeUnlock();
   const unlockedDays = useChallengeUnlock();
-
-// const isUnlocked = unlockedDays.includes(day);
-
 
   const [openDay, setOpenDay] = useState({});
   const [openNextSteps, setOpenNextSteps] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
-  // const [currentUnlockedDay, setCurrentUnlockedDay] = useState(0);
   const sidebarRef = useRef(null);
-
-  // Get current route
   const location = useLocation();
 
-  // Calculate unlocked days
-  // useEffect(() => {
-  //   const today = new Date();
-  //   const timeDiff = today - CHALLENGE_START_DATE;
-  //   const daysSinceStart = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-  //   setCurrentUnlockedDay(Math.min(daysSinceStart + 1, 7));
-  // }, []);
-
- const toggleDropdown = (day) => {
-  if (unlockedDays.includes(day)) {
-    setOpenDay((prev) => ({ ...prev, [day]: !prev[day] }));
-  }
-};
-
+  const toggleDropdown = (day) => {
+    if (unlockedDays.includes(day)) {
+      setOpenDay((prev) => ({ ...prev, [day]: !prev[day] }));
+    }
+  };
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -57,7 +36,6 @@ const Sidebar = () => {
     setIsSidebarOpen(false);
   };
 
-  // Close sidebar when clicking outside
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (sidebarRef.current && !sidebarRef.current.contains(event.target)) {
@@ -88,12 +66,16 @@ const Sidebar = () => {
           isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
         }`}
       >
-     <h2 className="text-xl font-bold p-4 flex justify-between items-center">
-  <span>Guide<span className="text-xs bg-gray-600 text-white px-2 py-0.5 rounded ml-2">SCX</span></span>
-  <Link to="/" title="SecureCloudX">
-    <img src="/favicon-32x32.png" alt="Logo" className="h-6 w-auto cursor-pointer" />
-  </Link>
-</h2>
+        <h2 className="text-xl font-bold p-4 flex justify-between items-center">
+          <span>
+            Guide
+            <span className="text-xs bg-gray-600 text-white px-2 py-0.5 rounded ml-2">SCX</span>
+          </span>
+          <Link to="/" title="SecureCloudX">
+            <img src="/favicon-32x32.png" alt="Logo" className="h-6 w-auto cursor-pointer" />
+          </Link>
+        </h2>
+
         <nav className="flex-1 overflow-y-auto">
           <ul>
             <li>
@@ -109,20 +91,21 @@ const Sidebar = () => {
               </Link>
             </li>
 
-
             <li>
-  <Link
-    to="/start"
-    className={`block px-4 py-2 hover:bg-gray-600 ${location.pathname === "/start" ? "bg-gray-700 text-white" : ""}`}
-    onClick={closeSidebar}
-    title="Cloud Basics"
-  >
-    Starting From Zero
-  </Link>
-</li>
+              <Link
+                to="/start"
+                className={`block px-4 py-2 hover:bg-gray-600 ${
+                  location.pathname === "/start" ? "bg-gray-700 text-white" : ""
+                }`}
+                onClick={closeSidebar}
+                title="Cloud Basics"
+              >
+                Starting From Zero
+              </Link>
+            </li>
 
             {topics.map(({ day, title }) => {
-              const isUnlocked = unlockedDays.includes(day); // ✅ This is correct now
+              const isUnlocked = unlockedDays.includes(day);
               return (
                 <li key={day}>
                   <button
@@ -136,7 +119,7 @@ const Sidebar = () => {
                     title={isUnlocked ? `Open Day ${day}` : "This day is locked"}
                   >
                     <span>
-                    <strong>Day {day}:</strong> {title}
+                      <strong>Day {day}:</strong> {title}
                     </span>
                     {isUnlocked ? (
                       openDay[day] ? <ChevronDown size={18} /> : <ChevronRight size={18} />
@@ -168,21 +151,71 @@ const Sidebar = () => {
                           onClick={closeSidebar}
                           title={`Lab for Day ${day}`}
                         >
-                          Lab
+                          Labs
                         </Link>
                       </li>
-                      <li>
-                      <Link
-                        to={`/day/${day}/resources`}
-                        className={`block px-4 py-1 hover:bg-gray-600 ${
-                          location.pathname === `/day/${day}/resources` ? "bg-gray-700 text-white" : ""
-                        }`}
-                        onClick={closeSidebar}
-                        title={`Resources for Day ${day}`}
-                      >
-                        Resources
-                      </Link>
 
+                      {/* ✅ Lab 3 Phases Submenu */}
+                      {day === 3 && (
+                        <ul className="ml-4 border-l-2 border-gray-600">
+                          <li>
+                            <Link
+                              to="/day3/task/phase1"
+                              className={`block px-4 py-1 hover:bg-gray-600 ${
+                                location.pathname === "/day3/task/phase1"
+                                  ? "bg-gray-700 text-white"
+                                  : ""
+                              }`}
+                              onClick={closeSidebar}
+                              title="Phase 1: Setup & Enumeration"
+                            >
+                              Lab 01
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/day3/task/phase2"
+                              className={`block px-4 py-1 hover:bg-gray-600 ${
+                                location.pathname === "/day3/task/phase2"
+                                  ? "bg-gray-700 text-white"
+                                  : ""
+                              }`}
+                              onClick={closeSidebar}
+                              title="Phase 2: Threat Modeling"
+                            >
+                               Lab 02
+                            </Link>
+                          </li>
+                          <li>
+                            <Link
+                              to="/day3/task/phase3"
+                              className={`block px-4 py-1 hover:bg-gray-600 ${
+                                location.pathname === "/day3/task/phase3"
+                                  ? "bg-gray-700 text-white"
+                                  : ""
+                              }`}
+                              onClick={closeSidebar}
+                              title="Phase 3: Secure Coding"
+                            >
+                               Lab 03
+                            </Link>
+                          </li>
+                        </ul>
+                      )}
+
+                      <li>
+                        <Link
+                          to={`/day/${day}/resources`}
+                          className={`block px-4 py-1 hover:bg-gray-600 ${
+                            location.pathname === `/day/${day}/resources`
+                              ? "bg-gray-700 text-white"
+                              : ""
+                          }`}
+                          onClick={closeSidebar}
+                          title={`Resources for Day ${day}`}
+                        >
+                          Resources
+                        </Link>
                       </li>
                     </ul>
                   )}
@@ -191,45 +224,46 @@ const Sidebar = () => {
             })}
 
             {/* Next Steps Section */}
-<li>
-  <button
-    onClick={() => {
-     if (unlockedDays.includes(7)) {
-        setOpenNextSteps(!openNextSteps);
-      }
-    }}
-    className={`w-full text-left px-4 py-2 flex justify-between items-center ${
-      (unlockedDays.includes(7)) ? "hover:bg-gray-700" : "text-gray-500 cursor-not-allowed"
-    } mt-4`}
-    disabled={!unlockedDays.includes(7)}
-    title={(unlockedDays.includes(7)) ? "Explore next steps" : "Unlocks after Day 7"}
-  >
-    <span>Next Steps</span>
-    {(unlockedDays.includes(7)) ? (
-      openNextSteps ? <ChevronDown size={18} /> : <ChevronRight size={18} />
-    ) : (
-      <Lock size={18} />
-    )}
-  </button>
+            <li>
+              <button
+                onClick={() => {
+                  if (unlockedDays.includes(7)) {
+                    setOpenNextSteps(!openNextSteps);
+                  }
+                }}
+                className={`w-full text-left px-4 py-2 flex justify-between items-center ${
+                  unlockedDays.includes(7)
+                    ? "hover:bg-gray-700"
+                    : "text-gray-500 cursor-not-allowed"
+                } mt-4`}
+                disabled={!unlockedDays.includes(7)}
+                title={unlockedDays.includes(7) ? "Explore next steps" : "Unlocks after Day 7"}
+              >
+                <span>Next Steps</span>
+                {unlockedDays.includes(7) ? (
+                  openNextSteps ? <ChevronDown size={18} /> : <ChevronRight size={18} />
+                ) : (
+                  <Lock size={18} />
+                )}
+              </button>
 
-  {openNextSteps && (unlockedDays.includes(7)) && (
-    <ul className="ml-4 border-l-2 border-gray-600">
-      <li>
-        <Link
-          to="/explore"
-          className={`block px-4 py-1 hover:bg-gray-600 ${
-            location.pathname === "/explore" ? "bg-gray-700 text-white" : ""
-          }`}
-          onClick={closeSidebar}
-          title="What to do next?"
-        >
-          What next?
-        </Link>
-      </li>
-    </ul>
-  )}
-</li>
-
+              {openNextSteps && unlockedDays.includes(7) && (
+                <ul className="ml-4 border-l-2 border-gray-600">
+                  <li>
+                    <Link
+                      to="/explore"
+                      className={`block px-4 py-1 hover:bg-gray-600 ${
+                        location.pathname === "/explore" ? "bg-gray-700 text-white" : ""
+                      }`}
+                      onClick={closeSidebar}
+                      title="What to do next?"
+                    >
+                      What next?
+                    </Link>
+                  </li>
+                </ul>
+              )}
+            </li>
           </ul>
         </nav>
       </div>
