@@ -7,18 +7,13 @@ const Phase1 = () => {
       <h1 className="text-3xl font-bold mb-6 border-b border-gray-700 pb-2">
         Lab 1: Basic Azure Storage Implementation
       </h1>
-
+  
       <div className="space-y-8 text-gray-300 leading-relaxed">
         <section>
           <p>
             The IT department needs to prototype different storage scenarios and to train new personnel. The content isn’t important enough to back up and doesn’t need to be restored if the data is overwritten or removed. A simple configuration that can be easily changed is desired.
           </p>
         </section>
-
-        {/* <section>
-          <h2 className="text-2xl font-semibold text-white mb-2">🏗️ Architecture diagram</h2>
-          <p className="text-gray-400">Diagram with one storage account</p>
-        </section> */}
 
         <section>
           <h2 className="text-2xl font-semibold text-white mb-2">Your tasks</h2>
@@ -107,14 +102,6 @@ const Phase1 = () => {
             <li>Create a table comparing the Azure storage performance tiers. Highlight their key features and use cases.</li>
             <li>What Azure storage redundancy options are available? When should I use each option?</li>
           </ul>
-        </section>
-
-        <section>
-          <h2 className="text-2xl font-semibold text-white mt-6 mb-2">Learn more with self-paced training</h2>
-          <p>
-            <strong>Describe Azure storage services.</strong> In this module, you compare Azure storage services, describe storage tiers, and describe redundancy options.<br />
-            <strong>Create an Azure Storage account.</strong> In this module, you create and configure a storage account.
-          </p>
         </section>
 
         <section>
