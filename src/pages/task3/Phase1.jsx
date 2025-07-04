@@ -1,14 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import Content from "../../components/Content";
 
 const Phase1 = () => {
   return (
-    <div className="p-6 max-w-5xl mx-auto text-white bg-gray-900 min-h-screen">
-      <h1 className="text-3xl font-bold mb-6 border-b border-gray-700 pb-2">
-        Lab 1: Basic Azure Storage Implementation
-      </h1>
+    <Content>
+      <h2 className="text-2xl font-bold text-gray">Lab 1: Basic Azure Storage Implementation</h2>
   
-      <div className="space-y-8 text-gray-300 leading-relaxed">
+      <div className="mt-4 space-y-8 text-gray-300 leading-relaxed">
         <section>
           <p>
             The IT department needs to prototype different storage scenarios and to train new personnel. The content isn’t important enough to back up and doesn’t need to be restored if the data is overwritten or removed. A simple configuration that can be easily changed is desired.
@@ -16,7 +15,7 @@ const Phase1 = () => {
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold text-white mb-2">Your tasks</h2>
+          <h2 className="text-2xl font-semibold text-gray mb-2">Your tasks</h2>
           <ul className="list-disc pl-6 space-y-1 text-gray-300">
             <li>Create a storage account.</li>
             <li>Configure basic settings for security and networking.</li>
@@ -24,11 +23,11 @@ const Phase1 = () => {
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold text-white mb-2">Step by Step Guide</h2>
+          <h2 className="text-2xl font-semibold text-gray mb-2">Step by Step Guide</h2>
 
           <div className="space-y-8">
             <div>
-              <h3 className="text-xl font-bold text-white mb-2">1️⃣ Create a resource group and a storage account</h3>
+              <h3 className="text-xl font-bold text-gray mb-2">1️⃣ Create a resource group and a storage account</h3>
               <div className="bg-gray-800 p-4 rounded-lg space-y-2">
                 <p>Create and deploy a resource group to hold all your project resources. Learn more about resource groups.</p>
                 <ul className="list-decimal pl-6 space-y-1">
@@ -54,7 +53,7 @@ const Phase1 = () => {
             </div>
 
             <div>
-              <h3 className="text-xl font-bold text-white mb-2">2️⃣ Configure simple settings in the storage account</h3>
+              <h3 className="text-xl font-bold text-gray mb-2">2️⃣ Configure simple settings in the storage account</h3>
               <div className="bg-gray-800 p-4 rounded-lg space-y-2">
                 <p>The data in this storage account doesn’t require high availability or durability. A lowest cost storage solution is desired. Learn more about storage account redundancy.</p>
                 <ul className="list-disc pl-6 space-y-1">
@@ -95,7 +94,7 @@ const Phase1 = () => {
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold text-white mb-2">Use AI</h2>
+          <h2 className="text-2xl font-semibold text-gray mb-2">Use AI</h2>
           <p>Learn more with AI assisstant using these prompts</p>
           <ul className="list-disc pl-6 mt-2">
             <li>What is an Azure storage account? What types of Azure storage accounts are available?</li>
@@ -105,7 +104,7 @@ const Phase1 = () => {
         </section>
 
         <section>
-          <h2 className="text-2xl font-semibold text-white mt-6 mb-2">🎯 Key takeaways</h2>
+          <h2 className="text-2xl font-semibold text-gray mt-6 mb-2">🎯 Key takeaways</h2>
           <ul className="list-disc pl-6">
             <li>Congratulations on completing the lab. Here are the main takeaways for this lab.</li>
             <li>An Azure storage account is a container that holds all your Azure Storage data objects, including blobs, files, queues, and tables.</li>
@@ -116,22 +115,21 @@ const Phase1 = () => {
         </section>
       </div>
 
-          <div className="mt-10 flex justify-between text-sm sm:text-base">
-                  <Link
-                    to="/day3/task"
-                    className="text-blue-400 hover:underline hover:text-blue-300"
-                  >
-                    ← Back to Labs overview
-                  </Link>
-                  <Link
-                    to="/day3/task/phase2"
-                    className="text-blue-400 hover:underline hover:text-blue-300"
-                  >
-                    Go to Lab: 02 →
-                  </Link>
-                </div>
-
-    </div>
+      <div className="mt-10 flex justify-between text-sm sm:text-base">
+        <Link
+          to="/day3/task"
+          className="text-blue-400 hover:underline hover:text-blue-300"
+        >
+          ← Back to Labs overview
+        </Link>
+        <Link
+          to="/day3/task/phase2"
+          className="text-blue-400 hover:underline hover:text-blue-300"
+        >
+          Go to Lab: 02 →
+        </Link>
+      </div>
+    </Content>
   );
 };
 
