@@ -13,89 +13,154 @@ const Phase2 = () => {
       <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
         <h3 className="text-xl sm:text-2xl font-semibold text-gray">What You’ll Do</h3>
         <ul className="list-disc pl-5 text-gray-300 mt-2 space-y-2">
-          <li>Create a storage account with high availability.</li>
-          <li>Ensure the storage account has anonymous public access.</li>
-          <li>Create a blob storage container for the website documents.</li>
-          <li>Enable soft delete so files can be easily restored.</li>
-          <li>Enable blob versioning.</li>
+          <li>Create a storage account with high availability to support the public website.</li>
+          <li>Ensure the storage account allows anonymous public access.</li>
+          <li>Create a blob storage container for website content with anonymous read access.</li>
+          <li>Enable soft delete for blobs and practice restoring deleted files.</li>
+          <li>Enable blob versioning and experiment with restoring previous versions.</li>
         </ul>
       </div>
 
       <div className="mt-6">
         <h3 className="text-xl sm:text-2xl font-semibold text-gray">Step-by-Step Guide</h3>
 
+        {/* Step 1 */}
         <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
           <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 1: Create a Storage Account with High Availability</h4>
           <ul className="list-disc pl-5 text-gray-300 mt-2 space-y-1">
-            <li>In the portal, search for and select Storage accounts.</li>
-            <li>Select + Create.</li>
-            <li>For resource group, select new. Name it and click OK.</li>
-            <li>Set the Storage account name to <code>publicwebsite</code> with a unique identifier.</li>
+            <li>In the portal, search for and select <strong>Storage accounts</strong>.</li>
+            <li>Select <strong>+ Create</strong>.</li>
+            <li>For resource group, select <strong>new</strong>. Give your resource group a name and select OK.</li>
+            <li>Set the Storage account name to <code>publicwebsite</code> and add a unique identifier.</li>
             <li>Take the defaults for other settings.</li>
-            <li>Review and Create, then go to the resource once deployed.</li>
-            <li>In the Redundancy blade, ensure Read-access Geo-redundant storage is selected.</li>
-            <li>Review the primary and secondary location information.</li>
+            <li>Select <strong>Review</strong> and then <strong>Create</strong>.</li>
+            <li>Wait for the storage account to deploy, then select <strong>Go to resource</strong>.</li>
+            <li>
+              In the storage account, in the <strong>Data management</strong> section, select the <strong>Redundancy</strong> blade.
+            </li>
+            <li>
+              Ensure <strong>Read-access Geo-redundant storage</strong> is selected.
+            </li>
+            <li>
+              Review the primary and secondary location information.
+            </li>
           </ul>
         </div>
 
+        {/* Step 2 */}
         <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
           <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 2: Allow Anonymous Public Access</h4>
           <ul className="list-disc pl-5 text-gray-300 mt-2 space-y-1">
-            <li>In the Configuration blade of the storage account, enable <strong>Allow blob anonymous access</strong>.</li>
-            <li>Save your changes.</li>
+            <li>
+              In the storage account, in the <strong>Settings</strong> section, select the <strong>Configuration</strong> blade.
+            </li>
+            <li>
+              Ensure the <strong>Allow blob anonymous access</strong> setting is <strong>Enabled</strong>.
+            </li>
+            <li>
+              Be sure to <strong>Save</strong> your changes.
+            </li>
           </ul>
         </div>
 
+        {/* Step 3 */}
         <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
-          <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 3: Create a Blob Storage Container</h4>
+          <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 3: Create a Blob Storage Container with Anonymous Read Access</h4>
           <ul className="list-disc pl-5 text-gray-300 mt-2 space-y-1">
-            <li>Go to the Containers blade and click + Container.</li>
-            <li>Set the name to <code>public</code> and click Create.</li>
-            <li>In the Overview blade, select Change access level.</li>
-            <li>Set it to <strong>Blob (anonymous read access for blobs only)</strong> and click OK.</li>
+            <li>
+              In your storage account, in the <strong>Data storage</strong> section, select the <strong>Containers</strong> blade.
+            </li>
+            <li>
+              Select <strong>+ Container</strong>.
+            </li>
+            <li>
+              Ensure the <strong>Name</strong> of the container is <code>public</code>.
+            </li>
+            <li>
+              Select <strong>Create</strong>.
+            </li>
+            <li>
+              Select your <code>public</code> container.
+            </li>
+            <li>
+              On the <strong>Overview</strong> blade, select <strong>Change access level</strong>.
+            </li>
+            <li>
+              Ensure the <strong>Public access level</strong> is <strong>Blob (anonymous read access for blobs only)</strong>.
+            </li>
+            <li>
+              Select <strong>OK</strong>.
+            </li>
           </ul>
         </div>
 
+        {/* Step 4 */}
         <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-green-500">
           <h4 className="text-lg sm:text-xl font-semibold text-green-400">Step 4: Upload Files and Test Access</h4>
           <ul className="list-disc pl-5 text-gray-300 mt-2 space-y-1">
-            <li>Select Upload in the public container.</li>
-            <li>Choose any small file (image or text) and upload it.</li>
-            <li>Copy the URL from the Overview tab and test in a new browser tab.</li>
+            <li>Ensure you are viewing your <code>public</code> container.</li>
+            <li>Select <strong>Upload</strong>.</li>
+            <li>Browse to and select a file (any small image or text file).</li>
+            <li>Select <strong>Upload</strong>.</li>
+            <li>Close the upload window, refresh the page, and ensure your file was uploaded.</li>
+            <li>Select your uploaded file.</li>
+            <li>On the <strong>Overview</strong> tab, copy the URL.</li>
+            <li>Paste the URL into a new browser tab to test access.</li>
+            <li>If you uploaded an image, it will display in the browser. Other file types should be downloaded.</li>
           </ul>
         </div>
 
+        {/* Step 5 */}
         <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
           <h4 className="text-lg sm:text-xl font-semibold text-yellow-400">Step 5: Configure Soft Delete</h4>
           <ul className="list-disc pl-5 text-gray-300 mt-2 space-y-1">
-            <li>In the storage account, go to Blob service → Blob soft delete.</li>
-            <li>Enable it and set the retention to 21 days.</li>
-            <li>Save changes and test by deleting and restoring a blob.</li>
+            <li>Go to the <strong>Overview</strong> blade of the storage account.</li>
+            <li>On the <strong>Properties</strong> page, locate the <strong>Blob service</strong> section.</li>
+            <li>Select the <strong>Blob soft delete</strong> setting.</li>
+            <li>Ensure <strong>Enable soft delete for blobs</strong> is checked.</li>
+            <li>Set <strong>Keep deleted blobs for (in days)</strong> to <strong>21</strong>.</li>
+            <li>Optionally, enable soft delete for containers.</li>
+            <li>Save your changes.</li>
+            <li>
+              To practice restoring files:
+              <ul className="list-disc pl-5 mt-1">
+                <li>Navigate to your container where you uploaded a file.</li>
+                <li>Select the file and then select <strong>Delete</strong>.</li>
+                <li>Confirm deleting the file.</li>
+                <li>On the container <strong>Overview</strong> page, toggle <strong>Show deleted blobs</strong> (to the right of the search box).</li>
+                <li>Select your deleted file, use the ellipses on the far right, and select <strong>Undelete</strong>.</li>
+                <li>Refresh the container and confirm the file has been restored.</li>
+              </ul>
+            </li>
           </ul>
         </div>
 
+        {/* Step 6 */}
         <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
-          <h4 className="text-lg sm:text-xl font-semibold text-yellow-400">Step 6: Enable Blob Versioning</h4>
+          <h4 className="text-lg sm:text-xl font-semibold text-yellow-400">Step 6: Configure Blob Versioning</h4>
           <ul className="list-disc pl-5 text-gray-300 mt-2 space-y-1">
-            <li>In the Blob service settings, select Versioning.</li>
-            <li>Enable versioning and save your changes.</li>
-            <li>Upload another version of a file and explore previous versions via Show deleted blobs.</li>
+            <li>Go to the <strong>Overview</strong> blade of the storage account.</li>
+            <li>In the <strong>Properties</strong> section, locate the <strong>Blob service</strong> section.</li>
+            <li>Select the <strong>Versioning</strong> setting.</li>
+            <li>Ensure <strong>Enable versioning for blobs</strong> is checked.</li>
+            <li>Notice your options to keep all versions or delete versions after a period.</li>
+            <li>Save your changes.</li>
+            <li>
+              To experiment with restoring previous blob versions:
+              <ul className="list-disc pl-5 mt-1">
+                <li>Upload another version of your container file (this overwrites your existing file).</li>
+                <li>Your previous file version is listed on the <strong>Show deleted blobs</strong> page.</li>
+              </ul>
+            </li>
           </ul>
         </div>
 
-        {/* <p className="text-green-300 text-sm sm:text-base mt-3">
-          <strong>Great job!</strong> You’ve completed Phase 2 of the lab. Document your setup, issues, and findings as they’ll be useful in later phases.
-        </p> */}
-
-              <div className="bg-gray-800 mt-4 rounded-lg p-4 border-l-4 border-yellow-500">
+        <div className="bg-gray-800 mt-4 rounded-lg p-4 border-l-4 border-yellow-500">
           <h4 className="text-lg font-semibold text-yellow-400">Extend Your Learning with Copilot</h4>
           <ul className="list-disc pl-5 text-gray-300 mt-2 space-y-2">
-            <li>What is Azure blob storage and when should it be used?
-</li>
-            <li>Compare the different Azure storage redundancy models, highlighting their key features and use cases.
-</li>
-            <li>What are the Azure storage tiers and how can those tiers save money?
-</li>
+            <li>What is Azure blob storage and when should it be used?</li>
+            <li>Compare the different Azure storage redundancy models, highlighting their key features and use cases.</li>
+            <li>What are the Azure storage tiers and how can those tiers save money?</li>
           </ul>
         </div>
 
