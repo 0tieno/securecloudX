@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Phase1 = () => {
   return (
@@ -127,6 +128,22 @@ const Phase1 = () => {
           </ul>
         </section>
       </div>
+
+          <div className="mt-10 flex justify-between text-sm sm:text-base">
+                  <Link
+                    to="/day3/task"
+                    className="text-blue-400 hover:underline hover:text-blue-300"
+                  >
+                    ← Back to Labs overview
+                  </Link>
+                  <Link
+                    to="/day3/task/phase2"
+                    className="text-blue-400 hover:underline hover:text-blue-300"
+                  >
+                    Go to Lab: 02 →
+                  </Link>
+                </div>
+
     </div>
   );
 };

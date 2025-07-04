@@ -150,10 +150,10 @@ const Phase3 = () => {
 
       <div className="mt-10 flex justify-between text-sm sm:text-base">
         <Link
-          to="/day3/task"
+          to="/day3/task/phase2"
           className="text-blue-400 hover:underline hover:text-blue-300"
         >
-          ← Back to Task 3
+          ← Back to Lab 02
         </Link>
         <Link
           to="/day/3/resources"
