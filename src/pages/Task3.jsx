@@ -41,6 +41,21 @@ const Task3 = () => {
           ))}
         </div>
       </div>
+
+      <div className="mt-10 flex justify-between text-sm sm:text-base">
+              <Link
+                to="/day3"
+                className="text-blue-400 hover:underline hover:text-blue-300"
+              >
+                ← Back to Overview
+              </Link>
+              <Link
+                to="/day3/task/phase1"
+                className="text-blue-400 hover:underline hover:text-blue-300"
+              >
+                Go to Lab: 01 →
+              </Link>
+            </div>
     </div>
   );
 };
