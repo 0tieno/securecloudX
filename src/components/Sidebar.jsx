@@ -151,7 +151,7 @@ const Sidebar = () => {
                           onClick={closeSidebar}
                           title={`Lab for Day ${day}`}
                         >
-                          Lab
+                          Labs
                         </Link>
                       </li>
 
@@ -169,7 +169,7 @@ const Sidebar = () => {
                               onClick={closeSidebar}
                               title="Phase 1: Setup & Enumeration"
                             >
-                              Phase 1: Setup & Enum
+                              Lab 01
                             </Link>
                           </li>
                           <li>
@@ -183,7 +183,7 @@ const Sidebar = () => {
                               onClick={closeSidebar}
                               title="Phase 2: Threat Modeling"
                             >
-                              Phase 2: Threat Modeling
+                               Lab 02
                             </Link>
                           </li>
                           <li>
@@ -197,21 +197,7 @@ const Sidebar = () => {
                               onClick={closeSidebar}
                               title="Phase 3: Secure Coding"
                             >
-                              Phase 3: Secure Coding
-                            </Link>
-                          </li>
-                          <li>
-                            <Link
-                              to="/day3/task/phase4"
-                              className={`block px-4 py-1 hover:bg-gray-600 ${
-                                location.pathname === "/day3/task/phase4"
-                                  ? "bg-gray-700 text-white"
-                                  : ""
-                              }`}
-                              onClick={closeSidebar}
-                              title="Phase 4: Container Security"
-                            >
-                              Phase 4: Containers
+                               Lab 03
                             </Link>
                           </li>
                         </ul>

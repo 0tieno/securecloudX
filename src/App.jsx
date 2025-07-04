@@ -26,7 +26,6 @@ import BeginnerIntro from "./pages/BeginnerIntro";
 import Phase1 from "./pages/task3/Phase1";
 import Phase2 from "./pages/task3/Phase2";
 import Phase3 from "./pages/task3/Phase3";
-import Phase4 from "./pages/task3/Phase4";
 
 const App = () => {
   return (
@@ -54,7 +53,7 @@ const App = () => {
               <Route path="/day3/task/phase1" element={<ProtectedDayRoute day={3}><Phase1 /></ProtectedDayRoute>} />
               <Route path="/day3/task/phase2" element={<ProtectedDayRoute day={3}><Phase2 /></ProtectedDayRoute>} />
               <Route path="/day3/task/phase3" element={<ProtectedDayRoute day={3}><Phase3 /></ProtectedDayRoute>} />
-              <Route path="/day3/task/phase4" element={<ProtectedDayRoute day={3}><Phase4 /></ProtectedDayRoute>} />
+              
 
               <Route path="/day4" element={<ProtectedDayRoute day={4}><Day4 /></ProtectedDayRoute>} />
               <Route path="/day4/task" element={<ProtectedDayRoute day={4}><Task4 /></ProtectedDayRoute>} />
