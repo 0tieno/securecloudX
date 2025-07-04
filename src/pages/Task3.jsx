@@ -3,24 +3,19 @@ import { Link } from "react-router-dom";
 
 const phases = [
   {
-    title: "Phase 1: Setup & Enumeration",
-    description: "Initialize the lab and explore the surface of the app.",
+    title: "Phase 1: Understanding Data Security Basics",
+    description: "Learn the fundamentals of data security and why it matters in cloud environments.",
     link: "/day3/task/phase1",
   },
   {
-    title: "Phase 2: Threat Modeling",
-    description: "Identify potential threats and vulnerabilities in the architecture.",
+    title: "Phase 2: Securing Public Data in Azure Storage",
+    description: "Explore how to securely store and serve public website content using Azure Storage.",
     link: "/day3/task/phase2",
   },
   {
-    title: "Phase 3: Secure Coding",
-    description: "Review insecure code and apply secure development practices.",
+    title: "Phase 3: Protecting Private Data with High Availability",
+    description: "Implement strategies for securing private data and ensuring high availability in Azure.",
     link: "/day3/task/phase3",
-  },
-  {
-    title: "Phase 4: Container Security",
-    description: "Inspect and secure container images for best practices.",
-    link: "/day3/task/phase4",
   },
 ];
 
@@ -28,9 +23,9 @@ const Task3 = () => {
   return (
     <div className="min-h-screen p-6 text-white bg-gray-900">
       <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold mb-4">🧪 Lab 3: Data Security</h1>
+        <h1 className="text-3xl font-bold mb-4">Lab 3: Data Security</h1>
         <p className="text-gray-300 mb-6">
-          This lab is split into 4 phases. Click on a phase below to begin:
+          This lab is split into 3 phases. Click on a phase below to begin:
         </p>
 
         <div className="space-y-4">
