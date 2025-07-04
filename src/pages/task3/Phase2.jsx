@@ -5,7 +5,7 @@ import Content from "../../components/Content";
 const Phase2 = () => {
   return (
     <Content>
-      <h2 className="text-2xl font-bold text-gray">Phase 2 Lab: Public Website Storage</h2>
+      <h2 className="text-2xl font-bold text-gray">Lab 2: Public Website Storage</h2>
       <p className="mt-2 text-gray-300">
         The company website supplies product images, videos, marketing literature, and customer success stories. Customers are located worldwide and demand is rapidly expanding. The content is mission-critical and requires low latency load times. It’s important to keep track of the document versions and to quickly restore documents if they’re deleted.
       </p>

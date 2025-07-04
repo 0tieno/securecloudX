@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Phase3 = () => {
   return (
     <Content>
-      <h2 className="text-2xl font-bold text-gray">Phase 1: Private Storage with High Availability</h2>
+      <h2 className="text-2xl font-bold text-gray">Lab 3: Private Storage with High Availability</h2>
       <p className="mt-2 text-gray-300">
         The company needs storage for their offices and departments. This content is private to the company and shouldn’t be shared without consent. This storage requires high availability if there’s a regional outage. The company wants to use this storage to back up the public website.
       </p>

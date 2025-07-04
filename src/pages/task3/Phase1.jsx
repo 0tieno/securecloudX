@@ -4,7 +4,7 @@ const Phase1 = () => {
   return (
     <div className="p-6 max-w-5xl mx-auto text-white bg-gray-900 min-h-screen">
       <h1 className="text-3xl font-bold mb-6 border-b border-gray-700 pb-2">
-        Lab 01: Basic Azure Storage Implementation
+        Lab 1: Basic Azure Storage Implementation
       </h1>
 
       <div className="space-y-8 text-gray-300 leading-relaxed">
