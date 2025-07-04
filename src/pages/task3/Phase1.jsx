@@ -29,7 +29,7 @@ const Phase1 = () => {
             <div>
               <h3 className="text-xl font-bold text-gray mb-2">1️⃣ Create a resource group and a storage account</h3>
               <div className="bg-gray-800 p-4 rounded-lg space-y-2">
-                <p>Create and deploy a resource group to hold all your project resources. Learn more about resource groups.</p>
+                <p>Create and deploy a resource group to hold all your project resources.</p>
                 <ul className="list-decimal pl-6 space-y-1">
                   <li>In the Azure portal, search for and select Resource groups.</li>
                   <li>Select + Create.</li>
@@ -39,7 +39,7 @@ const Phase1 = () => {
                   <li>Select Create to deploy the resource group.</li>
                 </ul>
 
-                <p>Create and deploy a storage account to support testing and training. Learn more about the types of storage accounts.</p>
+                <p>Create and deploy a storage account to support testing and training.</p>
                 <ul className="list-decimal pl-6 space-y-1">
                   <li>In the Azure portal, search for and select Storage accounts.</li>
                   <li>Select + Create.</li>
@@ -55,7 +55,7 @@ const Phase1 = () => {
             <div>
               <h3 className="text-xl font-bold text-gray mb-2">2️⃣ Configure simple settings in the storage account</h3>
               <div className="bg-gray-800 p-4 rounded-lg space-y-2">
-                <p>The data in this storage account doesn’t require high availability or durability. A lowest cost storage solution is desired. Learn more about storage account redundancy.</p>
+                <p>The data in this storage account doesn’t require high availability or durability. A lowest cost storage solution is desired.</p>
                 <ul className="list-disc pl-6 space-y-1">
                   <li>In your storage account, in the Data management section, select the Redundancy blade.</li>
                   <li>Select Locally-redundant storage (LRS) in the Redundancy drop-down.</li>
@@ -63,19 +63,19 @@ const Phase1 = () => {
                   <li>Refresh the page and notice the content only exists in the primary location.</li>
                 </ul>
 
-                <p>The storage account should only accept requests from secure connections. Learn more about requiring secure transfer from secure connections.</p>
+                <p>The storage account should only accept requests from secure connections.</p>
                 <ul className="list-disc pl-6 space-y-1">
                   <li>In the Settings section, select the Configuration blade.</li>
                   <li>Ensure Secure transfer required is Enabled.</li>
                 </ul>
 
-                <p>Developers would like the storage account to use at least TLS version 1.2. Learn more about transport layer security (TLS).</p>
+                <p>Developers would like the storage account to use at least TLS version 1.2</p>
                 <ul className="list-disc pl-6 space-y-1">
                   <li>In the Settings section, select the Configuration blade.</li>
                   <li>Ensure the Minimal TLS version is set to Version 1.2.</li>
                 </ul>
 
-                <p>Until the storage is needed again, disable requests to the storage account. Learn more about disabling shared keys.</p>
+                <p>Until the storage is needed again, disable requests to the storage account.</p>
                 <ul className="list-disc pl-6 space-y-1">
                   <li>In the Settings section, select the Configuration blade.</li>
                   <li>Ensure Allow storage account key access is Disabled.</li>
