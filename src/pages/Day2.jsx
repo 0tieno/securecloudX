@@ -5,10 +5,6 @@ import { Link } from "react-router-dom";
 const Day2 = () => {
   return (
     <Content>
-      
-      <div className="bg-yellow-400 text-gray-900 font-semibold text-center mb-3 py-2 animate-pulse hover:bg-yellow-300 transition-colors duration-300">
-        This Week's ongoing challenge 
-      </div>
     
       <h2 className="text-2xl sm:text-3xl font-bold text-gray-300">
         Day 2: Network Security & Perimeter Defense
