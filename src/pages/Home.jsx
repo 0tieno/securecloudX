@@ -27,14 +27,16 @@ const Home = () => {
 
   return (
     <>
-   <Link to={`/day${currentDay}`}>
-      <div className="bg-yellow-400 text-gray-900 font-semibold text-center py-2 animate-pulse hover:bg-yellow-300 transition-colors duration-300">
-        This Week's ongoing challenge: {currentTopic} → Click to Join
-      </div>
-    </Link>
+   
 
     <Content className="bg-gray-900 text-white p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-4xl mx-auto">
-      <h1 className="text-2xl md:text-4xl font-bold mb-4 text-start">Welcome</h1>
+
+      <Link to={`/day${currentDay}`}>
+      <div className="bg-yellow-400 text-gray-900 font-semibold text-center py-2 animate-pulse hover:bg-yellow-300 transition-colors duration-300">
+        this week's ongoing challenge: {currentTopic} → Click to Join
+      </div>
+    </Link>
+      <h1 className="text-2xl md:text-4xl font-bold mb-4 mt-4 text-start">Welcome</h1>
 
       <p className="mb-2 text-gray-400 text-sm">
     Creator:{" "}
