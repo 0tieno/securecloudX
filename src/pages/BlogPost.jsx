@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { blogPosts } from "../data/blogData";
-import { ArrowLeft } from "lucide-react";
+import { ArrowLeft, Eye } from "lucide-react";
+import { useCloudViewTracker } from "../hooks/useCloudViewTracker";
 
 const BlogPost = () => {
   const { id } = useParams();
   const post = blogPosts.find((post) => post.id === id);
+  const [viewCount, setViewCount] = useState(0);
+  const { trackView, getViews } = useCloudViewTracker();
+
+  useEffect(() => {
+    if (post && !post.isExternal) {
+      // Track the view and get updated count
+      const handleViewTracking = async () => {
+        try {
+          const newCount = await trackView(post.id);
+          setViewCount(newCount);
+        } catch (error) {
+          console.error("Error tracking view:", error);
+          // Fallback to just getting existing view count
+          const existingCount = await getViews(post.id);
+          setViewCount(existingCount);
+        }
+      };
+
+      handleViewTracking();
+    }
+  }, [post, trackView, getViews]);
 
   if (!post) {
     return <Navigate to="/posts" replace />;
@@ -160,6 +182,9 @@ const BlogPost = () => {
           </h1>
           <div className="flex items-center justify-between text-gray-400 text-sm">
             <span>Published on {post.date}</span>
+            {viewCount > 0 && (
+              <span className="text-gray-500">{viewCount} views</span>
+            )}
           </div>
         </header>
 

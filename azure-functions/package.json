@@ -1,0 +1,26 @@
+{
+  "name": "securecloudx-view-tracker",
+  "version": "1.0.0",
+  "description": "Azure Functions for SecureCloudX blog view tracking",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "func start",
+    "test": "echo \"No tests yet\"",
+    "build": "npm run clean && npm run build:production",
+    "build:production": "npm prune --production",
+    "clean": "del /q dist"
+  },
+  "dependencies": {
+    "@azure/cosmos": "^4.0.0",
+    "@azure/functions": "^4.0.0",
+    "@azure/identity": "^4.0.0"
+  },
+  "devDependencies": {
+    "@azure/functions": "^4.0.0",
+    "azure-functions-core-tools": "^4.0.5455"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Edit3, ExternalLink } from "lucide-react";
+import { Edit3, ExternalLink, Eye } from "lucide-react";
 import { blogPosts } from "../data/blogData";
+import { useAllViews } from "../hooks/useCloudViewTracker";
 
 const BlogList = () => {
+  const { allViews, loading: viewsLoading } = useAllViews();
+
   // Sort blog posts by date (most recent first)
   const sortedBlogPosts = [...blogPosts].sort((a, b) => {
     // Handle special dates like "Not yet"
@@ -26,8 +29,8 @@ const BlogList = () => {
       </h2>
 
       <p className="text-gray-400 mb-6">
-        Here is a list of blog posts that you might find useful while using
-        securecloudx challenges or maybe not. I have dabbled in textual,
+        Here is a collection of blog posts that you might find useful while using
+        securecloudx challenges or maybe not. It is all matters cloud security and Dev(Sec)Ops. I have dabbled in textual,
         graphical, and video content.
       </p>
 
