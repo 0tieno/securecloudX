@@ -26,15 +26,8 @@ const BlogList = () => {
       </h2>
 
       <p className="text-gray-400 mb-6">
-        I do not{" "}
-        <a
-          href="https://securecloudwithronney.hashnode.dev/"
-          className="underline decoration-1 underline-offset-3"
-        >
-          write
-        </a>{" "}
-        a lot but do share my learnings and thoughts from time to time. I have
-        dabbled in textual, graphical, and video content.
+        Here is a list of blog posts that you might find useful while using securecloudx challenges or maybe not.
+        I have dabbled in textual, graphical, and video content.
       </p>
 
       <ul className="space-y-3">
