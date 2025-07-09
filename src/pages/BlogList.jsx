@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Edit3 } from "lucide-react";
 import { blogPosts } from "../data/blogData";
 
 const BlogList = () => {
@@ -19,8 +20,9 @@ const BlogList = () => {
 
   return (
     <div className="max-w-xl mx-auto mt-12 px-6">
-      <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium text-gray-400 mb-4">
-        Blogs
+      <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-medium text-gray-400 mb-4 flex items-center">
+        Blogs...
+        <Edit3 className="mr-3 text-blue-400" size={32} />
       </h2>
 
       <p className="text-gray-400 mb-6">
