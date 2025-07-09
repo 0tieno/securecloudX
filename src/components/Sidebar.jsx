@@ -76,7 +76,7 @@ const Sidebar = () => {
             title="SecureCloudX Guide"
           >
             Guide
-            <span className="text-xs bg-gray-600 text-white px-2 py-0.5 rounded ml-2">
+            <span className="text-xs text-blue-400 bg-blue-500/10 border border-blue-500/30 px-2 py-0.5 rounded ml-2">
               SCX
             </span>
           </Link>
@@ -84,6 +84,7 @@ const Sidebar = () => {
             to="/posts"
             className="text-sm text-blue-400 hover:text-blue-300 transition-colors px-3 py-1.5 rounded-lg border border-blue-500/30 hover:border-blue-400/50 bg-blue-500/10 hover:bg-blue-500/20 font-medium"
             title="Visit Blog Posts"
+            onClick={closeSidebar}
           >
             Visit blogs
           </Link>
