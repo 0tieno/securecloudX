@@ -1,0 +1,23 @@
+<svg width="600" height="400" xmlns="http://www.w3.org/2000/svg">
+  <rect width="600" height="400" fill="#1f2937"/>
+  
+  <!-- Defense in Depth layers -->
+  <circle cx="300" cy="200" r="180" fill="none" stroke="#ef4444" stroke-width="3" opacity="0.7"/>
+  <circle cx="300" cy="200" r="140" fill="none" stroke="#f97316" stroke-width="3" opacity="0.7"/>
+  <circle cx="300" cy="200" r="100" fill="none" stroke="#eab308" stroke-width="3" opacity="0.7"/>
+  <circle cx="300" cy="200" r="60" fill="none" stroke="#22c55e" stroke-width="3" opacity="0.7"/>
+  <circle cx="300" cy="200" r="20" fill="#3b82f6" opacity="0.8"/>
+  
+  <!-- Labels -->
+  <text x="300" y="50" fill="white" text-anchor="middle" font-family="Arial" font-size="24" font-weight="bold">Security in Depth</text>
+  
+  <!-- Layer labels -->
+  <text x="480" y="200" fill="#ef4444" text-anchor="middle" font-family="Arial" font-size="12">Perimeter</text>
+  <text x="440" y="200" fill="#f97316" text-anchor="middle" font-family="Arial" font-size="12">Network</text>
+  <text x="400" y="200" fill="#eab308" text-anchor="middle" font-family="Arial" font-size="12">Host</text>
+  <text x="360" y="200" fill="#22c55e" text-anchor="middle" font-family="Arial" font-size="12">Application</text>
+  <text x="300" y="205" fill="white" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold">Data</text>
+  
+  <!-- Defense mechanisms -->
+  <text x="300" y="350" fill="#9ca3af" text-anchor="middle" font-family="Arial" font-size="14">Multiple layers of security controls protect valuable assets</text>
+</svg>

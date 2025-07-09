@@ -55,7 +55,10 @@ const Sidebar = () => {
   return (
     <>
       {/* Hamburger Menu Button */}
-      <button onClick={toggleSidebar} className="md:hidden p-4 text-gray-300 relative z-50">
+      <button
+        onClick={toggleSidebar}
+        className="md:hidden p-4 text-gray-300 relative z-50"
+      >
         {isSidebarOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
@@ -67,12 +70,23 @@ const Sidebar = () => {
         }`}
       >
         <h2 className="text-xl font-bold p-4 flex justify-between items-center">
-          <span>
+          <Link
+            to="/"
+            className="hover:text-gray-300 transition-colors"
+            title="SecureCloudX Guide"
+          >
             Guide
-            <span className="text-xs bg-gray-600 text-white px-2 py-0.5 rounded ml-2">SCX</span>
-          </span>
-          <Link to="/" title="SecureCloudX">
-            <img src="/favicon-32x32.png" alt="Logo" className="h-6 w-auto cursor-pointer" />
+            <span className="text-xs text-blue-400 bg-blue-500/10 border border-blue-500/30 px-2 py-0.5 rounded ml-2">
+              SCX
+            </span>
+          </Link>
+          <Link
+            to="/posts"
+            className="text-sm text-blue-400 hover:text-blue-300 transition-colors px-3 py-1.5 rounded-lg border border-blue-500/30 hover:border-blue-400/50 bg-blue-500/10 hover:bg-blue-500/20 font-medium"
+            title="Visit Blog Posts"
+            onClick={closeSidebar}
+          >
+            Visit blogs
           </Link>
         </h2>
 
@@ -111,18 +125,28 @@ const Sidebar = () => {
                   <button
                     onClick={() => toggleDropdown(Number(day))}
                     className={`w-full text-left px-4 py-2 flex justify-between items-center ${
-                      isUnlocked ? "hover:bg-gray-700" : "text-gray-500 cursor-not-allowed"
+                      isUnlocked
+                        ? "hover:bg-gray-700"
+                        : "text-gray-500 cursor-not-allowed"
                     } ${
-                      location.pathname.includes(`/day${day}`) ? "bg-gray-700 text-white" : ""
+                      location.pathname.includes(`/day${day}`)
+                        ? "bg-gray-700 text-white"
+                        : ""
                     }`}
                     disabled={!isUnlocked}
-                    title={isUnlocked ? `Open Day ${day}` : "This day is locked"}
+                    title={
+                      isUnlocked ? `Open Day ${day}` : "This day is locked"
+                    }
                   >
                     <span>
                       <strong>Day {day}:</strong> {title}
                     </span>
                     {isUnlocked ? (
-                      openDay[day] ? <ChevronDown size={18} /> : <ChevronRight size={18} />
+                      openDay[day] ? (
+                        <ChevronDown size={18} />
+                      ) : (
+                        <ChevronRight size={18} />
+                      )
                     ) : (
                       <Lock size={18} />
                     )}
@@ -134,7 +158,9 @@ const Sidebar = () => {
                         <Link
                           to={`/day${day}`}
                           className={`block px-4 py-1 hover:bg-gray-600 ${
-                            location.pathname === `/day${day}` ? "bg-gray-700 text-white" : ""
+                            location.pathname === `/day${day}`
+                              ? "bg-gray-700 text-white"
+                              : ""
                           }`}
                           onClick={closeSidebar}
                           title={`Overview for Day ${day}`}
@@ -146,7 +172,9 @@ const Sidebar = () => {
                         <Link
                           to={`/day${day}/task`}
                           className={`block px-4 py-1 hover:bg-gray-600 ${
-                            location.pathname === `/day${day}/task` ? "bg-gray-700 text-white" : ""
+                            location.pathname === `/day${day}/task`
+                              ? "bg-gray-700 text-white"
+                              : ""
                           }`}
                           onClick={closeSidebar}
                           title={`Lab for Day ${day}`}
@@ -183,7 +211,7 @@ const Sidebar = () => {
                               onClick={closeSidebar}
                               title="Phase 2: Threat Modeling"
                             >
-                               Lab 02
+                              Lab 02
                             </Link>
                           </li>
                           <li>
@@ -197,7 +225,7 @@ const Sidebar = () => {
                               onClick={closeSidebar}
                               title="Phase 3: Secure Coding"
                             >
-                               Lab 03
+                              Lab 03
                             </Link>
                           </li>
                         </ul>
@@ -237,11 +265,19 @@ const Sidebar = () => {
                     : "text-gray-500 cursor-not-allowed"
                 } mt-4`}
                 disabled={!unlockedDays.includes(7)}
-                title={unlockedDays.includes(7) ? "Explore next steps" : "Unlocks after Day 7"}
+                title={
+                  unlockedDays.includes(7)
+                    ? "Explore next steps"
+                    : "Unlocks after Day 7"
+                }
               >
                 <span>Next Steps</span>
                 {unlockedDays.includes(7) ? (
-                  openNextSteps ? <ChevronDown size={18} /> : <ChevronRight size={18} />
+                  openNextSteps ? (
+                    <ChevronDown size={18} />
+                  ) : (
+                    <ChevronRight size={18} />
+                  )
                 ) : (
                   <Lock size={18} />
                 )}
@@ -253,7 +289,9 @@ const Sidebar = () => {
                     <Link
                       to="/explore"
                       className={`block px-4 py-1 hover:bg-gray-600 ${
-                        location.pathname === "/explore" ? "bg-gray-700 text-white" : ""
+                        location.pathname === "/explore"
+                          ? "bg-gray-700 text-white"
+                          : ""
                       }`}
                       onClick={closeSidebar}
                       title="What to do next?"
