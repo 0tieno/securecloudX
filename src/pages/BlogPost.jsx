@@ -1,0 +1,196 @@
+import React from "react";
+import { useParams, Link, Navigate } from "react-router-dom";
+import { blogPosts } from "../data/blogData";
+import { ArrowLeft, Eye } from "lucide-react";
+import { useViewTracker } from "../utils/viewTracker";
+
+const BlogPost = () => {
+  const { id } = useParams();
+  const post = blogPosts.find((post) => post.id === id);
+  const views = useViewTracker(id); // Track views for this post
+
+  if (!post) {
+    return <Navigate to="/posts" replace />;
+  }
+
+  if (post.isExternal) {
+    // Redirect to external URL
+    window.open(post.url, "_blank");
+    return <Navigate to="/posts" replace />;
+  }
+
+  const formatContent = (content) => {
+    const lines = content.trim().split("\n");
+    const elements = [];
+    let i = 0;
+
+    while (i < lines.length) {
+      const line = lines[i].trim();
+
+      if (line.startsWith("# ")) {
+        elements.push(
+          <h1 key={i} className="text-2xl font-bold text-gray-100 mb-4 mt-6">
+            {line.substring(2)}
+          </h1>
+        );
+      } else if (line.startsWith("## ")) {
+        elements.push(
+          <h2 key={i} className="text-xl font-semibold text-gray-200 mb-3 mt-5">
+            {line.substring(3)}
+          </h2>
+        );
+      } else if (line.startsWith("### ")) {
+        elements.push(
+          <h3 key={i} className="text-lg font-semibold text-gray-300 mb-2 mt-4">
+            {line.substring(4)}
+          </h3>
+        );
+      } else if (line.startsWith("```")) {
+        // Handle code blocks
+        i++;
+        let codeContent = [];
+        while (i < lines.length && !lines[i].trim().startsWith("```")) {
+          codeContent.push(lines[i]);
+          i++;
+        }
+        elements.push(
+          <div key={i} className="mb-4">
+            <pre className="bg-gray-800 rounded-lg p-4 overflow-x-auto">
+              <code className="text-green-400 text-sm">
+                {codeContent.join("\n")}
+              </code>
+            </pre>
+          </div>
+        );
+      } else if (line.startsWith("`") && line.endsWith("`")) {
+        elements.push(
+          <p key={i} className="text-gray-300 mb-4 leading-relaxed">
+            <code className="bg-gray-800 px-2 py-1 rounded text-green-400">
+              {line.slice(1, -1)}
+            </code>
+          </p>
+        );
+      } else if (line.startsWith("- ") || line.startsWith("* ")) {
+        // Handle lists
+        const listItems = [];
+        while (
+          i < lines.length &&
+          (lines[i].trim().startsWith("- ") || lines[i].trim().startsWith("* "))
+        ) {
+          listItems.push(lines[i].trim().substring(2));
+          i++;
+        }
+        i--; // Adjust for the outer loop increment
+        elements.push(
+          <ul
+            key={i}
+            className="list-disc list-inside text-gray-300 mb-4 space-y-2"
+          >
+            {listItems.map((item, index) => (
+              <li key={index}>{item}</li>
+            ))}
+          </ul>
+        );
+      } else if (line.startsWith("![")) {
+        // Image syntax: ![alt text](image_url)
+        const imageMatch = line.match(/!\[([^\]]*)\]\(([^)]+)\)/);
+        if (imageMatch) {
+          const [, altText, imageUrl] = imageMatch;
+          elements.push(
+            <div key={i} className="mb-6 text-center">
+              <img
+                src={imageUrl}
+                alt={altText}
+                className="max-w-full h-auto rounded-lg shadow-lg mx-auto"
+                style={{ maxHeight: "500px" }}
+                onError={(e) => {
+                  e.target.style.display = "none";
+                  // Show fallback text
+                  const fallback = document.createElement("div");
+                  fallback.textContent = `Image not found: ${altText}`;
+                  fallback.className = "text-gray-500 text-sm italic";
+                  e.target.parentNode.appendChild(fallback);
+                }}
+              />
+              {altText && (
+                <p className="text-gray-400 text-sm mt-2 italic">{altText}</p>
+              )}
+            </div>
+          );
+        }
+      } else if (line.length > 0) {
+        // Regular paragraph
+        const processedLine = line.replace(
+          /`([^`]+)`/g,
+          '<code className="bg-gray-800 px-2 py-1 rounded text-green-400">$1</code>'
+        );
+        elements.push(
+          <p
+            key={i}
+            className="text-gray-300 mb-4 leading-relaxed"
+            dangerouslySetInnerHTML={{ __html: processedLine }}
+          />
+        );
+      } else {
+        // Empty line
+        elements.push(<br key={i} />);
+      }
+      i++;
+    }
+
+    return elements;
+  };
+
+  return (
+    <div className="min-h-screen bg-gray-900 text-white">
+      <div className="max-w-xl mx-auto px-6 py-8">
+        {/* Back button */}
+        <Link
+          to="/posts"
+          className="inline-flex items-center text-gray-400 hover:text-gray-200 transition-colors mb-8 group"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2 group-hover:translate-x-[-2px] transition-transform" />
+          <span className="underline decoration-1 underline-offset-3">
+            Back to Posts
+          </span>
+        </Link>
+
+        {/* Blog post header */}
+        <header className="mb-8">
+          <h1 className="text-2xl md:text-3xl font-bold text-gray-100 mb-4">
+            {post.title}
+          </h1>
+          <div className="flex items-center justify-between text-gray-400 text-sm">
+            <span>Published on {post.date}</span>
+            <div className="flex items-center">
+              <Eye className="w-4 h-4 mr-1" />
+              <span>
+                {views} view{views !== 1 ? "s" : ""}
+              </span>
+            </div>
+          </div>
+        </header>
+
+        {/* Blog post content */}
+        <article className="text-gray-300">
+          {formatContent(post.content)}
+        </article>
+
+        {/* Back to posts link at the bottom */}
+        <div className="mt-12 pt-8 border-t border-gray-700">
+          <Link
+            to="/posts"
+            className="inline-flex items-center text-gray-400 hover:text-gray-200 transition-colors group"
+          >
+            <ArrowLeft className="w-4 h-4 mr-2 group-hover:translate-x-[-2px] transition-transform" />
+            <span className="underline decoration-1 underline-offset-3">
+              Back to all posts
+            </span>
+          </Link>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default BlogPost;
