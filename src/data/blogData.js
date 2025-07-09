@@ -4,21 +4,24 @@ export const blogPosts = [
     title: "Understanding Network Security in the Cloud",
     date: "2025-06-23",
     url: "https://securecloudwithronney.hashnode.dev/understanding-network-security-in-the-cloud",
-    isExternal: true
+    isExternal: true,
+    associatedLab: { day: 2, title: "Network Security & Perimeter Defense" }
   },
   {
     id: "github-secure-containerization",
     title: "GitHub: Secure Containerization + CI/CD",
     date: "2025-03-08",
     url: "https://github.com/CSK-MENTORSHIP-GROUP/secure-containerization.git",
-    isExternal: true
+    isExternal: true,
+    associatedLab: { day: 4, title: "Application Security" }
   },
   {
     id: "slides-secure-containerization",
     title: "Slides: Secure Containerization + CI/CD",
     date: "2025-03-07",
     url: "https://scintillating-chaja-595787.netlify.app/1",
-    isExternal: true
+    isExternal: true,
+    associatedLab: { day: 4, title: "Application Security" }
   },
   {
     id: "deploying-azure-container-apps",
@@ -32,28 +35,32 @@ export const blogPosts = [
     title: "Container Security: Detecting & Fixing Vulnerabilities",
     date: "2025-02-17",
     url: "https://securecloudwithronney.hashnode.dev/container-security-in-azure-detecting-and-fixing-vulnerabilities",
-    isExternal: true
+    isExternal: true,
+    associatedLab: { day: 4, title: "Application Security" }
   },
   {
     id: "azure-monitor-sentinel",
     title: "Getting Started with Azure Monitor and Microsoft Sentinel",
     date: "2025-02-03",
     url: "https://securecloudwithronney.hashnode.dev/getting-started-with-azure-monitor-and-microsoft-sentinel-a-beginners-guide",
-    isExternal: true
+    isExternal: true,
+    associatedLab: { day: 5, title: "Security Monitoring & Threat Intelligence" }
   },
   {
     id: "rbac-workshop",
     title: "Workshop: Implementing Role-Based Access Control",
     date: "2025-02-03",
     url: "https://securecloudwithronney.hashnode.dev/practical-workshop-implementing-role-based-access-control-in-your-azure-environment",
-    isExternal: true
+    isExternal: true,
+    associatedLab: { day: 1, title: "Identity & Access Management" }
   },
   {
     id: "azure-monitor-lab",
     title: "Effective Cloud Resource Monitoring",
     date: "2025-02-03",
     url: "https://securecloudwithronney.hashnode.dev/effective-cloud-resource-monitoring-with-azure-monitor-hands-on-lab",
-    isExternal: true
+    isExternal: true,
+    associatedLab: { day: 5, title: "Security Monitoring & Threat Intelligence" }
   },
   {
     id: "resolve-git-merge-conflicts",
@@ -70,14 +77,7 @@ export const blogPosts = [
     isExternal: true
   },
   {
-    id: "multiple-ssh-keys-ec2",
-    title: "Add Multiple SSH keys to an EC2 Server",
-    date: "Not yet",
-    url: "https://securecloudwithronney.hashnode.dev/add-multiple-ssh-keys",
-    isExternal: true
-  },
-  {
-    id: "push-different-git-branch",
+    id: "push-to-different-git-branch",
     title: "How to push to a Different git Branch?",
     date: "July 7, 2025",
     isExternal: false,
@@ -124,11 +124,12 @@ This technique is particularly useful when:
     title: "Azure Storage Account Security Checklist",
     date: "July 8, 2025",
     isExternal: false,
+    associatedLab: { day: 3, title: "Data Security" },
     content: `
 
 Securing your data in Azure is critical for protecting sensitive information and maintaining compliance. This checklist provides practical steps and best practices to help you safeguard your Azure Storage Accounts against common threats and misconfigurations.
 
-![security-in-depth](/images/securityindepth.svg)
+![security-in-depth](/images/security-in-depth.png)
 
 ## 1. Identity & Access Management (IAM)
 

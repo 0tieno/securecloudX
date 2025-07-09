@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Edit3 } from "lucide-react";
+import { Edit3, ExternalLink } from "lucide-react";
 import { blogPosts } from "../data/blogData";
 
 const BlogList = () => {
@@ -26,11 +26,12 @@ const BlogList = () => {
       </h2>
 
       <p className="text-gray-400 mb-6">
-        Here is a list of blog posts that you might find useful while using securecloudx challenges or maybe not.
-        I have dabbled in textual, graphical, and video content.
+        Here is a list of blog posts that you might find useful while using
+        securecloudx challenges or maybe not. I have dabbled in textual,
+        graphical, and video content.
       </p>
 
-      <ul className="space-y-3">
+      <ul className="space-y-4">
         {sortedBlogPosts.map((post, index) => (
           <li key={index} className="text-gray-300 text-sm md:text-base">
             <div className="flex items-start justify-between">
@@ -59,6 +60,20 @@ const BlogList = () => {
                 <span>({post.date})</span>
               </div>
             </div>
+
+            {/* Associated Lab Link */}
+            {post.associatedLab && (
+              <div className="ml-4 mt-2">
+                <Link
+                  to={`/day${post.associatedLab.day}`}
+                  className="inline-flex items-center text-xs text-blue-400 hover:text-blue-300 transition-colors"
+                >
+                  <ExternalLink className="w-3 h-3 mr-1" />
+                  Related: Day {post.associatedLab.day} -{" "}
+                  {post.associatedLab.title}
+                </Link>
+              </div>
+            )}
           </li>
         ))}
       </ul>
