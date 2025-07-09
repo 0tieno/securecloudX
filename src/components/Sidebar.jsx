@@ -70,31 +70,22 @@ const Sidebar = () => {
         }`}
       >
         <h2 className="text-xl font-bold p-4 flex justify-between items-center">
-          <div className="flex items-center space-x-4">
-            <Link
-              to="/"
-              className="hover:text-gray-300 transition-colors"
-              title="SecureCloudX Guide"
-            >
-              Guide
-              <span className="text-xs bg-gray-600 text-white px-2 py-0.5 rounded ml-2">
-                SCX
-              </span>
-            </Link>
-            <Link
-              to="/posts"
-              className="text-base font-normal hover:text-gray-300 transition-colors"
-              title="Blog Posts"
-            >
-              Blog
-            </Link>
-          </div>
-          <Link to="/" title="SecureCloudX">
-            <img
-              src="/favicon-32x32.png"
-              alt="Logo"
-              className="h-6 w-auto cursor-pointer"
-            />
+          <Link
+            to="/"
+            className="hover:text-gray-300 transition-colors"
+            title="SecureCloudX Guide"
+          >
+            Guide
+            <span className="text-xs bg-gray-600 text-white px-2 py-0.5 rounded ml-2">
+              SCX
+            </span>
+          </Link>
+          <Link
+            to="/posts"
+            className="text-sm text-blue-400 hover:text-blue-300 transition-colors px-3 py-1.5 rounded-lg border border-blue-500/30 hover:border-blue-400/50 bg-blue-500/10 hover:bg-blue-500/20 font-medium"
+            title="Visit Blog Posts"
+          >
+            Visit blogs
           </Link>
         </h2>
 
