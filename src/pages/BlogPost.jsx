@@ -1,13 +1,11 @@
 import React from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { blogPosts } from "../data/blogData";
-import { ArrowLeft, Eye } from "lucide-react";
-import { useViewTracker } from "../utils/viewTracker";
+import { ArrowLeft } from "lucide-react";
 
 const BlogPost = () => {
   const { id } = useParams();
   const post = blogPosts.find((post) => post.id === id);
-  const views = useViewTracker(id); // Track views for this post
 
   if (!post) {
     return <Navigate to="/posts" replace />;
@@ -162,12 +160,6 @@ const BlogPost = () => {
           </h1>
           <div className="flex items-center justify-between text-gray-400 text-sm">
             <span>Published on {post.date}</span>
-            <div className="flex items-center">
-              <Eye className="w-4 h-4 mr-1" />
-              <span>
-                {views} view{views !== 1 ? "s" : ""}
-              </span>
-            </div>
           </div>
         </header>
 

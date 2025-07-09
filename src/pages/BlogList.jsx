@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { blogPosts } from "../data/blogData";
-import { Eye } from "lucide-react";
-import { viewTracker } from "../utils/viewTracker";
 
 const BlogList = () => {
   // Sort blog posts by date (most recent first)
@@ -63,12 +61,6 @@ const BlogList = () => {
               </div>
 
               <div className="flex items-center ml-4 text-xs md:text-sm text-gray-500 flex-shrink-0">
-                {!post.isExternal && (
-                  <div className="flex items-center mr-3">
-                    <Eye className="w-3 h-3 mr-1" />
-                    <span>{viewTracker.getViews(post.id)}</span>
-                  </div>
-                )}
                 <span>({post.date})</span>
               </div>
             </div>
