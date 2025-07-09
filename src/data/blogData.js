@@ -232,9 +232,9 @@ RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
 USER appuser
 \`\`\`
-addgroup -S appgroup - Creates a system group named appgroup
-adduser -S appuser -G appgroup - Creates a system user named appuser and adds them to the appgroup - Switches the active user to appuser for all remaining Dockerfile commands and at container runtime
-USER appuser
+\`addgroup -S appgroup\` this Creates a system group named appgroup
+\`adduser -S appuser -G appgroup\` this Creates a system user named appuser and adds them to the appgroup 
+\`USER appuser\` this Switches the active user to appuser for all remaining Dockerfile commands and at container runtime
 
 ## 4. Minimize Layers
 
