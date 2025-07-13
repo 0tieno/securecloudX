@@ -5,53 +5,55 @@ import useChallengeUnlock from "../hooks/useChallengeUnlock";
 
 // const weeklyTopic = "Network Security in the Cloud!";
 
-const topics = [
-  { day: 1, title: "Identity & Access Management" },
-  { day: 2, title: "Network Security In the Cloud" },
-  { day: 3, title: "Data Security" },
-  { day: 4, title: "Application Security" },
-  { day: 5, title: "Security Monitoring & Threat Intelligence" },
-  { day: 6, title: "Incident Response & Threat Detection" },
-  { day: 7, title: "Capstone Project" },
-];
+// const topics = [
+//   { day: 1, title: "Identity & Access Management" },
+//   { day: 2, title: "Network Security In the Cloud" },
+//   { day: 3, title: "Data Security" },
+//   { day: 4, title: "Application Security" },
+//   { day: 5, title: "Security Monitoring & Threat Intelligence" },
+//   { day: 6, title: "Incident Response & Threat Detection" },
+//   { day: 7, title: "Capstone Project" },
+// ];
 
 const Home = () => {
   const unlockedDays = useChallengeUnlock();
 
   const currentDay = unlockedDays[unlockedDays.length - 1] || 1;
-  const currentTopic =
-    topics.find((t) => t.day === currentDay)?.title ||
-    "Cloud Security Challenge";
+  // const currentTopic =
+  //   topics.find((t) => t.day === currentDay)?.title ||
+  //   "Cloud Security Challenge";
 
   return (
     <>
       <Content className="bg-gray-900 text-white p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-4xl mx-auto">
-        <Link to={`/day${currentDay}`}>
+        {/* <Link to={`/day${currentDay}`}>
           <div className="bg-yellow-400 text-gray-900 font-semibold text-center py-2 animate-pulse hover:bg-yellow-300 transition-colors duration-300">
             this week's ongoing challenge: {currentTopic} → Click to Join
           </div>
-        </Link>
+        </Link> */}
 
         {/* Forgotten Secret Lab Mini-Hack */}
-        <div className="mt-4 mb-6">
-          <Link to="/forgotten-secret-lab">
-            <div className="bg-gradient-to-r from-red-600 to-purple-600 text-white font-semibold text-center py-3 px-4 rounded-lg hover:from-red-700 hover:to-purple-700 transition-all duration-300 shadow-lg">
-              🕵️‍♂️ Mini-Hack: Forgotten Secret Lab - Git History Forensics → Try
-              Now!
+        <div className="mb-6">
+          <Link
+            to="/forgotten-secret-lab"
+            className="block w-full text-white font-bold py-4 px-6 text-center transition-all duration-300 hover:text-red-300"
+            title="Git History Forensics Mini-Hack"
+          >
+            <div className="flex items-center justify-center gap-3">
+              {/* Live indicator with circulating waves */}
+              <div className="relative flex items-center justify-center">
+                {/* Outer wave */}
+                <div className="absolute w-8 h-8 border-2 border-red-500/30 rounded-full animate-ping"></div>
+                {/* Middle wave */}
+                <div className="absolute w-6 h-6 border-2 border-red-400/50 rounded-full animate-pulse"></div>
+                {/* Inner circle */}
+                <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
+              </div>
+              <span className="text-xl sm:text-2xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-red-300 to-orange-400 drop-shadow-lg">
+                Live Now: Mini-Hack
+              </span>
             </div>
           </Link>
-          <p className="text-center text-gray-400 text-sm mt-2">
-            Practice real-world Git forensics and secret detection skills
-          </p>
-          <div className="text-center mt-2">
-            <Link
-              to="/posts/why-git-never-forgets"
-              className="text-blue-400 hover:text-blue-300 text-xs underline"
-            >
-              📖 New Blog: "Why Git Never Forgets" - Read the theory behind this
-              lab
-            </Link>
-          </div>
         </div>
         <h1 className="text-2xl md:text-4xl font-bold mb-4 mt-4 text-start">
           Welcome
