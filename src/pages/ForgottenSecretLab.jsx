@@ -333,6 +333,23 @@ const ForgottenSecretLab = () => {
           </p>
         </div>
 
+        {/* Related Reading */}
+        <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
+          <h3 className="text-xl sm:text-2xl font-semibold text-white mb-3">
+            📚 Learn More
+          </h3>
+          <p className="text-gray-300 text-sm sm:text-base mb-3">
+            Want to dive deeper into Git forensics and secret detection? Check
+            out our related blog post:
+          </p>
+          <Link
+            to="/posts/why-git-never-forgets"
+            className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors font-medium"
+          >
+            📖 "Why Git Never Forgets" - Learn the theory behind this lab
+          </Link>
+        </div>
+
         {/* Navigation */}
         <div className="mt-10 flex justify-between text-sm sm:text-base">
           <Link

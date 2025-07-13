@@ -2,11 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Edit3, ExternalLink, Eye } from "lucide-react";
 import { blogPosts } from "../data/blogData";
-import { useAllViews } from "../hooks/useCloudViewTracker";
 
 const BlogList = () => {
-  const { allViews, loading: viewsLoading } = useAllViews();
-
   // Sort blog posts by date (most recent first)
   const sortedBlogPosts = [...blogPosts].sort((a, b) => {
     // Handle special dates like "Not yet"
@@ -29,9 +26,10 @@ const BlogList = () => {
       </h2>
 
       <p className="text-gray-400 mb-6">
-        Here is a collection of blog posts that you might find useful while using
-        securecloudx challenges or maybe not. It is all matters cloud security and Dev(Sec)Ops. I have dabbled in textual,
-        graphical, and video content.
+        Here is a collection of blog posts that you might find useful while
+        using securecloudx challenges or maybe not. It is all matters cloud
+        security and Dev(Sec)Ops. I have dabbled in textual, graphical, and
+        video content.
       </p>
 
       <ul className="space-y-4">
@@ -50,12 +48,24 @@ const BlogList = () => {
                     {post.title}
                   </a>
                 ) : (
-                  <Link
-                    to={`/posts/${post.id}`}
-                    className="text-gray-300 hover:text-gray-100 transition-colors underline decoration-1 underline-offset-3 decoration-gray-500 hover:decoration-gray-300 flex-1"
-                  >
-                    {post.title}
-                  </Link>
+                  <div className="flex-1">
+                    <Link
+                      to={`/posts/${post.id}`}
+                      className="text-gray-300 hover:text-gray-100 transition-colors underline decoration-1 underline-offset-3 decoration-gray-500 hover:decoration-gray-300 font-medium"
+                    >
+                      {post.title}
+                      {post.tags && post.tags.includes("forensics") && (
+                        <span className="ml-2 px-2 py-1 bg-red-600 text-white text-xs rounded-full">
+                          NEW
+                        </span>
+                      )}
+                    </Link>
+                    {post.excerpt && (
+                      <p className="text-gray-400 text-xs mt-1 ml-0">
+                        {post.excerpt}
+                      </p>
+                    )}
+                  </div>
                 )}
               </div>
 
@@ -67,14 +77,24 @@ const BlogList = () => {
             {/* Associated Lab Link */}
             {post.associatedLab && (
               <div className="ml-4 mt-2">
-                <Link
-                  to={`/day${post.associatedLab.day}`}
-                  className="inline-flex items-center text-xs text-blue-400 hover:text-blue-300 transition-colors"
-                >
-                  <ExternalLink className="w-3 h-3 mr-1" />
-                  Related: Day {post.associatedLab.day} -{" "}
-                  {post.associatedLab.title}
-                </Link>
+                {post.associatedLab.day ? (
+                  <Link
+                    to={`/day${post.associatedLab.day}`}
+                    className="inline-flex items-center text-xs text-blue-400 hover:text-blue-300 transition-colors"
+                  >
+                    <ExternalLink className="w-3 h-3 mr-1" />
+                    Related: Day {post.associatedLab.day} -{" "}
+                    {post.associatedLab.title}
+                  </Link>
+                ) : post.associatedLab.path ? (
+                  <Link
+                    to={post.associatedLab.path}
+                    className="inline-flex items-center text-xs text-blue-400 hover:text-blue-300 transition-colors"
+                  >
+                    <ExternalLink className="w-3 h-3 mr-1" />
+                    Related: {post.associatedLab.title}
+                  </Link>
+                ) : null}
               </div>
             )}
           </li>

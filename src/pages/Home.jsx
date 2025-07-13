@@ -43,6 +43,15 @@ const Home = () => {
           <p className="text-center text-gray-400 text-sm mt-2">
             Practice real-world Git forensics and secret detection skills
           </p>
+          <div className="text-center mt-2">
+            <Link
+              to="/posts/why-git-never-forgets"
+              className="text-blue-400 hover:text-blue-300 text-xs underline"
+            >
+              📖 New Blog: "Why Git Never Forgets" - Read the theory behind this
+              lab
+            </Link>
+          </div>
         </div>
         <h1 className="text-2xl md:text-4xl font-bold mb-4 mt-4 text-start">
           Welcome
