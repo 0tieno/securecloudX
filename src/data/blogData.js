@@ -1,5 +1,320 @@
 export const blogPosts = [
   {
+    id: "why-git-never-forgets",
+    title: "Why Git Never Forgets",
+    date: "2025-07-13",
+    excerpt: "Learn how secrets live on in your code history — even after you hit delete.",
+    content: `
+Learn how secrets live on in your code history — even after you hit delete.
+
+## Hook
+You added a secret API key to a .env file, committed it, and later deleted it.
+
+Problem solved? Not even close. Because Git never forgets.
+
+## What's Really Happening?
+
+Git is a version control system, not a file system. That means when you commit something, Git saves a snapshot — permanently — in its history. Even if you delete the file in the next commit, the earlier snapshot still contains it.
+
+So when someone runs:
+
+\`\`\`bash
+git log -p
+\`\`\`
+
+or:
+
+\`\`\`bash
+git show HEAD~1:.env
+\`\`\`
+
+—they can see what was there before.
+
+## Real Attack Scenario
+
+1. You commit a \`.env\` file with a secret:
+
+\`\`\`ini
+API_KEY=SECRET-TOKEN-KEY
+\`\`\`
+
+2. You realize your mistake and delete the file.
+
+But Git has already stored it in:
+- The blob  (raw file content)
+- The tree  (directory structure)  
+- The commit  (full snapshot)
+
+Anyone who clones the repo and runs:
+
+\`\`\`bash
+git grep "SECRET" $(git rev-list --all)
+\`\`\`
+
+can find your exposed credentials.
+
+## Why This Matters
+
+Secrets leaked in Git can lead to:
+- Compromised APIs
+- Unauthorized access to cloud resources
+- Massive security incidents Even private repos are not safe  if someone has access to your history.
+
+## What You Can Do Instead
+
+1. Add sensitive files  (like \`.env\`) to \`.gitignore\` before  committing
+2. Use \`git-secrets\`, \`gitleaks\`, or \`truffleHog\`  to scan commits
+3. If you leak a secret 
+   - Revoke the key
+   - Rotate it
+   - Rewrite Git history with \`git filter-repo\` or BFG
+
+## Try It Yourself
+
+Clone the [forgotten-secret-lab](https://github.com/0tieno/forgotten-secret-lab), and try these commands to uncover a real secret from history:
+
+\`\`\`bash
+git show HEAD~1:.env
+\`\`\`
+
+## 🔚 Final Thought
+
+Git was built to remember everything — but that makes it a goldmine for attackers.
+
+Use that knowledge to defend smarter.
+
+`,
+    isExternal: false,
+    tags: ["git", "security", "secrets", "forensics"],
+    associatedLab: { title: "Forgotten Secret Lab", path: "/forgotten-secret-lab" }
+  },
+  {
+    id: "oops-committed-secrets-git",
+    title: "Oops! I Committed Secrets to Git — Now What? 😅",
+    date: "2025-07-13",
+    excerpt: "We all make mistakes. Here's how to respond like a security pro when secrets get committed.",
+    content: `
+
+We all make mistakes. Here's how to respond like a security pro when secrets get committed.
+
+## You Made the Commit. Now What?
+
+You've committed a file like this:
+
+\`\`\`env
+API_KEY=SECRET-TOKEN-KEY
+\`\`\`
+
+You panic. You delete the file.
+
+But Git still remembers it. Forever. 
+
+## Step-by-Step: Fix It Fast
+
+### 1. Revoke the Key Immediately
+
+Go to the service (e.g. Azure, Stripe, Firebase...) and:
+
+- Disable or delete the key
+- Create a new one  
+- Update it securely in your app (via env vars, secret manager, etc.)
+
+### 2. Clean Your Git History
+
+Removing it in a new commit is not enough.
+
+You need to rewrite history using one of these tools:
+
+### Option 1: git filter-repo (Recommended)
+
+\`\`\`bash
+git filter-repo --path .env --invert-paths
+\`\`\`
+
+### Option 2: BFG Repo Cleaner
+
+\`\`\`bash
+bfg --delete-files .env
+\`\`\`
+
+⚠️ Warning: This rewrites history. All collaborators must re-clone after!
+
+### 3. Force Push (If Necessary)
+
+\`\`\`bash
+git push --force
+\`\`\`
+
+Be careful! This can cause issues if others are working on the repo.
+
+### 4. Scan Your Repo
+
+Use a secret scanner to double-check your fix:
+
+\`\`\`bash
+gitleaks detect --source .
+\`\`\`
+
+Or:
+
+\`\`\`bash
+trufflehog git file://.
+\`\`\`
+
+### Bonus: Add .env to .gitignore
+
+\`\`\`bash
+echo ".env" >> .gitignore
+git add .gitignore
+git commit -m "ignore env files"
+\`\`\`
+
+## Proactive Measures for the Future
+
+- Add pre-commit hooks with \`git-secrets\`
+- Scan your repos with Gitleaks in CI/CD
+- Use secret managers (Azure Key Vault, AWS Secrets Manager, etc.)
+
+## Try it yourself
+
+I created a real repo where a \`.env\` file was committed and then deleted:
+
+Try the [Forgotten Secret Lab](/forgotten-secret-lab)
+
+## Final Thought
+
+Everyone leaks something eventually.
+
+What matters is how fast you detect, how smart you respond, and how well you prevent it next time. I understand some commands here are not explained explicitly what they do. 
+`,
+    isExternal: false,
+    tags: ["git", "security", "secrets", "incident-response"],
+    associatedLab: { title: "Forgotten Secret Lab", path: "/forgotten-secret-lab" }
+  },
+  {
+    id: "git-tools-security-learners",
+    title: "Git Tools Every Security Learner Should Know",
+    date: "2025-07-13",
+    excerpt: "Want to think like a hacker? Start by mastering Git history.",
+    content: `
+
+Want to think like a hacker? Start by mastering Git history.
+
+## Why This Matters
+
+Git isn't just for saving code — it's a forensic tool.
+
+Secrets. Mistakes. Deleted files.  
+They're all still there — if you know how to look.
+
+## Core Git Commands for Secret Discovery
+
+Here are essential Git commands that every security-minded developer or learner should know:
+
+### 🔹 \`git log -p\`
+
+Shows commit history + the actual diffs (changes made):
+
+\`\`\`bash
+git log -p
+\`\`\`
+
+Use it to spot files that were added/removed — like secrets.
+
+### 🔹 \`git show <commit>\`
+
+Shows exactly what changed in a specific commit:
+
+\`\`\`bash
+git show HEAD~1
+git show 14c1d625f66b5f41a8fbb51cfa9b8561db1b8c89
+\`\`\`
+
+Also works for deleted files:
+
+\`\`\`bash
+git show HEAD~1:.env
+\`\`\`
+
+### 🔹 \`git grep\`
+
+Searches for patterns across your working directory.
+
+\`\`\`bash
+git grep "SECRET"
+\`\`\`
+
+To search entire Git history, use:
+
+\`\`\`bash
+git grep "SECRET" $(git rev-list --all)
+\`\`\`
+
+### 🔹 \`git rev-list --all\`
+
+Lists every commit in your repo.
+
+Useful with other commands like:
+
+\`\`\`bash
+git show $(git rev-list --all)
+\`\`\`
+
+Or with grep as shown above.
+
+### 🔹 \`git cat-file -p <blob-sha>\`
+
+Used to inspect raw Git objects (like old .env files):
+
+\`\`\`bash
+git cat-file -p 3323962
+\`\`\`
+
+Get the blob SHA from a command like:
+
+\`\`\`bash
+git log --all --pretty=format: --name-only | sort -u
+\`\`\`
+
+### 🔹 \`git log --diff-filter=D --summary\`
+
+Finds deleted files:
+
+\`\`\`bash
+git log --diff-filter=D --summary
+\`\`\`
+
+Great for catching someone who deleted \`.env\` too late 😅
+
+## Bonus Tools to Automate It
+
+| Tool | Use Case |
+|------|----------|
+| gitleaks | Scans commits for secrets |
+| truffleHog | Finds secrets by entropy analysis |
+| git-secrets | Prevents committing common secret patterns |
+| BFG | Deletes secrets from history |
+| filter-repo | Rewrites Git history precisely |
+
+## Practice in SecureCloudX
+
+Use these tools in the [Forgotten Secret Lab](/forgotten-secret-lab) to find a real leaked API key:
+
+1. Search Git history
+2. Extract .env from an old commit  
+3. Access a real deployed API to complete the challenge
+
+## Final Thought
+
+You don't need to hack the cloud to learn security.
+
+Start by hacking Git history — because Git never forgets. 
+`,
+    isExternal: false,
+    tags: ["git", "security", "tools", "forensics"],
+    associatedLab: { title: "Forgotten Secret Lab", path: "/forgotten-secret-lab" }
+  },
+  {
     id: "understanding-network-security-cloud",
     title: "Understanding Network Security in the Cloud",
     date: "2025-06-23",

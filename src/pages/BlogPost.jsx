@@ -111,6 +111,66 @@ const BlogPost = () => {
             ))}
           </ul>
         );
+      } else if (line.startsWith("|") && line.includes("|")) {
+        // Handle tables
+        const tableRows = [];
+        let isHeader = true;
+
+        while (i < lines.length && lines[i].trim().startsWith("|")) {
+          const currentLine = lines[i].trim();
+
+          // Skip separator line (|------|----------|)
+          if (currentLine.includes("---")) {
+            i++;
+            isHeader = false;
+            continue;
+          }
+
+          // Parse table row
+          const cells = currentLine
+            .split("|")
+            .map((cell) => cell.trim())
+            .filter((cell) => cell.length > 0);
+
+          tableRows.push({ cells, isHeader });
+          isHeader = false;
+          i++;
+        }
+        i--; // Adjust for the outer loop increment
+
+        if (tableRows.length > 0) {
+          elements.push(
+            <div key={i} className="mb-6 overflow-x-auto">
+              <table className="w-full text-sm border-collapse">
+                <thead>
+                  {tableRows[0] && (
+                    <tr className="border-b border-gray-600">
+                      {tableRows[0].cells.map((cell, cellIndex) => (
+                        <th
+                          key={cellIndex}
+                          className="text-left py-2 px-3 text-purple-400 font-semibold"
+                        >
+                          {cell}
+                        </th>
+                      ))}
+                    </tr>
+                  )}
+                </thead>
+                <tbody className="text-gray-300">
+                  {tableRows.slice(1).map((row, rowIndex) => (
+                    <tr key={rowIndex} className="border-b border-gray-700">
+                      {row.cells.map((cell, cellIndex) => (
+                        <td key={cellIndex} className="py-2 px-3">
+                          {cell}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+        }
       } else if (line.startsWith("![")) {
         // Image syntax: ![alt text](image_url)
         const imageMatch = line.match(/!\[([^\]]*)\]\(([^)]+)\)/);
@@ -140,10 +200,20 @@ const BlogPost = () => {
         }
       } else if (line.length > 0) {
         // Regular paragraph
-        const processedLine = line.replace(
+        let processedLine = line;
+
+        // Process markdown links [text](url)
+        processedLine = processedLine.replace(
+          /\[([^\]]+)\]\(([^)]+)\)/g,
+          '<a href="$2" style="color: #60a5fa; text-decoration: underline;" target="_blank" rel="noopener noreferrer" onmouseover="this.style.color=\'#93c5fd\'" onmouseout="this.style.color=\'#60a5fa\'">$1</a>'
+        );
+
+        // Process inline code
+        processedLine = processedLine.replace(
           /`([^`]+)`/g,
           '<code className="bg-gray-800 px-2 py-1 rounded text-green-400">$1</code>'
         );
+
         elements.push(
           <p
             key={i}
