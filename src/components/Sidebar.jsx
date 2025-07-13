@@ -130,7 +130,7 @@ const Sidebar = () => {
                 onClick={closeSidebar}
                 title="Git History Forensics Mini-Hack"
               >
-                Mini-Hack: Secret Lab
+                Mini-Hack: forgotten-secret-lab
               </Link>
             </li>
 

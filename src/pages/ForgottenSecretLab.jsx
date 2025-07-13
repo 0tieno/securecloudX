@@ -218,7 +218,12 @@ const ForgottenSecretLab = () => {
               </div>
               <p className="text-green-400 text-sm mt-2">
                 🎉 Success! You found the leaked key and accessed the secret
-                endpoint!
+                              endpoint!
+                              
+              </p>
+              <p className="text-green-400 text-sm mt-2">
+                <a className="underline" href="https://secret-api-1752358706.azurewebsites.net/api/dashboard">view the leaderboard!</a>
+                
               </p>
             </div>
 
@@ -236,7 +241,8 @@ const ForgottenSecretLab = () => {
               <p className="text-red-400 text-sm mt-2">
                 ❌ Invalid or missing key. Try again.
               </p>
-            </div>
+                      </div>
+                
           </div>
         </div>
 
