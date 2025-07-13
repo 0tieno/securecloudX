@@ -8,7 +8,7 @@ const ForgottenSecretLab = () => {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-300 mb-2">
-            Forgotten Secret Lab: Hacking Git History 🕵️‍♂️
+            Forgotten Secret Lab: Hacking Git History
           </h1>
           <p className="text-xl text-yellow-400 font-semibold">
             Welcome to the Forgotten Secret Lab!
@@ -31,6 +31,8 @@ const ForgottenSecretLab = () => {
           <p className="text-gray-300 text-sm sm:text-base mt-3">
             <strong>Your job:</strong> Investigate the commit history, uncover
             the secret, and use it to unlock a secret message from a live API.
+            Then you add your name to the URL end point to appear on the
+            leaderboard.
           </p>
         </div>
 
@@ -41,23 +43,23 @@ const ForgottenSecretLab = () => {
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
             <div className="flex items-center text-gray-300 text-sm sm:text-base">
-              <span className="text-green-400 mr-2">✅</span>
+              <span className="text-green-400 mr-2">1. </span>
               Real-world Git forensics
             </div>
             <div className="flex items-center text-gray-300 text-sm sm:text-base">
-              <span className="text-green-400 mr-2">✅</span>
+              <span className="text-green-400 mr-2">2. </span>
               Secret detection with open-source tools
             </div>
             <div className="flex items-center text-gray-300 text-sm sm:text-base">
-              <span className="text-green-400 mr-2">✅</span>
+              <span className="text-green-400 mr-2">3. </span>
               Recon & recovery from credential leaks
             </div>
             <div className="flex items-center text-gray-300 text-sm sm:text-base">
-              <span className="text-green-400 mr-2">✅</span>
+              <span className="text-green-400 mr-2">4. </span>
               How APIs can be abused when secrets leak
             </div>
             <div className="flex items-center text-gray-300 text-sm sm:text-base">
-              <span className="text-green-400 mr-2">✅</span>
+              <span className="text-green-400 mr-2">5. </span>
               Red-team & blue-team mindset
             </div>
           </div>
@@ -66,15 +68,98 @@ const ForgottenSecretLab = () => {
         {/* Getting Started */}
         <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
           <h3 className="text-xl sm:text-2xl font-semibold text-white mb-3">
-            Getting Started
+            🚀 Getting Started
           </h3>
-          <div className="bg-gray-900 p-3 rounded-md">
-            <code className="text-green-400 text-sm">
-              git clone
-              https://github.com/YOUR_USERNAME/forgotten-secret-lab.git
-              <br />
-              cd forgotten-secret-lab
-            </code>
+          <p className="text-gray-300 text-sm sm:text-base mb-4">
+            Follow these steps to set up the lab environment on your local
+            machine:
+          </p>
+
+          <div className="space-y-4">
+            {/* Step 1 */}
+            <div className="bg-gray-900 p-4 rounded-md border border-gray-700">
+              <div className="flex items-center mb-2">
+                <span className="bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full mr-3">
+                  1
+                </span>
+                <h4 className="text-lg font-semibold text-blue-400">
+                  Clone the Repository
+                </h4>
+              </div>
+              <p className="text-gray-300 text-sm mb-3">
+                Head over to the repository and clone it to your local machine:
+              </p>
+              <div className="bg-black p-3 rounded-md border border-gray-600">
+                <code className="text-green-400 text-sm">
+                  git clone https://github.com/0tieno/forgotten-secret-lab.git
+                </code>
+              </div>
+              <div className="mt-2">
+                <a
+                  href="https://github.com/0tieno/forgotten-secret-lab.git"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{ color: "#60a5fa", textDecoration: "none" }}
+                  onMouseOver={(e) =>
+                    (e.target.style.textDecoration = "underline")
+                  }
+                  onMouseOut={(e) => (e.target.style.textDecoration = "none")}
+                  className="text-sm inline-flex items-center"
+                >
+                  🔗 View Repository on GitHub
+                  <span className="ml-1">↗</span>
+                </a>
+              </div>
+            </div>
+
+            {/* Step 2 */}
+            <div className="bg-gray-900 p-4 rounded-md border border-gray-700">
+              <div className="flex items-center mb-2">
+                <span className="bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full mr-3">
+                  2
+                </span>
+                <h4 className="text-lg font-semibold text-blue-400">
+                  Navigate to the Project
+                </h4>
+              </div>
+              <p className="text-gray-300 text-sm mb-3">
+                Change into the project directory:
+              </p>
+              <div className="bg-black p-3 rounded-md border border-gray-600">
+                <code className="text-green-400 text-sm">
+                  cd forgotten-secret-lab
+                </code>
+              </div>
+            </div>
+
+            {/* Step 3 */}
+            <div className="bg-gray-900 p-4 rounded-md border border-gray-700">
+              <div className="flex items-center mb-2">
+                <span className="bg-blue-500 text-white text-xs font-bold px-2 py-1 rounded-full mr-3">
+                  3
+                </span>
+                <h4 className="text-lg font-semibold text-blue-400">
+                  Start Your Investigation
+                </h4>
+              </div>
+              <p className="text-gray-300 text-sm mb-3">
+                Explore the repository structure and begin your forensic
+                investigation:
+              </p>
+              <div className="bg-black p-3 rounded-md border border-gray-600">
+                <code className="text-green-400 text-sm">
+                  ls -la && git log --oneline
+                </code>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-4 p-3 bg-blue-900 bg-opacity-30 rounded-md border border-blue-600">
+            <p className="text-blue-300 text-sm">
+              <span className="font-semibold">💡 Pro Tip:</span> Make sure you
+              have Git installed on your system. The lab works best with Git
+              version 2.20+ for optimal forensics commands.
+            </p>
           </div>
         </div>
 
@@ -93,14 +178,14 @@ const ForgottenSecretLab = () => {
           <div className="space-y-4">
             <div>
               <h4 className="text-lg font-semibold text-yellow-400">
-                ✅ Objective:
+                Objective:
               </h4>
               <ul className="list-disc list-inside text-gray-300 text-sm sm:text-base ml-4 space-y-1">
                 <li>Hunt the secret inside Git history.</li>
                 <li>
                   Extract the key (looks like{" "}
                   <code className="bg-gray-700 px-2 py-1 rounded">
-                    SECRET-TOKEN-1234
+                    SECRET-TOKEN-KEY
                   </code>
                   )
                 </li>
@@ -109,12 +194,13 @@ const ForgottenSecretLab = () => {
 
             <div>
               <h4 className="text-lg font-semibold text-yellow-400">
-                🌐 Use it to query the secret API:
+                Use it to query the secret API:
               </h4>
+              <p>if successful, please read the secret message and finish the lab by doing what it says.</p>
               <div className="bg-gray-900 p-3 rounded-md mt-2">
                 <code className="text-green-400 text-sm">
                   curl
-                  "https://forgottenSecretFunc12345.azurewebsites.net/api/data?key=SECRET-TOKEN-1234"
+                  "https://secret-api-1752358706.azurewebsites.net/api/data?key=YOUR-SECRET-KEY"
                 </code>
               </div>
             </div>
@@ -250,6 +336,9 @@ const ForgottenSecretLab = () => {
           <h3 className="text-xl sm:text-2xl font-semibold text-white mb-3">
             Bonus Challenges
           </h3>
+          <p className="my-3">These challenges are optional, but highly encouraged! Share your findings in our
+              <a className="text-blue-400" href="https://chat.whatsapp.com/Llp1Z8uw8xP5NIByASUV7V"> community</a>,
+              cheer up a peer!</p>
           <ul className="list-disc list-inside text-gray-300 text-sm sm:text-base space-y-2">
             <li>
               What's the blob SHA of the deleted{" "}
@@ -267,9 +356,8 @@ const ForgottenSecretLab = () => {
               Badge Earned
             </h4>
             <p className="text-gray-300 text-sm sm:text-base mt-1">
-              Complete this lab and you'll earn the{" "}
-              <strong>Git Forensics Hero</strong> badge on your SecureCloudX
-              profile.
+              Complete this lab and you'll earn a{" "}
+              <strong>unique badge</strong> on your leaderboard profile, if you appear in top 3.
             </p>
           </div>
         </div>
@@ -278,7 +366,8 @@ const ForgottenSecretLab = () => {
         <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-cyan-500">
           <h3 className="text-xl sm:text-2xl font-semibold text-white mb-3">
             Advanced: Track Who Solves It
-          </h3>
+                  </h3>
+                  <p className="mt-3">This part is just good for you to know what is happening in the background</p>
           <p className="text-gray-300 text-sm sm:text-base mb-2">
             We've set up the API to log:
           </p>
@@ -288,7 +377,7 @@ const ForgottenSecretLab = () => {
             <li>Request path</li>
           </ul>
           <p className="text-gray-300 text-sm sm:text-base mt-3">
-            This lets us track completions and reward learners!
+            This lets me track completions by timestamps and reward learners (badge)!
           </p>
           <div className="mt-3 text-sm">
             <p className="text-cyan-400">
@@ -301,7 +390,7 @@ const ForgottenSecretLab = () => {
         {/* Prevention Tips */}
         <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-indigo-500">
           <h3 className="text-xl sm:text-2xl font-semibold text-white mb-3">
-            🛡 Bonus Tips: Prevent This in Real Life
+            Bonus Tips: Prevent This in Real Life
           </h3>
           <ul className="list-disc list-inside text-gray-300 text-sm sm:text-base space-y-2">
             <li>
@@ -336,7 +425,7 @@ const ForgottenSecretLab = () => {
         {/* Related Reading */}
         <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
           <h3 className="text-xl sm:text-2xl font-semibold text-white mb-3">
-            📚 Learn More
+            Learn More
           </h3>
           <p className="text-gray-300 text-sm sm:text-base mb-3">
             Want to dive deeper into Git forensics and secret detection? Check
@@ -346,7 +435,7 @@ const ForgottenSecretLab = () => {
             to="/posts/why-git-never-forgets"
             className="inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors font-medium"
           >
-            📖 "Why Git Never Forgets" - Learn the theory behind this lab
+            "Why Git Never Forgets" - Learn the theory behind this lab
           </Link>
         </div>
 
