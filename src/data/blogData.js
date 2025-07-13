@@ -90,51 +90,48 @@ Use that knowledge to defend smarter.
   },
   {
     id: "oops-committed-secrets-git",
-    title: "Oops! I Committed Secrets to Git — Now What?",
+    title: "Oops! I Committed Secrets to Git — Now What? 😅",
     date: "2025-07-13",
     excerpt: "We all make mistakes. Here's how to respond like a security pro when secrets get committed.",
     content: `
-# 😅 Oops! I Committed Secrets to Git — Now What?
 
-> We all make mistakes. Here's how to respond like a security pro when secrets get committed.
+We all make mistakes. Here's how to respond like a security pro when secrets get committed.
 
----
-
-## 🚨 You Made the Commit. Now What?
+## You Made the Commit. Now What?
 
 You've committed a file like this:
 
 \`\`\`env
-API_KEY=SECRET-TOKEN-1234
+API_KEY=SECRET-TOKEN-KEY
 \`\`\`
 
 You panic. You delete the file.
 
 But Git still remembers it. Forever. 
 
-## ⏱️ Step-by-Step: Fix It Fast
+## Step-by-Step: Fix It Fast
 
-### ✅ 1. Revoke the Key Immediately
+### 1. Revoke the Key Immediately
 
-Go to the service (e.g. Azure, Stripe, Firebase) and:
+Go to the service (e.g. Azure, Stripe, Firebase...) and:
 
 - Disable or delete the key
 - Create a new one  
 - Update it securely in your app (via env vars, secret manager, etc.)
 
-### 🧽 2. Clean Your Git History
+### 2. Clean Your Git History
 
 Removing it in a new commit is not enough.
 
 You need to rewrite history using one of these tools:
 
-#### 🧰 Option 1: git filter-repo (Recommended)
+### Option 1: git filter-repo (Recommended)
 
 \`\`\`bash
 git filter-repo --path .env --invert-paths
 \`\`\`
 
-#### 🧰 Option 2: BFG Repo Cleaner
+### Option 2: BFG Repo Cleaner
 
 \`\`\`bash
 bfg --delete-files .env
@@ -142,7 +139,7 @@ bfg --delete-files .env
 
 ⚠️ Warning: This rewrites history. All collaborators must re-clone after!
 
-### 🔄 3. Force Push (If Necessary)
+### 3. Force Push (If Necessary)
 
 \`\`\`bash
 git push --force
@@ -150,7 +147,7 @@ git push --force
 
 Be careful! This can cause issues if others are working on the repo.
 
-### 👀 4. Scan Your Repo
+### 4. Scan Your Repo
 
 Use a secret scanner to double-check your fix:
 
@@ -164,7 +161,7 @@ Or:
 trufflehog git file://.
 \`\`\`
 
-### ✅ Bonus: Add .env to .gitignore
+### Bonus: Add .env to .gitignore
 
 \`\`\`bash
 echo ".env" >> .gitignore
@@ -172,23 +169,23 @@ git add .gitignore
 git commit -m "ignore env files"
 \`\`\`
 
-## ✅ Proactive Measures for the Future
+## Proactive Measures for the Future
 
 - Add pre-commit hooks with \`git-secrets\`
 - Scan your repos with Gitleaks in CI/CD
 - Use secret managers (Azure Key Vault, AWS Secrets Manager, etc.)
 
-## 🧪 Practice This in the SecureCloudX Lab
+## Try it yourself
 
-We created a real repo where a \`.env\` file was committed and then deleted:
+I created a real repo where a \`.env\` file was committed and then deleted:
 
-➡️ Try the [Forgotten Secret Lab](/forgotten-secret-lab)
+Try the [Forgotten Secret Lab](/forgotten-secret-lab)
 
-## 🧠 Final Thought
+## Final Thought
 
 Everyone leaks something eventually.
 
-What matters is how fast you detect, how smart you respond, and how well you prevent it next time. 
+What matters is how fast you detect, how smart you respond, and how well you prevent it next time. I understand some commands here are not explained explicitly what they do. 
 `,
     isExternal: false,
     tags: ["git", "security", "secrets", "incident-response"],
@@ -200,26 +197,19 @@ What matters is how fast you detect, how smart you respond, and how well you pre
     date: "2025-07-13",
     excerpt: "Want to think like a hacker? Start by mastering Git history.",
     content: `
-# 🛠 Git Tools Every Security Learner Should Know
 
-> Want to think like a hacker? Start by mastering Git history.
+Want to think like a hacker? Start by mastering Git history.
 
----
-
-## 🔍 Why This Matters
+## Why This Matters
 
 Git isn't just for saving code — it's a forensic tool.
 
 Secrets. Mistakes. Deleted files.  
 They're all still there — if you know how to look.
 
----
-
-## 🧰 Core Git Commands for Secret Discovery
+## Core Git Commands for Secret Discovery
 
 Here are essential Git commands that every security-minded developer or learner should know:
-
----
 
 ### 🔹 \`git log -p\`
 
@@ -229,7 +219,7 @@ Shows commit history + the actual diffs (changes made):
 git log -p
 \`\`\`
 
-💡 Use it to spot files that were added/removed — like secrets.
+Use it to spot files that were added/removed — like secrets.
 
 ### 🔹 \`git show <commit>\`
 
@@ -296,7 +286,7 @@ git log --diff-filter=D --summary
 
 Great for catching someone who deleted \`.env\` too late 😅
 
-## ⚡ Bonus Tools to Automate It
+## Bonus Tools to Automate It
 
 | Tool | Use Case |
 |------|----------|
@@ -306,17 +296,15 @@ Great for catching someone who deleted \`.env\` too late 😅
 | BFG | Deletes secrets from history |
 | filter-repo | Rewrites Git history precisely |
 
-## 🎯 Practice in SecureCloudX
+## Practice in SecureCloudX
 
-Use these tools in the Forgotten Secret Lab to find a real leaked API key:
+Use these tools in the [Forgotten Secret Lab](/forgotten-secret-lab) to find a real leaked API key:
 
 1. Search Git history
 2. Extract .env from an old commit  
 3. Access a real deployed API to complete the challenge
 
-➡️ [Launch the lab](/forgotten-secret-lab)
-
-## 🧠 Final Thought
+## Final Thought
 
 You don't need to hack the cloud to learn security.
 
