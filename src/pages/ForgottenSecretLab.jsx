@@ -91,7 +91,7 @@ const ForgottenSecretLab = () => {
               </p>
               <div className="bg-black p-3 rounded-md border border-gray-600">
                 <code className="text-green-400 text-sm">
-                  git clone https://github.com/0tieno/forgotten-secret-lab.git
+                  git clone https://github.com/securecloudx/forgotten-secret-lab.git
                 </code>
               </div>
               <div className="mt-2">
