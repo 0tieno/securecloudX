@@ -140,10 +140,20 @@ const BlogPost = () => {
         }
       } else if (line.length > 0) {
         // Regular paragraph
-        const processedLine = line.replace(
+        let processedLine = line;
+
+        // Process markdown links [text](url)
+        processedLine = processedLine.replace(
+          /\[([^\]]+)\]\(([^)]+)\)/g,
+          '<a href="$2" style="color: #60a5fa; text-decoration: underline;" target="_blank" rel="noopener noreferrer" onmouseover="this.style.color=\'#93c5fd\'" onmouseout="this.style.color=\'#60a5fa\'">$1</a>'
+        );
+
+        // Process inline code
+        processedLine = processedLine.replace(
           /`([^`]+)`/g,
           '<code className="bg-gray-800 px-2 py-1 rounded text-green-400">$1</code>'
         );
+
         elements.push(
           <p
             key={i}
