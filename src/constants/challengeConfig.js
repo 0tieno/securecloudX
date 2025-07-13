@@ -1,1 +1,1 @@
-export const CHALLENGE_START_DATE = new Date("2025-06-21T03:00:00+03:00");
+export const CHALLENGE_START_DATE = new Date("2025-05-21T03:00:00+03:00");

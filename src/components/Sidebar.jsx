@@ -118,6 +118,22 @@ const Sidebar = () => {
               </Link>
             </li>
 
+            {/* Forgotten Secret Lab - Mini Hack */}
+            <li>
+              <Link
+                to="/forgotten-secret-lab"
+                className={`block px-4 py-2 hover:bg-gray-600 border-l-4 border-red-500 ${
+                  location.pathname === "/forgotten-secret-lab"
+                    ? "bg-gray-700 text-white"
+                    : ""
+                }`}
+                onClick={closeSidebar}
+                title="Git History Forensics Mini-Hack"
+              >
+                🕵️‍♂️ Mini-Hack: Secret Lab
+              </Link>
+            </li>
+
             {topics.map(({ day, title }) => {
               const isUnlocked = unlockedDays.includes(day);
               return (

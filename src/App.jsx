@@ -28,6 +28,7 @@ import Phase2 from "./pages/task3/Phase2";
 import Phase3 from "./pages/task3/Phase3";
 import BlogList from "./pages/BlogList";
 import BlogPost from "./pages/BlogPost";
+import ForgottenSecretLab from "./pages/ForgottenSecretLab";
 
 const App = () => {
   return (
@@ -42,6 +43,10 @@ const App = () => {
           <div className="flex-1 overflow-y-auto p-6 bg-gray-900 border-l border-gray-700">
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route
+                path="/forgotten-secret-lab"
+                element={<ForgottenSecretLab />}
+              />
 
               <Route
                 path="/day1"
