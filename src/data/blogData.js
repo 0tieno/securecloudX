@@ -90,7 +90,7 @@ Use that knowledge to defend smarter.
   },
   {
     id: "oops-committed-secrets-git",
-    title: "Oops! I Committed Secrets to Git — Now What? 😅",
+    title: "Oops! I Committed Secrets to Git — Now What?",
     date: "2025-07-13",
     excerpt: "We all make mistakes. Here's how to respond like a security pro when secrets get committed.",
     content: `

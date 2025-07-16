@@ -54,11 +54,7 @@ const BlogList = () => {
                       className="text-gray-300 hover:text-gray-100 transition-colors underline decoration-1 underline-offset-3 decoration-gray-500 hover:decoration-gray-300 font-medium"
                     >
                       {post.title}
-                      {post.tags && post.tags.includes("forensics") && (
-                        <span className="ml-2 px-2 py-1 bg-red-600 text-white text-xs rounded-full">
-                          NEW
-                        </span>
-                      )}
+                      {post.tags && post.tags.includes}
                     </Link>
                     {post.excerpt && (
                       <p className="text-gray-400 text-xs mt-1 ml-0">
