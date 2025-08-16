@@ -96,7 +96,7 @@ const Home = () => {
                   clipRule="evenodd"
                 />
               </svg>
-              <span>Updated Aug 16, 2025</span>
+              <span>Last Updated Aug 16, 2025</span>
             </div>
           </div>
         </div>
