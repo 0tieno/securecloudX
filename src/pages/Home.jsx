@@ -82,7 +82,7 @@ const Home = () => {
                   href="https://ronneyotieno.me"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-400 hover:text-blue-300 font-semibold transition-colors duration-200"
+                  className="text-blue-400 underline hover:text-blue-300 font-semibold transition-colors duration-200"
                 >
                   Ronney Otieno
                 </a>
