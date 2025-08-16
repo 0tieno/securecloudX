@@ -72,7 +72,7 @@ const Home = () => {
         </p>
 
         <p className="text-gray-300 text-base md:text-lg text-start leading-relaxed">
-          This platform is built on the strong belief that with the right
+          securecloudX is built on the strong belief that with the right
           discipline, anyone can master cloud security and fundamentals of DevSecOps—through
           practical, hands-on learning. And that's what we do here!
 {/*           <br className="hidden md:block" />
