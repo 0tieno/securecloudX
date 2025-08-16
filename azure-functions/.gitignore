@@ -1,7 +1,0 @@
-node_modules/
-dist/
-.vscode/
-local.settings.json
-*.log
-.env
-.funcignore
