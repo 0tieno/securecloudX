@@ -68,14 +68,16 @@ const Home = () => {
             className="text-blue-400 hover:underline"
           >
             ron
-          </a>
+          </a>{" "}
+          • Last updated: August 16, 2025
         </p>
 
         <p className="text-gray-300 text-base md:text-lg text-start leading-relaxed">
           securecloudX is built on the strong belief that with the right
-          discipline, anyone can master cloud security and fundamentals of DevSecOps—through
-          practical, hands-on learning. And that's what we do here!
-{/*           <br className="hidden md:block" />
+          discipline, anyone can master cloud security and fundamentals of
+          DevSecOps—through practical, hands-on learning. And that's what we do
+          here!
+          {/*           <br className="hidden md:block" />
           <span className="block mt-2">
             Complete the capstone project to earn a{" "}
             <strong>Microsoft-recognized certificate</strong>.
