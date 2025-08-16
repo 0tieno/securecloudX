@@ -73,13 +73,13 @@ const Home = () => {
 
         <p className="text-gray-300 text-base md:text-lg text-start leading-relaxed">
           This platform is built on the strong belief that with the right
-          discipline, anyone can master cloud security and DevSecOps—through
+          discipline, anyone can master cloud security and fundamentals of DevSecOps—through
           practical, hands-on learning. And that's what we do here!
-          <br className="hidden md:block" />
+{/*           <br className="hidden md:block" />
           <span className="block mt-2">
             Complete the capstone project to earn a{" "}
             <strong>Microsoft-recognized certificate</strong>.
-          </span>
+          </span> */}
         </p>
 
         {/* Youtube welcome video */}
