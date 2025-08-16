@@ -50,7 +50,7 @@ const Home = () => {
                 <div className="w-3 h-3 bg-red-500 rounded-full animate-pulse"></div>
               </div>
               <span className="text-xl sm:text-2xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-red-400 via-red-300 to-orange-400 drop-shadow-lg">
-                Live Now: Mini-Hack
+                Live: Mini-Hack
               </span>
             </div>
           </Link>
@@ -82,7 +82,7 @@ const Home = () => {
                   href="https://ronneyotieno.me"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-400 hover:text-blue-300 font-semibold transition-colors duration-200"
+                  className="text-blue-400 underline hover:text-blue-300 font-semibold transition-colors duration-200"
                 >
                   Ronney Otieno
                 </a>
