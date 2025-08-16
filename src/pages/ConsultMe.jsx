@@ -25,7 +25,7 @@ const ConsultMe = () => {
       duration: "45 minutes",
       price: "KSh 200",
       description:
-        "Perfect for students needing guidance with SecureCloudX challenges",
+        "Perfect for students needing guidance with cloud security",
       features: [
         "Cloud security 1-1 training",
         "Challenge walkthrough assistance",
