@@ -29,6 +29,7 @@ import Phase3 from "./pages/task3/Phase3";
 import BlogList from "./pages/BlogList";
 import BlogPost from "./pages/BlogPost";
 import ForgottenSecretLab from "./pages/ForgottenSecretLab";
+import ConsultMe from "./pages/ConsultMe";
 
 const App = () => {
   return (
@@ -207,6 +208,9 @@ const App = () => {
               />
 
               <Route path="/start" element={<BeginnerIntro />} />
+
+              {/* Consultation Route */}
+              <Route path="/consult" element={<ConsultMe />} />
 
               {/* Blog Routes */}
               <Route path="/posts" element={<BlogList />} />

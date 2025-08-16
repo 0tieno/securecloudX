@@ -118,6 +118,21 @@ const Sidebar = () => {
               </Link>
             </li>
 
+            <li>
+              <Link
+                to="/consult"
+                className={`block px-3 py-2 mx-2 my-1 rounded-lg border transition-colors font-medium text-sm ${
+                  location.pathname === "/consult"
+                    ? "bg-green-500/20 border-green-400/50 text-green-300"
+                    : "text-green-400 hover:text-green-300 border-green-500/30 hover:border-green-400/50 bg-green-500/10 hover:bg-green-500/20"
+                }`}
+                onClick={closeSidebar}
+                title="Book One-on-One Consultation"
+              >
+                Consult Me 1:1
+              </Link>
+            </li>
+
             {/* Forgotten Secret Lab - Mini Hack */}
             <li>
               <Link
