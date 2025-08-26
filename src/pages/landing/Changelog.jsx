@@ -1,10 +1,9 @@
 const changelog = [
-  
   {
     date: "26 Aug, 2025",
     desc: "Added this landing page.",
-    },
-    {
+  },
+  {
     date: "22 Aug, 2025",
     desc: "Added consultation services due to user demand.",
   },
@@ -38,7 +37,7 @@ export default function Changelog() {
         We are always improving our content, adding new resources and adding
         features to enhance your learning experience.
       </h3>
-      <div className="w-full max-w-2xl mx-auto mt-6 sm:mt-8">
+      <div className="w-full max-w-2xl mx-auto mt-6 sm:mt-8 flex justify-center">
         <div className="relative flex flex-col">
           {/* Vertical line for the whole timeline, perfectly centered */}
           <div
