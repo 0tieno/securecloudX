@@ -153,7 +153,7 @@ const features = [
 
 export default function FeatureGrid() {
   return (
-    <div className="w-full max-w-2xl mx-auto px-2 sm:px-0">
+    <div className="w-full max-w-2xl mx-auto px-12 sm:px-0">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {features.map((feature, idx) => (
           <div
