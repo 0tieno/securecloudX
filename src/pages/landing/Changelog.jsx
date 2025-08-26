@@ -1,5 +1,10 @@
 const changelog = [
+  
   {
+    date: "26 Aug, 2025",
+    desc: "Added this landing page.",
+    },
+    {
     date: "22 Aug, 2025",
     desc: "Added consultation services due to user demand.",
   },
@@ -25,11 +30,11 @@ const changelog = [
 
 export default function Changelog() {
   return (
-    <div className="w-full flex flex-col items-center justify-center mt-10 px-2 sm:px-0">
-      <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-2 border-b border-gray-700 pb-1 w-full max-w-xs sm:max-w-md">
+    <div className="w-full max-w-2xl mx-auto px-2 sm:px-0 mt-10">
+      <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-2 border-b border-gray-700 pb-1 w-full max-w-xs sm:max-w-md mx-auto">
         Changelog
       </h2>
-      <h3 className="text-lg sm:text-xl max-w-md font-semibold text-center mb-2 text-gray-100">
+      <h3 className="text-lg sm:text-xl max-w-md font-semibold text-center mb-12 text-gray-100 mx-auto">
         We are always improving our content, adding new resources and adding
         features to enhance your learning experience.
       </h3>

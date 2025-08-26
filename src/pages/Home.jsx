@@ -25,7 +25,7 @@ const Home = () => {
 
   return (
     <>
-      <Content className="bg-gray-900 text-white p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-4xl mx-auto">
+      <Content className="bg-gray-900 text-white p-6 md:p-8 lg:p-10 rounded-lg shadow-lg max-w-2xl mx-auto">
         {/* <Link to={`/day${currentDay}`}>
           <div className="bg-yellow-400 text-gray-900 font-semibold text-center py-2 animate-pulse hover:bg-yellow-300 transition-colors duration-300">
             this week's ongoing challenge: {currentTopic} → Click to Join
@@ -55,57 +55,30 @@ const Home = () => {
             </div>
           </Link>
         </div>
-        <h1 className="text-2xl md:text-4xl font-bold mb-6 mt-4 text-start">
-          Welcome
-        </h1>
-
-        {/* Simple Creator & Update Info */}
-        <div className="mb-6">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
-            <div className="flex items-center gap-3">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-full flex items-center justify-center">
-                <svg
-                  className="w-4 h-4 text-white"
-                  fill="currentColor"
-                  viewBox="0 0 20 20"
-                >
-                  <path
-                    fillRule="evenodd"
-                    d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z"
-                    clipRule="evenodd"
-                  />
-                </svg>
-              </div>
-              <div>
-                <div className="text-gray-400 text-sm">Created by</div>
-                <a
-                  href="https://ronneyotieno.me"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-400 underline hover:text-blue-300 font-semibold transition-colors duration-200"
-                >
-                  Ronney Otieno
-                </a>
-              </div>
-            </div>
-            <div className="flex items-center gap-2 text-gray-400 text-sm">
-              <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                <path
-                  fillRule="evenodd"
-                  d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
-                  clipRule="evenodd"
-                />
-              </svg>
-              <span>Last Updated Aug 16, 2025</span>
-            </div>
+        <div className="flex items-center mb-6 mt-4">
+          <h1 className="text-2xl md:text-4xl font-bold text-start mr-4">
+            Welcome
+          </h1>
+          <div className="flex items-center text-gray-400 text-sm border-l-2 border-blue-500 pl-3 py-1">
+            {/* <svg
+              className="w-4 h-4 mr-1"
+              fill="currentColor"
+              viewBox="0 0 20 20"
+            >
+              <path
+                fillRule="evenodd"
+                d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z"
+                clipRule="evenodd"
+              />
+            </svg> */}
+            <span>Updated Aug 25, 2025</span>
           </div>
         </div>
 
         <p className="text-gray-300 text-base md:text-lg text-start leading-relaxed">
           securecloudX is built on the strong belief that with the right
           discipline, anyone can master cloud security and fundamentals of
-          DevSecOps—through practical, hands-on learning. And that's what we do
-          here!
+          DevSecOps—through practical, hands-on learning.
           {/*           <br className="hidden md:block" />
           <span className="block mt-2">
             Complete the capstone project to earn a{" "}
