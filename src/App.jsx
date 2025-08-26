@@ -5,6 +5,8 @@ import ProtectedDayResources from "./routes/ProtectedDayResources";
 import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import Home from "./pages/Home";
+import LandingPage from "./pages/LandingPage";
+import RefundPolicyPage from "./pages/RefundPolicyPage";
 import Day1 from "./pages/Day1";
 import Task1 from "./pages/Task1";
 import Day2 from "./pages/Day2";
@@ -34,192 +36,183 @@ import ConsultMe from "./pages/ConsultMe";
 const App = () => {
   return (
     <Router>
-      <div className="flex h-screen bg-gray-900">
-        {/* Sidebar */}
-        <Sidebar />
-
-        {/* Main Content */}
-        <div className="flex flex-col flex-1 h-screen overflow-hidden">
-          <Header />
-          <div className="flex-1 overflow-y-auto p-6 bg-gray-900 border-l border-gray-700">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route
-                path="/forgotten-secret-lab"
-                element={<ForgottenSecretLab />}
-              />
-
-              <Route
-                path="/day1"
-                element={
-                  <ProtectedDayRoute day={1}>
-                    <Day1 />
-                  </ProtectedDayRoute>
-                }
-              />
-              <Route
-                path="/day1/task"
-                element={
-                  <ProtectedDayRoute day={1}>
-                    <Task1 />
-                  </ProtectedDayRoute>
-                }
-              />
-
-              <Route
-                path="/day2"
-                element={
-                  <ProtectedDayRoute day={2}>
-                    <Day2 />
-                  </ProtectedDayRoute>
-                }
-              />
-              <Route
-                path="/day2/task"
-                element={
-                  <ProtectedDayRoute day={2}>
-                    <Task2 />
-                  </ProtectedDayRoute>
-                }
-              />
-
-              <Route
-                path="/day3"
-                element={
-                  <ProtectedDayRoute day={3}>
-                    <Day3 />
-                  </ProtectedDayRoute>
-                }
-              />
-              <Route
-                path="/day3/task"
-                element={
-                  <ProtectedDayRoute day={3}>
-                    <Task3 />
-                  </ProtectedDayRoute>
-                }
-              />
-              {/* Lab 3 Phases */}
-              <Route
-                path="/day3/task/phase1"
-                element={
-                  <ProtectedDayRoute day={3}>
-                    <Phase1 />
-                  </ProtectedDayRoute>
-                }
-              />
-              <Route
-                path="/day3/task/phase2"
-                element={
-                  <ProtectedDayRoute day={3}>
-                    <Phase2 />
-                  </ProtectedDayRoute>
-                }
-              />
-              <Route
-                path="/day3/task/phase3"
-                element={
-                  <ProtectedDayRoute day={3}>
-                    <Phase3 />
-                  </ProtectedDayRoute>
-                }
-              />
-
-              <Route
-                path="/day4"
-                element={
-                  <ProtectedDayRoute day={4}>
-                    <Day4 />
-                  </ProtectedDayRoute>
-                }
-              />
-              <Route
-                path="/day4/task"
-                element={
-                  <ProtectedDayRoute day={4}>
-                    <Task4 />
-                  </ProtectedDayRoute>
-                }
-              />
-
-              <Route
-                path="/day5"
-                element={
-                  <ProtectedDayRoute day={5}>
-                    <Day5 />
-                  </ProtectedDayRoute>
-                }
-              />
-              <Route
-                path="/day5/task"
-                element={
-                  <ProtectedDayRoute day={5}>
-                    <Task5 />
-                  </ProtectedDayRoute>
-                }
-              />
-
-              <Route
-                path="/day6"
-                element={
-                  <ProtectedDayRoute day={6}>
-                    <Day6 />
-                  </ProtectedDayRoute>
-                }
-              />
-              <Route
-                path="/day6/task"
-                element={
-                  <ProtectedDayRoute day={6}>
-                    <Task6 />
-                  </ProtectedDayRoute>
-                }
-              />
-
-              <Route
-                path="/day7"
-                element={
-                  <ProtectedDayRoute day={7}>
-                    <Day7 />
-                  </ProtectedDayRoute>
-                }
-              />
-              <Route
-                path="/day7/task"
-                element={
-                  <ProtectedDayRoute day={7}>
-                    <Task7 />
-                  </ProtectedDayRoute>
-                }
-              />
-
-              <Route
-                path="/day/:day/resources"
-                element={<ProtectedDayResources />}
-              />
-
-              <Route
-                path="/explore"
-                element={
-                  <ProtectedDayRoute day={7}>
-                    <Explore />
-                  </ProtectedDayRoute>
-                }
-              />
-
-              <Route path="/start" element={<BeginnerIntro />} />
-
-              {/* Consultation Route */}
-              <Route path="/consult" element={<ConsultMe />} />
-
-              {/* Blog Routes */}
-              <Route path="/posts" element={<BlogList />} />
-              <Route path="/posts/:id" element={<BlogPost />} />
-            </Routes>
-          </div>
-          <Footer />
-        </div>
-      </div>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/refund-policy" element={<RefundPolicyPage />} />
+        <Route
+          path="*"
+          element={
+            <div className="flex h-screen bg-gray-900">
+              <Sidebar />
+              <div className="flex flex-col flex-1 h-screen overflow-hidden">
+                <Header />
+                <div className="flex-1 overflow-y-auto p-6 bg-gray-900 border-l border-gray-700">
+                  <Routes>
+                    <Route path="/home" element={<Home />} />
+                    <Route
+                      path="/forgotten-secret-lab"
+                      element={<ForgottenSecretLab />}
+                    />
+                    <Route
+                      path="/day1"
+                      element={
+                        <ProtectedDayRoute day={1}>
+                          <Day1 />
+                        </ProtectedDayRoute>
+                      }
+                    />
+                    <Route
+                      path="/day1/task"
+                      element={
+                        <ProtectedDayRoute day={1}>
+                          <Task1 />
+                        </ProtectedDayRoute>
+                      }
+                    />
+                    <Route
+                      path="/day2"
+                      element={
+                        <ProtectedDayRoute day={2}>
+                          <Day2 />
+                        </ProtectedDayRoute>
+                      }
+                    />
+                    <Route
+                      path="/day2/task"
+                      element={
+                        <ProtectedDayRoute day={2}>
+                          <Task2 />
+                        </ProtectedDayRoute>
+                      }
+                    />
+                    <Route
+                      path="/day3"
+                      element={
+                        <ProtectedDayRoute day={3}>
+                          <Day3 />
+                        </ProtectedDayRoute>
+                      }
+                    />
+                    <Route
+                      path="/day3/task"
+                      element={
+                        <ProtectedDayRoute day={3}>
+                          <Task3 />
+                        </ProtectedDayRoute>
+                      }
+                    />
+                    <Route
+                      path="/day3/task/phase1"
+                      element={
+                        <ProtectedDayRoute day={3}>
+                          <Phase1 />
+                        </ProtectedDayRoute>
+                      }
+                    />
+                    <Route
+                      path="/day3/task/phase2"
+                      element={
+                        <ProtectedDayRoute day={3}>
+                          <Phase2 />
+                        </ProtectedDayRoute>
+                      }
+                    />
+                    <Route
+                      path="/day3/task/phase3"
+                      element={
+                        <ProtectedDayRoute day={3}>
+                          <Phase3 />
+                        </ProtectedDayRoute>
+                      }
+                    />
+                    <Route
+                      path="/day4"
+                      element={
+                        <ProtectedDayRoute day={4}>
+                          <Day4 />
+                        </ProtectedDayRoute>
+                      }
+                    />
+                    <Route
+                      path="/day4/task"
+                      element={
+                        <ProtectedDayRoute day={4}>
+                          <Task4 />
+                        </ProtectedDayRoute>
+                      }
+                    />
+                    <Route
+                      path="/day5"
+                      element={
+                        <ProtectedDayRoute day={5}>
+                          <Day5 />
+                        </ProtectedDayRoute>
+                      }
+                    />
+                    <Route
+                      path="/day5/task"
+                      element={
+                        <ProtectedDayRoute day={5}>
+                          <Task5 />
+                        </ProtectedDayRoute>
+                      }
+                    />
+                    <Route
+                      path="/day6"
+                      element={
+                        <ProtectedDayRoute day={6}>
+                          <Day6 />
+                        </ProtectedDayRoute>
+                      }
+                    />
+                    <Route
+                      path="/day6/task"
+                      element={
+                        <ProtectedDayRoute day={6}>
+                          <Task6 />
+                        </ProtectedDayRoute>
+                      }
+                    />
+                    <Route
+                      path="/day7"
+                      element={
+                        <ProtectedDayRoute day={7}>
+                          <Day7 />
+                        </ProtectedDayRoute>
+                      }
+                    />
+                    <Route
+                      path="/day7/task"
+                      element={
+                        <ProtectedDayRoute day={7}>
+                          <Task7 />
+                        </ProtectedDayRoute>
+                      }
+                    />
+                    <Route
+                      path="/day/:day/resources"
+                      element={<ProtectedDayResources />}
+                    />
+                    <Route
+                      path="/explore"
+                      element={
+                        <ProtectedDayRoute day={7}>
+                          <Explore />
+                        </ProtectedDayRoute>
+                      }
+                    />
+                    <Route path="/start" element={<BeginnerIntro />} />
+                    <Route path="/consult" element={<ConsultMe />} />
+                    <Route path="/posts" element={<BlogList />} />
+                    <Route path="/posts/:id" element={<BlogPost />} />
+                  </Routes>
+                </div>
+                <Footer />
+              </div>
+            </div>
+          }
+        />
+      </Routes>
     </Router>
   );
 };
