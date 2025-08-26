@@ -12,7 +12,7 @@ export default function PricingSection() {
       </p>
       <div className="flex flex-col md:flex-row gap-8 justify-center mb-8">
         {/* Students Plan */}
-        <div className="bg-gray-800 rounded-xl p-8 w-80 shadow flex flex-col items-center">
+        <div className="bg-gray-900 rounded-xl p-8 w-80 shadow flex flex-col items-center">
           <h3 className="text-xl font-semibold mb-1">Students • Personal</h3>
           <div className="flex items-center gap-2 mb-2">
             <span className="line-through text-gray-400 text-sm">Ksh. 250</span>
@@ -57,7 +57,7 @@ export default function PricingSection() {
           </ul>
         </div>
         {/* Professional Plan */}
-        <div className="bg-gray-800 rounded-xl p-8 w-80 shadow flex flex-col items-center">
+        <div className="bg-gray-900 rounded-xl p-8 w-80 shadow flex flex-col items-center">
           <h3 className="text-xl font-semibold mb-1">
             Professional • Business
           </h3>
