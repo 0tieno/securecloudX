@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function PricingSection() {
   return (
     <div className="w-full flex flex-col items-center mt-16">
@@ -17,11 +19,14 @@ export default function PricingSection() {
             <span className="text-yellow-400 text-lg font-bold">Ksh. 200</span>
             <span className="text-gray-400 text-sm">/45 minutes</span>
           </div>
-          <button className="bg-yellow-400 text-black font-semibold px-4 py-1 rounded-full mb-4 hover:bg-yellow-300 transition">
+          <Link
+            to="/consult"
+            className="bg-yellow-400 text-black font-semibold px-4 py-1 rounded-full mb-4 hover:bg-yellow-300 transition text-center"
+          >
             Get started
-          </button>
+          </Link>
           <p className="text-gray-400 text-center mb-4 text-sm">
-            Perfect for students needing guidance with cloud security.
+            Perfect for students needing guidance with cloud security. Azure • AWS
           </p>
           <ul className="text-gray-200 text-sm space-y-2 w-full">
             <li className="flex items-center gap-2">
@@ -64,11 +69,14 @@ export default function PricingSection() {
             </span>
             <span className="text-gray-400 text-sm">/60 minutes</span>
           </div>
-          <button className="bg-yellow-400 text-black font-semibold px-4 py-1 rounded-full mb-4 hover:bg-yellow-300 transition">
+          <Link
+            to="/consult"
+            className="bg-yellow-400 text-black font-semibold px-4 py-1 rounded-full mb-4 hover:bg-yellow-300 transition text-center"
+          >
             Get started
-          </button>
+          </Link>
           <p className="text-gray-400 text-center mb-4 text-sm">
-            Comprehensive consultation for small businesses
+            Comprehensive consultation for small businesses. Azure • AWS
           </p>
           <ul className="text-gray-200 text-sm space-y-2 w-full">
             <li className="flex items-center gap-2">
