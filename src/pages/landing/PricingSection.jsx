@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function PricingSection() {
   return (
     <div className="w-full flex flex-col items-center mt-16">
@@ -7,94 +5,76 @@ export default function PricingSection() {
         Pricing
       </h2>
       <p className="text-gray-300 text-center mb-8 max-w-xl">
-        Keep using the app for free. Upgrade anytime to support the development,
-        and unlock additional features.
+        Keep using the guide for free. Only consultation is charged to support commitment with additional benefits.
       </p>
       <div className="flex flex-col md:flex-row gap-8 justify-center mb-8">
-        {/* Personal Plan */}
+        {/* Students Plan */}
         <div className="bg-gray-900 rounded-xl p-8 w-80 shadow flex flex-col items-center">
-          <h3 className="text-xl font-semibold mb-1">Personal</h3>
-          <p className="text-gray-300 mb-2">Free</p>
+          <h3 className="text-xl font-semibold mb-1">Students • Personal</h3>
+          <div className="flex items-center gap-2 mb-2">
+            <span className="line-through text-gray-400 text-sm">Ksh. 250</span>
+            <span className="text-yellow-400 text-lg font-bold">Ksh. 200</span>
+            <span className="text-gray-400 text-sm">/45 minutes</span>
+          </div>
           <button className="bg-yellow-400 text-black font-semibold px-4 py-1 rounded-full mb-4 hover:bg-yellow-300 transition">
-            Sign up
+            Get started
           </button>
           <p className="text-gray-400 text-center mb-4 text-sm">
-            All the basic features to help you manage your time and stay
-            productive.
+            Perfect for students needing guidance with cloud security.
           </p>
           <ul className="text-gray-200 text-sm space-y-2 w-full">
             <li className="flex items-center gap-2">
-              <span className="text-green-400">👤</span> Unlimited Individual
-              Timezones
+              <span className="text-green-400">✔️</span>Cloud security 1-1 training
             </li>
             <li className="flex items-center gap-2">
-              <span className="text-green-400">👥</span> Team Timezones (up to
-              3)
+              <span className="text-green-400">✔️</span> Portfolio Project walkthrough assistance
             </li>
             <li className="flex items-center gap-2">
-              <span className="text-green-400">📁</span> 1 Workspace and Project
+              <span className="text-green-400">✔️</span> Cloud security concept explanation
             </li>
             <li className="flex items-center gap-2">
-              <span className="text-green-400">⏲️</span> Pomodoro Timer
+              <span className="text-green-400">✔️</span> Career guidance and tips
             </li>
             <li className="flex items-center gap-2">
-              <span className="text-green-400">🗓️</span> Daily Planner (7 days
-              history)
+              <span className="text-green-400">✔️</span> Portfolio development advice
             </li>
             <li className="flex items-center gap-2">
-              <span className="text-green-400">✔️</span> 7 tasks per day
-            </li>
-            <li className="flex items-center gap-2">
-              <span className="text-green-400">🎵</span> Focus Sounds
-            </li>
-            <li className="flex items-center gap-2">
-              <span className="text-green-400">🌎</span> World Clock, Timer,
-              Stopwatch
+              <span className="text-green-400">✔️</span> Learning path recommendations
             </li>
           </ul>
         </div>
         {/* Professional Plan */}
         <div className="bg-gray-900 rounded-xl p-8 w-80 shadow flex flex-col items-center">
-          <h3 className="text-xl font-semibold mb-1">Professional</h3>
+          <h3 className="text-xl font-semibold mb-1">Professional • Business</h3>
           <div className="flex items-center gap-2 mb-2">
-            <span className="line-through text-gray-400 text-sm">$9.99</span>
-            <span className="text-yellow-400 text-lg font-bold">$5.99</span>
-            <span className="text-gray-400 text-sm">/mo</span>
+            <span className="line-through text-gray-400 text-sm">Ksh. 4000</span>
+            <span className="text-yellow-400 text-lg font-bold">Ksh. 1,000</span>
+            <span className="text-gray-400 text-sm">/60 minutes</span>
           </div>
           <button className="bg-yellow-400 text-black font-semibold px-4 py-1 rounded-full mb-4 hover:bg-yellow-300 transition">
-            Sign up
+            Get started
           </button>
           <p className="text-gray-400 text-center mb-4 text-sm">
-            Unlock advanced features and support the development of the app.
+Comprehensive consultation for small businesses
           </p>
           <ul className="text-gray-200 text-sm space-y-2 w-full">
             <li className="flex items-center gap-2">
-              <span className="text-green-400">✅</span> All the basic features
+              <span className="text-green-400">✔️</span> Security assessment guidance
             </li>
             <li className="flex items-center gap-2">
-              <span className="text-green-400">👥</span> Team Timezones (up to
-              10)
+              <span className="text-green-400">✔️</span> Cloud migration strategy
             </li>
             <li className="flex items-center gap-2">
-              <span className="text-green-400">📁</span> Unlimited Workspaces &
-              Projects
+              <span className="text-green-400">✔️</span> Compliance framework discussion
             </li>
             <li className="flex items-center gap-2">
-              <span className="text-green-400">⏲️</span> Advanced Pomodoro Timer
+              <span className="text-green-400">✔️</span> Risk analysis and mitigation
             </li>
             <li className="flex items-center gap-2">
-              <span className="text-green-400">🗓️</span> Daily Planner
-              (Unlimited History)
+              <span className="text-green-400">✔️</span> Implementation roadmap
             </li>
             <li className="flex items-center gap-2">
-              <span className="text-green-400">✔️</span> Unlimited tasks
-            </li>
-            <li className="flex items-center gap-2">
-              <span className="text-green-400">🚀</span> Early access to new
-              features
-            </li>
-            <li className="flex items-center gap-2">
-              <span className="text-green-400">💛</span> Support the development
+              <span className="text-green-400">✔️</span> Follow-up recommendations
             </li>
           </ul>
         </div>
