@@ -153,19 +153,21 @@ const features = [
 
 export default function FeatureGrid() {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 w-full max-w-3xl">
-      {features.map((feature, idx) => (
-        <div
-          key={idx}
-          className="bg-gray-900 rounded-lg p-6 flex flex-col items-center shadow hover:bg-gray-800 transition"
-        >
-          {feature.icon}
-          <h2 className="text-lg font-semibold mb-1">{feature.title}</h2>
-          <p className="text-sm text-gray-400 text-center">
-            {feature.description}
-          </p>
-        </div>
-      ))}
+    <div className="w-full max-w-2xl mx-auto px-2 sm:px-0">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        {features.map((feature, idx) => (
+          <div
+            key={idx}
+            className="bg-gray-900 rounded-lg p-6 flex flex-col items-center shadow hover:bg-gray-800 transition"
+          >
+            {feature.icon}
+            <h2 className="text-lg font-semibold mb-1">{feature.title}</h2>
+            <p className="text-sm text-gray-400 text-center">
+              {feature.description}
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
