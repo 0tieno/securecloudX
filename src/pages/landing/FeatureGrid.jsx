@@ -153,12 +153,12 @@ const features = [
 
 export default function FeatureGrid() {
   return (
-    <div className="w-full max-w-2xl mx-auto px-12 sm:px-0">
+    <div className="w-full max-w-2xl mx-auto px-16 sm:px-0">
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
         {features.map((feature, idx) => (
           <div
             key={idx}
-            className="bg-gray-800 rounded-lg p-6 flex flex-col items-center shadow hover:bg-gray-700 transition"
+            className="bg-gray-800 rounded-lg p-6 sm:p-6 px-6 py-8 sm:py-6 flex flex-col items-center shadow hover:bg-gray-700 transition"
           >
             {feature.icon}
             <h2 className="text-lg font-semibold mb-1">{feature.title}</h2>
