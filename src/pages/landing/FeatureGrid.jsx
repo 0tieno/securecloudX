@@ -158,7 +158,7 @@ export default function FeatureGrid() {
         {features.map((feature, idx) => (
           <div
             key={idx}
-            className="bg-gray-800 rounded-lg p-6 sm:p-6 px-6 py-8 sm:py-6 flex flex-col items-center shadow hover:bg-gray-700 transition"
+            className="bg-gray-900 rounded-lg p-6 sm:p-6 px-6 py-8 sm:py-6 flex flex-col items-center shadow hover:bg-gray-700 transition"
           >
             {feature.icon}
             <h2 className="text-lg font-semibold mb-1">{feature.title}</h2>
