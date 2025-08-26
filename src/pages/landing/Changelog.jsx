@@ -1,49 +1,38 @@
-import React from "react";
-
 const changelog = [
   {
     date: "22 Aug, 2025",
-    desc: "Data Engineering, Machine Learning Roadmap and more.",
+    desc: "Added consultation services due to user demand.",
+  },
+  { date: "12 Aug, 2025", desc: "Added more lab tasks on data security" },
+  {
+    date: "13 July, 2025",
+    desc: "Mini-hackathon on git forensics. 34 participants.",
+  },
+  { date: "04 June, 2025", desc: "Introduced weekly challenge format" },
+  {
+    date: "13 May, 2025",
+    desc: "New features and improvements based on user feedback.",
   },
   {
-    date: "23 Jul, 2025",
-    desc: "AI Quiz Summaries, New Go Roadmap, and YouTube Videos",
+    date: "10 April, 2025",
+    desc: "Officially launched the site to the public",
   },
   {
-    date: "27 Jun, 2025",
-    desc: "Revamped roadmaps, AI Tutor, Guides, Roadmaps and more",
-  },
-  {
-    date: "12 May, 2025",
-    desc: "AI Agents, Red Teaming Roadmaps and Community Courses",
-  },
-  { date: "03 Apr, 2025", desc: "AI Tutor, C++ and Java Roadmaps" },
-  {
-    date: "21 Feb, 2025",
-    desc: "Cloudflare and ASP.NET Roadmaps, New Dashboard",
-  },
-  { date: "04 Feb, 2025", desc: "Our first paid course about SQL is live" },
-  {
-    date: "21 Dec, 2024",
-    desc: "PHP and System Design Roadmaps, Get Featured",
-  },
-  {
-    date: "18 Nov, 2024",
-    desc: "AI Roadmaps Improved, Schedule Learning Time",
-  },
-  {
-    date: "16 Oct, 2024",
-    desc: "DevOps Project Ideas, Team Dashboard, Redis Content",
+    date: "8 April, 2025",
+    desc: "Prelaunced the platform via a community meetup call",
   },
 ];
 
 export default function Changelog() {
   return (
-    <div className="w-full flex flex-col items-center mt-16">
-      <h2 className="text-xl max-w-xl font-semibold text-center mb-2 text-gray-100">
+      <div className="w-full flex flex-col items-center justify-center mt-16">
+          <h2 className="text-2xl font-semibold text-center mb-2 border-b border-gray-700 pb-1 w-64">
+        Changelog
+      </h2>
+      <h3 className="text-xl max-w-xl font-semibold text-center mb-2 text-gray-100">
         We are always improving our content, adding new resources and adding
         features to enhance your learning experience.
-      </h2>
+      </h3>
       <div className="w-full max-w-2xl mx-auto mt-8">
         <div className="relative border-l border-gray-700 pl-8">
           {changelog.map((item, idx) => (
