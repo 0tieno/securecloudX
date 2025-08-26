@@ -5,7 +5,8 @@ export default function PricingSection() {
         Pricing
       </h2>
       <p className="text-gray-300 text-center mb-8 max-w-xl">
-        Keep using the guide for free. Only consultation is charged to support commitment with additional benefits.
+        Keep using the guide for free. Only consultation is charged to support
+        commitment with additional benefits.
       </p>
       <div className="flex flex-col md:flex-row gap-8 justify-center mb-8">
         {/* Students Plan */}
@@ -24,57 +25,74 @@ export default function PricingSection() {
           </p>
           <ul className="text-gray-200 text-sm space-y-2 w-full">
             <li className="flex items-center gap-2">
-              <span className="text-green-400">✔️</span>Cloud security 1-1 training
+              <span className="text-green-400">✔️</span>Cloud security 1-1
+              training
             </li>
             <li className="flex items-center gap-2">
-              <span className="text-green-400">✔️</span> Portfolio Project walkthrough assistance
+              <span className="text-green-400">✔️</span> Portfolio Project
+              walkthrough assistance
             </li>
             <li className="flex items-center gap-2">
-              <span className="text-green-400">✔️</span> Cloud security concept explanation
+              <span className="text-green-400">✔️</span> Cloud security concept
+              explanation
             </li>
             <li className="flex items-center gap-2">
-              <span className="text-green-400">✔️</span> Career guidance and tips
+              <span className="text-green-400">✔️</span> Career guidance and
+              tips
             </li>
             <li className="flex items-center gap-2">
-              <span className="text-green-400">✔️</span> Portfolio development advice
+              <span className="text-green-400">✔️</span> Portfolio development
+              advice
             </li>
             <li className="flex items-center gap-2">
-              <span className="text-green-400">✔️</span> Learning path recommendations
+              <span className="text-green-400">✔️</span> Learning path
+              recommendations
             </li>
           </ul>
         </div>
         {/* Professional Plan */}
         <div className="bg-gray-900 rounded-xl p-8 w-80 shadow flex flex-col items-center">
-          <h3 className="text-xl font-semibold mb-1">Professional • Business</h3>
+          <h3 className="text-xl font-semibold mb-1">
+            Professional • Business
+          </h3>
           <div className="flex items-center gap-2 mb-2">
-            <span className="line-through text-gray-400 text-sm">Ksh. 4000</span>
-            <span className="text-yellow-400 text-lg font-bold">Ksh. 1,000</span>
+            <span className="line-through text-gray-400 text-sm">
+              Ksh. 4000
+            </span>
+            <span className="text-yellow-400 text-lg font-bold">
+              Ksh. 1,000
+            </span>
             <span className="text-gray-400 text-sm">/60 minutes</span>
           </div>
           <button className="bg-yellow-400 text-black font-semibold px-4 py-1 rounded-full mb-4 hover:bg-yellow-300 transition">
             Get started
           </button>
           <p className="text-gray-400 text-center mb-4 text-sm">
-Comprehensive consultation for small businesses
+            Comprehensive consultation for small businesses
           </p>
           <ul className="text-gray-200 text-sm space-y-2 w-full">
             <li className="flex items-center gap-2">
-              <span className="text-green-400">✔️</span> Security assessment guidance
+              <span className="text-green-400">✔️</span> Security assessment
+              guidance
             </li>
             <li className="flex items-center gap-2">
-              <span className="text-green-400">✔️</span> Cloud migration strategy
+              <span className="text-green-400">✔️</span> Cloud migration
+              strategy
             </li>
             <li className="flex items-center gap-2">
-              <span className="text-green-400">✔️</span> Compliance framework discussion
+              <span className="text-green-400">✔️</span> Compliance framework
+              discussion
             </li>
             <li className="flex items-center gap-2">
-              <span className="text-green-400">✔️</span> Risk analysis and mitigation
+              <span className="text-green-400">✔️</span> Risk analysis and
+              mitigation
             </li>
             <li className="flex items-center gap-2">
               <span className="text-green-400">✔️</span> Implementation roadmap
             </li>
             <li className="flex items-center gap-2">
-              <span className="text-green-400">✔️</span> Follow-up recommendations
+              <span className="text-green-400">✔️</span> Follow-up
+              recommendations
             </li>
           </ul>
         </div>
@@ -88,12 +106,12 @@ Comprehensive consultation for small businesses
           <a href="#" className="hover:text-yellow-400">
             Privacy Policy
           </a>
-          <a href="#" className="hover:text-yellow-400">
+          <a href="/refund-policy" className="hover:text-yellow-400">
             Refund Policy
           </a>
         </div>
         <div className="text-gray-500 text-xs">
-          © 2024 time.fyi - Your ultimate time management companion
+          © 2025 securecloudX.guide - Your ultimate cloud security guide
         </div>
       </div>
     </div>
