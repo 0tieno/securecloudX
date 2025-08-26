@@ -35,28 +35,35 @@ export default function Changelog() {
       </h3>
       <div className="w-full max-w-2xl mx-auto mt-6 sm:mt-8">
         <div className="relative flex flex-col">
-          {/* Vertical line for the whole timeline */}
+          {/* Vertical line for the whole timeline, perfectly centered */}
           <div
-            className="absolute left-4 sm:left-4 top-0 w-0.5 bg-gray-700"
-            style={{ height: "100%" }}
+            className="absolute top-0"
+            style={{
+              left: "16px",
+              width: "2px",
+              height: "100%",
+              background: "#374151",
+              zIndex: 0,
+            }}
           ></div>
           {changelog.map((item, idx) => (
             <div
               key={item.date}
               className="flex flex-row items-center mb-6 sm:mb-8"
             >
-              {/* Timeline column */}
+              {/* Timeline column, 32px wide */}
               <div
                 className="relative flex flex-col items-center"
                 style={{ width: "32px" }}
               >
-                {/* Dot */}
+                {/* Dot, centered at 16px */}
                 <div
                   className="w-3 h-3 bg-gray-700 rounded-full border-2 border-gray-900 z-10"
                   style={{
-                    position: "relative",
-                    left: "50%",
-                    transform: "translateX(-50%)",
+                    position: "absolute",
+                    left: "16px",
+                    top: 0,
+                    transform: "translate(-50%, 0)",
                   }}
                 ></div>
               </div>
