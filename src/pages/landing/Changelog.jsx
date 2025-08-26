@@ -25,24 +25,49 @@ const changelog = [
 
 export default function Changelog() {
   return (
-      <div className="w-full flex flex-col items-center justify-center mt-16">
-          <h2 className="text-2xl font-semibold text-center mb-2 border-b border-gray-700 pb-1 w-64">
+    <div className="w-full flex flex-col items-center justify-center mt-10 px-2 sm:px-0">
+      <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-2 border-b border-gray-700 pb-1 w-full max-w-xs sm:max-w-md">
         Changelog
       </h2>
-      <h3 className="text-xl max-w-xl font-semibold text-center mb-2 text-gray-100">
+      <h3 className="text-lg sm:text-xl max-w-md font-semibold text-center mb-2 text-gray-100">
         We are always improving our content, adding new resources and adding
         features to enhance your learning experience.
       </h3>
-      <div className="w-full max-w-2xl mx-auto mt-8">
-        <div className="relative border-l border-gray-700 pl-8">
+      <div className="w-full max-w-2xl mx-auto mt-6 sm:mt-8">
+        <div className="relative flex flex-col">
+          {/* Vertical line for the whole timeline */}
+          <div
+            className="absolute left-4 sm:left-4 top-0 w-0.5 bg-gray-700"
+            style={{ height: "100%" }}
+          ></div>
           {changelog.map((item, idx) => (
-            <div key={item.date} className="flex items-start mb-8">
-              <div className="absolute -left-2.5 mt-1 w-3 h-3 bg-gray-700 rounded-full border-2 border-gray-900"></div>
-              <div className="w-32 text-gray-400 text-sm font-medium">
-                {item.date}
+            <div
+              key={item.date}
+              className="flex flex-row items-center mb-6 sm:mb-8"
+            >
+              {/* Timeline column */}
+              <div
+                className="relative flex flex-col items-center"
+                style={{ width: "32px" }}
+              >
+                {/* Dot */}
+                <div
+                  className="w-3 h-3 bg-gray-700 rounded-full border-2 border-gray-900 z-10"
+                  style={{
+                    position: "relative",
+                    left: "50%",
+                    transform: "translateX(-50%)",
+                  }}
+                ></div>
               </div>
-              <div className="ml-4 text-gray-100 font-medium leading-snug">
-                {item.desc}
+              {/* Date and description */}
+              <div className="flex flex-col sm:flex-row items-start w-full">
+                <div className="w-full sm:w-32 text-gray-400 text-xs sm:text-sm font-medium mb-1 sm:mb-0">
+                  {item.date}
+                </div>
+                <div className="ml-0 sm:ml-4 text-gray-100 font-medium leading-snug text-sm sm:text-base">
+                  {item.desc}
+                </div>
               </div>
             </div>
           ))}
