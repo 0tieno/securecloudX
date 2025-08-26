@@ -6,7 +6,7 @@ import Changelog from "./landing/Changelog";
 
 export default function LandingPage() {
   return (
-    <div className="min-h-screen bg-black flex flex-col items-center justify-center text-white">
+    <div className="min-h-screen bg-black flex flex-col items-center justify-center text-white py-12">
       <LandingHeader />
       <FeatureGrid />
       <Changelog />
