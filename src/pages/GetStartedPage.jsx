@@ -4,8 +4,17 @@ import { useNavigate } from "react-router-dom";
 export default function GetStartedPage() {
   const navigate = useNavigate();
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white">
-      {/* <h1 className="text-3xl font-bold mb-8">Choose Your Path</h1> */}
+    <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white pb-40">
+      {/* Back Navigation Button - cyber style */}
+      <div className="w-64 mx-auto mb-8 flex justify-start">
+        <button
+          className="px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-800 text-black font-mono font-bold border-2 border-cyan-400 rounded-md shadow-md hover:from-cyan-400 hover:to-blue-700 transition-all duration-150 flex items-center gap-2"
+          onClick={() => navigate("/")}
+        >
+          <span className="text-cyan-300">&#8592;</span>
+          <span className="tracking-widest">BACK</span>
+        </button>
+      </div>
       <div className="flex flex-col gap-6 w-64">
         <button
           className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow"
@@ -28,9 +37,9 @@ export default function GetStartedPage() {
       </div>
 
       {/* Fixed Footer */}
-      <footer className="fixed bottom-0 left-0 w-full bg-white bg-opacity-90 py-4 border-t border-gray-200 flex justify-center items-center z-50">
-        <div className="flex flex-row items-center justify-center w-full max-w-4xl mx-auto px-4">
-          <div className="flex flex-col items-start mr-8">
+      <footer className="fixed bottom-0 left-0 w-full bg-white bg-opacity-90 py-4 mt-8 border-t border-gray-200 flex justify-center items-center z-50">
+        <div className="flex flex-col md:flex-row items-start justify-center w-full max-w-4xl mx-auto px-2 md:px-4 gap-4 md:gap-0">
+          <div className="flex flex-col items-start md:mr-8 mb-2 md:mb-0 w-full md:w-auto text-left">
             <div className="font-semibold text-gray-800 text-lg mb-1">
               Master cloud security. Build secure systems.
             </div>
@@ -42,7 +51,7 @@ export default function GetStartedPage() {
               securecloudx.learn@gmail.com
             </a>
           </div>
-          <div className="flex flex-col items-start mr-8">
+          <div className="flex flex-col items-start md:mr-8 mb-2 md:mb-0 w-full md:w-auto text-left">
             <div className="flex items-center mb-1">
               <span className="mr-2 text-gray-600">
                 <svg
@@ -80,8 +89,10 @@ export default function GetStartedPage() {
               </a>
             </div>
           </div>
-          <div className="flex-1 text-gray-700 text-base">
-            securecloudX is built on the strong belief that with the right discipline, anyone can master cloud security — through practical, hands-on learning.
+          <div className="text-gray-700 text-base w-full md:flex-1 text-left">
+            securecloudX is built on the strong belief that with the right
+            discipline, anyone can master cloud security — through practical,
+            hands-on learning.
           </div>
         </div>
       </footer>
