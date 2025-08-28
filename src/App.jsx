@@ -6,6 +6,7 @@ import Sidebar from "./components/Sidebar";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import LandingPage from "./pages/LandingPage";
+import GetStartedPage from "./pages/GetStartedPage";
 import RefundPolicyPage from "./pages/RefundPolicyPage";
 import Day1 from "./pages/Day1";
 import Task1 from "./pages/Task1";
@@ -39,6 +40,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/refund-policy" element={<RefundPolicyPage />} />
+        <Route path="/get-started" element={<GetStartedPage />} />
         <Route
           path="*"
           element={

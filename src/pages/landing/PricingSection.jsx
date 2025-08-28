@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 export default function PricingSection() {
   return (
     <div className="w-full flex flex-col items-center mt-16">
-      <h2 className="text-2xl font-semibold text-center mb-2 border-b border-gray-700 pb-1 w-64">
-        Pricing
-      </h2>
-      <p className="text-gray-300 text-center mb-8 max-w-xl">
+      <div className="flex items-center justify-center mb-2 w-64">
+        <hr className="flex-grow border-t border-gray-700 mx-2" />
+        <span className="text-2xl font-semibold text-center px-2">Pricing</span>
+        <hr className="flex-grow border-t border-gray-700 mx-2" />
+      </div>
+      <p className="text-gray-300 text-center mb-8 mt-4 max-w-xl">
         Keep using the guide for free. Only consultation is charged to support
         commitment with additional benefits.
       </p>

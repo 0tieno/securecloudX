@@ -75,31 +75,6 @@ const Home = () => {
           </div>
         </div>
 
-        <p className="text-gray-300 text-base md:text-lg text-start leading-relaxed">
-          securecloudX is built on the strong belief that with the right
-          discipline, anyone can master cloud security and fundamentals of
-          DevSecOps—through practical, hands-on learning.
-          {/*           <br className="hidden md:block" />
-          <span className="block mt-2">
-            Complete the capstone project to earn a{" "}
-            <strong>Microsoft-recognized certificate</strong>.
-          </span> */}
-        </p>
-
-        {/* Youtube welcome video */}
-
-        {/* <section className="max-w-4xl  px-4 py-10">
-      <div className="w-full h-[140px] sm:h-[260px] md:h-[450px] lg:h-[300px] rounded-lg overflow-hidden shadow-lg border border-gray-700">
-        <iframe
-          src="https://www.youtube.com/embed/myZ2TjbEZmQ"
-          title="product pre-launch"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowFullScreen
-          className="w-full h-full"
-        ></iframe>
-      </div>
-    </section> */}
-
         {/* Is Cloud Security for You? */}
         <div className="mt-6 p-4 bg-gray-800 border-l-4 border-yellow-500 rounded-lg shadow-md">
           <h3 className="text-lg sm:text-xl font-semibold text-yellow-400">
