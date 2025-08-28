@@ -2,7 +2,7 @@ import React from "react";
 
 const features = [
   {
-    title: "Cloud Security Labs",
+    title: "Security Labs",
     description: "Hands-on labs to learn cloud security by doing.",
     icon: (
       <svg
