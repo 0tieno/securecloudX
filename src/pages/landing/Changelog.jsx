@@ -30,10 +30,14 @@ const changelog = [
 export default function Changelog() {
   return (
     <div className="w-full max-w-2xl mx-auto px-2 sm:px-0 mt-10">
-      <h2 className="text-2xl sm:text-3xl font-semibold text-center mb-2 border-b border-gray-700 pb-1 w-full max-w-xs sm:max-w-md mx-auto">
-        Changelog
-      </h2>
-      <h3 className="text-lg sm:text-xl max-w-md font-semibold text-center mb-12 text-gray-100 mx-auto">
+      <div className="flex items-center justify-center mb-2 w-full max-w-xs sm:max-w-md mx-auto">
+        <hr className="flex-grow border-t border-gray-700 mx-2" />
+        <span className="text-2xl sm:text-3xl font-semibold text-center px-2">
+          Changelog
+        </span>
+        <hr className="flex-grow border-t border-gray-700 mx-2" />
+      </div>
+      <h3 className="text-lg sm:text-xl max-w-md font-semibold text-center mb-12 mt-6 text-gray-100 mx-auto">
         We are always improving our content, adding new resources and adding
         features to enhance your learning experience.
       </h3>
