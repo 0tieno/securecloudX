@@ -91,7 +91,7 @@ export default function GetStartedPage() {
           </div>
           <div className="text-gray-700 text-base w-full md:flex-1 text-left">
             securecloudX is built on the strong belief that with the right
-            discipline, anyone can master cloud security — through practical,
+            discipline, anyone can master cloud security through practical,
             hands-on learning.
           </div>
         </div>
