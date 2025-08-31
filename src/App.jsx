@@ -3,6 +3,7 @@ import ProtectedDayRoute from "./routes/ProtectedDayRoute";
 import ProtectedDayResources from "./routes/ProtectedDayResources";
 
 import Sidebar from "./components/Sidebar";
+import OpenSourceBlog from "./pages/OpenSourceBlog";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import LandingPage from "./pages/LandingPage";
@@ -214,6 +215,9 @@ const App = () => {
             </div>
           }
         />
+
+        {/* Standalone OpenSourceBlog route */}
+        <Route path="/opensource-blog" element={<OpenSourceBlog />} />
       </Routes>
     </Router>
   );

@@ -30,9 +30,9 @@ export default function GetStartedPage() {
         </button>
         <button
           className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-3 rounded-lg shadow"
-          onClick={() => {}}
+          onClick={() => navigate("/opensource-blog")}
         >
-          OpenSource Blogs - coming soon
+          OpenSource Blogs
         </button>
       </div>
 
