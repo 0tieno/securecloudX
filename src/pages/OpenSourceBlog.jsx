@@ -10,18 +10,22 @@ const blogFiles = [
   {
     filename: "hello-open-source.md",
     date: "2025-08-31",
+    author: "SecureCloudX Team",
   },
   {
     filename: "cloud-security-fundamentals.md",
     date: "2025-08-30",
+    author: "Alex Chen",
   },
   {
     filename: "secure-coding-practices.md",
     date: "2025-08-28",
+    author: "Sarah Mitchell",
   },
   {
     filename: "devsecops-pipeline-security.md",
     date: "2025-09-01",
+    author: "Marcus Rodriguez",
   },
 ];
 
@@ -84,6 +88,12 @@ const OpenSourceBlog = () => {
 
               const { title, excerpt, readingTime } =
                 extractMetadataFromMarkdown(text);
+              console.log(`Post data for ${meta.filename}:`, {
+                ...meta,
+                title,
+                excerpt,
+                readingTime,
+              });
               return { ...meta, title, excerpt, content: text, readingTime };
             } catch (error) {
               console.error(`Error fetching ${meta.filename}:`, error);
@@ -98,6 +108,10 @@ const OpenSourceBlog = () => {
           .sort((a, b) => new Date(b.date) - new Date(a.date));
 
         console.log(`Successfully loaded ${validPosts.length} blog posts`);
+        console.log(
+          "Posts with authors:",
+          validPosts.map((p) => ({ title: p.title, author: p.author }))
+        );
         setPosts(validPosts);
         setError(null);
       } catch (error) {
@@ -232,6 +246,12 @@ const OpenSourceBlog = () => {
                               <Clock className="w-3 h-3 mr-1" />
                               {post.readingTime}m
                             </div>
+                            <div className="flex items-center">
+                              <span className="text-gray-600">by</span>
+                              <span className="text-gray-400 ml-1">
+                                {post.author}
+                              </span>
+                            </div>
                           </div>
                         </header>
 
@@ -280,6 +300,12 @@ const OpenSourceBlog = () => {
                   <div className="flex items-center">
                     <Clock className="w-4 h-4 mr-2" />
                     {selectedPost.readingTime}m read
+                  </div>
+                  <div className="flex items-center">
+                    <span className="text-gray-600">by</span>
+                    <span className="text-gray-400 ml-1">
+                      {selectedPost.author}
+                    </span>
                   </div>
                 </div>
               </header>
@@ -415,7 +441,6 @@ const OpenSourceBlog = () => {
             <div className="text-gray-500 text-xs">
               cloud security engineer | cloud penetration tester
             </div>
-            
           </div>
         </div>
       </footer>
