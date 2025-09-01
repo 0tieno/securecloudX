@@ -1,4 +1,4 @@
-# Reconnaissance Fundamentals
+# Security Fundamentals (test_example)
 
 Reconnaissance is the first phase in ethical hacking and penetration testing. It involves gathering information about the target without active engagement. This passive information gathering helps identify potential entry points for deeper testing later.
 

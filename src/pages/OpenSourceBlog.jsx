@@ -12,11 +12,21 @@ const blogFiles = [
     date: "2025-08-31",
     author: "SecureCloudX Team",
   },
-   {
-      "filename": "secure-coding.md",
-      "title": "secure coding",
-      "date": "2025-08-31"
-    }
+  {
+    filename: "hello-open-source.md",
+    date: "2025-08-31",
+    author: "SecureCloudX Team",
+  },
+  {
+    filename: "hello-open-source.md",
+    date: "2025-08-31",
+    author: "SecureCloudX Team",
+  },
+  //  {
+  //     "filename": "secure-coding.md",
+  //     "title": "secure coding",
+  //     "date": "2025-08-31"
+  //   }
 ];
 
 function extractMetadataFromMarkdown(markdown) {

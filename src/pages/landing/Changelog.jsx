@@ -1,5 +1,13 @@
 const changelog = [
   {
+    date: "01 Sept, 2025",
+    desc: "Added open source blogs and labs on pentesting.",
+  },
+  {
+    date: "01 Sept, 2025",
+    desc: "Redesigned the site with security vibe and look.",
+  },
+  {
     date: "26 Aug, 2025",
     desc: "Added this landing page.",
   },

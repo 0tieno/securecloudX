@@ -23,8 +23,7 @@ export default function GetStartedPage() {
             </h1>
           </div>
           <p className="text-gray-500 max-w-2xl">
-            // Choose your learning path in cloud security and penetration
-            testing
+            // 2 paths: cloud security engineering and cloud penetration testing
           </p>
           <div className="mt-4 text-sm text-gray-600">
             root@securecloudx:~# ./choose_path.sh

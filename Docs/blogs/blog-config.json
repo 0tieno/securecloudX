@@ -6,10 +6,16 @@
       "date": "2025-08-31"
     },
     {
-      "filename": "secure-coding.md",
-      "title": "secure coding",
+      "filename": "hello-open-source.md",
+      "title": "Hello Open Source",
+      "date": "2025-08-31"
+    },
+    {
+      "filename": "hello-open-source.md",
+      "title": "Hello Open Source",
       "date": "2025-08-31"
     }
+    
   ],
   "author": "SecureCloudX Team",
   "baseUrl": "/Docs/blogs/",
