@@ -1,19 +1,39 @@
 import Content from "../components/Content";
 import { Link } from "react-router-dom";
+import {
+  Terminal
+} from "lucide-react";
 
 const ForgottenSecretLab = () => {
   return (
     <Content>
       <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl sm:text-4xl font-bold text-gray-300 mb-2">
-            Forgotten Secret Lab: Hacking Git History
-          </h1>
-          <p className="text-xl text-yellow-400 font-semibold">
-            Welcome to the Forgotten Secret Lab!
-          </p>
+        
+        {/* Live Hackathon Alert */}
+        <div className="bg-gray-800 border-l border-r border-gray-700 p-3 sm:p-6">
+          <Link
+            to="/forgotten-secret-lab"
+            className="block w-full transition-all duration-300 hover:bg-gray-750 p-3 sm:p-4 border border-red-500/30 hover:border-red-400 group"
+          >
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3">
+              <div className="flex items-center gap-2 sm:gap-3">
+                <div className="relative flex items-center justify-center">
+                  <div className="absolute w-6 h-6 sm:w-8 sm:h-8 border-2 border-red-500/30 rounded-full animate-ping"></div>
+                  <div className="absolute w-4 h-4 sm:w-6 sm:h-6 border-2 border-red-400/50 rounded-full animate-pulse"></div>
+                  <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-500 rounded-full animate-pulse"></div>
+                </div>
+                <Terminal className="w-5 h-5 sm:w-6 sm:h-6 text-red-400 group-hover:text-red-300" />
+              </div>
+              <span className="text-sm sm:text-xl font-bold text-red-400 group-hover:text-red-300 text-center">
+                [LIVE] Forgotten Secret Lab - Git Forensics Challenge
+              </span>
+            </div>
+            <div className="text-center text-gray-500 text-xs sm:text-sm mt-2 font-mono">
+              $ ./hunt_secrets.sh --git-history --api-exploit
+            </div>
+          </Link>
         </div>
+
 
         {/* Scenario */}
         <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-red-500">

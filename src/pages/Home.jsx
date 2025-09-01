@@ -29,32 +29,6 @@ const Home = () => {
             </span>
           </div>
         </div>
-
-        {/* Live Hackathon Alert */}
-        {/* <div className="bg-gray-800 border-l border-r border-gray-700 p-3 sm:p-6">
-          <Link
-            to="/forgotten-secret-lab"
-            className="block w-full transition-all duration-300 hover:bg-gray-750 p-3 sm:p-4 border border-red-500/30 hover:border-red-400 group"
-          >
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3">
-              <div className="flex items-center gap-2 sm:gap-3">
-                <div className="relative flex items-center justify-center">
-                  <div className="absolute w-6 h-6 sm:w-8 sm:h-8 border-2 border-red-500/30 rounded-full animate-ping"></div>
-                  <div className="absolute w-4 h-4 sm:w-6 sm:h-6 border-2 border-red-400/50 rounded-full animate-pulse"></div>
-                  <div className="w-2 h-2 sm:w-3 sm:h-3 bg-red-500 rounded-full animate-pulse"></div>
-                </div>
-                <Terminal className="w-5 h-5 sm:w-6 sm:h-6 text-red-400 group-hover:text-red-300" />
-              </div>
-              <span className="text-sm sm:text-xl font-bold text-red-400 group-hover:text-red-300 text-center">
-                [LIVE] Forgotten Secret Lab - Git Forensics Challenge
-              </span>
-            </div>
-            <div className="text-center text-gray-500 text-xs sm:text-sm mt-2 font-mono">
-              $ ./hunt_secrets.sh --git-history --api-exploit
-            </div>
-          </Link>
-        </div> */}
-
         {/* Main Terminal Content */}
         <div className="bg-gray-800 border-l border-r border-b border-gray-700 rounded-b-lg p-3 sm:p-6">
           {/* Welcome Section */}
@@ -64,15 +38,8 @@ const Home = () => {
               $ cat welcome.txt
             </div>
             <h1 className="text-xl sm:text-3xl font-bold text-gray-300 mb-2 flex flex-col sm:flex-row sm:items-center">
-              {/* <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400 mb-2 sm:mb-0 sm:mr-3" /> */}
               <span>Welcome to secureCloudX _engineering-part_</span>
             </h1>
-            {/* <div className="text-green-400 text-xs sm:text-sm mb-2">
-              $ whoami
-            </div>
-            <div className="text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
-              cloud_security_guru
-            </div> */}
             <div className="text-gray-500 text-xs sm:text-sm pl-2 sm:pl-3 py-1">
               <span>Last updated: Aug 25, 2025 | Status: ACTIVE</span>
             </div>
