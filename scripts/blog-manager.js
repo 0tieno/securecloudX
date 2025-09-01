@@ -8,7 +8,9 @@
  * Usage:
  *   node scripts/blog-manager.js create "My New Post" --tags security,cloud
  *   node scripts/blog-manager.js list
- *   node scripts/blog-manager.js serve
+ *   node scripts/blog-manager.js generate
+ *   node scripts/blog-manager.js validate
+ *   node scripts/blog-manager.js sync
  */
 
 import fs from 'fs';
@@ -19,12 +21,17 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const BLOGS_DIR = path.join(path.dirname(__dirname), 'Docs', 'blogs');
-const BLOG_CONFIG_FILE = path.join(BLOGS_DIR, 'blog-config.json');
+const BLOGS_DIR = path.join(__dirname, '..', 'Docs', 'blogs');
+const PUBLIC_BLOG_DIR = path.join(__dirname, '..', 'public', 'blog');
+const CONFIG_FILE = path.join(BLOGS_DIR, 'blog-config.json');
+const REACT_COMPONENT_FILE = path.join(__dirname, '..', 'src', 'pages', 'OpenSourceBlog.jsx');
 
-// Ensure blogs directory exists
+// Ensure directories exist
 if (!fs.existsSync(BLOGS_DIR)) {
   fs.mkdirSync(BLOGS_DIR, { recursive: true });
+}
+if (!fs.existsSync(PUBLIC_BLOG_DIR)) {
+  fs.mkdirSync(PUBLIC_BLOG_DIR, { recursive: true });
 }
 
 // Helper function to create filename from title
@@ -41,238 +48,269 @@ function formatDate(date = new Date()) {
   return date.toISOString().split('T')[0];
 }
 
-// Load blog configuration
-function loadBlogConfig() {
+// Helper function to read blog config
+function readBlogConfig() {
   try {
-    if (fs.existsSync(BLOG_CONFIG_FILE)) {
-      return JSON.parse(fs.readFileSync(BLOG_CONFIG_FILE, 'utf8'));
+    if (fs.existsSync(CONFIG_FILE)) {
+      return JSON.parse(fs.readFileSync(CONFIG_FILE, 'utf8'));
     }
   } catch (error) {
-    console.warn('Could not load blog config, using defaults');
+    console.warn('Error reading blog config:', error.message);
   }
   
+  // Return default config
   return {
     posts: [],
-    author: 'SecureCloudX Team',
-    baseUrl: '/Docs/blogs/'
+    author: "SecureCloudX Team",
+    baseUrl: "/blog/",
+    siteConfig: {
+      title: "SecureCloudX Blog",
+      description: "Insights, tutorials, and thoughts on cloud security, DevSecOps, and modern development practices.",
+      social: {
+        github: "https://github.com/securecloudx",
+        twitter: "https://twitter.com/securecloudX",
+        email: "securecloudx.learn@gmail.com"
+      }
+    }
   };
 }
 
-// Save blog configuration
-function saveBlogConfig(config) {
-  fs.writeFileSync(BLOG_CONFIG_FILE, JSON.stringify(config, null, 2));
+// Helper function to write blog config
+function writeBlogConfig(config) {
+  fs.writeFileSync(CONFIG_FILE, JSON.stringify(config, null, 2));
+}
+
+// Sync blog files from Docs/blogs to public/blog
+function syncBlogFiles() {
+  console.log('🔄 Syncing blog files to public directory...');
+  
+  try {
+    // Copy all markdown files
+    const files = fs.readdirSync(BLOGS_DIR);
+    const mdFiles = files.filter(file => file.endsWith('.md') && file !== 'README.md');
+    
+    for (const file of mdFiles) {
+      const srcPath = path.join(BLOGS_DIR, file);
+      const destPath = path.join(PUBLIC_BLOG_DIR, file);
+      fs.copyFileSync(srcPath, destPath);
+      console.log(`✅ Synced: ${file}`);
+    }
+    
+    // Copy config file
+    const configSrc = path.join(BLOGS_DIR, 'blog-config.json');
+    const configDest = path.join(PUBLIC_BLOG_DIR, 'blog-config.json');
+    if (fs.existsSync(configSrc)) {
+      fs.copyFileSync(configSrc, configDest);
+      console.log('✅ Synced: blog-config.json');
+    }
+    
+    console.log('✨ Blog sync completed!');
+    return true;
+  } catch (error) {
+    console.error('❌ Error syncing blog files:', error.message);
+    return false;
+  }
 }
 
 // Create a new blog post
-async function createBlogPost(title, options = {}) {
+async function createPost(title, tags = []) {
+  if (!title) {
+    console.log('📝 Creating a new blog post...\n');
+    
+    const rl = readline.createInterface({
+      input: process.stdin,
+      output: process.stdout
+    });
+    
+    title = await new Promise(resolve => {
+      rl.question('Enter post title: ', resolve);
+    });
+    
+    const tagsInput = await new Promise(resolve => {
+      rl.question('Enter tags (comma-separated): ', resolve);
+    });
+    
+    tags = tagsInput ? tagsInput.split(',').map(tag => tag.trim()) : [];
+    
+    rl.close();
+  }
+  
   const filename = createFilename(title);
   const filePath = path.join(BLOGS_DIR, filename);
   
   if (fs.existsSync(filePath)) {
-    console.error(`❌ Blog post "${filename}" already exists!`);
+    console.error(`❌ Post already exists: ${filename}`);
     return;
   }
   
   const date = formatDate();
-  const tags = options.tags ? options.tags.split(',').map(t => t.trim()) : ['general'];
-  
   const content = `# ${title}
 
-Write your blog post content here using Markdown syntax.
+Welcome to this new blog post! This is your introduction paragraph that will be used as the excerpt.
 
-## Introduction
+## Getting Started
 
-Start with an engaging introduction that hooks your readers.
+Write your main content here. You can use all the standard markdown features:
 
-## Main Content
-
-Add your main content here. You can use:
-
-- **Bold text** and *italic text*
-- \`inline code\` and code blocks
-- Lists and numbered lists
-- Links: [SecureCloudX](https://securecloudx.com)
-- Images: ![Alt text](image-url.jpg)
+- **Bold text** and _italic text_
+- \`Inline code\`
+- [Links](https://example.com)
 
 ### Code Examples
 
-\`\`\`bash
-# Example bash command
-echo "Hello, SecureCloudX!"
-\`\`\`
-
 \`\`\`javascript
-// Example JavaScript code
+// Example code block
 function secureFunction() {
   console.log("Security first!");
 }
 \`\`\`
 
-## Best Practices
+### Lists and More
 
-Share key takeaways and best practices:
+1. Ordered lists work great
+2. For step-by-step instructions
+3. And procedures
 
-1. Always validate input
-2. Use encryption for sensitive data
-3. Implement proper authentication
-4. Keep dependencies updated
+> Use blockquotes for important notes or highlights
 
 ## Conclusion
 
-Summarize your key points and provide actionable next steps.
+Wrap up your post with key takeaways and next steps.
 
 ---
 
-_Learn more about cloud security through hands-on challenges at [SecureCloudX](https://securecloudx.com)._
+_Learn more at [SecureCloudX](https://securecloudx.com)._
 `;
-
-  // Write the blog post file
+  
+  // Write the file
   fs.writeFileSync(filePath, content);
   
-  // Update blog configuration
-  const config = loadBlogConfig();
-  config.posts.push({
+  // Update config
+  const config = readBlogConfig();
+  const newPost = {
     filename,
     title,
     date,
     tags,
     author: config.author
-  });
-  saveBlogConfig(config);
+  };
+  
+  config.posts.push(newPost);
+  writeBlogConfig(config);
+  
+  // Sync files to public directory
+  syncBlogFiles();
   
   console.log(`✅ Created new blog post: ${filename}`);
-  console.log(`📝 Edit the file at: ${filePath}`);
-  console.log(`🏷️  Tags: ${tags.join(', ')}`);
-  
-  return filePath;
+  console.log(`📂 Location: ${filePath}`);
+  console.log(`🏷️  Tags: ${tags.join(', ') || 'none'}`);
+  console.log('\n🎉 Your blog post is ready to edit!');
 }
 
 // List all blog posts
-function listBlogPosts() {
-  const config = loadBlogConfig();
+function listPosts() {
+  const config = readBlogConfig();
   
   if (config.posts.length === 0) {
-    console.log('📝 No blog posts found. Create one with: node scripts/blog-manager.js create "My First Post"');
+    console.log('📝 No blog posts found. Create your first post with:');
+    console.log('   node scripts/blog-manager.js create');
     return;
   }
   
-  console.log('\n📚 Blog Posts:\n');
+  console.log(`📚 Found ${config.posts.length} blog post(s):\n`);
   
   config.posts
     .sort((a, b) => new Date(b.date) - new Date(a.date))
     .forEach((post, index) => {
       console.log(`${index + 1}. ${post.title}`);
       console.log(`   📅 ${post.date}`);
-      console.log(`   🏷️  ${post.tags.join(', ')}`);
       console.log(`   📄 ${post.filename}`);
-      console.log('');
+      console.log(`   🏷️  ${post.tags?.join(', ') || 'no tags'}`);
+      console.log();
     });
 }
 
-// Generate updated blog files list for the React component
+// Generate blog files array for React component
 function generateBlogFilesArray() {
-  const config = loadBlogConfig();
+  const config = readBlogConfig();
   
   const blogFilesArray = config.posts.map(post => ({
     filename: post.filename,
     date: post.date,
-    tags: post.tags || ['general']
+    tags: post.tags || []
   }));
   
-  console.log('\n🔧 Copy this array to your OpenSourceBlog.jsx file:');
-  console.log('\nconst blogFiles = ' + JSON.stringify(blogFilesArray, null, 2) + ';');
-}
-
-// Interactive blog creation
-async function interactiveCreate() {
-  const rl = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-  });
+  const arrayString = `const blogFiles = ${JSON.stringify(blogFilesArray, null, 2)};`;
   
-  const askQuestion = (question) => {
-    return new Promise((resolve) => {
-      rl.question(question, resolve);
-    });
-  };
+  console.log('📋 Blog files array for OpenSourceBlog.jsx:\n');
+  console.log(arrayString);
+  console.log('\n💡 Copy this array to replace the blogFiles constant in your React component.');
   
-  try {
-    console.log('\n📝 Create a New Blog Post\n');
-    
-    const title = await askQuestion('📌 Enter blog post title: ');
-    if (!title.trim()) {
-      console.log('❌ Title cannot be empty!');
-      return;
-    }
-    
-    const tagsInput = await askQuestion('🏷️  Enter tags (comma-separated, optional): ');
-    const tags = tagsInput.trim() || 'general';
-    
-    await createBlogPost(title.trim(), { tags });
-    
-  } finally {
-    rl.close();
-  }
+  return blogFilesArray;
 }
 
 // Validate all blog posts
-function validateBlogPosts() {
-  const config = loadBlogConfig();
-  let issues = 0;
-  
+function validatePosts() {
   console.log('🔍 Validating blog posts...\n');
   
-  config.posts.forEach(post => {
+  const config = readBlogConfig();
+  let errors = 0;
+  
+  for (const post of config.posts) {
     const filePath = path.join(BLOGS_DIR, post.filename);
     
     if (!fs.existsSync(filePath)) {
-      console.log(`❌ Missing file: ${post.filename}`);
-      issues++;
-      return;
+      console.error(`❌ Missing file: ${post.filename}`);
+      errors++;
+      continue;
     }
     
-    const content = fs.readFileSync(filePath, 'utf8');
-    
-    // Check if file has proper title
-    if (!content.startsWith(`# ${post.title}`)) {
-      console.log(`⚠️  Title mismatch in ${post.filename}`);
-      issues++;
+    try {
+      const content = fs.readFileSync(filePath, 'utf8');
+      
+      // Check if file has title
+      if (!content.includes('# ')) {
+        console.warn(`⚠️  ${post.filename}: No title found (missing # heading)`);
+      }
+      
+      // Check if file has content
+      if (content.trim().length < 100) {
+        console.warn(`⚠️  ${post.filename}: Very short content (${content.length} chars)`);
+      }
+      
+      console.log(`✅ ${post.filename}: Valid`);
+    } catch (error) {
+      console.error(`❌ ${post.filename}: Error reading file - ${error.message}`);
+      errors++;
     }
-    
-    // Check if file has content
-    if (content.trim().length < 100) {
-      console.log(`⚠️  ${post.filename} seems too short`);
-      issues++;
-    }
-    
-    console.log(`✅ ${post.filename} looks good`);
-  });
-  
-  if (issues === 0) {
-    console.log('\n🎉 All blog posts are valid!');
-  } else {
-    console.log(`\n⚠️  Found ${issues} issues that need attention.`);
   }
+  
+  console.log(`\n🎯 Validation complete: ${config.posts.length - errors}/${config.posts.length} posts valid`);
+  
+  if (errors === 0) {
+    console.log('🎉 All blog posts are valid!');
+  } else {
+    console.log(`⚠️  Found ${errors} error(s). Please fix them before deploying.`);
+  }
+  
+  return errors === 0;
 }
 
-// Main CLI handler
+// Main CLI function
 async function main() {
   const args = process.argv.slice(2);
   const command = args[0];
   
   switch (command) {
     case 'create':
-      if (args[1]) {
-        const tagsIndex = args.indexOf('--tags');
-        const tags = tagsIndex !== -1 ? args[tagsIndex + 1] : undefined;
-        await createBlogPost(args[1], { tags });
-      } else {
-        await interactiveCreate();
-      }
+      const title = args[1];
+      const tagsArg = args.find(arg => arg.startsWith('--tags='));
+      const tags = tagsArg ? tagsArg.split('=')[1].split(',').map(t => t.trim()) : [];
+      await createPost(title, tags);
       break;
       
     case 'list':
-      listBlogPosts();
+      listPosts();
       break;
       
     case 'generate':
@@ -280,33 +318,31 @@ async function main() {
       break;
       
     case 'validate':
-      validateBlogPosts();
+      validatePosts();
+      break;
+      
+    case 'sync':
+      syncBlogFiles();
       break;
       
     default:
-      console.log(`
-📚 SecureCloudX Blog Manager
-
-Usage:
-  node scripts/blog-manager.js create "Post Title" [--tags tag1,tag2]
-  node scripts/blog-manager.js create                    # Interactive mode
-  node scripts/blog-manager.js list                      # List all posts
-  node scripts/blog-manager.js generate                  # Generate blog files array
-  node scripts/blog-manager.js validate                  # Validate all posts
-
-Examples:
-  node scripts/blog-manager.js create "Cloud Security 101" --tags security,cloud,beginner
-  node scripts/blog-manager.js list
-      `);
+      console.log('🚀 SecureCloudX Blog Manager\n');
+      console.log('Usage:');
+      console.log('  create [title] [--tags=tag1,tag2]  Create a new blog post');
+      console.log('  list                               List all blog posts');
+      console.log('  generate                          Generate blog files array');
+      console.log('  validate                          Validate all blog posts');
+      console.log('  sync                              Sync blog files to public directory');
+      console.log('\nExamples:');
+      console.log('  node scripts/blog-manager.js create "My New Post" --tags=security,cloud');
+      console.log('  node scripts/blog-manager.js list');
+      console.log('  node scripts/blog-manager.js sync');
   }
 }
 
 // Run the CLI
-main().catch(console.error);
+if (import.meta.url === `file://${process.argv[1]}`) {
+  main().catch(console.error);
+}
 
-export {
-  createBlogPost,
-  listBlogPosts,
-  generateBlogFilesArray,
-  validateBlogPosts
-};
+export { createPost, listPosts, generateBlogFilesArray, validatePosts, syncBlogFiles };

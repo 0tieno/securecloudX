@@ -2,8 +2,8 @@ import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
 import { Calendar, Clock, ArrowLeft, Search, Tag } from "lucide-react";
 
-// Helper to fetch markdown files from Docs/blogs
-const BLOGS_PATH = "/Docs/blogs/";
+// Helper to fetch markdown files from public/blog
+const BLOGS_PATH = "/blog/";
 
 // List of blog post filenames and their metadata (add more as needed)
 const blogFiles = [
@@ -58,6 +58,7 @@ const OpenSourceBlog = () => {
   const [posts, setPosts] = useState([]);
   const [selectedPost, setSelectedPost] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedTag, setSelectedTag] = useState("");
 
@@ -65,20 +66,32 @@ const OpenSourceBlog = () => {
     const fetchPosts = async () => {
       try {
         setLoading(true);
+        console.log("Starting to fetch blog posts...");
+
         const fetchedPosts = await Promise.all(
           blogFiles.map(async (meta) => {
             try {
-              const res = await fetch(BLOGS_PATH + meta.filename);
+              const url = BLOGS_PATH + meta.filename;
+              console.log(`Fetching: ${url}`);
+
+              const res = await fetch(url);
               if (!res.ok) {
-                console.warn(`Failed to fetch ${meta.filename}:`, res.status);
+                console.warn(
+                  `Failed to fetch ${meta.filename}: ${res.status} ${res.statusText}`
+                );
                 return null;
               }
+
               const text = await res.text();
+              console.log(
+                `Successfully fetched ${meta.filename}, length: ${text.length}`
+              );
+
               const { title, excerpt, readingTime } =
                 extractMetadataFromMarkdown(text);
               return { ...meta, title, excerpt, content: text, readingTime };
             } catch (error) {
-              console.warn(`Error fetching ${meta.filename}:`, error);
+              console.error(`Error fetching ${meta.filename}:`, error);
               return null;
             }
           })
@@ -89,9 +102,12 @@ const OpenSourceBlog = () => {
           .filter((post) => post !== null)
           .sort((a, b) => new Date(b.date) - new Date(a.date));
 
+        console.log(`Successfully loaded ${validPosts.length} blog posts`);
         setPosts(validPosts);
+        setError(null);
       } catch (error) {
         console.error("Error fetching blog posts:", error);
+        setError(error.message);
       } finally {
         setLoading(false);
       }
@@ -128,6 +144,25 @@ const OpenSourceBlog = () => {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800">
         <div className="text-blue-400 text-xl">Loading blog posts...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800">
+        <div className="text-center">
+          <div className="text-red-400 text-xl mb-4">
+            Failed to load blog posts
+          </div>
+          <div className="text-gray-400 text-sm">{error}</div>
+          <button
+            onClick={() => window.location.reload()}
+            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+          >
+            Retry
+          </button>
+        </div>
       </div>
     );
   }
@@ -309,9 +344,8 @@ const OpenSourceBlog = () => {
                 )}
               </header>
 
-              <div className="prose prose-invert prose-blue max-w-none">
+              <div className="prose prose-invert prose-blue max-w-none text-gray-300 leading-relaxed">
                 <ReactMarkdown
-                  className="text-gray-300 leading-relaxed"
                   components={{
                     h1: ({ node, ...props }) => (
                       <h1
