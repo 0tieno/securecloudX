@@ -12,8 +12,8 @@ import {
 export default function GetStartedPage() {
   const navigate = useNavigate();
   return (
-    <div className="min-h-screen bg-gray-900 text-gray-300 font-mono pb-40">
-      <div className="flex flex-col items-center justify-center min-h-screen px-4">
+    <div className="min-h-screen bg-gray-900 text-gray-300 font-mono flex flex-col">
+      <div className="flex-1 flex flex-col items-center justify-center px-4 py-12">
         {/* Header Section */}
         <div className="mb-12 text-center">
           <div className="flex items-center justify-center mb-6">
@@ -114,7 +114,7 @@ export default function GetStartedPage() {
           <div className="bg-gray-800 border border-gray-700 p-4 text-left">
             <div className="text-green-400 text-sm mb-2">$ whoami</div>
             <div className="text-gray-400 text-sm mb-2">
-              security_researcher
+              cloud_security_guru
             </div>
             <div className="text-green-400 text-sm mb-2">$ echo $MISSION</div>
             <div className="text-gray-400 text-sm">
@@ -125,14 +125,14 @@ export default function GetStartedPage() {
         </div>
       </div>
 
-      {/* Fixed Footer - keeping original text as requested */}
-      <footer className="fixed bottom-0 left-0 w-full bg-gray-900 border-t border-gray-700 py-4 mt-8 flex justify-center items-center z-50 font-mono">
-        <div className="flex flex-col md:flex-row items-start justify-center w-full max-w-4xl mx-auto px-2 md:px-4 gap-4 md:gap-0">
-          <div className="flex flex-col items-start md:mr-8 mb-2 md:mb-0 w-full md:w-auto text-left">
+      {/* Footer - now flows with content instead of fixed */}
+      <footer className="bg-gray-900 border-t border-gray-700 py-6 mt-8 font-mono">
+        <div className="flex flex-col lg:flex-row items-start justify-center w-full max-w-6xl mx-auto px-4 gap-6 lg:gap-8">
+          <div className="flex flex-col items-start w-full lg:w-auto text-left">
             <div className="font-semibold text-gray-300 text-lg mb-1">
               Master cloud security. Build secure systems.
             </div>
-            <div className="text-red-400">securecloudX</div>
+            <div className="text-red-400 mb-2">securecloudX</div>
             <a
               href="mailto:conradakunga@gmail.com"
               className="text-red-400 hover:text-red-300 transition-colors text-sm"
@@ -140,8 +140,9 @@ export default function GetStartedPage() {
               securecloudx.learn@gmail.com
             </a>
           </div>
-          <div className="flex flex-col items-start md:mr-8 mb-2 md:mb-0 w-full md:w-auto text-left">
-            <div className="flex items-center mb-1">
+
+          <div className="flex flex-col items-start w-full lg:w-auto text-left">
+            <div className="flex items-center mb-2">
               <span className="mr-2 text-red-400">
                 <svg
                   width="20"
@@ -178,7 +179,8 @@ export default function GetStartedPage() {
               </a>
             </div>
           </div>
-          <div className="text-gray-400 text-base w-full md:flex-1 text-left">
+
+          <div className="text-gray-400 text-base w-full lg:flex-1 text-left lg:text-left">
             securecloudX is built on the strong belief that with the right
             discipline, anyone can master cloud security through practical,
             hands-on learning.
