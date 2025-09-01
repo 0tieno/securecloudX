@@ -1,43 +1,8 @@
-import React from "react";
-import { useNavigate } from "react-router-dom";
 
-export default function GetStartedPage() {
-  const navigate = useNavigate();
+const mainFooter = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white pb-40">
-      {/* Back Navigation Button - cyber style */}
-      <div className="w-64 mx-auto mb-8 flex justify-start">
-        <button
-          className="px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-800 text-black font-mono font-bold border-2 border-cyan-400 rounded-md shadow-md hover:from-cyan-400 hover:to-blue-700 transition-all duration-150 flex items-center gap-2"
-          onClick={() => navigate("/")}
-        >
-          <span className="text-cyan-300">&#8592;</span>
-          <span className="tracking-widest">BACK</span>
-        </button>
-      </div>
-      <div className="flex flex-col gap-6 w-64">
-        <button
-          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow"
-          onClick={() => navigate("/home")}
-        >
-          Engineering
-        </button>
-        <button
-          className="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-lg shadow"
-          onClick={() => {}}
-        >
-          Pentesting - coming soon
-        </button>
-        <button
-          className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-3 rounded-lg shadow"
-          onClick={() => navigate("/opensource-blog")}
-        >
-          OpenSource Blogs
-        </button>
-      </div>
-
-      {/* Fixed Footer */}
-      <footer className="fixed bottom-0 left-0 w-full bg-gradient-to-r from-gray-900 via-gray-900 to-gray-800 bg-opacity-95 py-4 mt-8 border-t border-blue-900 flex justify-center items-center z-50">
+      <div>
+          <footer className="fixed bottom-0 left-0 w-full bg-gradient-to-r from-gray-900 via-gray-900 to-gray-800 bg-opacity-95 py-4 mt-8 border-t border-blue-900 flex justify-center items-center z-50">
         <div className="flex flex-col md:flex-row items-start justify-center w-full max-w-4xl mx-auto px-2 md:px-4 gap-4 md:gap-0">
           <div className="flex flex-col items-start md:mr-8 mb-2 md:mb-0 w-full md:w-auto text-left">
             <div className="font-semibold text-blue-200 text-lg mb-1">
@@ -97,5 +62,7 @@ export default function GetStartedPage() {
         </div>
       </footer>
     </div>
-  );
+  )
 }
+
+export default mainFooter
