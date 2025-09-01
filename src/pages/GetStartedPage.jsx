@@ -24,9 +24,9 @@ export default function GetStartedPage() {
         </button>
         <button
           className="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-lg shadow"
-          onClick={() => {}}
+          onClick={() => navigate("/pentesting-labs")}
         >
-          Pentesting - coming soon
+          Pentesting Labs
         </button>
         <button
           className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-3 rounded-lg shadow"
