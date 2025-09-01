@@ -3,6 +3,7 @@ import ProtectedDayRoute from "./routes/ProtectedDayRoute";
 import ProtectedDayResources from "./routes/ProtectedDayResources";
 
 import Sidebar from "./components/Sidebar";
+import OpenSourceBlog from "./pages/OpenSourceBlog";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import LandingPage from "./pages/LandingPage";
@@ -33,6 +34,7 @@ import BlogList from "./pages/BlogList";
 import BlogPost from "./pages/BlogPost";
 import ForgottenSecretLab from "./pages/ForgottenSecretLab";
 import ConsultMe from "./pages/ConsultMe";
+import PentestingLabs from "./pages/PentestingLabs";
 
 const App = () => {
   return (
@@ -214,6 +216,12 @@ const App = () => {
             </div>
           }
         />
+
+        {/* Standalone OpenSourceBlog route */}
+        <Route path="/opensource-blog" element={<OpenSourceBlog />} />
+
+        {/* Standalone PentestingLabs route */}
+        <Route path="/pentesting-labs" element={<PentestingLabs />} />
       </Routes>
     </Router>
   );

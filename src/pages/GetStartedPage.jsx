@@ -1,59 +1,148 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import {
+  Terminal,
+  Shield,
+  Code,
+  BookOpen,
+  ArrowLeft,
+  Lock,
+} from "lucide-react";
 
 export default function GetStartedPage() {
   const navigate = useNavigate();
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-black text-white pb-40">
-      {/* Back Navigation Button - cyber style */}
-      <div className="w-64 mx-auto mb-8 flex justify-start">
-        <button
-          className="px-4 py-2 bg-gradient-to-r from-cyan-500 to-blue-800 text-black font-mono font-bold border-2 border-cyan-400 rounded-md shadow-md hover:from-cyan-400 hover:to-blue-700 transition-all duration-150 flex items-center gap-2"
-          onClick={() => navigate("/")}
-        >
-          <span className="text-cyan-300">&#8592;</span>
-          <span className="tracking-widest">BACK</span>
-        </button>
-      </div>
-      <div className="flex flex-col gap-6 w-64">
-        <button
-          className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 rounded-lg shadow"
-          onClick={() => navigate("/home")}
-        >
-          Engineering
-        </button>
-        <button
-          className="bg-red-600 hover:bg-red-700 text-white font-semibold py-3 rounded-lg shadow"
-          onClick={() => {}}
-        >
-          Pentesting - coming soon
-        </button>
-        <button
-          className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold py-3 rounded-lg shadow"
-          onClick={() => {}}
-        >
-          OpenSource Blogs - coming soon
-        </button>
+    <div className="min-h-screen bg-gray-900 text-gray-300 font-mono flex flex-col">
+      <div className="flex-1 flex flex-col items-center justify-center px-4 py-12">
+        {/* Header Section */}
+        <div className="mb-12 text-center">
+          <div className="flex items-center justify-center mb-6">
+            <Terminal className="w-8 h-8 text-red-400 mr-3" />
+            <h1 className="text-4xl font-bold text-gray-300">
+              secure<span className="text-red-400">cloud</span>X
+            </h1>
+          </div>
+          <p className="text-gray-500 max-w-2xl">
+            // 2 paths: cloud security engineering and cloud penetration testing
+          </p>
+          <div className="mt-4 text-sm text-gray-600">
+            root@securecloudx:~# ./choose_path.sh
+          </div>
+        </div>
+
+        {/* Back Navigation Button */}
+        <div className="w-full max-w-md mb-8 flex justify-start">
+          <button
+            className="inline-flex items-center px-4 py-2 bg-gray-800 border border-gray-700 text-gray-300 font-mono hover:bg-gray-700 hover:border-gray-600 transition-colors group"
+            onClick={() => navigate("/")}
+          >
+            <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+            cd ../
+          </button>
+        </div>
+
+        {/* Path Selection */}
+        <div className="flex flex-col gap-6 w-full max-w-md">
+          {/* Engineering Path */}
+          <button
+            className="bg-gray-800 border border-gray-700 hover:border-blue-500 text-left p-6 transition-all duration-200 group"
+            onClick={() => navigate("/home")}
+          >
+            <div className="flex items-start">
+              <Code className="w-6 h-6 text-blue-400 mr-4 mt-1 group-hover:text-blue-300" />
+              <div>
+                <h3 className="text-lg font-semibold text-gray-300 mb-2 group-hover:text-blue-300">
+                  ./cloud_security_engineering
+                </h3>
+                <p className="text-gray-500 text-sm leading-relaxed">
+                  Cloud security engineering, secure development, and DevSecOps
+                  practices
+                </p>
+                <div className="mt-3 text-xs text-blue-400 font-mono">
+                  cd /engineering && ./start.sh
+                </div>
+              </div>
+            </div>
+          </button>
+
+          {/* Pentesting Labs Path */}
+          <button
+            className="bg-gray-800 border border-gray-700 hover:border-red-500 text-left p-6 transition-all duration-200 group"
+            onClick={() => navigate("/pentesting-labs")}
+          >
+            <div className="flex items-start">
+              <Shield className="w-6 h-6 text-red-400 mr-4 mt-1 group-hover:text-red-300" />
+              <div>
+                <h3 className="text-lg font-semibold text-gray-300 mb-2 group-hover:text-red-300">
+                  ./cloud_pentesting_labs
+                </h3>
+                <p className="text-gray-500 text-sm leading-relaxed">
+                  Hands-on penetration testing labs and security exercises
+                </p>
+                <div className="mt-3 text-xs text-red-400 font-mono">
+                  cd /labs && ./exploit.sh
+                </div>
+              </div>
+            </div>
+          </button>
+
+          {/* OpenSource Blogs Path */}
+          <button
+            className="bg-gray-800 border border-gray-700 hover:border-green-500 text-left p-6 transition-all duration-200 group"
+            onClick={() => navigate("/opensource-blog")}
+          >
+            <div className="flex items-start">
+              <BookOpen className="w-6 h-6 text-green-400 mr-4 mt-1 group-hover:text-green-300" />
+              <div>
+                <h3 className="text-lg font-semibold text-gray-300 mb-2 group-hover:text-green-300">
+                  ./opensource_blog
+                </h3>
+                <p className="text-gray-500 text-sm leading-relaxed">
+                  Security research, tutorials, and open source contributions
+                </p>
+                <div className="mt-3 text-xs text-green-400 font-mono">
+                  cd /blog && cat *.md
+                </div>
+              </div>
+            </div>
+          </button>
+        </div>
+
+        {/* Terminal Style Info */}
+        <div className="mt-12 max-w-md text-center">
+          <div className="bg-gray-800 border border-gray-700 p-4 text-left">
+            <div className="text-green-400 text-sm mb-2">$ whoami</div>
+            <div className="text-gray-400 text-sm mb-2">
+              cloud_security_guru
+            </div>
+            <div className="text-green-400 text-sm mb-2">$ echo $MISSION</div>
+            <div className="text-gray-400 text-sm">
+              "Build secure systems. Share knowledge. Protect digital
+              infrastructure."
+            </div>
+          </div>
+        </div>
       </div>
 
-      {/* Fixed Footer */}
-      <footer className="fixed bottom-0 left-0 w-full bg-white bg-opacity-90 py-4 mt-8 border-t border-gray-200 flex justify-center items-center z-50">
-        <div className="flex flex-col md:flex-row items-start justify-center w-full max-w-4xl mx-auto px-2 md:px-4 gap-4 md:gap-0">
-          <div className="flex flex-col items-start md:mr-8 mb-2 md:mb-0 w-full md:w-auto text-left">
-            <div className="font-semibold text-gray-800 text-lg mb-1">
+      {/* Footer - now flows with content instead of fixed */}
+      <footer className="bg-gray-900 border-t border-gray-700 py-6 mt-8 font-mono">
+        <div className="flex flex-col lg:flex-row items-start justify-center w-full max-w-6xl mx-auto px-4 gap-6 lg:gap-8">
+          <div className="flex flex-col items-start w-full lg:w-auto text-left">
+            <div className="font-semibold text-gray-300 text-lg mb-1">
               Master cloud security. Build secure systems.
             </div>
-            <div className="text-gray-600">securecloudX</div>
+            <div className="text-red-400 mb-2">securecloudX</div>
             <a
               href="mailto:conradakunga@gmail.com"
-              className="text-blue-600 hover:underline text-sm"
+              className="text-red-400 hover:text-red-300 transition-colors text-sm"
             >
               securecloudx.learn@gmail.com
             </a>
           </div>
-          <div className="flex flex-col items-start md:mr-8 mb-2 md:mb-0 w-full md:w-auto text-left">
-            <div className="flex items-center mb-1">
-              <span className="mr-2 text-gray-600">
+
+          <div className="flex flex-col items-start w-full lg:w-auto text-left">
+            <div className="flex items-center mb-2">
+              <span className="mr-2 text-red-400">
                 <svg
                   width="20"
                   height="20"
@@ -65,13 +154,13 @@ export default function GetStartedPage() {
               </span>
               <a
                 href="http://github.com/securecloudx"
-                className="text-blue-600 hover:underline text-sm"
+                className="text-red-400 hover:text-red-300 transition-colors text-sm"
               >
                 securecloudx
               </a>
             </div>
             <div className="flex items-center">
-              <span className="mr-2 text-gray-600">
+              <span className="mr-2 text-red-400">
                 <svg
                   width="20"
                   height="20"
@@ -83,13 +172,14 @@ export default function GetStartedPage() {
               </span>
               <a
                 href="https://x.com/securecloudX"
-                className="text-blue-600 hover:underline text-sm"
+                className="text-red-400 hover:text-red-300 transition-colors text-sm"
               >
                 securecloudX
               </a>
             </div>
           </div>
-          <div className="text-gray-700 text-base w-full md:flex-1 text-left">
+
+          <div className="text-gray-400 text-base w-full lg:flex-1 text-left lg:text-left">
             securecloudX is built on the strong belief that with the right
             discipline, anyone can master cloud security through practical,
             hands-on learning.

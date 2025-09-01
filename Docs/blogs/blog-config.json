@@ -1,0 +1,31 @@
+{
+  "posts": [
+    {
+      "filename": "hello-open-source.md",
+      "title": "Hello Open Source",
+      "date": "2025-08-31"
+    },
+    {
+      "filename": "hello-open-source.md",
+      "title": "Hello Open Source",
+      "date": "2025-08-31"
+    },
+    {
+      "filename": "hello-open-source.md",
+      "title": "Hello Open Source",
+      "date": "2025-08-31"
+    }
+    
+  ],
+  "author": "SecureCloudX Team",
+  "baseUrl": "/Docs/blogs/",
+  "siteConfig": {
+    "title": "SecureCloudX Blog",
+    "description": "Insights, tutorials, and thoughts on cloud security, DevSecOps, and modern development practices.",
+    "social": {
+      "github": "https://github.com/securecloudx",
+      "twitter": "https://x.com/securecloudX",
+      "email": "securecloudx.learn@gmail.com"
+    }
+  }
+}
