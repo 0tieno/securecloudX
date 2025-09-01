@@ -67,12 +67,12 @@ const Home = () => {
               {/* <Shield className="w-6 h-6 sm:w-8 sm:h-8 text-blue-400 mb-2 sm:mb-0 sm:mr-3" /> */}
               <span>Welcome to secureCloudX _engineering-part_</span>
             </h1>
-            <div className="text-green-400 text-xs sm:text-sm mb-2">
+            {/* <div className="text-green-400 text-xs sm:text-sm mb-2">
               $ whoami
             </div>
             <div className="text-gray-300 mb-3 sm:mb-4 text-sm sm:text-base">
               cloud_security_guru
-            </div>
+            </div> */}
             <div className="text-gray-500 text-xs sm:text-sm pl-2 sm:pl-3 py-1">
               <span>Last updated: Aug 25, 2025 | Status: ACTIVE</span>
             </div>
@@ -83,7 +83,7 @@ const Home = () => {
             <div className="flex flex-col sm:flex-row sm:items-center mb-3 sm:mb-4">
               <Lock className="w-5 h-5 sm:w-6 sm:h-6 text-yellow-400 mb-2 sm:mb-0 sm:mr-3" />
               <h3 className="text-sm sm:text-xl font-semibold text-yellow-400 break-words">
-                security_assessment.sh --career-readiness
+                is_this_for_you?.sh --career-readiness
               </h3>
             </div>
             <div className="text-gray-300 mb-3 sm:mb-4 text-xs sm:text-base">
