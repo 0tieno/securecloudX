@@ -3,7 +3,7 @@ import { Shield, Target, Users, BookOpen, Zap, Terminal } from "lucide-react";
 
 const features = [
   {
-    title: "Penetration Testing Labs",
+    title: "Open Source Pentesting Labs",
     description:
       "Hands-on labs to master real-world attack techniques and methodologies.",
     icon: <Shield className="w-8 h-8 mx-auto mb-3 text-red-400" />,
@@ -23,16 +23,16 @@ const features = [
     command: "./simulate_attack.sh",
   },
   {
-    title: "Security Arsenal",
+    title: "Open Source Blogs",
     description:
-      "Comprehensive collection of pentesting tools and exploitation frameworks.",
+      "Comprehensive collection of cloud pentesting blogs.",
     icon: <Terminal className="w-8 h-8 mx-auto mb-3 text-green-400" />,
-    command: "./load_arsenal.sh",
+    command: "./load_blogs.sh",
   },
   {
     title: "Threat Intelligence",
     description:
-      "Stay updated with latest threats, vulnerabilities, and security research.",
+      "learn cloud automated threat intelligence and response.",
     icon: <BookOpen className="w-8 h-8 mx-auto mb-3 text-purple-400" />,
     command: "./threat_intel.py",
   },
@@ -53,7 +53,7 @@ export default function FeatureGrid() {
           // Security Arsenal
         </h2>
         <p className="text-gray-500 max-w-2xl mx-auto">
-          Master cloud security through hands-on penetration testing,
+          Master cloud security through hands-on engineering, penetration testing,
           vulnerability research, and ethical hacking methodologies.
         </p>
       </div>
