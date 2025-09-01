@@ -1,31 +1,27 @@
 import React, { useState, useEffect } from "react";
 import ReactMarkdown from "react-markdown";
-import { Calendar, Clock, ArrowLeft, Search, Tag } from "lucide-react";
+import { Calendar, Clock, ArrowLeft, Search, Terminal } from "lucide-react";
 
 // Helper to fetch markdown files from public/blog
 const BLOGS_PATH = "/blog/";
 
-// List of blog post filenames and their metadata (add more as needed)
+// List of blog post filenames and their metadata
 const blogFiles = [
   {
     filename: "hello-open-source.md",
     date: "2025-08-31",
-    tags: ["open-source", "introduction"],
   },
   {
     filename: "cloud-security-fundamentals.md",
     date: "2025-08-30",
-    tags: ["cloud", "security", "fundamentals"],
   },
   {
     filename: "secure-coding-practices.md",
     date: "2025-08-28",
-    tags: ["security", "coding", "best-practices"],
   },
   {
     filename: "devsecops-pipeline-security.md",
     date: "2025-09-01",
-    tags: ["devsecops", "ci-cd", "security", "automation"],
   },
 ];
 
@@ -60,7 +56,6 @@ const OpenSourceBlog = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedTag, setSelectedTag] = useState("");
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -124,43 +119,40 @@ const OpenSourceBlog = () => {
     setSelectedPost(null);
   };
 
-  // Get all unique tags
-  const allTags = [...new Set(posts.flatMap((post) => post.tags || []))];
-
-  // Filter posts based on search and tag
+  // Filter posts based on search only
   const filteredPosts = posts.filter((post) => {
     const matchesSearch =
       !searchTerm ||
       post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
 
-    const matchesTag =
-      !selectedTag || (post.tags && post.tags.includes(selectedTag));
-
-    return matchesSearch && matchesTag;
+    return matchesSearch;
   });
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800">
-        <div className="text-blue-400 text-xl">Loading blog posts...</div>
+      <div className="min-h-screen flex items-center justify-center bg-gray-900">
+        <div className="flex items-center space-x-2 text-green-400 font-mono">
+          <Terminal className="w-5 h-5 animate-pulse" />
+          <span>Loading intel...</span>
+        </div>
       </div>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800">
-        <div className="text-center">
+      <div className="min-h-screen flex items-center justify-center bg-gray-900">
+        <div className="text-center font-mono">
           <div className="text-red-400 text-xl mb-4">
-            Failed to load blog posts
+            [ERROR] Failed to load data
           </div>
-          <div className="text-gray-400 text-sm">{error}</div>
+          <div className="text-gray-500 text-sm mb-4">{error}</div>
           <button
             onClick={() => window.location.reload()}
-            className="mt-4 px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors"
+            className="px-4 py-2 bg-gray-800 text-gray-300 rounded font-mono hover:bg-gray-700 transition-colors border border-gray-600"
           >
-            Retry
+            [RETRY]
           </button>
         </div>
       </div>
@@ -168,128 +160,88 @@ const OpenSourceBlog = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-900 to-gray-800 pb-32">
+    <div className="min-h-screen bg-gray-900 pb-32 font-mono">
       <div className="w-full max-w-4xl mx-auto px-4 py-10">
         {!selectedPost ? (
           <>
             {/* Header */}
-            <div className="text-center mb-12">
-              <h1 className="text-5xl font-extrabold text-blue-400 mb-4 drop-shadow-lg">
-                SecureCloudX Blog
-              </h1>
-              <p className="text-xl text-gray-300 max-w-2xl mx-auto">
-                Insights, tutorials, and thoughts on cloud security, DevSecOps,
-                and modern development practices.
+            <div className="mb-12">
+              <div className="flex items-center mb-4">
+                <Terminal className="w-6 h-6 text-green-400 mr-3" />
+                <h1 className="text-3xl font-bold text-gray-300">
+                  cloud_security_intel
+                </h1>
+              </div>
+              <p className="text-gray-500 max-w-2xl">
+                // Cloud penetration testing, cloud security engineering, and research.
               </p>
             </div>
 
-            {/* Search and Filter */}
-            <div className="mb-8 space-y-4">
+            {/* Search */}
+            <div className="mb-8">
               <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4" />
                 <input
                   type="text"
-                  placeholder="Search blog posts..."
+                  placeholder="grep -i 'vulnerability' posts/*"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-700 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                  className="w-full pl-10 pr-4 py-3 bg-gray-800 border border-gray-700 text-gray-300 placeholder-gray-600 focus:outline-none focus:border-gray-600 font-mono"
                 />
-              </div>
-
-              {/* Tags Filter */}
-              <div className="flex flex-wrap gap-2">
-                <button
-                  onClick={() => setSelectedTag("")}
-                  className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
-                    !selectedTag
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-                  }`}
-                >
-                  All Posts
-                </button>
-                {allTags.map((tag) => (
-                  <button
-                    key={tag}
-                    onClick={() => setSelectedTag(tag)}
-                    className={`px-4 py-2 rounded-full text-sm font-medium transition-colors flex items-center ${
-                      selectedTag === tag
-                        ? "bg-blue-600 text-white"
-                        : "bg-gray-700 text-gray-300 hover:bg-gray-600"
-                    }`}
-                  >
-                    <Tag className="w-3 h-3 mr-1" />
-                    {tag}
-                  </button>
-                ))}
               </div>
             </div>
 
-            {/* Blog Posts Grid */}
+            {/* Blog Posts List */}
             {filteredPosts.length === 0 ? (
               <div className="text-center py-12">
-                <p className="text-gray-400 text-lg">
+                <p className="text-gray-500 font-mono">
                   {posts.length === 0
-                    ? "No blog posts found."
-                    : "No posts match your filters."}
+                    ? "// no intelligence found"
+                    : "// no matches for search query"}
                 </p>
               </div>
             ) : (
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-1">
+              <div className="space-y-4">
                 {filteredPosts.map((post, idx) => {
                   const postDate = new Date(post.date);
                   const formattedDate = postDate.toLocaleDateString("en-US", {
                     year: "numeric",
-                    month: "long",
+                    month: "short",
                     day: "numeric",
                   });
 
                   return (
                     <article
                       key={post.filename}
-                      className="bg-gray-800/50 backdrop-blur-sm border border-gray-700 rounded-xl p-6 hover:border-blue-500/50 transition-all duration-300 hover:shadow-lg hover:shadow-blue-500/10 cursor-pointer group"
+                      className="bg-gray-800 border border-gray-700 p-6 hover:border-gray-600 transition-colors cursor-pointer group"
                       onClick={() => handleSelectPost(post)}
                     >
-                      <div className="flex flex-col h-full">
-                        <header className="mb-4">
-                          <h2 className="text-2xl font-bold text-blue-300 mb-3 group-hover:text-blue-200 transition-colors">
+                      <div className="flex flex-col">
+                        <header className="mb-3">
+                          <h2 className="text-xl text-gray-300 mb-2 group-hover:text-gray-200 transition-colors">
                             {post.title}
                           </h2>
 
-                          <div className="flex items-center text-sm text-gray-400 space-x-4 mb-3">
+                          <div className="flex items-center text-sm text-gray-500 space-x-4">
                             <div className="flex items-center">
-                              <Calendar className="w-4 h-4 mr-1" />
+                              <Calendar className="w-3 h-3 mr-1" />
                               {formattedDate}
                             </div>
                             <div className="flex items-center">
-                              <Clock className="w-4 h-4 mr-1" />
-                              {post.readingTime} min read
+                              <Clock className="w-3 h-3 mr-1" />
+                              {post.readingTime}m
                             </div>
                           </div>
-
-                          {post.tags && post.tags.length > 0 && (
-                            <div className="flex flex-wrap gap-2 mb-3">
-                              {post.tags.map((tag) => (
-                                <span
-                                  key={tag}
-                                  className="px-2 py-1 bg-blue-600/20 text-blue-300 text-xs rounded-full border border-blue-500/30"
-                                >
-                                  {tag}
-                                </span>
-                              ))}
-                            </div>
-                          )}
                         </header>
 
-                        <p className="text-gray-300 mb-4 leading-relaxed flex-1">
+                        <p className="text-gray-400 mb-3 leading-relaxed text-sm">
                           {post.excerpt}
                         </p>
 
                         <footer>
-                          <button className="inline-flex items-center text-blue-400 hover:text-blue-300 font-medium transition-colors">
-                            Read More
-                            <ArrowLeft className="w-4 h-4 ml-2 rotate-180 group-hover:translate-x-1 transition-transform" />
-                          </button>
+                          <span className="text-green-400 text-sm hover:text-green-300 transition-colors">
+                            cat {post.filename.replace(".md", "")} →
+                          </span>
                         </footer>
                       </div>
                     </article>
@@ -303,116 +255,103 @@ const OpenSourceBlog = () => {
           <div className="w-full max-w-4xl mx-auto">
             <button
               onClick={handleBackToList}
-              className="mb-8 inline-flex items-center text-blue-400 hover:text-blue-300 transition-colors group"
+              className="mb-8 inline-flex items-center text-green-400 hover:text-green-300 transition-colors group font-mono"
             >
-              <ArrowLeft className="w-5 h-5 mr-2 group-hover:-translate-x-1 transition-transform" />
-              Back to Blog
+              <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
+              cd ../
             </button>
 
-            <article className="bg-gray-800/30 backdrop-blur-sm border border-gray-700 rounded-xl p-8">
+            <article className=" p-8">
               <header className="mb-8 pb-6 border-b border-gray-700">
-                <h1 className="text-4xl font-bold text-blue-300 mb-4">
+                <h1 className="text-3xl text-gray-300 mb-4">
                   {selectedPost.title}
                 </h1>
 
-                <div className="flex items-center text-gray-400 space-x-6 mb-4">
+                <div className="flex items-center text-gray-500 space-x-6 text-sm">
                   <div className="flex items-center">
-                    <Calendar className="w-5 h-5 mr-2" />
+                    <Calendar className="w-4 h-4 mr-2" />
                     {new Date(selectedPost.date).toLocaleDateString("en-US", {
                       year: "numeric",
-                      month: "long",
+                      month: "short",
                       day: "numeric",
                     })}
                   </div>
                   <div className="flex items-center">
-                    <Clock className="w-5 h-5 mr-2" />
-                    {selectedPost.readingTime} min read
+                    <Clock className="w-4 h-4 mr-2" />
+                    {selectedPost.readingTime}m read
                   </div>
                 </div>
-
-                {selectedPost.tags && selectedPost.tags.length > 0 && (
-                  <div className="flex flex-wrap gap-2">
-                    {selectedPost.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="px-3 py-1 bg-blue-600/20 text-blue-300 text-sm rounded-full border border-blue-500/30"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                )}
               </header>
 
-              <div className="prose prose-invert prose-blue max-w-none text-gray-300 leading-relaxed">
+              <div className="prose prose-invert max-w-none text-gray-400 leading-relaxed">
                 <ReactMarkdown
                   components={{
                     h1: ({ node, ...props }) => (
                       <h1
-                        className="text-3xl font-bold text-blue-300 mb-6 mt-8"
+                        className="text-2xl text-gray-300 mb-6 mt-8 font-mono"
                         {...props}
                       />
                     ),
                     h2: ({ node, ...props }) => (
                       <h2
-                        className="text-2xl font-semibold text-blue-300 mb-4 mt-6"
+                        className="text-xl text-gray-300 mb-4 mt-6 font-mono"
                         {...props}
                       />
                     ),
                     h3: ({ node, ...props }) => (
                       <h3
-                        className="text-xl font-semibold text-blue-300 mb-3 mt-5"
+                        className="text-lg text-gray-300 mb-3 mt-5 font-mono"
                         {...props}
                       />
                     ),
                     p: ({ node, ...props }) => (
                       <p
-                        className="text-gray-300 mb-4 leading-relaxed"
+                        className="text-gray-400 mb-4 leading-relaxed"
                         {...props}
                       />
                     ),
                     code: ({ node, inline, ...props }) =>
                       inline ? (
                         <code
-                          className="bg-gray-800 px-2 py-1 rounded text-blue-300 text-sm"
+                          className="bg-gray-900 px-2 py-1 text-green-400 text-sm font-mono border border-gray-700"
                           {...props}
                         />
                       ) : (
                         <code
-                          className="block bg-gray-800 p-4 rounded-lg text-green-400 text-sm overflow-x-auto"
+                          className="block bg-gray-900 p-4 text-green-400 text-sm overflow-x-auto font-mono border border-gray-700"
                           {...props}
                         />
                       ),
                     pre: ({ node, ...props }) => (
                       <pre
-                        className="bg-gray-800 p-4 rounded-lg overflow-x-auto mb-4"
+                        className="bg-gray-900 p-4 overflow-x-auto mb-4 border border-gray-700"
                         {...props}
                       />
                     ),
                     blockquote: ({ node, ...props }) => (
                       <blockquote
-                        className="border-l-4 border-blue-500 pl-4 italic text-gray-400 my-4"
+                        className="border-l-4 border-gray-600 pl-4 italic text-gray-500 my-4 font-mono"
                         {...props}
                       />
                     ),
                     ul: ({ node, ...props }) => (
                       <ul
-                        className="list-disc list-inside text-gray-300 mb-4 space-y-1"
+                        className="list-disc list-inside text-gray-400 mb-4 space-y-1"
                         {...props}
                       />
                     ),
                     ol: ({ node, ...props }) => (
                       <ol
-                        className="list-decimal list-inside text-gray-300 mb-4 space-y-1"
+                        className="list-decimal list-inside text-gray-400 mb-4 space-y-1"
                         {...props}
                       />
                     ),
                     li: ({ node, ...props }) => (
-                      <li className="text-gray-300" {...props} />
+                      <li className="text-gray-400" {...props} />
                     ),
                     a: ({ node, ...props }) => (
                       <a
-                        className="text-blue-400 hover:text-blue-300 underline transition-colors"
+                        className="text-green-400 hover:text-green-300 underline transition-colors"
                         {...props}
                       />
                     ),
@@ -427,50 +366,27 @@ const OpenSourceBlog = () => {
       </div>
 
       {/* Footer */}
-      <footer className="fixed bottom-0 left-0 w-full bg-gradient-to-r from-gray-900/95 via-gray-900/95 to-gray-800/95 backdrop-blur-sm py-4 border-t border-gray-700 z-50">
-        <div className="flex flex-col md:flex-row items-center justify-center w-full max-w-6xl mx-auto px-4 gap-4 md:gap-8">
-          <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <div className="font-semibold text-blue-200 text-lg mb-1">
-              Master cloud security. Build secure systems.
-            </div>
-            <div className="text-blue-400">securecloudX</div>
+      <footer className="fixed bottom-0 left-0 w-full bg-gray-900 border-t border-gray-700 z-50 font-mono">
+        <div className="flex items-center justify-between w-full max-w-6xl mx-auto px-4 py-3">
+          <div className="text-gray-500 text-sm">
+            root@securecloudx:~# whoami
+          </div>
+          <div className="text-gray-500 text-sm">
+            cloud security researcher | penetration tester
+          </div>
+          <div className="flex items-center space-x-4 text-sm">
             <a
               href="mailto:securecloudx.learn@gmail.com"
-              className="text-blue-400 hover:underline text-sm"
+              className="text-green-400 hover:text-green-300 transition-colors"
             >
-              securecloudx.learn@gmail.com
+              contact
             </a>
-          </div>
-
-          <div className="flex items-center gap-4">
             <a
               href="http://github.com/securecloudx"
-              className="flex items-center text-blue-400 hover:text-blue-300 text-sm transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
+              className="text-green-400 hover:text-green-300 transition-colors"
             >
-              <svg width="20" height="20" fill="currentColor" className="mr-2">
-                <path d="M10 0C4.477 0 0 4.477 0 10c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.529 2.341 1.088 2.91.833.091-.646.349-1.088.635-1.34-2.221-.253-4.555-1.112-4.555-4.945 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.272.098-2.65 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.338 1.909-1.294 2.748-1.025 2.748-1.025.546 1.378.202 2.397.1 2.65.64.699 1.028 1.592 1.028 2.683 0 3.842-2.337 4.688-4.566 4.937.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .268.18.579.688.481C17.138 18.162 20 14.418 20 10c0-5.523-4.477-10-10-10z" />
-              </svg>
-              securecloudx
+              github
             </a>
-
-            <a
-              href="https://x.com/securecloudX"
-              className="flex items-center text-blue-400 hover:text-blue-300 text-sm transition-colors"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg width="20" height="20" fill="currentColor" className="mr-2">
-                <path d="M20 3.924c-.735.326-1.524.547-2.353.646a4.118 4.118 0 001.804-2.27c-.793.47-1.672.81-2.606.995A4.107 4.107 0 009.847 7.03c-3.417-.172-6.444-1.81-8.468-4.297a4.07 4.07 0 00-.555 2.067c0 1.426.726 2.683 1.83 3.422a4.093 4.093 0 01-1.86-.513v.052c0 1.993 1.417 3.656 3.3 4.036-.345.093-.708.143-1.083.143-.265 0-.52-.026-.77-.073.52 1.623 2.032 2.805 3.827 2.836A8.233 8.233 0 010 17.542a11.616 11.616 0 006.29 1.844c7.547 0 11.675-6.155 11.675-11.495 0-.175-.004-.349-.012-.522A8.18 8.18 0 0020 3.924z" />
-              </svg>
-              securecloudX
-            </a>
-          </div>
-
-          <div className="text-blue-300 text-sm text-center md:text-left max-w-md">
-            Built with the belief that anyone can master cloud security through
-            practical, hands-on learning.
           </div>
         </div>
       </footer>
