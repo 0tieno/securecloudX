@@ -108,6 +108,56 @@ export default function GetStartedPage() {
           </button>
         </div>
 
+        {/* Past Hackathons Section */}
+        <div className="mt-12 w-full max-w-md">
+          <div className="mb-6">
+            <h2 className="text-xl font-semibold text-gray-300 mb-2 flex items-center">
+              <Lock className="w-5 h-5 text-yellow-400 mr-2" />
+              ./past_hackathons
+            </h2>
+            <p className="text-gray-500 text-sm font-mono">
+              # Previous security challenges and competitions
+            </p>
+          </div>
+
+          <div
+            className="bg-gray-800 border border-gray-700 hover:border-yellow-500 text-left p-6 transition-all duration-200 group cursor-pointer"
+            onClick={() => navigate("/forgotten-secret-lab")}
+          >
+            <div className="flex items-start">
+              <Terminal className="w-6 h-6 text-yellow-400 mr-4 mt-1 group-hover:text-yellow-300" />
+              <div>
+                <h3 className="text-lg font-semibold text-gray-300 mb-2 group-hover:text-yellow-300">
+                  ./forgotten_secret_lab
+                </h3>
+                <p className="text-gray-500 text-sm leading-relaxed mb-3">
+                  Git forensics challenge: Hunt leaked secrets in commit history
+                  and exploit live APIs
+                </p>
+                <div className="flex flex-wrap gap-2 mb-3">
+                  <span className="px-2 py-1 bg-gray-700 text-yellow-400 text-xs font-mono border border-gray-600">
+                    git-forensics
+                  </span>
+                  <span className="px-2 py-1 bg-gray-700 text-red-400 text-xs font-mono border border-gray-600">
+                    api-exploitation
+                  </span>
+                  <span className="px-2 py-1 bg-gray-700 text-blue-400 text-xs font-mono border border-gray-600">
+                    secret-detection
+                  </span>
+                </div>
+                <div className="text-xs text-yellow-400 font-mono">
+                  cd /hackathons && ./forgotten_secret.sh
+                </div>
+                <div className="mt-2 text-xs text-gray-500">
+                  Status: <span className="text-green-400">ACTIVE</span> |
+                  Leaderboard:{" "}
+                  <span className="text-yellow-400">Available</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Terminal Style Info */}
         <div className="mt-12 max-w-md text-center">
           <div className="bg-gray-800 border border-gray-700 p-4 text-left">
