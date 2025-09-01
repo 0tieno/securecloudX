@@ -12,21 +12,11 @@ const blogFiles = [
     date: "2025-08-31",
     author: "SecureCloudX Team",
   },
-  {
-    filename: "cloud-security-fundamentals.md",
-    date: "2025-08-30",
-    author: "Alex Chen",
-  },
-  {
-    filename: "secure-coding-practices.md",
-    date: "2025-08-28",
-    author: "Sarah Mitchell",
-  },
-  {
-    filename: "devsecops-pipeline-security.md",
-    date: "2025-09-01",
-    author: "Marcus Rodriguez",
-  },
+   {
+      "filename": "secure-coding.md",
+      "title": "secure coding",
+      "date": "2025-08-31"
+    }
 ];
 
 function extractMetadataFromMarkdown(markdown) {
@@ -337,12 +327,6 @@ const OpenSourceBlog = () => {
                         {...props}
                       />
                     ),
-                    // mark: ({ node, ...props }) => (
-                    //   <mark
-                    //     className="bg-yellow-500/30 text-yellow-200 px-1 rounded font-mono"
-                    //     {...props}
-                    //   />
-                    // ),
                     strong: ({ node, ...props }) => (
                       <strong
                         className="text-orange-300 font-bold"

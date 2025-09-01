@@ -245,8 +245,7 @@ To contribute new blog posts:
 1. Use the blog manager to create new posts
 2. Follow the writing and technical guidelines
 3. Test your post locally before submitting
-4. Include relevant tags and metadata
-5. Submit for review
+4. Submit for review
 
 ## Future Enhancements
 
