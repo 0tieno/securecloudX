@@ -235,14 +235,15 @@ Reference in markdown:
 
 ### Categories
 
-- **Information Gathering**: OSINT, reconnaissance, footprinting
-- **Web Security**: SQLi, XSS, CSRF, authentication bypass
-- **Network Security**: Port scanning, service enumeration, protocol analysis
-- **Wireless Security**: WiFi attacks, Bluetooth, radio frequency
-- **Mobile Security**: Android/iOS application testing
-- **Social Engineering**: Phishing, pretexting, physical security
-- **Post-Exploitation**: Privilege escalation, persistence, lateral movement
-- **Forensics**: Digital investigation, incident response
+```bash
+# Core security domains we cover
+/cloud-security/          # AWS, Azure, GCP security practices
+/penetration-testing/     # Ethical hacking methodologies
+/devsecops/              # Secure development practices
+/vulnerability-research/  # CVE analysis, exploit development
+/security-tools/         # Tool reviews and tutorials
+/compliance/             # SOC2, ISO27001, PCI-DSS guides
+```
 
 ### Difficulty Levels
 
