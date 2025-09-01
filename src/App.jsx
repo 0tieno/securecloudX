@@ -34,6 +34,7 @@ import BlogList from "./pages/BlogList";
 import BlogPost from "./pages/BlogPost";
 import ForgottenSecretLab from "./pages/ForgottenSecretLab";
 import ConsultMe from "./pages/ConsultMe";
+import PentestingLabs from "./pages/PentestingLabs";
 
 const App = () => {
   return (
@@ -218,6 +219,9 @@ const App = () => {
 
         {/* Standalone OpenSourceBlog route */}
         <Route path="/opensource-blog" element={<OpenSourceBlog />} />
+
+        {/* Standalone PentestingLabs route */}
+        <Route path="/pentesting-labs" element={<PentestingLabs />} />
       </Routes>
     </Router>
   );
