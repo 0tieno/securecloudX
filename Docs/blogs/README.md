@@ -136,6 +136,7 @@ The blog system is configured through `Docs/blogs/blog-config.json`:
 - **Bold text** and _italic text_
 - `Inline code`
 - [Links](https://example.com)
+- To highlight text, write it in bold.
 
 ### Code Blocks
 
@@ -187,8 +188,7 @@ print("Hello World")
 2. **Write a clear introduction** that hooks the reader
 3. **Use proper heading hierarchy** (H2, H3, H4) for organization
 4. **Include code examples** when discussing technical topics
-5. **Add relevant tags** to help with discoverability
-6. **End with actionable takeaways** or next steps
+5. **End with actionable takeaways** or next steps
 
 ### Technical Guidelines
 

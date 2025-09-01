@@ -7,7 +7,10 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "blog:sync": "node scripts/blog-manager.js sync",
+    "blog:create": "node scripts/blog-manager.js create",
+    "blog:list": "node scripts/blog-manager.js list"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.0.15",
@@ -18,6 +21,7 @@
     "react-icons": "^5.5.0",
     "react-markdown": "^10.1.0",
     "react-router-dom": "^7.4.0",
+    "rehype-raw": "^7.0.0",
     "tailwindcss": "^4.0.15"
   },
   "devDependencies": {

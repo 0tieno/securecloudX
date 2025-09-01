@@ -337,6 +337,21 @@ const OpenSourceBlog = () => {
                         {...props}
                       />
                     ),
+                    // mark: ({ node, ...props }) => (
+                    //   <mark
+                    //     className="bg-yellow-500/30 text-yellow-200 px-1 rounded font-mono"
+                    //     {...props}
+                    //   />
+                    // ),
+                    strong: ({ node, ...props }) => (
+                      <strong
+                        className="text-orange-300 font-bold"
+                        {...props}
+                      />
+                    ),
+                    em: ({ node, ...props }) => (
+                      <em className="text-green-300 italic" {...props} />
+                    ),
                     code: ({ node, inline, ...props }) =>
                       inline ? (
                         <code
@@ -357,7 +372,7 @@ const OpenSourceBlog = () => {
                     ),
                     blockquote: ({ node, ...props }) => (
                       <blockquote
-                        className="border-l-4 border-gray-600 pl-4 italic text-gray-500 my-4 font-mono"
+                        className="border-l-4 border-yellow-500 bg-gray-800/50 pl-4 pr-4 py-3 my-6 text-yellow-200 font-mono relative"
                         {...props}
                       />
                     ),
