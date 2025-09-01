@@ -53,7 +53,7 @@ export default function GetStartedPage() {
               <Code className="w-6 h-6 text-blue-400 mr-4 mt-1 group-hover:text-blue-300" />
               <div>
                 <h3 className="text-lg font-semibold text-gray-300 mb-2 group-hover:text-blue-300">
-                  ./engineering
+                  ./cloud_security_engineering
                 </h3>
                 <p className="text-gray-500 text-sm leading-relaxed">
                   Cloud security engineering, secure development, and DevSecOps
@@ -75,7 +75,7 @@ export default function GetStartedPage() {
               <Shield className="w-6 h-6 text-red-400 mr-4 mt-1 group-hover:text-red-300" />
               <div>
                 <h3 className="text-lg font-semibold text-gray-300 mb-2 group-hover:text-red-300">
-                  ./pentesting_labs
+                  ./cloud_pentesting_labs
                 </h3>
                 <p className="text-gray-500 text-sm leading-relaxed">
                   Hands-on penetration testing labs and security exercises
