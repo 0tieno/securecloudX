@@ -259,72 +259,7 @@ We measure success by:
 - **Ethical Hacking Only**: Content promotes responsible security testing
 - **Legal Compliance**: All activities comply with applicable laws
 - **Educational Focus**: Content designed for learning, not exploitation
-
-## 🚀 Deployment
-
-### Azure Deployment
-
-```bash
-# Initialize Azure deployment
-azd init
-
-# Deploy to Azure
-azd up
-
-# Monitor deployment
-azd monitor
-```
-
-See `AZURE_DEPLOYMENT_GUIDE.md` for detailed deployment instructions.
-
-### Alternative Hosting
-
-- **Vercel**: `npm run build && vercel --prod`
-- **Netlify**: `npm run build && netlify deploy --prod`
-- **GitHub Pages**: Configure GitHub Actions workflow
-- **AWS S3 + CloudFront**: Static site hosting
-
-## 📊 Analytics & Monitoring
-
-### Performance Metrics
-
-- **Lighthouse Score**: 95+ across all categories
-- **Core Web Vitals**: Optimized for user experience
-- **Bundle Size**: Minimized for fast loading
-- **Accessibility**: WCAG 2.1 AA compliant
-
-### User Analytics
-
-We track (with privacy in mind):
-
-- Popular content and learning paths
-- User engagement and completion rates
-- Community growth and contribution patterns
-- Platform performance and reliability
-
-## 🔮 Roadmap
-
-### Short Term (Q4 2025)
-
-- [ ] Advanced lab scoring system
-- [ ] User progress tracking
-- [ ] Enhanced search functionality
-- [ ] Mobile app companion
-
-### Medium Term (Q1-Q2 2026)
-
-- [ ] Interactive coding environments
-- [ ] Live hackathon platform
-- [ ] Certification pathways
-- [ ] Community forums
-
-### Long Term (2026+)
-
-- [ ] AI-powered learning recommendations
-- [ ] Virtual reality security simulations
-- [ ] Enterprise training modules
-- [ ] Global security competitions
-
+  
 ## 📞 Contact & Support
 
 ### Get Help
@@ -374,4 +309,4 @@ root@securecloudx:~$ ./mission.sh
 
 ---
 
-Made with ❤️ by the SecureCloudX community | [Contribute](CONTRIBUTING_BLOGS.md) | [Labs](CONTRIBUTING_LABS.md) | [Deploy](AZURE_DEPLOYMENT_GUIDE.md)
+Made with ❤️ by the SecureCloudX community | [Contribute](CONTRIBUTING_BLOGS.md) | [Labs](CONTRIBUTING_LABS.md) | [Owner](https://ronneyotieno.me)
