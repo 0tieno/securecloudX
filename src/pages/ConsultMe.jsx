@@ -40,7 +40,7 @@ const ConsultMe = () => {
       id: "business",
       name: "Business Consultation",
       duration: "60 minutes",
-      price: "KSh 4,000",
+      price: "KSh 1,000",
       description: "Comprehensive consultation for small businesses",
       features: [
         "Security assessment guidance",

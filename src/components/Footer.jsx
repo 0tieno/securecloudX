@@ -5,14 +5,14 @@ const Footer = () => {
         &copy; {new Date().getFullYear()} securecloudX. All rights reserved.
       </p>
       <p className="text-xs mt-1">
-        Built by{" "}
+        Owner{" "}
         <a
           href="https://ronneyotieno.me"
           target="_blank"
           rel="noopener noreferrer"
           className="text-blue-400 hover:underline"
         >
-          Ronney Otieno
+          Cl0udP3n
         </a>
       </p>
       <a
