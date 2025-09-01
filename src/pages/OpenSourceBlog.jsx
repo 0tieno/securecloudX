@@ -173,7 +173,8 @@ const OpenSourceBlog = () => {
                 </h1>
               </div>
               <p className="text-gray-500 max-w-2xl">
-                // Cloud penetration testing, cloud security engineering, and research.
+                // Cloud penetration testing, cloud security engineering, and
+                research.
               </p>
             </div>
 
@@ -367,26 +368,54 @@ const OpenSourceBlog = () => {
 
       {/* Footer */}
       <footer className="fixed bottom-0 left-0 w-full bg-gray-900 border-t border-gray-700 z-50 font-mono">
-        <div className="flex items-center justify-between w-full max-w-6xl mx-auto px-4 py-3">
-          <div className="text-gray-500 text-sm">
-            root@securecloudx:~# whoami
+        <div className="w-full max-w-6xl mx-auto px-4 py-3">
+          {/* Desktop Layout */}
+          <div className="hidden md:flex items-center justify-between">
+            <div className="text-gray-500 text-sm">
+              root@securecloudx:~# whoami
+            </div>
+            <div className="text-gray-500 text-sm">
+              cloud security engineer | cloud penetration tester
+            </div>
+            <div className="flex items-center space-x-4 text-sm">
+              <a
+                href="mailto:securecloudx.learn@gmail.com"
+                className="text-green-400 hover:text-green-300 transition-colors"
+              >
+                contact
+              </a>
+              <a
+                href="http://github.com/securecloudx"
+                className="text-green-400 hover:text-green-300 transition-colors"
+              >
+                github
+              </a>
+            </div>
           </div>
-          <div className="text-gray-500 text-sm">
-            cloud security researcher | penetration tester
-          </div>
-          <div className="flex items-center space-x-4 text-sm">
-            <a
-              href="mailto:securecloudx.learn@gmail.com"
-              className="text-green-400 hover:text-green-300 transition-colors"
-            >
-              contact
-            </a>
-            <a
-              href="http://github.com/securecloudx"
-              className="text-green-400 hover:text-green-300 transition-colors"
-            >
-              github
-            </a>
+
+          {/* Mobile Layout */}
+          <div className="md:hidden space-y-2">
+            <div className="flex items-center space-x-4 text-xs">
+              <a
+                href="mailto:securecloudx.learn@gmail.com"
+                className="text-green-400 hover:text-green-300 transition-colors"
+              >
+                contact
+              </a>
+              <a
+                href="http://github.com/securecloudx"
+                className="text-green-400 hover:text-green-300 transition-colors"
+              >
+                github
+              </a>
+            </div>
+            <div className="text-gray-500 text-xs">
+              root@securecloudx:~# whoami
+            </div>
+            <div className="text-gray-500 text-xs">
+              cloud security engineer | cloud penetration tester
+            </div>
+            
           </div>
         </div>
       </footer>
