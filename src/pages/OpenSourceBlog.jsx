@@ -175,7 +175,7 @@ const OpenSourceBlog = () => {
 
   return (
     <div className="min-h-screen bg-gray-900 pb-32 font-mono">
-      <div className="w-full max-w-4xl mx-auto px-4 py-10">
+      <div className="w-full max-w-2xl mx-auto px-4 py-10">
         {!selectedPost ? (
           <>
             {/* Header */}
