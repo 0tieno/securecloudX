@@ -111,6 +111,7 @@ node scripts/blog-manager.js generate
 ### Pentesting Labs
 
 Interactive security exercises with:
+
 - **Difficulty ratings** (Beginner → Advanced)
 - **Skill tags** for targeted learning
 - **Tool requirements** clearly listed
@@ -131,6 +132,7 @@ curl "https://secret-api-1752358706.azurewebsites.net/api/data?key=YOUR-SECRET-K
 ```
 
 **Skills Covered:**
+
 - Git forensics and history analysis
 - Secret detection with open-source tools
 - API exploitation techniques
@@ -161,7 +163,7 @@ git checkout -b blog/your-security-topic
 ### Contributing to Labs
 
 ```bash
-# Read the labs contribution guide  
+# Read the labs contribution guide
 cat CONTRIBUTING_LABS.md
 
 # Create new pentesting exercise
@@ -218,7 +220,7 @@ securecloudX/
 ### Skill Levels
 
 - **Beginner**: Getting started with security fundamentals
-- **Intermediate**: Building practical skills and experience  
+- **Intermediate**: Building practical skills and experience
 - **Advanced**: Mastering complex security challenges
 - **Expert**: Contributing knowledge and leading research
 
@@ -227,6 +229,7 @@ securecloudX/
 ### Hall of Fame
 
 Contributors who create exceptional content receive:
+
 - **Author attribution** on published content
 - **GitHub profile** linking in contributor sections
 - **Social media recognition** for quality contributions
@@ -235,6 +238,7 @@ Contributors who create exceptional content receive:
 ### Success Metrics
 
 We measure success by:
+
 - **Knowledge sharing**: Practical value provided to learners
 - **Community growth**: Active contributors and engaged users
 - **Security impact**: Real-world application of shared knowledge
@@ -292,6 +296,7 @@ See `AZURE_DEPLOYMENT_GUIDE.md` for detailed deployment instructions.
 ### User Analytics
 
 We track (with privacy in mind):
+
 - Popular content and learning paths
 - User engagement and completion rates
 - Community growth and contribution patterns
@@ -328,7 +333,7 @@ We track (with privacy in mind):
 # Technical issues
 git issue create --template bug_report
 
-# Content questions  
+# Content questions
 echo "securecloudx.learn@gmail.com" | mail -s "Content Question"
 
 # General discussion
