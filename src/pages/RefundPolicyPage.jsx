@@ -1,4 +1,3 @@
-import React from "react";
 import RefundPolicy from "./landing/RefundPolicy";
 
 export default function RefundPolicyPage() {

@@ -1,5 +1,3 @@
-import React from "react";
-
 export default function RefundPolicy() {
   return (
     <div className="w-full max-w-2xl mx-auto mt-16 mb-16 bg-black text-white px-4">

@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Terminal,
@@ -25,6 +24,7 @@ export default function GetStartedPage() {
           <p className="text-gray-500 max-w-2xl">
             // 2 paths: cloud security engineering and cloud penetration testing
           </p>
+          
           <div className="mt-4 text-sm text-gray-600">
             root@securecloudx:~# ./choose_path.sh
           </div>
@@ -39,6 +39,25 @@ export default function GetStartedPage() {
             <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
             cd ../
           </button>
+        </div>
+
+        {/* Information Note */}
+        <div className="mb-8 max-w-md w-full  p-4 sm:p-6 rounded">
+          <div className="text-blue-400 text-xs sm:text-sm mb-2">
+            $ cat important_note.txt
+          </div>
+          <div className="text-gray-300 text-sm sm:text-base leading-relaxed">
+            <span className="text-yellow-400">[INFO]</span> The posts on
+            engineering, pentesting, or blogs assume{" "}
+            <span className="text-green-400">
+              no, or little, prior knowledge
+            </span>{" "}
+            of the subject matter and therefore should be useful{" "}
+            <span className="text-cyan-400">
+              regardless of your level of experience
+            </span>
+            .
+          </div>
         </div>
 
         {/* Path Selection */}
@@ -174,7 +193,7 @@ export default function GetStartedPage() {
         </div>
       </div>
 
-      {/* Footer - now flows with content instead of fixed */}
+      {/* Footer */}
       <footer className="bg-gray-900 border-t border-gray-700 py-6 mt-8 font-mono">
         <div className="flex flex-col lg:flex-row items-start justify-center w-full max-w-6xl mx-auto px-4 gap-6 lg:gap-8">
           <div className="flex flex-col items-start w-full lg:w-auto text-left">
@@ -188,6 +207,9 @@ export default function GetStartedPage() {
             >
               securecloudx.learn@gmail.com
             </a>
+            <div className="text-gray-500 text-xs">
+          securecloudX.guide - Some rights reserved!
+        </div>
           </div>
 
           <div className="flex flex-col items-start w-full lg:w-auto text-left">
@@ -210,19 +232,14 @@ export default function GetStartedPage() {
               </a>
             </div>
             <div className="flex items-center">
-              <span className="mr-2 text-red-400">
-                <svg
-                  width="20"
-                  height="20"
-                  fill="currentColor"
-                  className="inline-block"
-                >
-                  <path d="M20 3.924c-.735.326-1.524.547-2.353.646a4.118 4.118 0 001.804-2.27c-.793.47-1.672.81-2.606.995A4.107 4.107 0 009.847 7.03c-3.417-.172-6.444-1.81-8.468-4.297a4.07 4.07 0 00-.555 2.067c0 1.426.726 2.683 1.83 3.422a4.093 4.093 0 01-1.86-.513v.052c0 1.993 1.417 3.656 3.3 4.036-.345.093-.708.143-1.083.143-.265 0-.52-.026-.77-.073.52 1.623 2.032 2.805 3.827 2.836A8.233 8.233 0 010 17.542a11.616 11.616 0 006.29 1.844c7.547 0 11.675-6.155 11.675-11.495 0-.175-.004-.349-.012-.522A8.18 8.18 0 0020 3.924z" />
-                </svg>
-              </span>
+            <a href="https://x.com/securecloudX" target="_blank" rel="noopener noreferrer" className="hover:text-red-400">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
+            <path d="M18.3 2H22L14.8 10.6 23 22h-5l-5.7-7.9L6.3 22H2l8.7-9.6L2.3 2h5.2l5.2 7.5L18.3 2ZM17.2 20h1.6l-9.7-14h-1.7l9.8 14Z"/>
+          </svg>
+        </a>
               <a
                 href="https://x.com/securecloudX"
-                className="text-red-400 hover:text-red-300 transition-colors text-sm"
+                className="text-red-400 hover:text-red-300 transition-colors text-sm pl-2"
               >
                 securecloudX
               </a>

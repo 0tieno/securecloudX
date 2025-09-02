@@ -1,16 +1,9 @@
 import React, { useState } from "react";
 import {
-  Calendar,
-  Clock,
-  DollarSign,
-  Video,
-  MessageCircle,
   Shield,
-  Zap,
   Check,
   User,
   Mail,
-  Phone,
 } from "lucide-react";
 import Content from "../components/Content";
 

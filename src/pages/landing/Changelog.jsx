@@ -1,6 +1,6 @@
 const changelog = [
   {
-    date: "01 Sept, 2025",
+    date: "02 Sept, 2025",
     desc: "Added open source blogs and labs on pentesting.",
   },
   {

@@ -122,7 +122,7 @@ export default function PricingSection() {
           </a>
         </div>
         <div className="text-gray-500 text-xs">
-          © 2025 securecloudX.guide - Your ultimate cloud security guide
+          &copy; {new Date().getFullYear()} securecloudX.guide - Your ultimate cloud security guide
         </div>
       </div>
     </div>
