@@ -411,7 +411,7 @@ const OpenSourceBlog = () => {
                 github
               </a>
               <a
-                href="http://github.com/securecloudx"
+                href="https://github.com/0tieno/securecloudX/blob/main/CONTRIBUTING_BLOGS.md"
                 className="text-green-400 hover:text-green-300 transition-colors"
               >
                 contribute
