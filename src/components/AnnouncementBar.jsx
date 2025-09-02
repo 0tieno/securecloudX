@@ -11,7 +11,7 @@ export default function AnnouncementBar() {
         <Terminal className="w-4 h-4 text-red-400" />
         <span className="text-red-400">[SYSTEM ALERT]</span>
         <span>
-          Cloud pentesting labs & Blogs now live - Open sourcing soon
+          Cloud pentesting labs & Blogs now live - Open sourced!
         </span>
         <Zap className="w-4 h-4 text-red-400 animate-pulse" />
       </div>
@@ -21,7 +21,7 @@ export default function AnnouncementBar() {
         <Terminal className="w-3 h-3 text-red-400 flex-shrink-0" />
         <span className="text-red-400 text-xs">[ALERT]</span>
         <span className="text-xs truncate">
-          Cloud pentesting labs & Blogs now live - Open sourcing soon
+          Cloud pentesting labs & Blogs now live - Open sourced!
         </span>
         <Zap className="w-3 h-3 text-red-400 animate-pulse flex-shrink-0" />
       </div>

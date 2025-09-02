@@ -111,18 +111,16 @@ export default function PricingSection() {
       {/* Footer Links */}
       <div className="flex flex-col items-center mt-4 mb-2">
         <div className="flex gap-6 text-gray-400 text-sm mb-2">
-          <a href="#" className="hover:text-yellow-400">
-            Terms of Service
-          </a>
-          <a href="#" className="hover:text-yellow-400">
-            Privacy Policy
-          </a>
-          <a href="/refund-policy" className="hover:text-yellow-400">
+          <Link to="/terms-of-service" className="hover:text-yellow-400">
+            Terms of Use
+          </Link>
+          <Link to="/refund-policy" className="hover:text-yellow-400">
             Refund Policy
-          </a>
+          </Link>
         </div>
         <div className="text-gray-500 text-xs">
-          &copy; {new Date().getFullYear()} securecloudX.guide - Your ultimate cloud security guide
+          &copy; {new Date().getFullYear()} securecloudX.guide - Your ultimate
+          cloud security guide
         </div>
       </div>
     </div>
