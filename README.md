@@ -204,7 +204,8 @@ securecloudX/
 │   └── blog-manager.js      # Content management CLI
 ├── CONTRIBUTING_BLOGS.md    # Blog contribution guide
 ├── CONTRIBUTING_LABS.md     # Labs contribution guide
-└── AZURE_DEPLOYMENT_GUIDE.md # Azure deployment instructions
+├── LICENCE.md               # Licensing information
+└── README.md                # This file
 ```
 
 ## 🎯 Target Audience
@@ -305,5 +306,9 @@ root@securecloudx:~$ ./mission.sh
 - If you find the resource useful, consider giving it a star ⭐.
 
 ---
+
+## License
+
+Have a look at the [license file](LICENCE.md) for details
 
 Made with ❤️ by the SecureCloudX community | [Contribute Blogs](CONTRIBUTING_BLOGS.md) | [Contribute Labs](CONTRIBUTING_LABS.md) | [Owner](https://ronneyotieno.me)
