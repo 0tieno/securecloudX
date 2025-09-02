@@ -35,6 +35,7 @@ import BlogPost from "./pages/BlogPost";
 import ForgottenSecretLab from "./pages/ForgottenSecretLab";
 import ConsultMe from "./pages/ConsultMe";
 import PentestingLabs from "./pages/PentestingLabs";
+import TermsOfService from "./pages/TermsOfService";
 
 const App = () => {
   return (
@@ -42,6 +43,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/refund-policy" element={<RefundPolicyPage />} />
+        <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/get-started" element={<GetStartedPage />} />
         <Route
           path="*"
