@@ -132,12 +132,6 @@ const Task2 = () => {
           </p>
         </div>
 
-        {/* <p className="text-green-300 text-sm sm:text-base mt-3">
-            <strong>congrats!</strong> you just finished day 2. Ensure to document your learning and findings. You will need them in the capstone project. See you on day 3.
-        </p> */}
-        
-        {/* Youtube  video */}
-
 
 <section className="max-w-4xl  mx-auto px-4 py-10">
       

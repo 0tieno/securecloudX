@@ -53,13 +53,6 @@ export default function LandingHeader() {
               <span className="ml-4">root@securecloudx:~$</span>
             </div>
           </div>
-          {/* <div className="flex items-center justify-center">
-            <img
-              src="/images/securecloudX-logo.jpg"
-              alt="SecureCloudX Logo"
-              className="w-20 h-20 rounded-full object-cover border-2 border-red-400 shadow-lg"
-            />
-          </div> */}
         </div>
       </div>
 

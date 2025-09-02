@@ -207,6 +207,9 @@ export default function GetStartedPage() {
             >
               securecloudx.learn@gmail.com
             </a>
+            <div className="text-gray-500 text-xs">
+          securecloudX.guide - Some rights reserved!
+        </div>
           </div>
 
           <div className="flex flex-col items-start w-full lg:w-auto text-left">

@@ -1,4 +1,3 @@
-import React from "react";
 import { Terminal, Zap } from "lucide-react";
 
 export default function AnnouncementBar() {

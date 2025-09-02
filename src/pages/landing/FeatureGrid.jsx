@@ -1,4 +1,3 @@
-import React from "react";
 import { Shield, Target, Users, BookOpen, Zap, Terminal } from "lucide-react";
 
 const features = [

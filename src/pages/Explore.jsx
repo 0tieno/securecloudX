@@ -1,7 +1,7 @@
 import React from 'react';
 import Content from '../components/Content';
 import { Link } from 'react-router-dom';
-import { FaXTwitter } from "react-icons/fa6"; // If you need the new X (Twitter) logo
+import { FaXTwitter } from "react-icons/fa6"; 
 
 
 const Explore = () => {
@@ -10,9 +10,6 @@ const Explore = () => {
       <div className="max-w-4xl mx-auto p-6">
         {/* Page Header */}
         <h2 className="text-3xl font-bold text-gray mb-4">Don't stop pushing</h2>
-        {/* <p className="text-gray-300 mb-6">
-          Continue your learning journey with the following certifications, projects, and resources.
-        </p> */}
         <p className="text-gray-300 mb-6">
   Keep building! Experiment, break things, and rebuild—learning happens in the process.
 </p>

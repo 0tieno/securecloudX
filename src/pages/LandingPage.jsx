@@ -1,4 +1,3 @@
-import React from "react";
 import AnnouncementBar from "../components/AnnouncementBar";
 import LandingHeader from "./landing/LandingHeader";
 import FeatureGrid from "./landing/FeatureGrid";

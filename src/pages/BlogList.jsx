@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 import { Edit3, ExternalLink, Eye } from "lucide-react";
 import { blogPosts } from "../data/blogData";
