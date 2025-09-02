@@ -1,4 +1,3 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
 import {
   Terminal,
@@ -25,6 +24,7 @@ export default function GetStartedPage() {
           <p className="text-gray-500 max-w-2xl">
             // 2 paths: cloud security engineering and cloud penetration testing
           </p>
+          
           <div className="mt-4 text-sm text-gray-600">
             root@securecloudx:~# ./choose_path.sh
           </div>
@@ -39,6 +39,25 @@ export default function GetStartedPage() {
             <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
             cd ../
           </button>
+        </div>
+
+        {/* Information Note */}
+        <div className="mb-8 max-w-md w-full  p-4 sm:p-6 rounded">
+          <div className="text-blue-400 text-xs sm:text-sm mb-2">
+            $ cat important_note.txt
+          </div>
+          <div className="text-gray-300 text-sm sm:text-base leading-relaxed">
+            <span className="text-yellow-400">[INFO]</span> The posts on
+            engineering, pentesting, or blogs assume{" "}
+            <span className="text-green-400">
+              no, or little, prior knowledge
+            </span>{" "}
+            of the subject matter and therefore should be useful{" "}
+            <span className="text-cyan-400">
+              regardless of your level of experience
+            </span>
+            .
+          </div>
         </div>
 
         {/* Path Selection */}
@@ -174,7 +193,7 @@ export default function GetStartedPage() {
         </div>
       </div>
 
-      {/* Footer - now flows with content instead of fixed */}
+      {/* Footer */}
       <footer className="bg-gray-900 border-t border-gray-700 py-6 mt-8 font-mono">
         <div className="flex flex-col lg:flex-row items-start justify-center w-full max-w-6xl mx-auto px-4 gap-6 lg:gap-8">
           <div className="flex flex-col items-start w-full lg:w-auto text-left">

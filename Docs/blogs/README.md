@@ -26,7 +26,7 @@ node scripts/blog-manager.js create
 node scripts/blog-manager.js create "Your Post Title" --tags security,cloud,tutorial
 ```
 
-#### Method 2: Manual Creation
+#### Method 2: Manual Creation - (easy to use)
 
 1. Create a new `.md` file in `Docs/blogs/`
 2. Add the post metadata to `Docs/blogs/blog-config.json`
@@ -242,7 +242,7 @@ If you encounter issues:
 
 To contribute new blog posts:
 
-1. Use the blog manager to create new posts
+1. Use the blog manager or add manually to create new posts
 2. Follow the writing and technical guidelines
 3. Test your post locally before submitting
 4. Submit for review

@@ -11,22 +11,7 @@ const blogFiles = [
     filename: "hello-open-source.md",
     date: "2025-08-31",
     author: "SecureCloudX Team",
-  },
-  {
-    filename: "hello-open-source.md",
-    date: "2025-08-31",
-    author: "SecureCloudX Team",
-  },
-  {
-    filename: "hello-open-source.md",
-    date: "2025-08-31",
-    author: "SecureCloudX Team",
-  },
-  //  {
-  //     "filename": "secure-coding.md",
-  //     "title": "secure coding",
-  //     "date": "2025-08-31"
-  //   }
+  }
 ];
 
 function extractMetadataFromMarkdown(markdown) {
@@ -65,13 +50,11 @@ const OpenSourceBlog = () => {
     const fetchPosts = async () => {
       try {
         setLoading(true);
-        console.log("Starting to fetch blog posts...");
 
         const fetchedPosts = await Promise.all(
           blogFiles.map(async (meta) => {
             try {
               const url = BLOGS_PATH + meta.filename;
-              console.log(`Fetching: ${url}`);
 
               const res = await fetch(url);
               if (!res.ok) {
@@ -82,18 +65,9 @@ const OpenSourceBlog = () => {
               }
 
               const text = await res.text();
-              console.log(
-                `Successfully fetched ${meta.filename}, length: ${text.length}`
-              );
 
               const { title, excerpt, readingTime } =
                 extractMetadataFromMarkdown(text);
-              console.log(`Post data for ${meta.filename}:`, {
-                ...meta,
-                title,
-                excerpt,
-                readingTime,
-              });
               return { ...meta, title, excerpt, content: text, readingTime };
             } catch (error) {
               console.error(`Error fetching ${meta.filename}:`, error);
@@ -106,12 +80,6 @@ const OpenSourceBlog = () => {
         const validPosts = fetchedPosts
           .filter((post) => post !== null)
           .sort((a, b) => new Date(b.date) - new Date(a.date));
-
-        console.log(`Successfully loaded ${validPosts.length} blog posts`);
-        console.log(
-          "Posts with authors:",
-          validPosts.map((p) => ({ title: p.title, author: p.author }))
-        );
         setPosts(validPosts);
         setError(null);
       } catch (error) {
@@ -190,6 +158,23 @@ const OpenSourceBlog = () => {
                 // Cloud penetration testing, cloud security engineering, and
                 research.
               </p>
+            </div>
+
+            {/* Pentesting Definition Note */}
+            <div className="mb-8  p-4 sm:p-6 rounded">
+              <div className="text-green-400 text-xs sm:text-sm mb-2">
+                $ cat open_source_blogs.txt
+              </div>
+              <div className="text-gray-300 text-sm sm:text-base leading-relaxed">
+                <span className="text-yellow-400">[INFO]</span>{" "}
+                <span className="text-cyan-400">
+                  Each blog post
+                </span>{" "}
+                assumes no or little prior knowledge of the subject matter. And you can as well contribute by following the contribution guidelines.
+              </div>
+              <div className="mt-3 text-xs text-gray-400">
+                # Purpose: Proactive learning and skill development to secure digital infrastructure.
+              </div>
             </div>
 
             {/* Search */}
@@ -424,6 +409,12 @@ const OpenSourceBlog = () => {
                 className="text-green-400 hover:text-green-300 transition-colors"
               >
                 github
+              </a>
+              <a
+                href="http://github.com/securecloudx"
+                className="text-green-400 hover:text-green-300 transition-colors"
+              >
+                contribute
               </a>
             </div>
           </div>
