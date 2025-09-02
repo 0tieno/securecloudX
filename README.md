@@ -21,9 +21,9 @@ root@securecloudx:~$ ./welcome.sh --security-first
 
 We believe that with the right discipline and resources, anyone can master cloud security and become a skilled security professional. SecureCloudX bridges the gap between theoretical knowledge and real-world application.
 
-## 🛡️ Platform Features
+## Platform Features
 
-### 🔐 Core Learning Paths
+### Core Learning Paths
 
 ```bash
 /securecloudx
@@ -33,7 +33,7 @@ We believe that with the right discipline and resources, anyone can master cloud
 └── /past-hackathons              # Competition challenges
 ```
 
-### 🔧 Technical Stack
+### Technical Stack
 
 - **Frontend**: React 18 + Vite for blazing-fast development
 - **Styling**: Tailwind CSS with custom security theme
@@ -282,11 +282,7 @@ open https://github.com/0tieno/securecloudX/discussions
 - **Email**: securecloudx.learn@gmail.com
 - **Website**: [https://securecloudx.com](https://securecloudx.com)
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - **OWASP Community** for security testing methodologies
 - **Open Source Contributors** who make learning accessible
@@ -306,7 +302,8 @@ root@securecloudx:~$ ./mission.sh
 ```
 
 **🔥 Stay consistent—Security never stops evolving!**
+- If you find the resource useful, consider giving it a star ⭐.
 
 ---
 
-Made with ❤️ by the SecureCloudX community | [Contribute](CONTRIBUTING_BLOGS.md) | [Labs](CONTRIBUTING_LABS.md) | [Owner](https://ronneyotieno.me)
+Made with ❤️ by the SecureCloudX community | [Contribute Blogs](CONTRIBUTING_BLOGS.md) | [Contribute Labs](CONTRIBUTING_LABS.md) | [Owner](https://ronneyotieno.me)
