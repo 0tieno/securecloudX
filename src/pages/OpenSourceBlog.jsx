@@ -8,10 +8,10 @@ const BLOGS_PATH = "/blog/";
 // List of blog post filenames and their metadata
 const blogFiles = [
   {
-    filename: "hello-open-source.md",
-    date: "2025-08-31",
-    author: "SecureCloudX Team",
-  }
+    filename: "pentester-ports.md",
+    date: "2025-09-03",
+    author: "ronney",
+  },
 ];
 
 function extractMetadataFromMarkdown(markdown) {
@@ -167,13 +167,13 @@ const OpenSourceBlog = () => {
               </div>
               <div className="text-gray-300 text-sm sm:text-base leading-relaxed">
                 <span className="text-yellow-400">[INFO]</span>{" "}
-                <span className="text-cyan-400">
-                  Each blog post
-                </span>{" "}
-                assumes no or little prior knowledge of the subject matter. And you can as well contribute by following the contribution guidelines.
+                <span className="text-cyan-400">Each blog post</span> assumes no
+                or little prior knowledge of the subject matter. And you can as
+                well contribute by following the contribution guidelines.
               </div>
               <div className="mt-3 text-xs text-gray-400">
-                # Purpose: Proactive learning and skill development to secure digital infrastructure.
+                # Purpose: Proactive learning and skill development to secure
+                digital infrastructure.
               </div>
             </div>
 
@@ -298,12 +298,10 @@ const OpenSourceBlog = () => {
               <div className="prose prose-invert max-w-none text-gray-400 leading-relaxed">
                 <ReactMarkdown
                   components={{
-                    h1: ({ node, ...props }) => (
-                      <h1
-                        className="text-2xl text-gray-300 mb-6 mt-8 font-mono"
-                        {...props}
-                      />
-                    ),
+                    h1: ({ node, children, ...props }) => {
+                      // Always skip the first h1 since it's the title shown in header
+                      return null;
+                    },
                     h2: ({ node, ...props }) => (
                       <h2
                         className="text-xl text-gray-300 mb-4 mt-6 font-mono"
@@ -357,13 +355,13 @@ const OpenSourceBlog = () => {
                     ),
                     ul: ({ node, ...props }) => (
                       <ul
-                        className="list-disc list-inside text-gray-400 mb-4 space-y-1"
+                        className="list-disc text-gray-400 mb-4 space-y-1"
                         {...props}
                       />
                     ),
                     ol: ({ node, ...props }) => (
                       <ol
-                        className="list-decimal list-inside text-gray-400 mb-4 space-y-1"
+                        className="list-decimal text-gray-400 mb-4 space-y-1"
                         {...props}
                       />
                     ),

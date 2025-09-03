@@ -1,19 +1,9 @@
 {
   "posts": [
     {
-      "filename": "hello-open-source.md",
-      "title": "Hello Open Source",
-      "date": "2025-08-31"
-    },
-    {
-      "filename": "hello-open-source.md",
-      "title": "Hello Open Source",
-      "date": "2025-08-31"
-    },
-    {
-      "filename": "hello-open-source.md",
-      "title": "Hello Open Source",
-      "date": "2025-08-31"
+      "filename": "pentester-ports.md",
+      "title": "Pentester's Guide to Common Network Ports and Protocols",
+      "date": "2025-09-03"
     }
     
   ],
