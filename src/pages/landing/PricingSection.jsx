@@ -122,6 +122,9 @@ export default function PricingSection() {
           &copy; {new Date().getFullYear()} securecloudX.guide - Your ultimate
           cloud security guide
         </div>
+        <div className="text-gray-500 text-xs">
+          Owner: <a href="https://ronneyotieno.me" className="underline hover:text-yellow-400">s!rr0n3y</a>
+        </div>
       </div>
     </div>
   );

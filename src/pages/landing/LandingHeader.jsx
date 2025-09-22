@@ -50,7 +50,7 @@ export default function LandingHeader() {
               <div className="w-3 h-3 bg-red-500 rounded-full"></div>
               <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
               <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-              <span className="ml-4">root@securecloudx:~$</span>
+              <span className="ml-4">root@securecloudX:~$</span>
             </div>
           </div>
         </div>
