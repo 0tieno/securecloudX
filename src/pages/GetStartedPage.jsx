@@ -14,7 +14,7 @@ export default function GetStartedPage() {
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono flex flex-col">
       {/* Navbar Header */}
       <nav className="bg-gray-900 border-b border-gray-700 px-4 sm:px-6 py-4">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             {/* Left side - Logo */}
             <div className="flex flex-col">
