@@ -71,6 +71,12 @@ export default function Changelog() {
           <div className="flex items-center space-x-6">
             <button
               className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-sm font-mono"
+              onClick={() => navigate("/about")}
+            >
+              ./about
+            </button>
+            <button
+              className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-sm font-mono"
               onClick={() => navigate("/pricing")}
             >
               ./pricing
@@ -103,10 +109,10 @@ export default function Changelog() {
             <hr className="flex-grow border-t border-gray-700 mx-2" />
           </div>
           <h3 className="text-lg sm:text-xl max-w-md font-semibold text-center mb-12 mt-6 text-gray-100 mx-auto">
-            <span className="text-yellow-400">
-              With 400 monthly average users
+            With <span className="text-yellow-400">
+               400+ monthly average users {" "}
             </span>
-            , we are always improving our content, adding new resources and
+            as of {new Date().toLocaleDateString()}, we are always improving our content, adding new resources and
             adding features to enhance your learning experience.
           </h3>
           <div className="w-full max-w-2xl mx-auto mt-6 sm:mt-8 flex justify-center">

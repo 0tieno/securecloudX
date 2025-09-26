@@ -228,7 +228,7 @@ export default function GetStartedPage() {
             </div>
             <div className="text-red-400 mb-2">securecloudX</div>
             <a
-              href="mailto:conradakunga@gmail.com"
+              href="mailto:securecloudx.learn@gmail.com"
               className="text-red-400 hover:text-red-300 transition-colors text-sm"
             >
               securecloudx.learn@gmail.com

@@ -38,6 +38,7 @@ import PentestingLabs from "./pages/PentestingLabs";
 import TermsOfService from "./pages/TermsOfService";
 import Changelog from "./pages/Changelog";
 import Pricing from "./pages/Pricing";
+import About from "./pages/AboutAuthor";
 
 const App = () => {
   return (
@@ -49,6 +50,8 @@ const App = () => {
         <Route path="/get-started" element={<GetStartedPage />} />
         <Route path="/changelog" element={<Changelog />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/about" element={<About />} />
+        
         <Route
           path="*"
           element={
