@@ -36,6 +36,11 @@ import ForgottenSecretLab from "./pages/ForgottenSecretLab";
 import ConsultMe from "./pages/ConsultMe";
 import PentestingLabs from "./pages/PentestingLabs";
 import TermsOfService from "./pages/TermsOfService";
+import Changelog from "./pages/Changelog";
+import Pricing from "./pages/Pricing";
+import About from "./pages/AboutAuthor";
+import Story from "./pages/Story";
+import Work from "./pages/Work";
 
 const App = () => {
   return (
@@ -45,6 +50,12 @@ const App = () => {
         <Route path="/refund-policy" element={<RefundPolicyPage />} />
         <Route path="/terms-of-service" element={<TermsOfService />} />
         <Route path="/get-started" element={<GetStartedPage />} />
+        <Route path="/changelog" element={<Changelog />} />
+        <Route path="/pricing" element={<Pricing />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/story" element={<Story />} />
+        <Route path="/work" element={<Work />} />
+
         <Route
           path="*"
           element={

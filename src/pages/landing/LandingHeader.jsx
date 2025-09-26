@@ -44,7 +44,7 @@ export default function LandingHeader() {
     <div className="flex flex-col items-center mb-16 text-center font-mono">
       {/* Terminal-style logo section */}
       <div className="mb-8 relative">
-        <div className=" p-6 shadow-lg">
+        <div className=" p-6">
           <div className="flex items-center justify-center mb-4">
             <div className="flex items-center space-x-2 text-gray-400 text-sm mb-2">
               <div className="w-3 h-3 bg-red-500 rounded-full"></div>
@@ -93,7 +93,7 @@ export default function LandingHeader() {
         </button>
         <button
           className="bg-gray-800 hover:bg-gray-700 border border-gray-600 text-gray-300 font-mono font-semibold px-8 py-3 transition-all duration-200 group flex items-center space-x-2"
-          onClick={() => navigate("/pentesting-labs")}
+          onClick={() => navigate("/home")}
         >
           <Zap className="w-5 h-5 group-hover:text-red-400 transition-colors" />
           <span>ACCESS LABS</span>
