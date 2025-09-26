@@ -1,4 +1,4 @@
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { Terminal, ArrowLeft } from "lucide-react";
 
 export default function Story() {
@@ -66,12 +66,12 @@ export default function Story() {
               <div className="mb-6">
                 <p className="text-gray-300 font-medium mb-3">Jump to:</p>
                 <div className="space-y-1">
-                  <a
-                    href="#my-work"
+                  <Link
+                    to="/work"
                     className="block text-red-400 hover:text-red-300 underline transition-colors"
                   >
                     My Work
-                  </a>
+                  </Link>
                   <a
                     href="#conferences"
                     className="block text-red-400 hover:text-red-300 underline transition-colors"
