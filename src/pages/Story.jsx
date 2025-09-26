@@ -33,6 +33,12 @@ export default function Story() {
 
             {/* Right side - Navigation Links */}
             <div className="flex items-center justify-start sm:justify-end space-x-4 sm:space-x-6 ml-8 sm:ml-0">
+              <button
+                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
+                onClick={() => navigate("/work")}
+              >
+                ./work
+              </button>
               <button className="text-red-400 text-xs sm:text-sm font-mono cursor-default">
                 ./story
               </button>
@@ -49,17 +55,6 @@ export default function Story() {
 
       <div className="flex-1 px-4 py-12">
         <div className="max-w-4xl mx-auto">
-          {/* Back Navigation Button */}
-          <div className="mb-8 flex justify-start">
-            <button
-              className="inline-flex items-center px-4 py-2 bg-gray-800 border border-gray-700 text-gray-300 font-mono hover:bg-gray-700 hover:border-gray-600 transition-colors group"
-              onClick={() => navigate(-1)}
-            >
-              <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-              cd ../
-            </button>
-          </div>
-
           {/* Main Content */}
           <div className="p-8 sm:p-12">
             {/* Navigation Menu */}
@@ -98,7 +93,6 @@ export default function Story() {
               <h2 className="text-3xl font-bold text-gray-300 mb-6">About</h2>
 
               <div className="prose prose-gray max-w-none">
-
                 <p className="text-gray-300 leading-relaxed mb-4">
                   When I think about how I'd like to spend my days alive (and
                   consequently remembered for when no more), I think of giving
