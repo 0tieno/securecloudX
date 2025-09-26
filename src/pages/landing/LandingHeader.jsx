@@ -93,7 +93,7 @@ export default function LandingHeader() {
         </button>
         <button
           className="bg-gray-800 hover:bg-gray-700 border border-gray-600 text-gray-300 font-mono font-semibold px-8 py-3 transition-all duration-200 group flex items-center space-x-2"
-          onClick={() => navigate("/pentesting-labs")}
+          onClick={() => navigate("/home")}
         >
           <Zap className="w-5 h-5 group-hover:text-red-400 transition-colors" />
           <span>ACCESS LABS</span>

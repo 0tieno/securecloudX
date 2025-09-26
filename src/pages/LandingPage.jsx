@@ -1,8 +1,6 @@
 import AnnouncementBar from "../components/AnnouncementBar";
 import LandingHeader from "./landing/LandingHeader";
-import FeatureGrid from "./landing/FeatureGrid";
-import PricingSection from "./landing/PricingSection";
-import Changelog from "./landing/Changelog";
+// import FeatureGrid from "./landing/FeatureGrid";
 
 export default function LandingPage() {
   return (
@@ -16,9 +14,7 @@ export default function LandingPage() {
         style={{ marginTop: "32px" }}
       >
         <LandingHeader />
-        <FeatureGrid />
-        <Changelog />
-        <PricingSection />
+        {/* <FeatureGrid /> */}
       </div>
     </div>
   );
