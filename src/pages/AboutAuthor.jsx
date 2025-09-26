@@ -7,47 +7,47 @@ export default function AboutAuthor() {
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
       {/* Navbar Header */}
-      <nav className="bg-gray-900 border-b border-gray-700 px-6 py-4">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          {/* Left side - Logo */}
-          <div className="flex flex-col">
-            <div className="flex items-center">
-              <Terminal className="w-8 h-8 text-red-400 mr-3" />
-              <h1
-                className="text-2xl font-bold text-gray-300 cursor-pointer"
-                onClick={() => navigate("/")}
-              >
-                I'm <span className="text-red-400">$!rr0n3y</span>
-              </h1>
-            </div>
-            <div className="ml-11">
-              <p className="text-gray-500 text-sm">
-                Developer | Jnr Pentester(cloud & web)
-              </p>
-              <div className="text-xs text-gray-600 mt-1">
-                Here is a little bit about myself...
+      <nav className="bg-gray-900 border-b border-gray-700 px-4 sm:px-6 py-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            {/* Left side - Logo */}
+            <div className="flex flex-col">
+              <div className="flex items-center">
+                <Terminal className="w-6 h-6 sm:w-8 sm:h-8 text-red-400 mr-2 sm:mr-3" />
+                <h1
+                  className="text-xl sm:text-2xl font-bold text-gray-300 cursor-pointer"
+                  onClick={() => navigate("/")}
+                >
+                  I'm <span className="text-red-400">$!rr0n3y</span>
+                </h1>
+              </div>
+              <div className="ml-8 sm:ml-11 hidden sm:block">
+                <p className="text-gray-500 text-sm">
+                  Developer | Jnr Pentester(cloud & web)
+                </p>
+                <div className="text-xs text-gray-600 mt-1">
+                  Here is a little bit about myself...
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Right side - Navigation Links */}
-          <div className="flex items-center space-x-6">
-            <button
-              className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-sm font-mono"
-              onClick={() => navigate("#")}
-            >
-              ./story
-            </button>
-
-            <button className="text-red-400 text-sm font-mono cursor-default">
-              ./about
-            </button>
+            {/* Right side - Navigation Links */}
+            <div className="flex items-center justify-start sm:justify-end space-x-4 sm:space-x-6 ml-8 sm:ml-0">
+              <button
+                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
+                onClick={() => navigate("#")}
+              >
+                ./story
+              </button>
+              <button className="text-red-400 text-xs sm:text-sm font-mono cursor-default">
+                ./about
+              </button>
+            </div>
           </div>
         </div>
       </nav>
 
       <div className="flex-1 flex flex-col items-center px-4 py-12">
-
         {/* Profile Section */}
         <div className="w-full max-w-4xl mx-auto">
           <div className="p-8 mb-8">
@@ -92,14 +92,15 @@ export default function AboutAuthor() {
 
           {/* About Content */}
           <div className="p-8 mb-8">
-                      <div className="text-start max-w-3xl mx-auto">
-                           <div className="text-green-400 text-sm mb-4 font-mono">
+            <div className="text-start max-w-3xl mx-auto">
+              <div className="text-green-400 text-sm mb-4 font-mono">
                 $ cat securecloudX_Founder.txt
               </div>
 
               <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                In addition to [that], I'm a <span className="text-yellow-400">learner</span> and I
-                love <span className="text-blue-400">building things</span> and{" "}
+                In addition to [that], I'm a{" "}
+                <span className="text-yellow-400">learner</span> and I love{" "}
+                <span className="text-blue-400">building things</span> and{" "}
                 <span className="text-red-400">hacking them</span> to prove
                 security.
               </p>

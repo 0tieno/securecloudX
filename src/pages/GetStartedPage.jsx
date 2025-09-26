@@ -13,50 +13,52 @@ export default function GetStartedPage() {
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono flex flex-col">
       {/* Navbar Header */}
-      <nav className="bg-gray-900 border-b border-gray-700 px-6 py-4">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          {/* Left side - Logo */}
-          <div className="flex flex-col">
-            <div className="flex items-center">
-              <Terminal className="w-8 h-8 text-red-400 mr-3" />
-              <h1
-                className="text-2xl font-bold text-gray-300 cursor-pointer"
-                onClick={() => navigate("/")}
-              >
-                secure<span className="text-red-400">cloud</span>X
-              </h1>
-            </div>
-            <div className="ml-11">
-              <p className="text-gray-500 text-sm">
-                // 2 paths: cloud security engineering and cloud penetration
-                testing
-              </p>
-              <div className="text-xs text-gray-600 mt-1">
-                root@securecloudx:~# ./choose_path.sh
+      <nav className="bg-gray-900 border-b border-gray-700 px-4 sm:px-6 py-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            {/* Left side - Logo */}
+            <div className="flex flex-col">
+              <div className="flex items-center">
+                <Terminal className="w-6 h-6 sm:w-8 sm:h-8 text-red-400 mr-2 sm:mr-3" />
+                <h1
+                  className="text-xl sm:text-2xl font-bold text-gray-300 cursor-pointer"
+                  onClick={() => navigate("/")}
+                >
+                  secure<span className="text-red-400">cloud</span>X
+                </h1>
+              </div>
+              <div className="ml-8 sm:ml-11 hidden sm:block">
+                <p className="text-gray-500 text-sm">
+                  // 2 paths: cloud security engineering and cloud penetration
+                  testing
+                </p>
+                <div className="text-xs text-gray-600 mt-1">
+                  root@securecloudx:~# ./choose_path.sh
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Right side - Navigation Links */}
-          <div className="flex items-center space-x-6">
-            <button
-              className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-sm font-mono"
-              onClick={() => navigate("/about")}
-            >
-              ./about
-            </button>
-            <button
-              className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-sm font-mono"
-              onClick={() => navigate("/pricing")}
-            >
-              ./pricing
-            </button>
-            <button
-              className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-sm font-mono"
-              onClick={() => navigate("/changelog")}
-            >
-              ./changelog
-            </button>
+            {/* Right side - Navigation Links */}
+            <div className="flex items-center justify-start sm:justify-end space-x-4 sm:space-x-6 ml-8 sm:ml-0">
+              <button
+                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
+                onClick={() => navigate("/about")}
+              >
+                ./about
+              </button>
+              <button
+                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
+                onClick={() => navigate("/pricing")}
+              >
+                ./pricing
+              </button>
+              <button
+                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
+                onClick={() => navigate("/changelog")}
+              >
+                ./changelog
+              </button>
+            </div>
           </div>
         </div>
       </nav>

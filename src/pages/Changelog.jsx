@@ -44,46 +44,48 @@ export default function Changelog() {
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
       {/* Navbar Header */}
-      <nav className="bg-gray-900 border-b border-gray-700 px-6 py-4">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          {/* Left side - Logo */}
-          <div className="flex flex-col">
-            <div className="flex items-center">
-              <Terminal className="w-8 h-8 text-red-400 mr-3" />
-              <h1
-                className="text-2xl font-bold text-gray-300 cursor-pointer"
-                onClick={() => navigate("/")}
-              >
-                secure<span className="text-red-400">cloud</span>X
-              </h1>
-            </div>
-            <div className="ml-11">
-              <p className="text-gray-500 text-sm">
-                // changelog: track updates and improvements
-              </p>
-              <div className="text-xs text-gray-600 mt-1">
-                root@securecloudx:~# ./changelog.sh
+      <nav className="bg-gray-900 border-b border-gray-700 px-4 sm:px-6 py-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            {/* Left side - Logo */}
+            <div className="flex flex-col">
+              <div className="flex items-center">
+                <Terminal className="w-6 h-6 sm:w-8 sm:h-8 text-red-400 mr-2 sm:mr-3" />
+                <h1
+                  className="text-xl sm:text-2xl font-bold text-gray-300 cursor-pointer"
+                  onClick={() => navigate("/")}
+                >
+                  secure<span className="text-red-400">cloud</span>X
+                </h1>
+              </div>
+              <div className="ml-8 sm:ml-11 hidden sm:block">
+                <p className="text-gray-500 text-sm">
+                  // changelog: track updates and improvements
+                </p>
+                <div className="text-xs text-gray-600 mt-1">
+                  root@securecloudx:~# ./changelog.sh
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Right side - Navigation Links */}
-          <div className="flex items-center space-x-6">
-            <button
-              className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-sm font-mono"
-              onClick={() => navigate("/about")}
-            >
-              ./about
-            </button>
-            <button
-              className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-sm font-mono"
-              onClick={() => navigate("/pricing")}
-            >
-              ./pricing
-            </button>
-            <button className="text-red-400 text-sm font-mono cursor-default">
-              ./changelog
-            </button>
+            {/* Right side - Navigation Links */}
+            <div className="flex items-center justify-start sm:justify-end space-x-4 sm:space-x-6 ml-8 sm:ml-0">
+              <button
+                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
+                onClick={() => navigate("/about")}
+              >
+                ./about
+              </button>
+              <button
+                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
+                onClick={() => navigate("/pricing")}
+              >
+                ./pricing
+              </button>
+              <button className="text-red-400 text-xs sm:text-sm font-mono cursor-default">
+                ./changelog
+              </button>
+            </div>
           </div>
         </div>
       </nav>
@@ -109,11 +111,11 @@ export default function Changelog() {
             <hr className="flex-grow border-t border-gray-700 mx-2" />
           </div>
           <h3 className="text-lg sm:text-xl max-w-md font-semibold text-center mb-12 mt-6 text-gray-100 mx-auto">
-            With <span className="text-yellow-400">
-               400+ monthly average users {" "}
-            </span>
-            as of {new Date().toLocaleDateString()}, we are always improving our content, adding new resources and
-            adding features to enhance your learning experience.
+            With{" "}
+            <span className="text-yellow-400">400+ monthly average users </span>
+            as of {new Date().toLocaleDateString()}, we are always improving our
+            content, adding new resources and adding features to enhance your
+            learning experience.
           </h3>
           <div className="w-full max-w-2xl mx-auto mt-6 sm:mt-8 flex justify-center">
             <div className="relative flex flex-col">
@@ -161,19 +163,19 @@ export default function Changelog() {
                 </div>
               ))}
             </div>
-                  </div>
-                  {/* Footer Links */}
-                            <div className="flex flex-col items-center mt-4 mb-2">
-                              <div className="flex gap-6 text-gray-400 text-sm mb-2">
-                                <Link to="/terms-of-service" className="hover:text-yellow-400">
-                                  Terms of Use
-                                </Link>
-                              </div>
-                              <div className="text-gray-500 text-xs">
-                                &copy; {new Date().getFullYear()} securecloudX.guide - Your
-                                ultimate cloud security guide
-                              </div>
-                            </div>
+          </div>
+          {/* Footer Links */}
+          <div className="flex flex-col items-center mt-4 mb-2">
+            <div className="flex gap-6 text-gray-400 text-sm mb-2">
+              <Link to="/terms-of-service" className="hover:text-yellow-400">
+                Terms of Use
+              </Link>
+            </div>
+            <div className="text-gray-500 text-xs">
+              &copy; {new Date().getFullYear()} securecloudX.guide - Your
+              ultimate cloud security guide
+            </div>
+          </div>
         </div>
       </div>
     </div>

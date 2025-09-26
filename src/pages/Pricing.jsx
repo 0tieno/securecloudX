@@ -7,46 +7,48 @@ export default function Pricing() {
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
       {/* Navbar Header */}
-      <nav className="bg-gray-900 border-b border-gray-700 px-6 py-4">
-        <div className="max-w-6xl mx-auto flex items-center justify-between">
-          {/* Left side - Logo */}
-          <div className="flex flex-col">
-            <div className="flex items-center">
-              <Terminal className="w-8 h-8 text-red-400 mr-3" />
-              <h1
-                className="text-2xl font-bold text-gray-300 cursor-pointer"
-                onClick={() => navigate("/")}
-              >
-                secure<span className="text-red-400">cloud</span>X
-              </h1>
-            </div>
-            <div className="ml-11">
-              <p className="text-gray-500 text-sm">
-                // pricing: consultation services and support
-              </p>
-              <div className="text-xs text-gray-600 mt-1">
-                root@securecloudx:~# ./pricing.sh
+      <nav className="bg-gray-900 border-b border-gray-700 px-4 sm:px-6 py-4">
+        <div className="max-w-6xl mx-auto">
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            {/* Left side - Logo */}
+            <div className="flex flex-col">
+              <div className="flex items-center">
+                <Terminal className="w-6 h-6 sm:w-8 sm:h-8 text-red-400 mr-2 sm:mr-3" />
+                <h1
+                  className="text-xl sm:text-2xl font-bold text-gray-300 cursor-pointer"
+                  onClick={() => navigate("/")}
+                >
+                  secure<span className="text-red-400">cloud</span>X
+                </h1>
+              </div>
+              <div className="ml-8 sm:ml-11 hidden sm:block">
+                <p className="text-gray-500 text-sm">
+                  // pricing: consultation services and support
+                </p>
+                <div className="text-xs text-gray-600 mt-1">
+                  root@securecloudx:~# ./pricing.sh
+                </div>
               </div>
             </div>
-          </div>
 
-          {/* Right side - Navigation Links */}
-          <div className="flex items-center space-x-6">
-            <button
-              className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-sm font-mono"
-              onClick={() => navigate("/about")}
-            >
-              ./about
-            </button>
-            <button className="text-red-400 text-sm font-mono cursor-default">
-              ./pricing
-            </button>
-            <button
-              className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-sm font-mono"
-              onClick={() => navigate("/changelog")}
-            >
-              ./changelog
-            </button>
+            {/* Right side - Navigation Links */}
+            <div className="flex items-center justify-start sm:justify-end space-x-4 sm:space-x-6 ml-8 sm:ml-0">
+              <button
+                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
+                onClick={() => navigate("/about")}
+              >
+                ./about
+              </button>
+              <button className="text-red-400 text-xs sm:text-sm font-mono cursor-default">
+                ./pricing
+              </button>
+              <button
+                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
+                onClick={() => navigate("/changelog")}
+              >
+                ./changelog
+              </button>
+            </div>
           </div>
         </div>
       </nav>
@@ -72,8 +74,8 @@ export default function Pricing() {
             <hr className="flex-grow border-t border-gray-700 mx-2" />
           </div>
           <p className="text-gray-300 text-center mb-8 mt-4 max-w-xl">
-            This guide is free and open sourced. Only one-on-one consultation is charged to
-            support commitment with additional benefits.
+            This guide is free and open sourced. Only one-on-one consultation is
+            charged to support commitment with additional benefits.
           </p>
           <div className="flex flex-col md:flex-row gap-8 justify-center mb-8">
             {/* Students Plan */}
@@ -156,8 +158,8 @@ export default function Pricing() {
                   and penetration testing
                 </li>
                 <li className="flex items-center gap-2">
-                  <span className="text-green-400">✔️</span> Cloud infrastructure
-                  security engineering
+                  <span className="text-green-400">✔️</span> Cloud
+                  infrastructure security engineering
                 </li>
                 <li className="flex items-center gap-2">
                   <span className="text-green-400">✔️</span> Cloud migration
