@@ -39,6 +39,7 @@ import TermsOfService from "./pages/TermsOfService";
 import Changelog from "./pages/Changelog";
 import Pricing from "./pages/Pricing";
 import About from "./pages/AboutAuthor";
+import Story from "./pages/Story";
 
 const App = () => {
   return (
@@ -51,7 +52,8 @@ const App = () => {
         <Route path="/changelog" element={<Changelog />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/about" element={<About />} />
-        
+        <Route path="/story" element={<Story />} />
+
         <Route
           path="*"
           element={

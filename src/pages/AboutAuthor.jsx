@@ -8,7 +8,7 @@ export default function AboutAuthor() {
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
       {/* Navbar Header */}
       <nav className="bg-gray-900 border-b border-gray-700 px-4 sm:px-6 py-4">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-4xl mx-auto">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             {/* Left side - Logo */}
             <div className="flex flex-col">
@@ -35,7 +35,7 @@ export default function AboutAuthor() {
             <div className="flex items-center justify-start sm:justify-end space-x-4 sm:space-x-6 ml-8 sm:ml-0">
               <button
                 className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
-                onClick={() => navigate("#")}
+                onClick={() => navigate("/story")}
               >
                 ./story
               </button>
