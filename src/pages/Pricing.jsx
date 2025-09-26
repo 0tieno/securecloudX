@@ -32,6 +32,12 @@ export default function Pricing() {
 
           {/* Right side - Navigation Links */}
           <div className="flex items-center space-x-6">
+            <button
+              className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-sm font-mono"
+              onClick={() => navigate("/about")}
+            >
+              ./about
+            </button>
             <button className="text-red-400 text-sm font-mono cursor-default">
               ./pricing
             </button>

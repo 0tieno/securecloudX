@@ -41,6 +41,12 @@ export default function GetStartedPage() {
           <div className="flex items-center space-x-6">
             <button
               className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-sm font-mono"
+              onClick={() => navigate("/about")}
+            >
+              ./about
+            </button>
+            <button
+              className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-sm font-mono"
               onClick={() => navigate("/pricing")}
             >
               ./pricing
