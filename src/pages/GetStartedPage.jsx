@@ -12,24 +12,50 @@ export default function GetStartedPage() {
   const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono flex flex-col">
-      <div className="flex-1 flex flex-col items-center justify-center px-4 py-12">
-        {/* Header Section */}
-        <div className="mb-12 text-center">
-          <div className="flex items-center justify-center mb-6">
-            <Terminal className="w-8 h-8 text-red-400 mr-3" />
-            <h1 className="text-4xl font-bold text-gray-300">
-              secure<span className="text-red-400">cloud</span>X
-            </h1>
+      {/* Navbar Header */}
+      <nav className="bg-gray-900 border-b border-gray-700 px-6 py-4">
+        <div className="max-w-6xl mx-auto flex items-center justify-between">
+          {/* Left side - Logo */}
+          <div className="flex flex-col">
+            <div className="flex items-center">
+              <Terminal className="w-8 h-8 text-red-400 mr-3" />
+              <h1
+                className="text-2xl font-bold text-gray-300 cursor-pointer"
+                onClick={() => navigate("/")}
+              >
+                secure<span className="text-red-400">cloud</span>X
+              </h1>
+            </div>
+            <div className="ml-11">
+              <p className="text-gray-500 text-sm">
+                // 2 paths: cloud security engineering and cloud penetration
+                testing
+              </p>
+              <div className="text-xs text-gray-600 mt-1">
+                root@securecloudx:~# ./choose_path.sh
+              </div>
+            </div>
           </div>
-          <p className="text-gray-500 max-w-2xl">
-            // 2 paths: cloud security engineering and cloud penetration testing
-          </p>
-          
-          <div className="mt-4 text-sm text-gray-600">
-            root@securecloudx:~# ./choose_path.sh
+
+          {/* Right side - Navigation Links */}
+          <div className="flex items-center space-x-6">
+            <button
+              className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-sm font-mono"
+              onClick={() => navigate("/pricing")}
+            >
+              ./pricing
+            </button>
+            <button
+              className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-sm font-mono"
+              onClick={() => navigate("/changelog")}
+            >
+              ./changelog
+            </button>
           </div>
         </div>
+      </nav>
 
+      <div className="flex-1 flex flex-col items-center justify-center px-4 py-12">
         {/* Back Navigation Button */}
         <div className="w-full max-w-md mb-8 flex justify-start">
           <button
@@ -208,8 +234,8 @@ export default function GetStartedPage() {
               securecloudx.learn@gmail.com
             </a>
             <div className="text-gray-500 text-xs">
-          securecloudX.guide - Some rights reserved!
-        </div>
+              securecloudX.guide - Some rights reserved!
+            </div>
           </div>
 
           <div className="flex flex-col items-start w-full lg:w-auto text-left">
@@ -232,11 +258,21 @@ export default function GetStartedPage() {
               </a>
             </div>
             <div className="flex items-center">
-            <a href="https://x.com/securecloudX" target="_blank" rel="noopener noreferrer" className="hover:text-red-400">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-            <path d="M18.3 2H22L14.8 10.6 23 22h-5l-5.7-7.9L6.3 22H2l8.7-9.6L2.3 2h5.2l5.2 7.5L18.3 2ZM17.2 20h1.6l-9.7-14h-1.7l9.8 14Z"/>
-          </svg>
-        </a>
+              <a
+                href="https://x.com/securecloudX"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-red-400"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  className="w-5 h-5"
+                >
+                  <path d="M18.3 2H22L14.8 10.6 23 22h-5l-5.7-7.9L6.3 22H2l8.7-9.6L2.3 2h5.2l5.2 7.5L18.3 2ZM17.2 20h1.6l-9.7-14h-1.7l9.8 14Z" />
+                </svg>
+              </a>
               <a
                 href="https://x.com/securecloudX"
                 className="text-red-400 hover:text-red-300 transition-colors text-sm pl-2"
