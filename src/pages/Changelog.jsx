@@ -162,22 +162,10 @@ export default function Changelog() {
                                 <Link to="/terms-of-service" className="hover:text-yellow-400">
                                   Terms of Use
                                 </Link>
-                                <Link to="/refund-policy" className="hover:text-yellow-400">
-                                  Refund Policy
-                                </Link>
                               </div>
                               <div className="text-gray-500 text-xs">
                                 &copy; {new Date().getFullYear()} securecloudX.guide - Your
                                 ultimate cloud security guide
-                              </div>
-                              <div className="text-gray-500 text-xs">
-                                Owner:{" "}
-                                <a
-                                  href="https://ronneyotieno.me"
-                                  className="underline hover:text-yellow-400"
-                                >
-                                  s!rr0n3y
-                                </a>
                               </div>
                             </div>
         </div>
