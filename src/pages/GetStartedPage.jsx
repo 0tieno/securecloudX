@@ -169,7 +169,7 @@ export default function GetStartedPage() {
               ./past_hackathons
             </h2>
             <p className="text-gray-500 text-sm font-mono">
-              # Previous security challenges and competitions
+              # Previous security challenges, competitions, and hacktivities
             </p>
           </div>
 
