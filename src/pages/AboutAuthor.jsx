@@ -104,25 +104,23 @@ export default function AboutAuthor() {
               </div>
 
               <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                I'm a{" "}
-                <span className="text-yellow-400">learner</span> and I love{" "}
-                <span className="text-blue-400">building things</span> and{" "}
+                I'm a <span className="text-yellow-400">learner</span> and I
+                love <span className="text-blue-400">building things</span> and{" "}
                 <span className="text-red-400">hacking them</span> to prove
                 security.
               </p>
               <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                As a Developer, some of our.[my] work are today used by thousands. As a Jnr Pentester (cloud, web), I'm learning.
+                As a Developer, some of our.[my] work are today used by
+                thousands. As a Jnr Pentester (cloud, web), I'm learning.
               </p>
 
               <div className="border-t border-gray-700 pt-6">
-                <p className="text-gray-400 text-sm mb-2">More about me:</p>
-                <a
-                  href="https://www.ronneyotieno.me"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <p className="text-gray-400 text-sm mb-2">See the story:</p>
+                <Link
+                  to="/story"
                   className="inline-flex items-center text-red-400 hover:text-red-300 transition-colors font-mono"
                 >
-                  www.ronneyotieno.me
+                  /story
                   <svg
                     className="w-4 h-4 ml-1"
                     fill="none"
@@ -136,7 +134,7 @@ export default function AboutAuthor() {
                       d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
                     />
                   </svg>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
