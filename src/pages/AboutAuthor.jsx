@@ -18,7 +18,7 @@ export default function AboutAuthor() {
                   className="text-xl sm:text-2xl font-bold text-gray-300 cursor-pointer"
                   onClick={() => navigate("/")}
                 >
-                  I'm <span className="text-red-400">$!rr0n3y</span>
+                  I'm <span className="text-red-400">$!rr0nn3y</span>
                 </h1>
               </div>
               <div className="ml-8 sm:ml-11 hidden sm:block">
@@ -104,11 +104,14 @@ export default function AboutAuthor() {
               </div>
 
               <p className="text-gray-300 text-lg leading-relaxed mb-6">
-                In addition to [that], I'm a{" "}
+                I'm a{" "}
                 <span className="text-yellow-400">learner</span> and I love{" "}
                 <span className="text-blue-400">building things</span> and{" "}
                 <span className="text-red-400">hacking them</span> to prove
                 security.
+              </p>
+              <p className="text-gray-300 text-lg leading-relaxed mb-6">
+                As a Developer, some of our.[my] work are today used by thousands. As a Jnr Pentester (cloud, web), I'm learning.
               </p>
 
               <div className="border-t border-gray-700 pt-6">

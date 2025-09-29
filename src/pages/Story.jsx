@@ -18,7 +18,7 @@ export default function Story() {
                   className="text-xl sm:text-2xl font-bold text-gray-300 cursor-pointer"
                   onClick={() => navigate("/")}
                 >
-                  I'm <span className="text-red-400">$!rr0n3y</span>
+                  I'm <span className="text-red-400">$!rr0nn3y</span>
                 </h1>
               </div>
               <div className="ml-8 sm:ml-11 hidden sm:block">
