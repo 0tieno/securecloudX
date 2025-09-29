@@ -47,7 +47,7 @@ export default function Work() {
                   className="text-xl sm:text-2xl font-bold text-gray-300 cursor-pointer"
                   onClick={() => navigate("/")}
                 >
-                  I'm <span className="text-red-400">$!rr0n3y</span>
+                  I'm <span className="text-red-400">$!rr0nn3y</span>
                 </h1>
               </div>
               <div className="ml-8 sm:ml-11 hidden sm:block">
@@ -91,7 +91,7 @@ export default function Work() {
               <h1 className="text-3xl font-bold text-gray-300">Work</h1>
                       </div>
                       <div className="text-gray-400">
-                          I have been fortunate to work with some amazing teams on various amazing products currently used by thousands. Just allow me to list one which is giving me sleepless nights and here it is...
+                          I have been fortunate to work with some amazing teams on various amazing products. And some of our.[my] work are currently used by thousands. Just allow me to list one that gives me sleepless nights...
                       </div>
           </div>
 
