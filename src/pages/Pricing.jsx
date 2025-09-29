@@ -54,16 +54,6 @@ export default function Pricing() {
       </nav>
 
       <div className="flex-1 flex flex-col items-center px-4 py-12">
-        {/* Back Navigation Button */}
-        <div className="w-full max-w-4xl mb-8 flex justify-start">
-          <button
-            className="inline-flex items-center px-4 py-2 bg-gray-800 border border-gray-700 text-gray-300 font-mono hover:bg-gray-700 hover:border-gray-600 transition-colors group"
-            onClick={() => navigate(-1)}
-          >
-            <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-            cd ../
-          </button>
-        </div>
 
         <div className="w-full flex flex-col items-center">
           <div className="flex items-center justify-center mb-2 w-64">
