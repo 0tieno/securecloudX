@@ -159,10 +159,10 @@ export default function Work() {
             {/* Terminal prompt */}
             <div className="mt-8 pt-4 border-t border-gray-600">
               <div className="text-green-400 text-sm font-mono">
-                $ echo "Building secure systems, one role at a time"
+                $ echo "current status"
               </div>
               <div className="text-gray-400 text-sm font-mono mt-1">
-                Looking for speaker and jobs in SWE, DevOps & Cloud Security
+                Intern @ Safaricom PLC
               </div>
             </div>
           </div>

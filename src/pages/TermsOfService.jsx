@@ -17,7 +17,7 @@ export default function TermsOfService() {
           {/* Header */}
           <div className="mb-8">
             <Link
-              to="/"
+              to="/get-started"
               className="inline-flex items-center text-red-400 hover:text-red-300 transition-colors mb-6 group"
             >
               <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
@@ -63,8 +63,48 @@ export default function TermsOfService() {
                   practical guidance for mastering cloud security across Azure,
                   AWS, and GCP platforms.
                 </p>
-                <div className="text-xs text-gray-400">
+                <Link
+                  to="/changelog"
+                  className="inline-flex items-center text-red-400 hover:text-red-300 transition-colors font-mono mt-2"
+                >
+                  See the full story →
+                  <ArrowLeft className="w-4 h-4 ml-2 rotate-180" />
+                </Link>
+                <div className="text-xs text-gray-400 mt-3">
                   # Project Type: Educational • Open Source • Community-Driven
+                </div>
+              </div>
+            </div>
+
+            {/* About Author */}
+            <div className="bg-gray-800 border border-gray-700 p-6 rounded">
+              <div className="flex items-start mb-3">
+                <Users className="w-5 h-5 text-cyan-400 mr-3 mt-1 flex-shrink-0" />
+                <h2 className="text-xl font-semibold text-cyan-400">
+                  Q: Who is behind securecloudX?
+                </h2>
+              </div>
+              <div className="text-gray-300 leading-relaxed ml-8">
+                <p className="mb-3">
+                  <span className="text-green-400">A:</span> securecloudX is
+                  created and maintained by{" "}
+                  <span className="text-yellow-400">$!rr0nn3y</span>, a
+                  passionate developer and junior penetration tester
+                  specializing in cloud and web security.
+                </p>
+                <p className="mb-3 text-gray-400">
+                  He uses this platform to log his learning while building a community.
+                </p>
+                <Link
+                  to="/about"
+                  className="inline-flex items-center text-red-400 hover:text-red-300 transition-colors font-mono mt-2"
+                >
+                  Learn more about the author →
+                  <ArrowLeft className="w-4 h-4 ml-2 rotate-180" />
+                </Link>
+                <div className="text-xs text-gray-400 mt-3">
+                  # Background: DevSecOps • Developer • All things Cloud • Educator • Open
+                  Source Advocate
                 </div>
               </div>
             </div>
@@ -81,10 +121,10 @@ export default function TermsOfService() {
                 <p className="mb-3">
                   <span className="text-green-400">A:</span> By accessing and
                   using securecloudX.guide, you agree to be bound by these Terms
-                  of Use. You acknowledge that you are at least 13 years old
-                  and have the legal capacity to enter into this agreement. If
-                  you disagree with any part of these terms, you must
-                  discontinue use of our platform.
+                  of Use. You acknowledge that you are at least 13 years old and
+                  have the legal capacity to enter into this agreement. If you
+                  disagree with any part of these terms, you must discontinue
+                  use of our platform.
                 </p>
                 <div className="bg-gray-900 border border-yellow-600 p-3 rounded mt-3">
                   <div className="text-yellow-400 text-sm">
@@ -385,7 +425,7 @@ export default function TermsOfService() {
                 $ echo "Thank you for being part of the securecloudX community"
               </div>
               <div className="text-gray-500 text-xs">
-                Last updated: September 2, 2025 • Version: 1.0
+                Last updated: October 1, 2025 • Version: 1.1
               </div>
               <div className="text-gray-500 text-xs mt-2">
                 © 2025 securecloudX • Open Source Educational Platform
