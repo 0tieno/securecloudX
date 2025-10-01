@@ -49,9 +49,6 @@ cd securecloudX
 
 # 2. Create a feature branch
 git checkout -b blog/your-topic-name
-
-# 3. Set up the blog environment
-node scripts/blog-manager.js --help
 ```
 
 ### Step 1: Propose Your Content

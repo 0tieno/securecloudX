@@ -113,7 +113,7 @@ function syncBlogFiles() {
 }
 
 // Create a new blog post
-async function createPost(title, tags = []) {
+async function createPost(title, tags = [], isOctoberChallenge = false) {
   if (!title) {
     console.log('📝 Creating a new blog post...\n');
     
@@ -305,8 +305,14 @@ async function main() {
     case 'create':
       const title = args[1];
       const tagsArg = args.find(arg => arg.startsWith('--tags='));
+      const challengeArg = args.find(arg => arg === '--october-challenge');
       const tags = tagsArg ? tagsArg.split('=')[1].split(',').map(t => t.trim()) : [];
-      await createPost(title, tags);
+      
+      if (challengeArg) {
+        tags.push('OctoberChallenge', 'Community');
+      }
+      
+      await createPost(title, tags, challengeArg);
       break;
       
     case 'list':

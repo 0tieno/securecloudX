@@ -160,6 +160,69 @@ const OpenSourceBlog = () => {
               </p>
             </div>
 
+            {/* October Challenge Banner */}
+            <div className="mb-8 bg-gradient-to-r from-red-900/20 to-yellow-900/20 border border-red-400/30 rounded p-4 sm:p-6">
+              <div className="flex items-start mb-4">
+                <Terminal className="w-5 h-5 text-red-400 mr-3 mt-1 flex-shrink-0" />
+                <div className="flex-1">
+                  <h2 className="text-xl sm:text-2xl font-bold text-red-400 mb-2">
+                    🎃 October Blog-a-Day Challenge 2025
+                  </h2>
+                  <div className="text-green-400 text-xs sm:text-sm mb-3 font-mono">
+                    $ cat october_challenge.txt
+                  </div>
+                  <p className="text-gray-300 mb-4 leading-relaxed text-sm sm:text-base">
+                    Join our community challenge! Write and share{" "}
+                    <span className="text-yellow-400">
+                      one cybersecurity blog post every day
+                    </span>{" "}
+                    in October. Topics: cloud security, pentesting, DevSecOps,
+                    tools, tutorials, or your learning journey.
+                  </p>
+                  <div className="grid grid-cols-1 gap-4 mb-4">
+                    <div className="bg-gray-800/50 p-3 sm:p-4 rounded border border-gray-700">
+                      <h3 className="text-green-400 font-semibold mb-2 text-sm sm:text-base">
+                        How to Participate:
+                      </h3>
+                      <ul className="text-xs sm:text-sm text-gray-400 space-y-1">
+                        <li>• Fork the securecloudX repository</li>
+                        <li>
+                          • Create your post in{" "}
+                          <code className="text-yellow-400">Docs/blogs/</code>
+                        </li>
+                        <li>
+                          • Submit a PR with tag{" "}
+                          <code className="text-red-400">
+                            #OctoberChallenge
+                          </code>
+                        </li>
+                        <li>• Share your knowledge with the community!</li>
+                        <li>• At the end of 31 days you will have learnt a lot!</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    <a
+                      href="https://github.com/0tieno/securecloudX/blob/main/CONTRIBUTING_BLOGS.md"
+                      className="inline-flex items-center px-3 py-2 bg-green-600 hover:bg-green-700 text-white rounded transition-colors text-xs sm:text-sm"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      📚 Contribute Guide
+                    </a>
+                    <a
+                      href="https://chat.whatsapp.com/Llp1Z8uw8xP5NIByASUV7V"
+                      className="inline-flex items-center px-3 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded transition-colors text-xs sm:text-sm"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      💬 Join Discussion
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             {/* Pentesting Definition Note */}
             <div className="mb-8  p-4 sm:p-6 rounded">
               <div className="text-green-400 text-xs sm:text-sm mb-2">
