@@ -72,9 +72,9 @@ export default function Changelog() {
             <div className="flex items-center justify-start sm:justify-end space-x-4 sm:space-x-6 ml-8 sm:ml-0">
               <button
                 className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
-                onClick={() => navigate("/about")}
+                onClick={() => navigate("/terms-of-service")}
               >
-                ./about
+                ./terms-of-use
               </button>
               <button
                 className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
