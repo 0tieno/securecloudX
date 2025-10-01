@@ -100,140 +100,30 @@ export default function Story() {
                 </p>
               </div>
             </section>
-
-            {/* News Timeline Section */}
-            <section id="timeline" className="mb-12">
-              <div className="mb-6">
-                <h2 className="text-3xl font-bold text-gray-300 mb-2">
-                  <span className="line-through text-gray-500">Not</span> IN THE
-                  NEWS
-                </h2>
-                <p className="text-gray-500 text-sm line-through">
-                  Perhaps you've used a software I have built!
-                </p>
-              </div>
-
-              {/* 2025 Timeline */}
-              <div className="mb-8">
-                <h3 className="text-xl font-semibold text-gray-300 mb-4">
-                  2025
-                </h3>
-                <div className="space-y-3 text-gray-400">
-                  <div className="flex">
-                    <span className="text-gray-500 min-w-[100px]">
-                      - Oct 9:
-                    </span>
-                    <span>
-                      [At 22] graduated IT preacher. My pulpit? The keyboard.
-                    </span>
-                  </div>
-                  <div className="flex">
-                    <span className="text-gray-500 min-w-[100px]">
-                      - September:
-                    </span>
-                    <span>
-                      [bounced]{" "}
-                      <a href="#" className="text-blue-400 hover:text-blue-300">
-                        Experts Live Speaker
-                      </a>
-                    </span>
-                  </div>
-                  <div className="flex">
-                    <span className="text-gray-500 min-w-[100px]">- Aug:</span>
-                    <span>[awarded Distinction] Cloud & Network Security</span>
-                  </div>
-                  <div className="flex">
-                    <span className="text-gray-500 min-w-[100px]">- July:</span>
-                    <span>
-                      Started writing software in JavaScript/TypeScript for{" "}
-                      <span className="text-yellow-400">.ke</span>
-                    </span>
-                  </div>
-                  <div className="flex">
-                    <span className="text-gray-500 min-w-[100px]">
-                      - April:
-                    </span>
-                    <span>Sat for my last undergrad exam</span>
-                  </div>
-                  <div className="flex">
-                    <span className="text-gray-500 min-w-[100px]">
-                      - April:
-                    </span>
-                    <span>[awarded "A"] Defended my final year project</span>
-                  </div>
-                  <div className="flex">
-                    <span className="text-gray-500 min-w-[100px]">
-                      - April 8:
-                    </span>
-                    <span className="text-green-400">Open source creator</span>
-                  </div>
-                </div>
-              </div>
-
-              {/* 2024 Timeline */}
-              <div className="mb-8">
-                <h3 className="text-xl font-semibold text-gray-300 mb-4">
-                  2024
-                </h3>
-                <div className="space-y-3 text-gray-400">
-                  <div className="flex">
-                    <span className="text-gray-500 min-w-[120px]">
-                      - November 31:
-                    </span>
-                    <span>
-                      [As a Team] recognized by Microsoft ADC as{" "}
-                      <a href="#" className="text-blue-400 hover:text-blue-300">
-                        Most Vibrant in Kenya
-                      </a>
-                    </span>
-                  </div>
-                </div>
-              </div>
-
-              {/* 2023 Timeline */}
-              <div className="mb-8">
-                <h3 className="text-xl font-semibold text-gray-300 mb-4">
-                  2023
-                </h3>
-                <div className="space-y-3 text-gray-400">
-                  <div className="flex">
-                    <span className="text-gray-500 min-w-[120px]">
-                      - November 31:
-                    </span>
-                    <span>
-                      Joined Global tech program -{" "}
-                      <a href="#" className="text-blue-400 hover:text-blue-300">
-                        Microsoft
-                      </a>
-                    </span>
-                  </div>
-                </div>
-              </div>
-            </section>
             <div className="border-t border-gray-700 pt-6">
-                <p className="text-gray-400 text-sm mb-2">More about me:</p>
-                <a
-                  href="https://www.ronneyotieno.me"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center text-red-400 hover:text-red-300 transition-colors font-mono"
+              <p className="text-gray-400 text-sm mb-2">More about me:</p>
+              <a
+                href="https://www.ronneyotieno.me"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center text-red-400 hover:text-red-300 transition-colors font-mono"
+              >
+                www.ronneyotieno.me
+                <svg
+                  className="w-4 h-4 ml-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
                 >
-                  www.ronneyotieno.me
-                  <svg
-                    className="w-4 h-4 ml-1"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                    />
-                  </svg>
-                </a>
-              </div>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                  />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
