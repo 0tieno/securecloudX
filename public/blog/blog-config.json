@@ -3,9 +3,17 @@
     {
       "filename": "pentester-ports.md",
       "title": "Pentester's Guide to Common Network Ports and Protocols",
-      "date": "2025-09-03"
+      "date": "2025-09-03",
+      "tags": ["pentesting", "networking", "security"],
+      "author": "s!rr0nn3y"
+    },
+    {
+      "filename": "data-privacy-in-azure.md",
+      "title": "Data Privacy in Azure",
+      "date": "2025-10-01",
+      "tags": ["azure", "privacy", "cloudsecurity", "OctoberChallenge"],
+      "author": "s!rr0nn3y"
     }
-    
   ],
   "author": "SecureCloudX Team",
   "baseUrl": "/Docs/blogs/",

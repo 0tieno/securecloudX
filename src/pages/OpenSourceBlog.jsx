@@ -10,7 +10,14 @@ const blogFiles = [
   {
     filename: "pentester-ports.md",
     date: "2025-09-03",
-    author: "ronney",
+    author: "s!rr0nn3y",
+    tags: ["pentesting", "networking", "security"],
+  },
+  {
+    filename: "data-privacy-in-azure.md",
+    date: "2025-10-01",
+    author: "s!rr0nn3y",
+    tags: ["azure", "privacy", "cloudsecurity", "OctoberChallenge"],
   },
 ];
 
@@ -197,7 +204,9 @@ const OpenSourceBlog = () => {
                           </code>
                         </li>
                         <li>• Share your knowledge with the community!</li>
-                        <li>• At the end of 31 days you will have learnt a lot!</li>
+                        <li>
+                          • At the end of 31 days you will have learnt a lot!
+                        </li>
                       </ul>
                     </div>
                   </div>

@@ -60,4 +60,10 @@ export default defineConfig({
     tailwindcss(),
     blogSyncPlugin(),
   ],
+  server: {
+    fs: {
+      allow: ['..']
+    }
+  },
+  assetsInclude: ['**/*.md'],
 })
