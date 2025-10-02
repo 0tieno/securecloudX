@@ -1,5 +1,10 @@
 # Contributing to SecureCloudX Blog
 
+<!-- October Blog-a-Day Challenge Banner with YouTube link -->
+watch how to -> https://youtu.be/VxWAEoSQozc
+
+[![October Blog-a-Day Challenge](./public/images/a-blog-a-day.jpg)](https://youtu.be/VxWAEoSQozc)
+
 ```bash
 root@securecloudx:~/blog$ ./contribute.sh --security-first
 ```
@@ -279,7 +284,6 @@ git push origin blog/your-topic-name
 # 3. Create pull request
 ```
 
-
 ### Review Process
 
 1. **Initial Review** (2-3 days)
@@ -308,7 +312,6 @@ git push origin blog/your-topic-name
 - **Social media shoutouts** for quality content
 - **Priority review** for future submissions
 - **Community recognition** in our Hall of Fame
-
 
 ---
 

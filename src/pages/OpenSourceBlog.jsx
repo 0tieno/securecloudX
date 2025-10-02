@@ -18,7 +18,7 @@ const blogFiles = [
     date: "2025-10-01",
     author: "s!rr0nn3y",
     tags: ["azure", "privacy", "cloudsecurity", "OctoberChallenge"],
-  },
+  }
 ];
 
 function extractMetadataFromMarkdown(markdown) {
