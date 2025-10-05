@@ -18,7 +18,25 @@ const blogFiles = [
     date: "2025-10-01",
     author: "s!rr0nn3y",
     tags: ["azure", "privacy", "cloudsecurity", "OctoberChallenge"],
-  }
+  },
+  {
+    filename: "azure-storage-security-basics.md",
+    date: "2025-10-02",
+    author: "s!rr0nn3y",
+    tags: ["azure", "storage", "security"],
+  },
+  {
+    filename: "azure-storage-account-keys.md",
+    date: "2025-10-03",
+    author: "s!rr0nn3y",
+    tags: ["azure", "storage", "security"],
+  },
+  {
+    filename: "create-a-key-expiration-policy.md",
+    date: "2025-10-04",
+    author: "s!rr0nn3y",
+    tags: ["azure", "storage", "security"],
+  },
 ];
 
 function extractMetadataFromMarkdown(markdown) {

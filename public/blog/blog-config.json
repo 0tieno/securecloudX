@@ -13,6 +13,27 @@
       "date": "2025-10-01",
       "tags": ["azure", "privacy", "cloudsecurity", "OctoberChallenge"],
       "author": "s!rr0nn3y"
+    },
+    {
+      "filename": "azure-storage-security-basics.md",
+      "title": "Azure Storage Security Basics",
+      "date": "2025-10-02",
+      "tags": ["azure", "storage", "security"],
+      "author": "s!rr0nn3y"
+    },
+    {
+      "filename": "azure-storage-account-keys.md",
+      "title": "Azure Storage Account Keys",
+      "date": "2025-10-03",
+      "tags": ["azure", "storage", "security"],
+      "author": "s!rr0nn3y"
+    },
+    {
+      "filename": "create-a-key-expiration-policy.md",
+      "title": "Create a Key Expiration Policy",
+      "date": "2025-10-04",
+      "tags": ["azure", "storage", "security"],
+      "author": "s!rr0nn3y"
     }
 
   ],
