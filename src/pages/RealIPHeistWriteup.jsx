@@ -23,17 +23,19 @@ export default function RealIPHeistWriteup() {
   const CodeBlock = ({ children, identifier, language = "bash" }) => (
     <div className="relative">
       <div className="bg-gray-900 border border-gray-600 rounded overflow-hidden">
-        <div className="flex items-center justify-between bg-gray-800 px-4 py-2 border-b border-gray-600">
-          <span className="text-gray-400 text-sm font-mono">{language}</span>
+        <div className="flex items-center justify-between bg-gray-800 px-3 sm:px-4 py-2 border-b border-gray-600">
+          <span className="text-gray-400 text-xs sm:text-sm font-mono">
+            {language}
+          </span>
           <button
             onClick={() => copyToClipboard(children, identifier)}
-            className="flex items-center text-gray-400 hover:text-cyan-400 transition-colors text-sm"
+            className="flex items-center text-gray-400 hover:text-cyan-400 transition-colors text-xs sm:text-sm"
           >
-            <Copy className="w-4 h-4 mr-1" />
+            <Copy className="w-3 sm:w-4 h-3 sm:h-4 mr-1" />
             {copiedText === identifier ? "Copied!" : "Copy"}
           </button>
         </div>
-        <pre className="p-4 text-sm font-mono text-gray-300 overflow-x-auto">
+        <pre className="p-3 sm:p-4 text-xs sm:text-sm font-mono text-gray-300 overflow-x-auto">
           <code>{children}</code>
         </pre>
       </div>
@@ -44,7 +46,7 @@ export default function RealIPHeistWriteup() {
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
       {/* Navbar Header */}
       <nav className="bg-gray-900 border-b border-gray-700 px-4 sm:px-6 py-4">
-        <div className="max-w-4xl mx-auto">
+        <div className="max-w-6xl mx-auto">
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
             {/* Left side - Logo */}
             <div className="flex flex-col">
@@ -57,7 +59,7 @@ export default function RealIPHeistWriteup() {
                   secure<span className="text-red-400">cloud</span>X
                 </h1>
               </div>
-              <div className="ml-8 sm:ml-11 hidden sm:block">
+              <div className="ml-8 sm:ml-11 hidden lg:block">
                 <p className="text-gray-500 text-sm">
                   // Real IP Heist - Safaricom CTF 2025 Writeup
                 </p>
@@ -68,15 +70,15 @@ export default function RealIPHeistWriteup() {
             </div>
 
             {/* Right side - Navigation Links */}
-            <div className="flex items-center justify-start sm:justify-end space-x-4 sm:space-x-6 ml-8 sm:ml-0">
+            <div className="flex items-center justify-start sm:justify-end space-x-3 sm:space-x-4 ml-8 sm:ml-0">
               <button
-                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
+                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono whitespace-nowrap"
                 onClick={() => navigate("/ctf/safaricom-2025")}
               >
                 ../safaricom_ctf
               </button>
               <button
-                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
+                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono whitespace-nowrap"
                 onClick={() => navigate("/get-started")}
               >
                 ../get_started
@@ -86,30 +88,34 @@ export default function RealIPHeistWriteup() {
         </div>
       </nav>
 
-      <div className="max-w-4xl mx-auto px-4 py-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Back Navigation */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <button
-            className="inline-flex items-center px-4 py-2 bg-gray-800 border border-gray-700 text-gray-300 font-mono hover:bg-gray-700 hover:border-gray-600 transition-colors group"
+            className="inline-flex items-center px-3 sm:px-4 py-2 bg-gray-800 border border-gray-700 text-gray-300 font-mono hover:bg-gray-700 hover:border-gray-600 transition-colors group text-sm sm:text-base"
             onClick={() => navigate("/ctf/safaricom-2025")}
           >
             <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
-            cd ../safaricom_ctf/
+            <span className="hidden sm:inline">cd ../safaricom_ctf/</span>
+            <span className="sm:hidden">Back</span>
           </button>
         </div>
-
         {/* Header Section */}
-        <div className="mb-8">
-          <div className="flex items-center mb-4">
-            <Shield className="w-8 h-8 text-cyan-400 mr-3" />
-            <h1 className="text-3xl font-bold text-gray-300">Real IP Heist</h1>
-            <span className="ml-4 px-3 py-1 bg-green-600 text-white text-sm font-mono rounded">
+        <div className="mb-8 sm:mb-12">
+          <div className="flex flex-col sm:flex-row sm:items-center mb-4 gap-2 sm:gap-0">
+            <div className="flex items-center">
+              <Shield className="w-6 sm:w-8 h-6 sm:h-8 text-cyan-400 mr-2 sm:mr-3" />
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-300">
+                Real IP Heist
+              </h1>
+            </div>
+            <span className="ml-0 sm:ml-4 px-3 py-1 bg-green-600 text-white text-sm font-mono rounded self-start">
               SOLVED
             </span>
           </div>
 
-          <div className="bg-gray-800 border border-gray-700 p-4 rounded mb-6">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+          <div className="bg-gray-800 border border-gray-700 p-4 sm:p-6 rounded mb-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 text-sm">
               <div className="flex items-center">
                 <Flag className="w-4 h-4 text-green-400 mr-2" />
                 <span className="text-gray-400">Points:</span>
@@ -120,79 +126,86 @@ export default function RealIPHeistWriteup() {
                 <span className="text-gray-400">Category:</span>
                 <span className="text-cyan-400 ml-2">Web Exploitation</span>
               </div>
-              <div className="flex items-center">
-                <ExternalLink className="w-4 h-4 text-yellow-400 mr-2" />
+              <div className="flex items-center col-span-1 sm:col-span-2 lg:col-span-1">
+                <ExternalLink className="w-4 h-4 text-yellow-400 mr-2 flex-shrink-0" />
                 <span className="text-gray-400">Target:</span>
-                <span className="text-yellow-400 ml-2">54.72.82.22:8085</span>
+                <span className="text-yellow-400 ml-2 break-all">
+                  54.72.82.22:8085
+                </span>
               </div>
             </div>
           </div>
-        </div>
-
+        </div>{" "}
         {/* Challenge Summary */}
-        <div className="mb-8">
-          <h2 className="text-xl font-semibold text-gray-300 mb-4 flex items-center">
-            <Terminal className="w-5 h-5 text-cyan-400 mr-2" />
+        <div className="mb-6 sm:mb-8">
+          <h2 className="text-lg sm:text-xl font-semibold text-gray-300 mb-3 sm:mb-4 flex items-center">
+            <Terminal className="w-4 sm:w-5 h-4 sm:h-5 text-cyan-400 mr-2" />
             ./summary
           </h2>
-          <div className="bg-gray-800 border border-gray-700 p-6 rounded">
-            <p className="text-gray-400 leading-relaxed mb-4">
+          <div className="bg-gray-800 border border-gray-700 p-4 sm:p-6 rounded">
+            <p className="text-gray-400 leading-relaxed mb-4 text-sm sm:text-base">
               We exploited a server-side trust in IP-related headers (e.g.{" "}
-              <code className="text-cyan-400 bg-gray-700 px-1 rounded">
+              <code className="text-cyan-400 bg-gray-700 px-1 rounded text-xs sm:text-sm">
                 X-Forwarded-For
               </code>
               ) to make the application treat our requests as coming from an
               internal/localhost address. The app used that perceived IP (or
               access level sent in the login form) to gate an admin panel. By
-              spoofing appropriate headers when requesting
-              <code className="text-cyan-400 bg-gray-700 px-1 rounded">
+              spoofing appropriate headers when requesting{" "}
+              <code className="text-cyan-400 bg-gray-700 px-1 rounded text-xs sm:text-sm">
                 /admin
               </code>
               , we were granted admin access and the flag was revealed.
             </p>
-            <div className="bg-gray-900 border border-gray-600 p-4 rounded">
-              <div className="text-green-400 text-sm mb-2">$ echo $FLAG</div>
-              <div className="text-yellow-400 font-mono">
+            <div className="bg-gray-900 border border-gray-600 p-3 sm:p-4 rounded overflow-x-auto">
+              <div className="text-green-400 text-xs sm:text-sm mb-2">
+                $ echo $FLAG
+              </div>
+              <div className="text-yellow-400 font-mono text-xs sm:text-sm break-all">
                 safctf{"{c0f1ec1fccb2de4a03031037251f21}"}
               </div>
             </div>
           </div>
         </div>
-
         {/* Tools Used */}
-        <div className="mb-8">
-          <h2 className="text-xl font-semibold text-gray-300 mb-4 flex items-center">
-            <Terminal className="w-5 h-5 text-cyan-400 mr-2" />
+        <div className="mb-6 sm:mb-8">
+          <h2 className="text-lg sm:text-xl font-semibold text-gray-300 mb-3 sm:mb-4 flex items-center">
+            <Terminal className="w-4 sm:w-5 h-4 sm:h-5 text-cyan-400 mr-2" />
             ./tools_used
           </h2>
-          <div className="bg-gray-800 border border-gray-700 p-6 rounded">
-            <ul className="space-y-2">
-              <li className="flex items-center">
-                <span className="text-cyan-400 mr-3">•</span>
-                <code className="text-gray-300">curl</code>
-                <span className="text-gray-400 ml-2">
-                  (built-in) for all requests
-                </span>
+          <div className="bg-gray-800 border border-gray-700 p-4 sm:p-6 rounded">
+            <ul className="space-y-2 sm:space-y-3">
+              <li className="flex items-start sm:items-center">
+                <span className="text-cyan-400 mr-3 mt-1 sm:mt-0">•</span>
+                <div className="flex flex-col sm:flex-row sm:items-center text-sm sm:text-base">
+                  <code className="text-gray-300">curl</code>
+                  <span className="text-gray-400 sm:ml-2">
+                    (built-in) for all requests
+                  </span>
+                </div>
               </li>
-              <li className="flex items-center">
-                <span className="text-cyan-400 mr-3">•</span>
-                <span className="text-gray-300">Basic inspection with</span>
-                <code className="text-cyan-400 bg-gray-700 px-1 rounded ml-2">
-                  curl -v
-                </code>
-                <span className="text-gray-400 ml-1">and</span>
-                <code className="text-cyan-400 bg-gray-700 px-1 rounded ml-1">
-                  curl -i
-                </code>
+              <li className="flex items-start sm:items-center">
+                <span className="text-cyan-400 mr-3 mt-1 sm:mt-0">•</span>
+                <div className="flex flex-col sm:flex-row sm:items-center text-sm sm:text-base">
+                  <span className="text-gray-300">Basic inspection with</span>
+                  <div className="flex flex-wrap gap-1 mt-1 sm:mt-0 sm:ml-2">
+                    <code className="text-cyan-400 bg-gray-700 px-1 rounded text-xs sm:text-sm">
+                      curl -v
+                    </code>
+                    <span className="text-gray-400">and</span>
+                    <code className="text-cyan-400 bg-gray-700 px-1 rounded text-xs sm:text-sm">
+                      curl -i
+                    </code>
+                  </div>
+                </div>
               </li>
             </ul>
           </div>
         </div>
-
         {/* Reconnaissance */}
-        <div className="mb-8">
-          <h2 className="text-xl font-semibold text-gray-300 mb-4 flex items-center">
-            <Shield className="w-5 h-5 text-yellow-400 mr-2" />
+        <div className="mb-6 sm:mb-8">
+          <h2 className="text-lg sm:text-xl font-semibold text-gray-300 mb-3 sm:mb-4 flex items-center">
+            <Shield className="w-4 sm:w-5 h-4 sm:h-5 text-yellow-400 mr-2" />
             ./reconnaissance
           </h2>
           <div className="space-y-4">
@@ -210,40 +223,52 @@ export default function RealIPHeistWriteup() {
               <h3 className="text-gray-300 font-semibold mb-3">
                 Observations from the page:
               </h3>
-              <ul className="space-y-2 text-gray-400">
+              <ul className="space-y-3 text-gray-400">
                 <li className="flex items-start">
-                  <span className="text-yellow-400 mr-3 mt-1">•</span>
-                  The HTML contains a login form that posts to{" "}
-                  <code className="text-cyan-400 bg-gray-700 px-1 rounded">
-                    /
-                  </code>
-                  .
+                  <span className="text-yellow-400 mr-3 mt-0.5 flex-shrink-0">
+                    •
+                  </span>
+                  <div>
+                    The HTML contains a login form that posts to{" "}
+                    <code className="text-cyan-400 bg-gray-700 px-1 rounded text-sm">
+                      /
+                    </code>
+                    .
+                  </div>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-yellow-400 mr-3 mt-1">•</span>
-                  The client-side JS sends the form with an{" "}
-                  <code className="text-cyan-400 bg-gray-700 px-1 rounded">
-                    X-Forwarded-For
-                  </code>{" "}
-                  header (set to{" "}
-                  <code className="text-cyan-400 bg-gray-700 px-1 rounded">
-                    8.8.8.8
-                  </code>{" "}
-                  in the page JS). That strongly suggested the server reads
-                  trustable headers to determine client IP.
+                  <span className="text-yellow-400 mr-3 mt-0.5 flex-shrink-0">
+                    •
+                  </span>
+                  <div>
+                    The client-side JS sends the form with an{" "}
+                    <code className="text-cyan-400 bg-gray-700 px-1 rounded text-sm">
+                      X-Forwarded-For
+                    </code>{" "}
+                    header (set to{" "}
+                    <code className="text-cyan-400 bg-gray-700 px-1 rounded text-sm">
+                      8.8.8.8
+                    </code>{" "}
+                    in the page JS). That strongly suggested the server reads
+                    trustable headers to determine client IP.
+                  </div>
                 </li>
                 <li className="flex items-start">
-                  <span className="text-yellow-400 mr-3 mt-1">•</span>A comment
-                  in the HTML (
-                  <code className="text-cyan-400 bg-gray-700 px-1 rounded">
-                    {"<!--x real admins use internal tools -->"}
-                  </code>
-                  ) hinted the admin interface is reachable only by requests
-                  perceived to originate from an internal address (e.g.,{" "}
-                  <code className="text-cyan-400 bg-gray-700 px-1 rounded">
-                    127.0.0.1
-                  </code>
-                  ).
+                  <span className="text-yellow-400 mr-3 mt-0.5 flex-shrink-0">
+                    •
+                  </span>
+                  <div>
+                    A comment in the HTML (
+                    <code className="text-cyan-400 bg-gray-700 px-1 rounded text-sm">
+                      {"<!--x real admins use internal tools -->"}
+                    </code>
+                    ) hinted the admin interface is reachable only by requests
+                    perceived to originate from an internal address (e.g.,{" "}
+                    <code className="text-cyan-400 bg-gray-700 px-1 rounded text-sm">
+                      127.0.0.1
+                    </code>
+                    ).
+                  </div>
                 </li>
               </ul>
             </div>
@@ -257,11 +282,10 @@ export default function RealIPHeistWriteup() {
             </div>
           </div>
         </div>
-
         {/* Initial Tests */}
-        <div className="mb-8">
-          <h2 className="text-xl font-semibold text-gray-300 mb-4 flex items-center">
-            <Terminal className="w-5 h-5 text-purple-400 mr-2" />
+        <div className="mb-6 sm:mb-8">
+          <h2 className="text-lg sm:text-xl font-semibold text-gray-300 mb-3 sm:mb-4 flex items-center">
+            <Terminal className="w-4 sm:w-5 h-4 sm:h-5 text-purple-400 mr-2" />
             ./initial_tests
           </h2>
           <div className="bg-gray-800 border border-gray-700 p-6 rounded">
@@ -287,11 +311,10 @@ export default function RealIPHeistWriteup() {
             </p>
           </div>
         </div>
-
         {/* Exploitation */}
-        <div className="mb-8">
-          <h2 className="text-xl font-semibold text-gray-300 mb-4 flex items-center">
-            <Shield className="w-5 h-5 text-red-400 mr-2" />
+        <div className="mb-6 sm:mb-8">
+          <h2 className="text-lg sm:text-xl font-semibold text-gray-300 mb-3 sm:mb-4 flex items-center">
+            <Shield className="w-4 sm:w-5 h-4 sm:h-5 text-red-400 mr-2" />
             ./exploitation
           </h2>
           <div className="space-y-4">
@@ -359,11 +382,10 @@ export default function RealIPHeistWriteup() {
             </div>
           </div>
         </div>
-
         {/* Result */}
-        <div className="mb-8">
-          <h2 className="text-xl font-semibold text-gray-300 mb-4 flex items-center">
-            <Flag className="w-5 h-5 text-green-400 mr-2" />
+        <div className="mb-6 sm:mb-8">
+          <h2 className="text-lg sm:text-xl font-semibold text-gray-300 mb-3 sm:mb-4 flex items-center">
+            <Flag className="w-4 sm:w-5 h-4 sm:h-5 text-green-400 mr-2" />
             ./result
           </h2>
           <div className="bg-gray-800 border border-gray-700 p-6 rounded">
@@ -388,11 +410,10 @@ export default function RealIPHeistWriteup() {
             </p>
           </div>
         </div>
-
         {/* Key Learnings */}
-        <div className="mb-8">
-          <h2 className="text-xl font-semibold text-gray-300 mb-4 flex items-center">
-            <Terminal className="w-5 h-5 text-green-400 mr-2" />
+        <div className="mb-6 sm:mb-8">
+          <h2 className="text-lg sm:text-xl font-semibold text-gray-300 mb-3 sm:mb-4 flex items-center">
+            <Terminal className="w-4 sm:w-5 h-4 sm:h-5 text-green-400 mr-2" />
             ./key_learnings
           </h2>
           <div className="bg-gray-800 border border-gray-700 p-6 rounded">
@@ -433,9 +454,8 @@ export default function RealIPHeistWriteup() {
             </ul>
           </div>
         </div>
-
         {/* Footer Navigation */}
-        <div className="flex justify-between items-center pt-8 border-t border-gray-700">
+        <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-6 sm:pt-8 border-t border-gray-700">
           <button
             onClick={() => navigate("/ctf/safaricom-2025")}
             className="text-gray-400 hover:text-cyan-400 transition-colors text-sm"
