@@ -241,13 +241,33 @@ export default function GetStartedPage() {
                     </span>
                   </div>
                   <p className="text-gray-500 text-sm leading-relaxed mb-3">
-                    Capture The Flag competition writeups - October 6, 2025
+                    Safaricom Capture The Flag competition - October 4-6, 2025.
                   </p>
-                  <div className="text-xs text-cyan-400 font-mono mb-2">
-                    cd /ctf/safaricom2025 && ls writeups/
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <span className="px-2 py-1 bg-gray-700 text-cyan-400 text-xs font-mono border border-gray-600">
+                      web-exploitation
+                    </span>
+                    <span className="px-2 py-1 bg-gray-700 text-purple-400 text-xs font-mono border border-gray-600">
+                      cryptography
+                    </span>
+                    <span className="px-2 py-1 bg-gray-700 text-green-400 text-xs font-mono border border-gray-600">
+                      forensics
+                    </span>
+                    <span className="px-2 py-1 bg-gray-700 text-orange-400 text-xs font-mono border border-gray-600">
+                      network-analysis
+                    </span>
                   </div>
-                  <div className="text-xs text-gray-500">
-                    <span className="text-yellow-400">2 writeups</span> • Real IP Heist, Challenge #2
+                  <div className="text-xs text-cyan-400 font-mono mb-2">
+                    cd /ctf/safaricom2025 && cat writeup.md
+                  </div>
+                  <div className="flex items-center justify-between text-xs text-gray-500">
+                    <span>
+                      Date: <span className="text-cyan-400">Oct 6, 2025</span>
+                    </span>
+                    <span>
+                      Writeups:{" "}
+                      <span className="text-yellow-400">2 Available</span>
+                    </span>
                   </div>
                 </div>
               </div>
