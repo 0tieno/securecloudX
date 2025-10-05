@@ -41,6 +41,8 @@ import Pricing from "./pages/Pricing";
 import About from "./pages/AboutAuthor";
 import Story from "./pages/Story";
 import Work from "./pages/Work";
+import SafaricomCTF2025 from "./pages/SafaricomCTF2025";
+import RealIPHeistWriteup from "./pages/RealIPHeistWriteup";
 
 const App = () => {
   return (
@@ -55,6 +57,11 @@ const App = () => {
         <Route path="/about" element={<About />} />
         <Route path="/story" element={<Story />} />
         <Route path="/work" element={<Work />} />
+        <Route path="/ctf/safaricom-2025" element={<SafaricomCTF2025 />} />
+        <Route
+          path="/ctf/safaricom-2025/real-ip-heist"
+          element={<RealIPHeistWriteup />}
+        />
 
         <Route
           path="*"
