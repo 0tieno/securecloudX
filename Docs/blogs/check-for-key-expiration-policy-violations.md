@@ -1,5 +1,7 @@
 # Check for key expiration policy violations
 
+In today's blog (5/31), we are going to learn about key expiration policies by doing.
+
 You can monitor your storage accounts with Azure Policy to ensure that account access keys have been rotated within the recommended period. Azure Storage provides a built-in policy for ensuring that storage account access keys are not expired.
 
 ### **Assign the built-in policy for a resource scope**
@@ -7,9 +9,9 @@ You can monitor your storage accounts with Azure Policy to ensure that account a
 Follow these steps to assign the built-in policy to the appropriate scope in the Azure portal:
 
 1. In the [Azure portal](https://portal.azure.com/), search for Policy to display the Azure Policy dashboard.
-2. In the **Authoring** section, select **Assignments**.
-3. Choose **Assign policy**.
-4. On the **Basics** tab of the **Assign policy** page, in the **Scope** section, specify the scope for the policy assignment. Select the More button to choose the subscription and optional resource group.
+2. In the *Authoring* section, select *Assignments*.
+3. Choose *Assign policy*.
+4. On the *Basics* tab of the *Assign policy* page, in the *Scope* section, specify the scope for the policy assignment. Select the More button to choose the subscription and optional resource group.
 
 ![check-for-key-expiration-policy-violations.png](/public/images/check-for-key-expiration-policy-violations.png)
 
@@ -18,6 +20,12 @@ Follow these steps to assign the built-in policy to the appropriate scope in the
 
 ![policy-creation](/images/policy-creation.png)
 
-1. Select Review + create to assign the policy definition to the specified scope.
+6. Select Review + create to assign the policy definition to the specified scope.
 
 ![policy-creation2.png](/images/policy-creation2.png)
+
+And all that is good to know. See you in the next blog tomorrow, blog number 31.[5]
+
+---
+
+a-blog-a-day-october-challenge/31.[4]

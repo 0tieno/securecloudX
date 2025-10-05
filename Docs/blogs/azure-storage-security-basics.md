@@ -1,5 +1,7 @@
 # Azure Storage Security Basics
 
+In today's blog (2/31), we are going to learn basics.
+
 The Azure Storage platform is Microsoft's cloud storage solution for modern data storage scenarios. Azure Storage offers highly available, massively scalable, durable, and secure storage for a variety of data objects in the cloud.
 
 All data written to an Azure storage account is encrypted by the service. Azure Storage provides you with fine-grained control over who has access to your data.
@@ -15,3 +17,9 @@ Every request to Azure Storage must be authorized. Azure Storage supports the fo
 The following table describes the options that Azure Storage offers for authorizing access to resources:
 
 ![azure-storage-security-basics](/public/images/azure-storage-security-basics.png)
+
+And all that is good to know. See you in the next blog tomorrow, blog number 31.[2]
+
+---
+
+a-blog-a-day-october-challenge/31.[1]

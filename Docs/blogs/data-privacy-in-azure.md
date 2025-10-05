@@ -2,7 +2,7 @@
 
 > the customer is fully responsible for the security in the cloud while the cloud provider(in this case azure) is fully responsible for the security of the cloud.
 
-In this blog, we are going to learn what it means to trust Microsoft azure cloud with your data and the privacy concerns. It is 
+In this blog, we are going to learn what it means to trust Microsoft azure cloud with your data and the privacy concerns. It is the first blog in the series of a-blog-a-day-october-challenge on "secure-your-cloud-data", to get the full conversation and insights follow each day. That aside, let's begin...
 
 First of all, what is azure? Azure is a trusted cloud platform for building, deploying, and managing innovative solutions with a pay-as-you-go pricing model launched in 2010.
 
@@ -36,7 +36,7 @@ There are a few important things to know about your data privacy in azure cloud:
     > Because we believe that you have control over your own data, we will not disclose data to a government except as you direct or where required by law. If Microsoft receives a demand for a customer's data, we will direct the requesting party to seek the data directly from the customer. If compelled to disclose or give access to any customer's data, Microsoft will promptly notify the customer and provide a copy of the demand unless legally prohibited from doing so.
     
 
-And all that is good to know. See you in the next blog
+And all that is good to know. See you in the next blog tomorrow, blog number 31.[1]
 
 
 ---

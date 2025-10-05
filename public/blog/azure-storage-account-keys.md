@@ -1,5 +1,7 @@
 # Azure storage account access keys
 
+In today's blog (3/31), we are going to learn access keys.
+
 When you create a storage account, Azure generates two 512-bit storage account access keys for that account. These keys can be used to authorize access to data in your storage account via Shared Key authorization, or via SAS tokens that are signed with the shared key.
 
 > Storage account access keys provide full access to the configuration of a storage account, as well as the data.
@@ -11,7 +13,7 @@ Microsoft recommends that you use Azure Key Vault to manage your access keys, an
 > Storage account access keys provide full access to the configuration of a storage account, as well as the data.
 
 - Always be careful to protect your access keys. Use Azure Key Vault to manage and rotate your keys securely.
-- **Access to the shared key grants a user full access to a storage account’s configuration and its data.**
+- *Access to the shared key grants a user full access to a storage account’s configuration and its data.*
 - Access to shared keys should be carefully limited and monitored.
 - Use shared access signature (SAS) tokens with limited scope of access in scenarios where Microsoft Entra ID based authorization can't be used.
 - Avoid hard-coding access keys or saving them anywhere in plain text that is accessible to others. Rotate your keys if you believe they might have been compromised.
@@ -21,3 +23,10 @@ Microsoft recommends using Microsoft Entra ID to authorize requests against blob
 You can use either of the two keys to access Azure Storage, but in general it's a good practice to use the first key, and reserve the use of the second key for when you are rotating keys.
 
 ![azure-storage-account-keys](/public/images/azure-storage-account-keys.png)
+
+
+And all that is good to know. See you in the next blog tomorrow, blog number 31.[3]
+
+---
+
+a-blog-a-day-october-challenge/31.[2]
