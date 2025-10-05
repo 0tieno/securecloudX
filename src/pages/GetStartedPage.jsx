@@ -211,6 +211,68 @@ export default function GetStartedPage() {
           </div>
         </div>
 
+        {/* CTF Writeups Section */}
+        <div className="mt-12 w-full max-w-md">
+          <div className="mb-6">
+            <h2 className="text-xl font-semibold text-gray-300 mb-2 flex items-center">
+              <Shield className="w-5 h-5 text-cyan-400 mr-2" />
+              ./ctf_writeups
+            </h2>
+            <p className="text-gray-500 text-sm font-mono">
+              # Capture The Flag competitions and challenge writeups
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            {/* Safaricom CTF - October 2025 */}
+            <div
+              className="bg-gray-800 border border-gray-700 hover:border-cyan-500 text-left p-6 transition-all duration-200 group cursor-pointer"
+              onClick={() => navigate("/ctf/safaricom-2025")}
+            >
+              <div className="flex items-start">
+                <Terminal className="w-6 h-6 text-cyan-400 mr-4 mt-1 group-hover:text-cyan-300" />
+                <div className="w-full">
+                  <div className="flex items-center justify-between mb-2">
+                    <h3 className="text-lg font-semibold text-gray-300 group-hover:text-cyan-300">
+                      ./safaricom_ctf_2025
+                    </h3>
+                    <span className="text-xs text-green-400 px-2 py-1 bg-gray-700 border border-gray-600 font-mono">
+                      FRESH
+                    </span>
+                  </div>
+                  <p className="text-gray-500 text-sm leading-relaxed mb-3">
+                    Capture The Flag competition writeups - October 6, 2025
+                  </p>
+                  <div className="text-xs text-cyan-400 font-mono mb-2">
+                    cd /ctf/safaricom2025 && ls writeups/
+                  </div>
+                  <div className="text-xs text-gray-500">
+                    <span className="text-yellow-400">2 writeups</span> • Real IP Heist, Challenge #2
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Placeholder for future CTFs */}
+            <div className="bg-gray-800 border border-gray-700 border-dashed text-left p-6 opacity-60">
+              <div className="flex items-start">
+                <Terminal className="w-6 h-6 text-gray-500 mr-4 mt-1" />
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-500 mb-2">
+                    ./upcoming_ctfs
+                  </h3>
+                  <p className="text-gray-600 text-sm leading-relaxed mb-3">
+                    More CTF writeups and competition results coming soon...
+                  </p>
+                  <div className="text-xs text-gray-600 font-mono">
+                    watch -n 1 "find /ctf -name '*.md' | wc -l"
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Terminal Style Info */}
         <div className="mt-12 max-w-md text-center">
           <div className="bg-gray-800 border border-gray-700 p-4 text-left">
