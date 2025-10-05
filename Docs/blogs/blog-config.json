@@ -36,9 +36,16 @@
       "author": "s!rr0nn3y"
     },
     {
-      "filename": "Check for key expiration policy violations.md",
+      "filename": "check-for-key-expiration-policy-violations.md",
       "title": "Check for Key Expiration Policy Violations",
-      "date": "2025-10-04",
+      "date": "2025-10-05",
+      "tags": ["azure", "storage", "security"],
+      "author": "s!rr0nn3y"
+    },
+    {
+      "filename": "monitor-compliance.md",
+      "title": "Monitor Compliance with Key Expiration Policy",
+      "date": "2025-10-06",
       "tags": ["azure", "storage", "security"],
       "author": "s!rr0nn3y"
     }

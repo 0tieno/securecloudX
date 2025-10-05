@@ -1,4 +1,4 @@
-# **Azure storage account access keys**
+# Azure storage account access keys
 
 When you create a storage account, Azure generates two 512-bit storage account access keys for that account. These keys can be used to authorize access to data in your storage account via Shared Key authorization, or via SAS tokens that are signed with the shared key.
 

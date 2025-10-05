@@ -1,4 +1,4 @@
-## **Check for key expiration policy violations**
+# Check for key expiration policy violations
 
 You can monitor your storage accounts with Azure Policy to ensure that account access keys have been rotated within the recommended period. Azure Storage provides a built-in policy for ensuring that storage account access keys are not expired.
 
@@ -16,8 +16,8 @@ Follow these steps to assign the built-in policy to the appropriate scope in the
 
 5. For the Policy definition field, select the More button, and enter storage account keys in the Search field. Select the policy definition named Storage account keys should not be expired.
 
-![policy-creation](/public/images/policy-creation.png)
+![policy-creation](/images/policy-creation.png)
 
 1. Select Review + create to assign the policy definition to the specified scope.
 
-![policy-creation2.png](/public/images/policy-creation2.png)
+![policy-creation2.png](/images/policy-creation2.png)

@@ -2,7 +2,7 @@
 
 > the customer is fully responsible for the security in the cloud while the cloud provider(in this case azure) is fully responsible for the security of the cloud.
 
-In this blog, we are going to learn what it means to trust Microsoft azure cloud with your data and the privacy concerns.
+In this blog, we are going to learn what it means to trust Microsoft azure cloud with your data and the privacy concerns. It is 
 
 First of all, what is azure? Azure is a trusted cloud platform for building, deploying, and managing innovative solutions with a pay-as-you-go pricing model launched in 2010.
 

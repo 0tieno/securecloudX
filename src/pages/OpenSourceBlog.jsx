@@ -38,8 +38,14 @@ const blogFiles = [
     tags: ["azure", "storage", "security"],
   },
   {
-    filename: "Check for key expiration policy violations.md",
+    filename: "check-for-key-expiration-policy-violations.md",
     date: "2025-10-05",
+    author: "s!rr0nn3y",
+    tags: ["azure", "storage", "security"],
+  },
+  {
+    filename: "monitor-compliance.md",
+    date: "2025-10-06",
     author: "s!rr0nn3y",
     tags: ["azure", "storage", "security"],
   },

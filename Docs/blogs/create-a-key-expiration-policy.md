@@ -1,4 +1,4 @@
-## **Create a key expiration policy**
+# Create a key expiration policy
 
 If you plan to manually rotate access keys, Microsoft recommends that you set a key expiration policy.
 
@@ -12,4 +12,4 @@ To create a key expiration policy in the Azure portal:
 4. In Set a reminder to rotate access keys, select the **Enable key rotation reminders** checkbox and set a frequency for the reminder.
 5. Select **Save** .
 
-![create-a-key-expiration-policy](/public/images/create-a-key-expiration-policy.png)
+![create-a-key-expiration-policy](/images/create-a-key-expiration-policy.png)
