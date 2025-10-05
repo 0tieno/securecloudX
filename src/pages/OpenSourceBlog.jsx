@@ -37,6 +37,12 @@ const blogFiles = [
     author: "s!rr0nn3y",
     tags: ["azure", "storage", "security"],
   },
+  {
+    filename: "Check for key expiration policy violations.md",
+    date: "2025-10-05",
+    author: "s!rr0nn3y",
+    tags: ["azure", "storage", "security"],
+  },
 ];
 
 function extractMetadataFromMarkdown(markdown) {
