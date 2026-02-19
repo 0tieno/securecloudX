@@ -1,16 +1,10 @@
 import { Link } from "react-router-dom";
 import {
-  Terminal,
-  Shield,
   Code,
-  BookOpen,
   Target,
 } from "lucide-react";
-import useChallengeUnlock from "../hooks/useChallengeUnlock";
 
 const Home = () => {
-  const unlockedDays = useChallengeUnlock();
-  const currentDay = unlockedDays[unlockedDays.length - 1] || 1;
 
   return (
     <div className="min-h-screen bg-gray-900 pb-32 font-mono">
@@ -35,31 +29,6 @@ const Home = () => {
           <div className="mt-3 text-xs text-gray-400">
             # Focus: Secure cloud architecture, IAM, security automation, and compliance
           </div>
-
-        {/* Resources */}
-        <div className="mb-8">
-          <div className="text-gray-400 text-sm mb-3">
-            $ ls -la ./resources
-          </div>
-          <div className="space-y-2">
-            <a
-              href="https://www.nojones.net/posts/breaking-into-cloudsec"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 transition-colors text-sm block"
-            >
-              → breaking_into_cloudsec.md
-            </a>
-            <a
-              href="https://blog.christophetd.fr/cloud-security-breaches-and-vulnerabilities-2021-in-review/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 transition-colors text-sm block"
-            >
-              → cloud_security_breaches_2021.analysis
-            </a>
-          </div>
-        </div>
 
         {/* Your Journey - Day Chapters */}
         <div className="mb-12">
