@@ -1,96 +1,149 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, BookOpen } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const BeginnerIntro = () => {
   return (
-    <section className="max-w-4xl mx-auto px-4 py-10 text-gray-200">
-      <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center">New to Cloud? Start Here 🚀</h1>
+    <div className="min-h-screen bg-gray-900 pb-32 font-mono">
+      <div className="w-full max-w-3xl mx-auto px-4 py-10">
+        {/* Header */}
+        <div className="mb-12">
+          <div className="flex items-center mb-4">
+            <BookOpen className="w-7 h-7 text-green-400 mr-3" />
+            <h1 className="text-4xl font-bold text-gray-300">
+              new_to_cloud?
+            </h1>
+          </div>
+          <p className="text-gray-500 max-w-3xl">
+            // Start with beginner-friendly resources to build your foundation
+          </p>
+        </div>
 
-      <p className="text-lg md:text-xl mb-6 leading-relaxed text-gray-300">
-        If you're completely new to cloud and cloud concepts, I highly recommend starting with these short beginner-friendly resources:
-      </p>
+        {/* Introduction */}
+        <div className="mb-8">
+          <div className="text-green-400 text-sm mb-3">
+            $ cat introduction.txt
+          </div>
+          <p className="text-gray-300 text-sm leading-relaxed">
+            If you're completely new to cloud and cloud concepts, start with these short beginner-friendly resources.
+            Don't worry about mastering everything on Day 1. This challenge breaks down the concepts into simple,
+            digestible bits with extra resources and definitions to help you learn as you go.
+          </p>
+        </div>
 
-      <ul className="list-disc pl-6 space-y-4 mb-6">
-        <li>
-          <a
-            href="https://learn.microsoft.com/training/modules/describe-cloud-compute/?wt.mc_id=studentamb_387261"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-400 hover:underline"
-          >
-            Describe cloud computing
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://learn.microsoft.com/training/modules/describe-benefits-use-cloud-services/?wt.mc_id=studentamb_387261"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-400 hover:underline"
-          >
-            Describe the benefits of using cloud services
-          </a>
-        </li>
-        <li>
-          <a
-            href="https://learn.microsoft.com/training/modules/describe-cloud-service-types/?wt.mc_id=studentamb_387261"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-400 hover:underline"
-          >
-            Describe cloud service types
-          </a>
-        </li>
-      </ul>
+        {/* Resources Section */}
+        <div className="mb-8">
+          <div className="text-gray-400 text-sm mb-3">
+            $ ls -la ./resources
+          </div>
+          <div className="space-y-2">
+            <a
+              href="https://www.nojones.net/posts/breaking-into-cloudsec"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:text-blue-300 transition-colors text-sm block"
+            >
+              → breaking_into_cloudsec.md
+            </a>
+            <a
+              href="https://blog.christophetd.fr/cloud-security-breaches-and-vulnerabilities-2021-in-review/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:text-blue-300 transition-colors text-sm block"
+            >
+              → cloud_security_breaches_2021.analysis
+            </a>
+          </div>
+        </div>
 
-      <div className="bg-gray-800 border border-gray-700 p-4 rounded-lg mb-6">
-        <p className="text-base md:text-lg leading-relaxed">
-          And most importantly, learn{" "}
-          <a
-            href="https://learn.microsoft.com/training/modules/describe-core-architectural-components-of-azure/?wt.mc_id=studentamb_387261"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-yellow-400 underline hover:text-yellow-300"
+        {/* Cloud Fundamentals */}
+        <div className="mb-8">
+          <div className="text-gray-400 text-sm mb-3">
+            $ cat cloud_fundamentals.sh
+          </div>
+          <div className="space-y-2">
+            <a
+              href="https://learn.microsoft.com/training/modules/describe-cloud-compute/?wt.mc_id=studentamb_387261"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:text-blue-300 transition-colors text-sm block"
+            >
+              → describe_cloud_computing.md
+            </a>
+            <a
+              href="https://learn.microsoft.com/training/modules/describe-benefits-use-cloud-services/?wt.mc_id=studentamb_387261"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:text-blue-300 transition-colors text-sm block"
+            >
+              → cloud_service_benefits.md
+            </a>
+            <a
+              href="https://learn.microsoft.com/training/modules/describe-cloud-service-types/?wt.mc_id=studentamb_387261"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:text-blue-300 transition-colors text-sm block"
+            >
+              → cloud_service_types.md
+            </a>
+          </div>
+        </div>
+
+        {/* Azure Setup */}
+        <div className="mb-8 bg-gray-800 border border-gray-700 p-6">
+          <div className="text-yellow-400 text-sm mb-3">
+            $ cat azure_setup.txt
+          </div>
+          <p className="text-gray-300 text-sm leading-relaxed mb-4">
+            Learn{" "}
+            <a
+              href="https://learn.microsoft.com/training/modules/describe-core-architectural-components-of-azure/?wt.mc_id=studentamb_387261"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-400 hover:text-cyan-300 underline"
+            >
+              What is Microsoft Azure
+            </a>{" "}
+            — Azure is the cloud platform we'll use to apply security throughout this challenge.
+          </p>
+          <div className="text-gray-400 text-sm">
+            Create an Azure account: {" "}
+            <a
+              href="https://azure.microsoft.com/pricing/purchase-options/azure-account/?wt.mc_id=studentamb_387261"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:text-blue-300"
+            >
+              Free Account
+            </a>{" "}
+            |{" "}
+            <a
+              href="https://azure.microsoft.com/free/students/?wt.mc_id=studentamb_387261"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:text-blue-300"
+            >
+              Student Account
+            </a>
+          </div>
+        </div>
+
+        {/* Start Challenge */}
+        <div className="bg-gray-800 border border-gray-700 p-6">
+          <div className="text-green-400 text-sm mb-2">
+            $ ./start_challenge.sh
+          </div>
+          <h2 className="text-xl font-bold text-gray-300 mb-4">
+            Ready to Begin?
+          </h2>
+          <Link
+            to="/day1"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white transition-colors border border-blue-500 text-sm"
           >
-            What is Microsoft Azure
-          </a>{" "}
-          — because Azure is the cloud we will use to apply security throughout this challenge.
-        </p>
-        <p className="mt-3">
-          Create an Azure account:{" "}
-          <a
-            href="https://azure.microsoft.com/pricing/purchase-options/azure-account/?wt.mc_id=studentamb_387261"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-400 hover:underline"
-          >
-            Free Azure Account
-          </a>{" "}
-          |{" "}
-          <a
-            href="https://azure.microsoft.com/free/students/?wt.mc_id=studentamb_387261"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-blue-400 hover:underline"
-          >
-            Student Free Account
-          </a>
-        </p>
+            Start Day 1 Challenge <ArrowRight size={18} />
+          </Link>
+        </div>
       </div>
-
-      <p className="text-gray-400 italic mb-8">
-        Don’t worry about mastering everything on Day 1. This challenge breaks down the concepts into simple, digestible bits with extra resources and definitions to help you learn as you go.
-      </p>
-
-      <div className="text-center">
-        <Link
-          to="/day1"
-          className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-medium px-6 py-3 rounded-lg transition"
-        >
-          Start Day 1 Challenge <ArrowRight size={18} />
-        </Link>
-      </div>
-    </section>
+    </div>
   );
 };
 
