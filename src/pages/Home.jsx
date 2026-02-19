@@ -21,14 +21,16 @@ const Home = () => {
           <p className="text-gray-400 max-w-3xl text-base">
             // Focus: Cloud security engineering, secure development, and DevSecOps practices
           </p>
-          <div className="flex items-center mt-4 text-base text-gray-400">
-            <Target className="w-5 h-5 mr-2" />
-            <span>7-day challenge format</span>
-          </div>
         </div>
         
           <div className="flex items-center mt-4 text-base text-gray-400">
             <span>securecloudX is a cloud security guide that introduces you to different security domains in cloud environments. It guides you through hands-on labs and practical exercises to build your cloud security skills. Not necessary to be an expert in all domains, but to understand the fundamentals of each. The ordering of the days is intentional and builds upon previous concepts.</span>
+        </div>
+        
+
+         <div className="flex items-center mt-4 text-base text-gray-400">
+            <Target className="w-5 h-5 mr-2" />
+            <span>7-day challenge format. Assumes linux and security fundamentals familiarity</span>
           </div>
           
 
