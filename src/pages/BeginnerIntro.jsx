@@ -1,4 +1,4 @@
-import { ArrowRight, BookOpen, ExternalLink } from "lucide-react";
+import { ArrowRight, BookOpen, ExternalLink, CheckCircle2 } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const BeginnerIntro = () => {
@@ -18,14 +18,52 @@ const BeginnerIntro = () => {
           </p>
         </div>
 
-        {/* Introduction */}
+        {/* Learning Objectives */}
         <div className="mb-8">
-          <div className="text-green-400 text-base mb-3">
-            $ cat introduction.txt
+          <div className="text-cyan-400 text-base mb-4">
+            $ cat learning_objectives.txt
           </div>
-          <p className="text-gray-300 text-base leading-relaxed">
-            If you're new to cloud and cloud security concepts, this section provides beginner-friendly resources to help you build a strong foundation before diving into the hands-on challenges. These resources cover the basics of cloud computing, key concepts, and introductory materials to get you up to speed.
-          </p>
+          <h3 className="text-lg font-semibold text-gray-300 mb-4">
+            By the end of this section, you should be able to:
+          </h3>
+          <div className="space-y-3">
+            <div className="flex items-start gap-3">
+              <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+              <p className="text-gray-300 text-base">
+                Explain the fundamental concepts of cloud computing and how it differs from traditional infrastructure
+              </p>
+            </div>
+            <div className="flex items-start gap-3">
+              <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+              <p className="text-gray-300 text-base">
+                Identify the key benefits and security considerations when using cloud services
+              </p>
+            </div>
+            <div className="flex items-start gap-3">
+              <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+              <p className="text-gray-300 text-base">
+                Understand different cloud service models (IaaS, PaaS, SaaS) and their security implications
+              </p>
+            </div>
+            <div className="flex items-start gap-3">
+              <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+              <p className="text-gray-300 text-base">
+                Navigate Microsoft Azure's core architectural components and services
+              </p>
+            </div>
+            <div className="flex items-start gap-3">
+              <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+              <p className="text-gray-300 text-base">
+                Recognize common cloud security breaches and vulnerabilities from real-world incidents
+              </p>
+            </div>
+            <div className="flex items-start gap-3">
+              <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+              <p className="text-gray-300 text-base">
+                Set up your Azure account and prepare your environment for hands-on security challenges
+              </p>
+            </div>
+          </div>
         </div>
 
         {/* Cloud Fundamentals */}
@@ -128,41 +166,36 @@ const BeginnerIntro = () => {
         </div>
 
         {/* Azure Setup */}
-        <div className="mb-8 bg-gray-800 border border-gray-700 p-6">
+        <div className="mb-8">
           <div className="text-yellow-400 text-base mb-3">
-            $ cat azure_setup.txt
+            $ cat Finally.txt
           </div>
           <p className="text-gray-300 text-base leading-relaxed mb-4">
-            Learn{" "}
-            <a
-              href="https://learn.microsoft.com/training/modules/describe-core-architectural-components-of-azure/?wt.mc_id=studentamb_387261"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-cyan-400 hover:text-cyan-300 underline inline-flex items-center gap-1"
-            >
-              What is Microsoft Azure <ExternalLink size={14} />
-            </a>{" "}
-            — Azure is the cloud platform we'll use to apply security throughout this challenge.
-          </p>
-          <div className="text-gray-400 text-base">
-            Create an Azure account: {" "}
-            <a
+            Ensure you have an azure account set up and ready to go. If you don't have one, you can create a <a
               href="https://azure.microsoft.com/pricing/purchase-options/azure-account/?wt.mc_id=studentamb_387261"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-400 hover:text-blue-300 inline-flex items-center gap-1"
             >
               Free Account <ExternalLink size={14} />
-            </a>{" "}
-            |{" "}
-            <a
+            </a>{" "} or a <a
               href="https://azure.microsoft.com/free/students/?wt.mc_id=studentamb_387261"
               target="_blank"
               rel="noopener noreferrer"
               className="text-blue-400 hover:text-blue-300 inline-flex items-center gap-1"
             >
               Student Account <ExternalLink size={14} />
-            </a>
+            </a>. This will be essential for completing the hands-on labs and challenges in the upcoming sections.
+          </p>
+          <div className="text-gray-400 text-base">
+            Currently we use <a
+              href="https://learn.microsoft.com/training/modules/describe-core-architectural-components-of-azure/?wt.mc_id=studentamb_387261"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-cyan-400 hover:text-cyan-300 underline inline-flex items-center gap-1"
+            >
+              Microsoft Azure <ExternalLink size={14} />
+            </a> as the cloud platform to apply security throughout this challenge.
           </div>
         </div>
 
