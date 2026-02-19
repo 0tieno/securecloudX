@@ -12,57 +12,6 @@ export default function GetStartedPage() {
   const navigate = useNavigate();
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono flex flex-col">
-      {/* Navbar Header */}
-      <nav className="bg-gray-900 border-b border-gray-700 px-4 sm:px-6 py-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            {/* Left side - Logo */}
-            <div className="flex flex-col">
-              <div className="flex items-center">
-                <Terminal className="w-6 h-6 sm:w-8 sm:h-8 text-red-400 mr-2 sm:mr-3" />
-                <h1
-                  className="text-xl sm:text-2xl font-bold text-gray-300 cursor-pointer"
-                  onClick={() => navigate("/")}
-                >
-                  secure<span className="text-red-400">cloud</span>X
-                </h1>
-              </div>
-              <div className="ml-8 sm:ml-11 hidden sm:block">
-                <p className="text-gray-500 text-sm">
-                  // 2 paths: cloud security engineering and cloud penetration
-                  testing
-                </p>
-                <div className="text-xs text-gray-600 mt-1">
-                  root@securecloudx:~# ./choose_path.sh
-                </div>
-              </div>
-            </div>
-
-            {/* Right side - Navigation Links */}
-            <div className="flex items-center justify-start sm:justify-end space-x-4 sm:space-x-6 ml-8 sm:ml-0">
-              <button
-                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
-                onClick={() => navigate("/terms-of-service")}
-              >
-                ./terms_of_use
-              </button>
-              <button
-                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
-                onClick={() => navigate("/pricing")}
-              >
-                ./pricing
-              </button>
-              <button
-                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
-                onClick={() => navigate("/changelog")}
-              >
-                ./changelog
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
-
       <div className="flex-1 flex flex-col items-center justify-center px-4 py-12">
         {/* Back Navigation Button */}
         <div className="w-full max-w-md mb-8 flex justify-start">
@@ -297,14 +246,20 @@ export default function GetStartedPage() {
       {/* Footer */}
       <footer className="bg-gray-900 border-t border-gray-700 py-6 mt-8 font-mono">
         <div className="flex flex-col lg:flex-row items-start justify-center w-full max-w-6xl mx-auto px-4 gap-6 lg:gap-8">
+          {/* Brand & Contact */}
           <div className="flex flex-col items-start w-full lg:w-auto text-left">
-            <div className="font-semibold text-gray-300 text-lg mb-1">
-              Master cloud security. Build secure systems.
+            <div className="flex items-center mb-2">
+              <Terminal className="w-5 h-5 text-red-400 mr-2" />
+              <h2 className="text-lg font-bold text-gray-300">
+                secure<span className="text-red-400">cloud</span>X
+              </h2>
             </div>
-            <div className="text-red-400 mb-2">securecloudX</div>
+            <div className="text-gray-500 text-xs mb-3">
+              // 2 paths: cloud security engineering and cloud penetration testing
+            </div>
             <a
               href="mailto:securecloudx.learn@gmail.com"
-              className="text-red-400 hover:text-red-300 transition-colors text-sm"
+              className="text-red-400 hover:text-red-300 transition-colors text-sm mb-1"
             >
               securecloudx.learn@gmail.com
             </a>
@@ -313,12 +268,14 @@ export default function GetStartedPage() {
             </div>
           </div>
 
+          {/* Social & Navigation Links */}
           <div className="flex flex-col items-start w-full lg:w-auto text-left">
+            <div className="text-gray-400 text-xs mb-2">$ ls -la ./links</div>
             <div className="flex items-center mb-2">
               <span className="mr-2 text-red-400">
                 <svg
-                  width="20"
-                  height="20"
+                  width="16"
+                  height="16"
                   fill="currentColor"
                   className="inline-block"
                 >
@@ -329,35 +286,57 @@ export default function GetStartedPage() {
                 href="http://github.com/securecloudx"
                 className="text-red-400 hover:text-red-300 transition-colors text-sm"
               >
-                securecloudx
+                github.com/securecloudx
               </a>
             </div>
-            <div className="flex items-center">
+            <div className="flex items-center mb-3">
               <a
                 href="https://x.com/securecloudX"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-red-400"
+                className="hover:text-red-400 mr-2"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                   fill="currentColor"
-                  className="w-5 h-5"
+                  className="w-4 h-4"
                 >
                   <path d="M18.3 2H22L14.8 10.6 23 22h-5l-5.7-7.9L6.3 22H2l8.7-9.6L2.3 2h5.2l5.2 7.5L18.3 2ZM17.2 20h1.6l-9.7-14h-1.7l9.8 14Z" />
                 </svg>
               </a>
               <a
                 href="https://x.com/securecloudX"
-                className="text-red-400 hover:text-red-300 transition-colors text-sm pl-2"
+                className="text-red-400 hover:text-red-300 transition-colors text-sm"
               >
-                securecloudX
+                @securecloudX
               </a>
+            </div>
+            <div className="space-y-1">
+              <button
+                className="text-gray-400 hover:text-red-400 transition-colors text-xs block"
+                onClick={() => navigate("/terms-of-service")}
+              >
+                → ./terms_of_use
+              </button>
+              <button
+                className="text-gray-400 hover:text-red-400 transition-colors text-xs block"
+                onClick={() => navigate("/pricing")}
+              >
+                → ./pricing
+              </button>
+              <button
+                className="text-gray-400 hover:text-red-400 transition-colors text-xs block"
+                onClick={() => navigate("/changelog")}
+              >
+                → ./changelog
+              </button>
             </div>
           </div>
 
-          <div className="text-gray-400 text-base w-full lg:flex-1 text-left lg:text-left">
+          {/* Mission Statement */}
+          <div className="text-gray-400 text-sm w-full lg:flex-1 text-left lg:text-left">
+            <div className="text-gray-500 text-xs mb-2">$ cat mission.txt</div>
             securecloudX is built on the strong belief that with the right
             discipline, anyone can master cloud security through practical,
             hands-on learning.
