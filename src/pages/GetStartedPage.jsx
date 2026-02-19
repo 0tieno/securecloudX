@@ -257,12 +257,6 @@ export default function GetStartedPage() {
             <div className="text-gray-500 text-xs mb-3">
               // 2 paths: cloud security engineering and cloud penetration testing
             </div>
-            <a
-              href="mailto:securecloudx.learn@gmail.com"
-              className="text-red-400 hover:text-red-300 transition-colors text-sm mb-1"
-            >
-              securecloudx.learn@gmail.com
-            </a>
             <div className="text-gray-500 text-xs">
               securecloudX.guide - Some rights reserved!
             </div>
@@ -291,14 +285,6 @@ export default function GetStartedPage() {
                 → ./changelog
               </button>
             </div>
-          </div>
-
-          {/* Mission Statement */}
-          <div className="text-gray-400 text-sm w-full lg:flex-1 text-left lg:text-left">
-            <div className="text-gray-500 text-xs mb-2">$ cat mission.txt</div>
-            securecloudX is built on the strong belief that with the right
-            discipline, anyone can master cloud security through practical,
-            hands-on learning.
           </div>
         </div>
       </footer>
