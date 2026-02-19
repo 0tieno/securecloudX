@@ -292,21 +292,6 @@ export default function GetStartedPage() {
             </div>
           </div>
         </div>
-
-        {/* Terminal Style Info */}
-        <div className="mt-12 max-w-md text-center">
-          <div className="bg-gray-800 border border-gray-700 p-4 text-left">
-            <div className="text-green-400 text-sm mb-2">$ whoami</div>
-            <div className="text-gray-400 text-sm mb-2">
-              cloud_security_guru
-            </div>
-            <div className="text-green-400 text-sm mb-2">$ echo $MISSION</div>
-            <div className="text-gray-400 text-sm">
-              "Build secure systems. Share knowledge. Protect digital
-              infrastructure."
-            </div>
-          </div>
-        </div>
       </div>
 
       {/* Footer */}
