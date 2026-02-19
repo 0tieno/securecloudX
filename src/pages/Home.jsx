@@ -182,7 +182,7 @@ const Home = () => {
           </div>
         </div>
 
-        {/* Your Journey - 6 Day Chapters */}
+        {/* Your Journey - Day Chapters */}
         <div className="mb-12">
           <h2 className="text-2xl font-bold text-gray-300 mb-6">
             Your Journey
@@ -196,11 +196,11 @@ const Home = () => {
               <div className="flex items-start mb-2">
                 <span className="text-gray-500 font-semibold mr-3">0</span>
                 <h3 className="text-lg font-semibold text-gray-300 group-hover:text-blue-400">
-                  Starting from Zero
+                  New to Cloud? Start Here
                 </h3>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Build your beginner-friendly IT foundation across Linux, networking, programming, cloud computing, and DevOps.
+                If you're completely new to cloud and cloud security concepts, start with beginner-friendly resources to build your foundation.
               </p>
             </Link>
 
@@ -212,11 +212,11 @@ const Home = () => {
               <div className="flex items-start mb-2">
                 <span className="text-gray-500 font-semibold mr-3">1</span>
                 <h3 className="text-lg font-semibold text-gray-300 group-hover:text-blue-400">
-                  Linux and Bash
+                  Identity & Access Management (IAM)
                 </h3>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Build practical Linux and Bash skills with Git, cloud CLI, SSH, and Infrastructure as Code fundamentals through hands-on CTF lab work.
+                Master identity and access management principles, authentication, authorization, and role-based access control in cloud environments.
               </p>
             </Link>
 
@@ -228,11 +228,11 @@ const Home = () => {
               <div className="flex items-start mb-2">
                 <span className="text-gray-500 font-semibold mr-3">2</span>
                 <h3 className="text-lg font-semibold text-gray-300 group-hover:text-blue-400">
-                  Networking Fundamentals
+                  Network Security & Perimeter Defense
                 </h3>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Learn core networking: IP/subnetting, routing, DNS, HTTP, ports, and troubleshooting. Build the foundation for cloud networking.
+                Learn network security fundamentals, firewall configuration, network segmentation, and perimeter defense strategies for cloud infrastructure.
               </p>
             </Link>
 
@@ -244,11 +244,11 @@ const Home = () => {
               <div className="flex items-start mb-2">
                 <span className="text-gray-500 font-semibold mr-3">3</span>
                 <h3 className="text-lg font-semibold text-gray-300 group-hover:text-blue-400">
-                  Programming Fundamentals
+                  Data Security & Encryption
                 </h3>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Learn Python programming, FastAPI, and databases. Build a real-world Journal API project.
+                Explore data protection techniques, encryption at rest and in transit, key management, and secure data storage practices in the cloud.
               </p>
             </Link>
 
@@ -260,11 +260,11 @@ const Home = () => {
               <div className="flex items-start mb-2">
                 <span className="text-gray-500 font-semibold mr-3">4</span>
                 <h3 className="text-lg font-semibold text-gray-300 group-hover:text-blue-400">
-                  Cloud Platform Fundamentals
+                  Application Security in Azure
                 </h3>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Deploy on AWS, Azure, or GCP: virtual machines, cloud networking, IAM security, databases, and application hosting.
+                Secure your cloud applications with secure coding practices, vulnerability management, and Azure-specific security features.
               </p>
             </Link>
 
@@ -276,11 +276,11 @@ const Home = () => {
               <div className="flex items-start mb-2">
                 <span className="text-gray-500 font-semibold mr-3">5</span>
                 <h3 className="text-lg font-semibold text-gray-300 group-hover:text-blue-400">
-                  DevOps Fundamentals
+                  Security Monitoring & Threat Intelligence
                 </h3>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Master Docker containers, Kubernetes orchestration, CI/CD pipelines, Terraform IaC, and monitoring with Prometheus and Grafana.
+                Implement security monitoring, logging, threat detection, and leverage threat intelligence to protect your cloud infrastructure.
               </p>
             </Link>
 
@@ -292,11 +292,27 @@ const Home = () => {
               <div className="flex items-start mb-2">
                 <span className="text-gray-500 font-semibold mr-3">6</span>
                 <h3 className="text-lg font-semibold text-gray-300 group-hover:text-blue-400">
-                  Securing Your Cloud Applications
+                  Incident Response & Threat Detection
                 </h3>
               </div>
               <p className="text-gray-400 text-sm leading-relaxed">
-                Secure your Journal API with IAM, secrets management, network controls, monitoring, and incident response. Make it production-ready.
+                Develop incident response plans, learn threat detection techniques, and practice responding to security incidents in cloud environments.
+              </p>
+            </Link>
+
+            {/* Day 7 */}
+            <Link
+              to="/day7"
+              className="bg-gray-800 border border-gray-700 hover:border-gray-600 p-6 transition-colors group"
+            >
+              <div className="flex items-start mb-2">
+                <span className="text-gray-500 font-semibold mr-3">7</span>
+                <h3 className="text-lg font-semibold text-gray-300 group-hover:text-blue-400">
+                  Capstone Project - Secure Azure Deployment
+                </h3>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Apply everything you've learned by building and deploying a secure, production-ready cloud application on Azure.
               </p>
             </Link>
           </div>
