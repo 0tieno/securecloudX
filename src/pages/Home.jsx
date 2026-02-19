@@ -182,6 +182,126 @@ const Home = () => {
           </div>
         </div>
 
+        {/* Your Journey - 6 Day Chapters */}
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold text-gray-300 mb-6">
+            Your Journey
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            {/* Day 0 */}
+            <Link
+              to="/start"
+              className="bg-gray-800 border border-gray-700 hover:border-gray-600 p-6 transition-colors group"
+            >
+              <div className="flex items-start mb-2">
+                <span className="text-gray-500 font-semibold mr-3">0</span>
+                <h3 className="text-lg font-semibold text-gray-300 group-hover:text-blue-400">
+                  Starting from Zero
+                </h3>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Build your beginner-friendly IT foundation across Linux, networking, programming, cloud computing, and DevOps.
+              </p>
+            </Link>
+
+            {/* Day 1 */}
+            <Link
+              to="/day1"
+              className="bg-gray-800 border border-gray-700 hover:border-gray-600 p-6 transition-colors group"
+            >
+              <div className="flex items-start mb-2">
+                <span className="text-gray-500 font-semibold mr-3">1</span>
+                <h3 className="text-lg font-semibold text-gray-300 group-hover:text-blue-400">
+                  Linux and Bash
+                </h3>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Build practical Linux and Bash skills with Git, cloud CLI, SSH, and Infrastructure as Code fundamentals through hands-on CTF lab work.
+              </p>
+            </Link>
+
+            {/* Day 2 */}
+            <Link
+              to="/day2"
+              className="bg-gray-800 border border-gray-700 hover:border-gray-600 p-6 transition-colors group"
+            >
+              <div className="flex items-start mb-2">
+                <span className="text-gray-500 font-semibold mr-3">2</span>
+                <h3 className="text-lg font-semibold text-gray-300 group-hover:text-blue-400">
+                  Networking Fundamentals
+                </h3>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Learn core networking: IP/subnetting, routing, DNS, HTTP, ports, and troubleshooting. Build the foundation for cloud networking.
+              </p>
+            </Link>
+
+            {/* Day 3 */}
+            <Link
+              to="/day3"
+              className="bg-gray-800 border border-gray-700 hover:border-gray-600 p-6 transition-colors group"
+            >
+              <div className="flex items-start mb-2">
+                <span className="text-gray-500 font-semibold mr-3">3</span>
+                <h3 className="text-lg font-semibold text-gray-300 group-hover:text-blue-400">
+                  Programming Fundamentals
+                </h3>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Learn Python programming, FastAPI, and databases. Build a real-world Journal API project.
+              </p>
+            </Link>
+
+            {/* Day 4 */}
+            <Link
+              to="/day4"
+              className="bg-gray-800 border border-gray-700 hover:border-gray-600 p-6 transition-colors group"
+            >
+              <div className="flex items-start mb-2">
+                <span className="text-gray-500 font-semibold mr-3">4</span>
+                <h3 className="text-lg font-semibold text-gray-300 group-hover:text-blue-400">
+                  Cloud Platform Fundamentals
+                </h3>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Deploy on AWS, Azure, or GCP: virtual machines, cloud networking, IAM security, databases, and application hosting.
+              </p>
+            </Link>
+
+            {/* Day 5 */}
+            <Link
+              to="/day5"
+              className="bg-gray-800 border border-gray-700 hover:border-gray-600 p-6 transition-colors group"
+            >
+              <div className="flex items-start mb-2">
+                <span className="text-gray-500 font-semibold mr-3">5</span>
+                <h3 className="text-lg font-semibold text-gray-300 group-hover:text-blue-400">
+                  DevOps Fundamentals
+                </h3>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Master Docker containers, Kubernetes orchestration, CI/CD pipelines, Terraform IaC, and monitoring with Prometheus and Grafana.
+              </p>
+            </Link>
+
+            {/* Day 6 */}
+            <Link
+              to="/day6"
+              className="bg-gray-800 border border-gray-700 hover:border-gray-600 p-6 transition-colors group"
+            >
+              <div className="flex items-start mb-2">
+                <span className="text-gray-500 font-semibold mr-3">6</span>
+                <h3 className="text-lg font-semibold text-gray-300 group-hover:text-blue-400">
+                  Securing Your Cloud Applications
+                </h3>
+              </div>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                Secure your Journal API with IAM, secrets management, network controls, monitoring, and incident response. Make it production-ready.
+              </p>
+            </Link>
+          </div>
+        </div>
+
         {/* Start Journey */}
         <div className="bg-gray-800 border border-gray-700 p-6">
           <div className="text-green-400 text-sm mb-2">
