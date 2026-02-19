@@ -24,10 +24,44 @@ const BeginnerIntro = () => {
             $ cat introduction.txt
           </div>
           <p className="text-gray-300 text-base leading-relaxed">
-            If you're completely new to cloud and cloud concepts, start with these short beginner-friendly resources.
-            Don't worry about mastering everything on Day 1. This challenge breaks down the concepts into simple,
-            digestible bits with extra resources and definitions to help you learn as you go.
+            If you're new to cloud and cloud security concepts, this section provides beginner-friendly resources to help you build a strong foundation before diving into the hands-on challenges. These resources cover the basics of cloud computing, key concepts, and introductory materials to get you up to speed.
           </p>
+        </div>
+
+        {/* Cloud Fundamentals */}
+        <div className="mb-8">
+          <div className="text-gray-400 text-base mb-3">
+            $ cat what_is_cloud_security.sh
+          </div>
+          <div className="space-y-2">
+            <a
+              href="https://cloud.google.com/learn/what-is-cloud-security"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:text-blue-300 transition-colors text-base flex items-center gap-2"
+            >
+              <ExternalLink size={16} />
+              → Read: cloud_security_according_to_google.md
+            </a>
+            <a
+              href="https://www.microsoft.com/en-us/security/business/security-101/what-is-cloud-security"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:text-blue-300 transition-colors text-base flex items-center gap-2"
+            >
+              <ExternalLink size={16} />
+              → Read: cloud_security_according_to_microsoft.md
+            </a>
+            <a
+              href="https://youtu.be/jI8IKpjiCSM?si=oP0DHGhIMw6qk7bl"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:text-blue-300 transition-colors text-base flex items-center gap-2"
+            >
+              <ExternalLink size={16} />
+              → Watch video: cloud_security_explained_in_10_minutes.md
+            </a>
+          </div>
         </div>
 
         {/* Resources Section */}
