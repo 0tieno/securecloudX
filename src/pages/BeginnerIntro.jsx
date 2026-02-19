@@ -1,4 +1,4 @@
-import { ArrowRight, BookOpen } from "lucide-react";
+import { ArrowRight, BookOpen, ExternalLink } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const BeginnerIntro = () => {
@@ -13,17 +13,17 @@ const BeginnerIntro = () => {
               new_to_cloud?
             </h1>
           </div>
-          <p className="text-gray-500 max-w-3xl">
+          <p className="text-gray-400 max-w-3xl text-base">
             // Start with beginner-friendly resources to build your foundation
           </p>
         </div>
 
         {/* Introduction */}
         <div className="mb-8">
-          <div className="text-green-400 text-sm mb-3">
+          <div className="text-green-400 text-base mb-3">
             $ cat introduction.txt
           </div>
-          <p className="text-gray-300 text-sm leading-relaxed">
+          <p className="text-gray-300 text-base leading-relaxed">
             If you're completely new to cloud and cloud concepts, start with these short beginner-friendly resources.
             Don't worry about mastering everything on Day 1. This challenge breaks down the concepts into simple,
             digestible bits with extra resources and definitions to help you learn as you go.
@@ -32,7 +32,7 @@ const BeginnerIntro = () => {
 
         {/* Resources Section */}
         <div className="mb-8">
-          <div className="text-gray-400 text-sm mb-3">
+          <div className="text-gray-400 text-base mb-3">
             $ ls -la ./resources
           </div>
           <div className="space-y-2">
@@ -40,16 +40,18 @@ const BeginnerIntro = () => {
               href="https://www.nojones.net/posts/breaking-into-cloudsec"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 transition-colors text-sm block"
+              className="text-blue-400 hover:text-blue-300 transition-colors text-base flex items-center gap-2"
             >
+              <ExternalLink size={16} />
               → breaking_into_cloudsec.md
             </a>
             <a
               href="https://blog.christophetd.fr/cloud-security-breaches-and-vulnerabilities-2021-in-review/"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 transition-colors text-sm block"
+              className="text-blue-400 hover:text-blue-300 transition-colors text-base flex items-center gap-2"
             >
+              <ExternalLink size={16} />
               → cloud_security_breaches_2021.analysis
             </a>
           </div>
@@ -57,7 +59,7 @@ const BeginnerIntro = () => {
 
         {/* Cloud Fundamentals */}
         <div className="mb-8">
-          <div className="text-gray-400 text-sm mb-3">
+          <div className="text-gray-400 text-base mb-3">
             $ cat cloud_fundamentals.sh
           </div>
           <div className="space-y-2">
@@ -65,24 +67,27 @@ const BeginnerIntro = () => {
               href="https://learn.microsoft.com/training/modules/describe-cloud-compute/?wt.mc_id=studentamb_387261"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 transition-colors text-sm block"
+              className="text-blue-400 hover:text-blue-300 transition-colors text-base flex items-center gap-2"
             >
+              <ExternalLink size={16} />
               → describe_cloud_computing.md
             </a>
             <a
               href="https://learn.microsoft.com/training/modules/describe-benefits-use-cloud-services/?wt.mc_id=studentamb_387261"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 transition-colors text-sm block"
+              className="text-blue-400 hover:text-blue-300 transition-colors text-base flex items-center gap-2"
             >
+              <ExternalLink size={16} />
               → cloud_service_benefits.md
             </a>
             <a
               href="https://learn.microsoft.com/training/modules/describe-cloud-service-types/?wt.mc_id=studentamb_387261"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 transition-colors text-sm block"
+              className="text-blue-400 hover:text-blue-300 transition-colors text-base flex items-center gap-2"
             >
+              <ExternalLink size={16} />
               → cloud_service_types.md
             </a>
           </div>
@@ -90,54 +95,54 @@ const BeginnerIntro = () => {
 
         {/* Azure Setup */}
         <div className="mb-8 bg-gray-800 border border-gray-700 p-6">
-          <div className="text-yellow-400 text-sm mb-3">
+          <div className="text-yellow-400 text-base mb-3">
             $ cat azure_setup.txt
           </div>
-          <p className="text-gray-300 text-sm leading-relaxed mb-4">
+          <p className="text-gray-300 text-base leading-relaxed mb-4">
             Learn{" "}
             <a
               href="https://learn.microsoft.com/training/modules/describe-core-architectural-components-of-azure/?wt.mc_id=studentamb_387261"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-cyan-400 hover:text-cyan-300 underline"
+              className="text-cyan-400 hover:text-cyan-300 underline inline-flex items-center gap-1"
             >
-              What is Microsoft Azure
+              What is Microsoft Azure <ExternalLink size={14} />
             </a>{" "}
             — Azure is the cloud platform we'll use to apply security throughout this challenge.
           </p>
-          <div className="text-gray-400 text-sm">
+          <div className="text-gray-400 text-base">
             Create an Azure account: {" "}
             <a
               href="https://azure.microsoft.com/pricing/purchase-options/azure-account/?wt.mc_id=studentamb_387261"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300"
+              className="text-blue-400 hover:text-blue-300 inline-flex items-center gap-1"
             >
-              Free Account
+              Free Account <ExternalLink size={14} />
             </a>{" "}
             |{" "}
             <a
               href="https://azure.microsoft.com/free/students/?wt.mc_id=studentamb_387261"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300"
+              className="text-blue-400 hover:text-blue-300 inline-flex items-center gap-1"
             >
-              Student Account
+              Student Account <ExternalLink size={14} />
             </a>
           </div>
         </div>
 
         {/* Start Challenge */}
         <div className="bg-gray-800 border border-gray-700 p-6">
-          <div className="text-green-400 text-sm mb-2">
+          <div className="text-green-400 text-base mb-2">
             $ ./start_challenge.sh
           </div>
-          <h2 className="text-xl font-bold text-gray-300 mb-4">
+          <h2 className="text-2xl font-bold text-gray-300 mb-4">
             Ready to Begin?
           </h2>
           <Link
             to="/day1"
-            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white transition-colors border border-blue-500 text-sm"
+            className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white transition-colors border border-blue-500 text-base"
           >
             Start Day 1 Challenge <ArrowRight size={18} />
           </Link>
