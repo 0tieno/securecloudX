@@ -11,13 +11,7 @@ export default function AnnouncementBar() {
       <div className="hidden sm:flex items-center justify-center space-x-2">
         <Terminal className="w-4 h-4 text-red-400" />
         <span className="text-red-400">[SYSTEM ALERT]</span>
-        <span>Ongoing [October] - a blog a day challenge</span>
-        <Link
-          to="/opensource-blog"
-          className="px-2 py-1 bg-red-600 hover:bg-red-700 text-white rounded text-xs transition-colors font-semibold"
-        >
-          Join Now
-        </Link>
+        <span>The site is undergoing significant updates</span>
         <Zap className="w-4 h-4 text-red-400 animate-pulse" />
       </div>
 
