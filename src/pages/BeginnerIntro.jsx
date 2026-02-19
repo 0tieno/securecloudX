@@ -1,7 +1,10 @@
-import { ArrowRight, BookOpen, ExternalLink, CheckCircle2 } from "lucide-react";
+import { ArrowRight, BookOpen, ExternalLink, CheckCircle2, ChevronDown, ChevronRight, Target } from "lucide-react";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const BeginnerIntro = () => {
+  const [isObjectivesOpen, setIsObjectivesOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-gray-900 pb-32 font-mono">
       <div className="w-full max-w-3xl mx-auto px-4 py-10">
@@ -16,54 +19,72 @@ const BeginnerIntro = () => {
           <p className="text-gray-400 max-w-3xl text-base">
             // Start with beginner-friendly resources to build your foundation
           </p>
+          
         </div>
 
         {/* Learning Objectives */}
-        <div className="mb-8">
-          <div className="text-cyan-400 text-base mb-4">
-            $ cat learning_objectives.txt
-          </div>
-          <h3 className="text-lg font-semibold text-gray-300 mb-4">
-            By the end of this section, you should be able to:
-          </h3>
-          <div className="space-y-3">
-            <div className="flex items-start gap-3">
-              <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-              <p className="text-gray-300 text-base">
-                Explain the fundamental concepts of cloud computing and how it differs from traditional infrastructure
-              </p>
+        <div className="mb-8 bg-gray-800 border border-gray-700">
+          <button
+            onClick={() => setIsObjectivesOpen(!isObjectivesOpen)}
+            className="w-full p-6 flex items-center justify-between hover:bg-gray-750 transition-colors"
+          >
+            <div className="flex items-center gap-3">
+              <div className="text-cyan-400 text-base">
+                $ cat learning_objectives.txt
+              </div>
             </div>
-            <div className="flex items-start gap-3">
-              <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-              <p className="text-gray-300 text-base">
-                Identify the key benefits and security considerations when using cloud services
-              </p>
+            {isObjectivesOpen ? (
+              <ChevronDown className="w-5 h-5 text-gray-400" />
+            ) : (
+              <ChevronRight className="w-5 h-5 text-gray-400" />
+            )}
+          </button>
+          
+          {isObjectivesOpen && (
+            <div className="px-6 pb-6 border-t border-gray-700 pt-4">
+              <h3 className="text-lg font-semibold text-gray-300 mb-4">
+                By the end of this section, you should be able to:
+              </h3>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                  <p className="text-gray-300 text-base">
+                    Explain the fundamental concepts of cloud computing and how it differs from traditional infrastructure
+                  </p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                  <p className="text-gray-300 text-base">
+                    Identify the key benefits and security considerations when using cloud services
+                  </p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                  <p className="text-gray-300 text-base">
+                    Understand different cloud service models (IaaS, PaaS, SaaS) and their security implications
+                  </p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                  <p className="text-gray-300 text-base">
+                    Navigate Microsoft Azure's core architectural components and services
+                  </p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                  <p className="text-gray-300 text-base">
+                    Recognize common cloud security breaches and vulnerabilities from real-world incidents
+                  </p>
+                </div>
+                <div className="flex items-start gap-3">
+                  <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                  <p className="text-gray-300 text-base">
+                    Set up your Azure account and prepare your environment for hands-on security challenges
+                  </p>
+                </div>
+              </div>
             </div>
-            <div className="flex items-start gap-3">
-              <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-              <p className="text-gray-300 text-base">
-                Understand different cloud service models (IaaS, PaaS, SaaS) and their security implications
-              </p>
-            </div>
-            <div className="flex items-start gap-3">
-              <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-              <p className="text-gray-300 text-base">
-                Navigate Microsoft Azure's core architectural components and services
-              </p>
-            </div>
-            <div className="flex items-start gap-3">
-              <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-              <p className="text-gray-300 text-base">
-                Recognize common cloud security breaches and vulnerabilities from real-world incidents
-              </p>
-            </div>
-            <div className="flex items-start gap-3">
-              <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-              <p className="text-gray-300 text-base">
-                Set up your Azure account and prepare your environment for hands-on security challenges
-              </p>
-            </div>
-          </div>
+          )}
         </div>
 
         {/* Cloud Fundamentals */}
