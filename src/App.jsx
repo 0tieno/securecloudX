@@ -33,7 +33,6 @@ import Phase3 from "./pages/task3/Phase3";
 import BlogList from "./pages/BlogList";
 import BlogPost from "./pages/BlogPost";
 import ForgottenSecretLab from "./pages/ForgottenSecretLab";
-import ConsultMe from "./pages/ConsultMe";
 import PentestingLabs from "./pages/PentestingLabs";
 import TermsOfService from "./pages/TermsOfService";
 import Changelog from "./pages/Changelog";
@@ -226,7 +225,6 @@ const App = () => {
                       }
                     />
                     <Route path="/start" element={<BeginnerIntro />} />
-                    <Route path="/consult" element={<ConsultMe />} />
                     <Route path="/posts" element={<BlogList />} />
                     <Route path="/posts/:id" element={<BlogPost />} />
                   </Routes>
