@@ -474,7 +474,7 @@ const ForgottenSecretLab = () => {
             ← Back to Home
           </Link>
           <Link
-            to="/day1"
+            to="/module1"
             className="text-blue-400 hover:underline hover:text-blue-300"
           >
             Continue to Day 1 →
