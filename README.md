@@ -64,7 +64,7 @@ To publish a post: add a `.md` file with frontmatter to `Docs/blogs/`. See [CONT
 - Twitter/X: [@securecloudX](https://x.com/securecloudX)
 
 
-[Creator's Note: This project is a labor of love and a gift to the community. If you find it useful, please consider sharing it with others who might benefit from it. Your support means a lot!]
+[Founder's Note: This project is a labor of love and a gift to the community. If you find it useful, please consider giving it a star and sharing it with others who might benefit from it. Your support means a lot!]
 
 [Read License](LICENCE.md)
 
