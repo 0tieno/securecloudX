@@ -120,7 +120,7 @@ export default function Changelog() {
                   zIndex: 0,
                 }}
               ></div>
-              {changelog.map((item, idx) => (
+              {changelog.map((item) => (
                 <div
                   key={item.date}
                   className="flex flex-row items-center mb-6 sm:mb-8"
