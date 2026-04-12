@@ -1,94 +1,19 @@
-import { useNavigate, Link } from "react-router-dom";
-import { Terminal, ArrowLeft } from "lucide-react";
-
-const changelog = [
-  {
-    date: "02 Sept, 2025",
-    desc: "Added open source blogs and labs on pentesting.",
-  },
-  {
-    date: "01 Sept, 2025",
-    desc: "Redesigned the site with security vibe and look.",
-  },
-  {
-    date: "26 Aug, 2025",
-    desc: "Added this landing page.",
-  },
-  {
-    date: "22 Aug, 2025",
-    desc: "Added consultation services due to user demand.",
-  },
-  { date: "12 Aug, 2025", desc: "Added more lab tasks on data security" },
-  {
-    date: "13 July, 2025",
-    desc: "Mini-hackathon on git forensics. 34 participants.",
-  },
-  { date: "04 June, 2025", desc: "Introduced weekly challenge format" },
-  {
-    date: "13 May, 2025",
-    desc: "New features and improvements based on user feedback.",
-  },
-  {
-    date: "10 April, 2025",
-    desc: "Officially launched the site to the public",
-  },
-  {
-    date: "8 April, 2025",
-    desc: "Prelaunced the platform via a community meetup call",
-  },
-];
+import { Link } from "react-router-dom";
+import { changelog } from "../data/changelogData";
+import PageNav from "../components/PageNav";
 
 export default function Changelog() {
-  const navigate = useNavigate();
-
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
-      {/* Navbar Header */}
-      <nav className="bg-gray-900 border-b border-gray-700 px-4 sm:px-6 py-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            {/* Left side - Logo */}
-            <div className="flex flex-col">
-              <div className="flex items-center">
-                <Terminal className="w-6 h-6 sm:w-8 sm:h-8 text-red-400 mr-2 sm:mr-3" />
-                <h1
-                  className="text-xl sm:text-2xl font-bold text-gray-300 cursor-pointer"
-                  onClick={() => navigate("/")}
-                >
-                  secure<span className="text-red-400">cloud</span>X
-                </h1>
-              </div>
-              <div className="ml-8 sm:ml-11 hidden sm:block">
-                <p className="text-gray-500 text-sm">
-                  // changelog: track updates and improvements
-                </p>
-                <div className="text-xs text-gray-600 mt-1">
-                  root@securecloudx:~# ./changelog.sh
-                </div>
-              </div>
-            </div>
-
-            {/* Right side - Navigation Links */}
-            <div className="flex items-center justify-start sm:justify-end space-x-4 sm:space-x-6 ml-8 sm:ml-0">
-              <button
-                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
-                onClick={() => navigate("/terms-of-service")}
-              >
-                ./terms-of-use
-              </button>
-              <button
-                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
-                onClick={() => navigate("/pricing")}
-              >
-                ./pricing
-              </button>
-              <button className="text-red-400 text-xs sm:text-sm font-mono cursor-default">
-                ./changelog
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <PageNav
+        subtitle="// changelog: track updates and improvements"
+        command="root@securecloudx:~# ./changelog.sh"
+        links={[
+          { label: "./terms-of-use", path: "/terms-of-service" },
+          { label: "./pricing", path: "/pricing" },
+          { label: "./changelog", active: true },
+        ]}
+      />
 
       <div className="flex-1 flex flex-col items-center px-4 py-12">
 
