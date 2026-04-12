@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Terminal, Shield, Lock, Zap } from "lucide-react";
 
+const PHRASES = [
+  "Cloud Security Engineering",
+  "Cloud Penetration Testing",
+  "Cloud Security Research",
+  "Cloud Ethical Hacking",
+];
+
 export default function LandingHeader() {
   const navigate = useNavigate();
-  const phrases = [
-    "Cloud Security Engineering",
-    "Cloud Penetration Testing",
-    "Cloud Security Research",
-    "Cloud Ethical Hacking",
-  ];
-  const [currentPhrase, setCurrentPhrase] = useState(phrases[0]);
   const [displayedText, setDisplayedText] = useState("");
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
@@ -19,9 +19,9 @@ export default function LandingHeader() {
   useEffect(() => {
     let timeout;
     if (typing) {
-      if (charIndex < phrases[phraseIndex].length) {
+      if (charIndex < PHRASES[phraseIndex].length) {
         timeout = setTimeout(() => {
-          setDisplayedText((prev) => prev + phrases[phraseIndex][charIndex]);
+          setDisplayedText((prev) => prev + PHRASES[phraseIndex][charIndex]);
           setCharIndex((prev) => prev + 1);
         }, 80);
       } else {
@@ -34,11 +34,11 @@ export default function LandingHeader() {
         setTyping(true);
         setCharIndex(0);
         setDisplayedText("");
-        setPhraseIndex((prev) => (prev + 1) % phrases.length);
+        setPhraseIndex((prev) => (prev + 1) % PHRASES.length);
       }, 800);
     }
     return () => clearTimeout(timeout);
-  }, [charIndex, typing, phraseIndex, phrases]);
+  }, [charIndex, typing, phraseIndex]);
 
   return (
     <div className="flex flex-col items-center mb-16 text-center font-mono">
