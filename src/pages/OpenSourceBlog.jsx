@@ -12,6 +12,7 @@ const OpenSourceBlog = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [contentLoading, setContentLoading] = useState(false);
 
   useEffect(() => {
@@ -71,17 +72,20 @@ const OpenSourceBlog = () => {
     setSelectedPost(null);
   };
 
-  // Filter posts based on search only
+  const allCategories = [...new Set(posts.flatMap((p) => p.categories ?? []))].sort();
+
   const filteredPosts = posts.filter((post) => {
     const matchesSearch =
       !searchTerm ||
       post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      (post.categories || []).some((category) =>
-        category.toLowerCase().includes(searchTerm.toLowerCase())
+      (post.categories || []).some((c) =>
+        c.toLowerCase().includes(searchTerm.toLowerCase())
       );
-
-    return matchesSearch;
+    const matchesCategory =
+      !selectedCategory ||
+      (post.categories || []).includes(selectedCategory);
+    return matchesSearch && matchesCategory;
   });
 
   if (loading) {
@@ -151,7 +155,7 @@ const OpenSourceBlog = () => {
             </div>
 
             {/* Search */}
-            <div className="mb-8">
+            <div className="mb-4">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4" />
                 <input
@@ -163,6 +167,37 @@ const OpenSourceBlog = () => {
                 />
               </div>
             </div>
+
+            {/* Category Filter Pills */}
+            {allCategories.length > 0 && (
+              <div className="mb-8 flex flex-wrap gap-2">
+                <button
+                  onClick={() => setSelectedCategory(null)}
+                  className={`px-3 py-1 text-xs font-mono border transition-colors ${
+                    selectedCategory === null
+                      ? "border-green-500 text-green-400 bg-green-900/20"
+                      : "border-gray-700 text-gray-500 hover:border-gray-500 hover:text-gray-400"
+                  }`}
+                >
+                  all
+                </button>
+                {allCategories.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() =>
+                      setSelectedCategory(selectedCategory === cat ? null : cat)
+                    }
+                    className={`px-3 py-1 text-xs font-mono border transition-colors ${
+                      selectedCategory === cat
+                        ? "border-green-500 text-green-400 bg-green-900/20"
+                        : "border-gray-700 text-gray-500 hover:border-gray-500 hover:text-gray-400"
+                    }`}
+                  >
+                    #{cat}
+                  </button>
+                ))}
+              </div>
+            )}
 
             {/* Blog Posts List */}
             {filteredPosts.length === 0 ? (
@@ -216,6 +251,29 @@ const OpenSourceBlog = () => {
                         <p className="text-gray-400 mb-3 leading-relaxed text-sm">
                           {post.excerpt}
                         </p>
+
+                        {post.categories?.length > 0 && (
+                          <div className="flex flex-wrap gap-1 mb-3">
+                            {post.categories.map((cat) => (
+                              <button
+                                key={cat}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setSelectedCategory(
+                                    selectedCategory === cat ? null : cat
+                                  );
+                                }}
+                                className={`px-2 py-0.5 text-xs font-mono border transition-colors ${
+                                  selectedCategory === cat
+                                    ? "border-green-500 text-green-400 bg-green-900/20"
+                                    : "border-gray-700 text-gray-600 hover:border-gray-500 hover:text-gray-500"
+                                }`}
+                              >
+                                #{cat}
+                              </button>
+                            ))}
+                          </div>
+                        )}
 
                         <footer>
                           <span className="text-green-400 text-sm hover:text-green-300 transition-colors">
