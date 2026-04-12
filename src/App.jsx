@@ -1,20 +1,9 @@
 import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
 
 import AppShell from "./components/AppShell";
-import ProtectedDayRoute from "./routes/ProtectedDayRoute";
 import { shellRoutes, standaloneRoutes } from "./routes/routeConfig";
 
 const App = () => {
-  const renderRouteElement = (route) => {
-    const element = <route.Component />;
-
-    if (!route.protectedDay) {
-      return element;
-    }
-
-    return <ProtectedDayRoute day={route.protectedDay}>{element}</ProtectedDayRoute>;
-  };
-
   return (
     <Router>
       <Routes>
@@ -31,7 +20,7 @@ const App = () => {
             <Route
               key={route.path}
               path={route.path}
-              element={renderRouteElement(route)}
+              element={<route.Component />}
             />
           ))}
           <Route path="*" element={<Navigate to="/home" replace />} />
