@@ -1,80 +1,11 @@
-import React, { useState, useEffect } from "react";
-import ReactMarkdown from "react-markdown";
+import { useEffect, useState } from "react";
 import { Calendar, Clock, ArrowLeft, Search, Terminal } from "lucide-react";
-
-// Helper to fetch markdown files from public/blog
-const BLOGS_PATH = "/blog/";
-
-// List of blog post filenames and their metadata
-const blogFiles = [
-  {
-    filename: "pentester-ports.md",
-    date: "2025-09-03",
-    author: "s!rr0nn3y",
-    tags: ["pentesting", "networking", "security"],
-  },
-  {
-    filename: "data-privacy-in-azure.md",
-    date: "2025-10-01",
-    author: "s!rr0nn3y",
-    tags: ["azure", "privacy", "cloudsecurity", "OctoberChallenge"],
-  },
-  {
-    filename: "azure-storage-security-basics.md",
-    date: "2025-10-02",
-    author: "s!rr0nn3y",
-    tags: ["azure", "storage", "security"],
-  },
-  {
-    filename: "azure-storage-account-keys.md",
-    date: "2025-10-03",
-    author: "s!rr0nn3y",
-    tags: ["azure", "storage", "security"],
-  },
-  {
-    filename: "create-a-key-expiration-policy.md",
-    date: "2025-10-04",
-    author: "s!rr0nn3y",
-    tags: ["azure", "storage", "security"],
-  },
-  {
-    filename: "check-for-key-expiration-policy-violations.md",
-    date: "2025-10-05",
-    author: "s!rr0nn3y",
-    tags: ["azure", "storage", "security"],
-  },
-  {
-    filename: "monitor-compliance.md",
-    date: "2025-10-06",
-    author: "s!rr0nn3y",
-    tags: ["azure", "storage", "security"],
-  },
-];
-
-function extractMetadataFromMarkdown(markdown) {
-  const lines = markdown.split("\n");
-
-  // Extract title from first # heading
-  const title =
-    lines.find((line) => line.startsWith("# "))?.replace("# ", "") ||
-    "Untitled";
-
-  // Extract excerpt from content (first few lines after title, excluding empty lines)
-  const contentLines = lines.filter(
-    (line) =>
-      !line.startsWith("#") &&
-      line.trim() !== "" &&
-      !line.startsWith("---") &&
-      !line.startsWith("_Posted on")
-  );
-  const excerpt = contentLines.slice(0, 2).join(" ").slice(0, 150) + "...";
-
-  // Extract reading time estimate (roughly 200 words per minute)
-  const wordCount = markdown.split(/\s+/).length;
-  const readingTime = Math.max(1, Math.ceil(wordCount / 200));
-
-  return { title, excerpt, readingTime };
-}
+import MarkdownContent from "../components/MarkdownContent";
+import {
+  BLOGS_PATH,
+  blogFiles,
+  extractMetadataFromMarkdown,
+} from "../data/openSourceContent";
 
 const OpenSourceBlog = () => {
   const [posts, setPosts] = useState([]);
@@ -239,7 +170,7 @@ const OpenSourceBlog = () => {
               </div>
             ) : (
               <div className="space-y-4">
-                {filteredPosts.map((post, idx) => {
+                {filteredPosts.map((post) => {
                   const postDate = new Date(post.date);
                   const formattedDate = postDate.toLocaleDateString("en-US", {
                     year: "numeric",
@@ -333,88 +264,7 @@ const OpenSourceBlog = () => {
               </header>
 
               <div className="prose prose-invert max-w-none text-gray-400 leading-relaxed">
-                <ReactMarkdown
-                  components={{
-                    h1: ({ node, children, ...props }) => {
-                      // Always skip the first h1 since it's the title shown in header
-                      return null;
-                    },
-                    h2: ({ node, ...props }) => (
-                      <h2
-                        className="text-xl text-gray-300 mb-4 mt-6 font-mono"
-                        {...props}
-                      />
-                    ),
-                    h3: ({ node, ...props }) => (
-                      <h3
-                        className="text-lg text-gray-300 mb-3 mt-5 font-mono"
-                        {...props}
-                      />
-                    ),
-                    p: ({ node, ...props }) => (
-                      <p
-                        className="text-gray-400 mb-4 leading-relaxed"
-                        {...props}
-                      />
-                    ),
-                    strong: ({ node, ...props }) => (
-                      <strong
-                        className="text-orange-300 font-bold"
-                        {...props}
-                      />
-                    ),
-                    em: ({ node, ...props }) => (
-                      <em className="text-green-300 italic" {...props} />
-                    ),
-                    code: ({ node, inline, ...props }) =>
-                      inline ? (
-                        <code
-                          className="bg-gray-900 px-2 py-1 text-green-400 text-sm font-mono border border-gray-700"
-                          {...props}
-                        />
-                      ) : (
-                        <code
-                          className="block bg-gray-900 p-4 text-green-400 text-sm overflow-x-auto font-mono border border-gray-700"
-                          {...props}
-                        />
-                      ),
-                    pre: ({ node, ...props }) => (
-                      <pre
-                        className="bg-gray-900 p-4 overflow-x-auto mb-4 border border-gray-700"
-                        {...props}
-                      />
-                    ),
-                    blockquote: ({ node, ...props }) => (
-                      <blockquote
-                        className="border-l-4 border-yellow-500 bg-gray-800/50 pl-4 pr-4 py-3 my-6 text-yellow-200 font-mono relative"
-                        {...props}
-                      />
-                    ),
-                    ul: ({ node, ...props }) => (
-                      <ul
-                        className="list-disc text-gray-400 mb-4 space-y-1"
-                        {...props}
-                      />
-                    ),
-                    ol: ({ node, ...props }) => (
-                      <ol
-                        className="list-decimal text-gray-400 mb-4 space-y-1"
-                        {...props}
-                      />
-                    ),
-                    li: ({ node, ...props }) => (
-                      <li className="text-gray-400" {...props} />
-                    ),
-                    a: ({ node, ...props }) => (
-                      <a
-                        className="text-green-400 hover:text-green-300 underline transition-colors"
-                        {...props}
-                      />
-                    ),
-                  }}
-                >
-                  {selectedPost.content}
-                </ReactMarkdown>
+                <MarkdownContent content={selectedPost.content} variant="blog" />
               </div>
             </article>
           </div>
