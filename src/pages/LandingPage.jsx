@@ -1,7 +1,21 @@
+import { useEffect } from "react";
+import confetti from "canvas-confetti";
 import AnnouncementBar from "../components/AnnouncementBar";
 import LandingHeader from "./landing/LandingHeader";
 
 export default function LandingPage() {
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      confetti({
+        particleCount: 120,
+        spread: 80,
+        origin: { y: 0.5 },
+        colors: ["#facc15", "#f87171", "#4ade80", "#60a5fa", "#c084fc"],
+      });
+    }, 2500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col items-center justify-center text-gray-300 py-12 relative bg-gray-900 font-mono">
       <AnnouncementBar />
