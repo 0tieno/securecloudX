@@ -1,57 +1,19 @@
-import { useNavigate, Link } from "react-router-dom";
-import { Terminal, ArrowLeft } from "lucide-react";
+import { Link } from "react-router-dom";
+import PageNav from "../components/PageNav";
+import { pricingTiers } from "../data/pricingData";
 
 export default function Pricing() {
-  const navigate = useNavigate();
-
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
-      {/* Navbar Header */}
-      <nav className="bg-gray-900 border-b border-gray-700 px-4 sm:px-6 py-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            {/* Left side - Logo */}
-            <div className="flex flex-col">
-              <div className="flex items-center">
-                <Terminal className="w-6 h-6 sm:w-8 sm:h-8 text-red-400 mr-2 sm:mr-3" />
-                <h1
-                  className="text-xl sm:text-2xl font-bold text-gray-300 cursor-pointer"
-                  onClick={() => navigate("/")}
-                >
-                  secure<span className="text-red-400">cloud</span>X
-                </h1>
-              </div>
-              <div className="ml-8 sm:ml-11 hidden sm:block">
-                <p className="text-gray-500 text-sm">
-                  // pricing: consultation services and support
-                </p>
-                <div className="text-xs text-gray-600 mt-1">
-                  root@securecloudx:~# ./pricing.sh
-                </div>
-              </div>
-            </div>
-
-            {/* Right side - Navigation Links */}
-            <div className="flex items-center justify-start sm:justify-end space-x-4 sm:space-x-6 ml-8 sm:ml-0">
-              <button
-                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
-                onClick={() => navigate("/terms-of-service")}
-              >
-                ./terms-of-use
-              </button>
-              <button className="text-red-400 text-xs sm:text-sm font-mono cursor-default">
-                ./pricing
-              </button>
-              <button
-                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
-                onClick={() => navigate("/changelog")}
-              >
-                ./changelog
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <PageNav
+        subtitle="// pricing: consultation services and support"
+        command="root@securecloudx:~# ./pricing.sh"
+        links={[
+          { label: "./terms-of-use", path: "/terms-of-service" },
+          { label: "./pricing", active: true },
+          { label: "./changelog", path: "/changelog" },
+        ]}
+      />
 
       <div className="flex-1 flex flex-col items-center px-4 py-12">
 
@@ -68,115 +30,41 @@ export default function Pricing() {
             charged to support commitment with additional benefits.
           </p>
           <div className="flex flex-col md:flex-row gap-8 justify-center mb-8">
-            {/* Students Plan */}
-            <div className="bg-gray-800 border border-gray-700 rounded-xl p-8 w-80 shadow flex flex-col items-center hover:border-gray-600 transition-colors">
-              <h3 className="text-xl font-semibold mb-1">
-                Students • Personal
-              </h3>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="line-through text-gray-400 text-sm">
-                  Ksh. 250
-                </span>
-                <span className="text-yellow-400 text-lg font-bold">
-                  Ksh. 200
-                </span>
-                <span className="text-gray-400 text-sm">/45 minutes</span>
-              </div>
-              <a
-                href="https://cal.com/securecloudx/cloud-security-consultation"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-yellow-400 text-black font-semibold px-4 py-1 rounded-full mb-4 hover:bg-yellow-300 transition text-center"
+            {pricingTiers.map((tier) => (
+              <div
+                key={tier.id}
+                className="bg-gray-800 border border-gray-700 rounded-xl p-8 w-80 shadow flex flex-col items-center hover:border-gray-600 transition-colors"
               >
-                Get started
-              </a>
-              <p className="text-gray-400 text-center mb-4 text-sm">
-                Perfect for students needing guidance with cloud security. Azure
-                • AWS
-              </p>
-              <ul className="text-gray-200 text-sm space-y-2 w-full">
-                <li className="flex items-center gap-2">
-                  <span className="text-green-400">✔️</span>Cloud security 1-1
-                  training
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-green-400">✔️</span> Portfolio Project
-                  walkthrough assistance
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-green-400">✔️</span> Cloud security
-                  concept explanation
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-green-400">✔️</span> Career guidance and
-                  tips
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-green-400">✔️</span> Portfolio
-                  development advice
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-green-400">✔️</span> Learning path
-                  recommendations
-                </li>
-              </ul>
-            </div>
-            {/* Professional Plan */}
-            <div className="bg-gray-800 border border-gray-700 rounded-xl p-8 w-80 shadow flex flex-col items-center hover:border-gray-600 transition-colors">
-              <h3 className="text-xl font-semibold mb-1">
-                Professional • Business
-              </h3>
-              <div className="flex items-center gap-2 mb-2">
-                <span className="line-through text-gray-400 text-sm">
-                  Ksh. 4000
-                </span>
-                <span className="text-yellow-400 text-lg font-bold">
-                  Ksh. 1,000
-                </span>
-                <span className="text-gray-400 text-sm">/60 minutes</span>
+                <h3 className="text-xl font-semibold mb-1">{tier.name}</h3>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="line-through text-gray-400 text-sm">
+                    {tier.originalPrice}
+                  </span>
+                  <span className="text-yellow-400 text-lg font-bold">
+                    {tier.price}
+                  </span>
+                  <span className="text-gray-400 text-sm">{tier.duration}</span>
+                </div>
+                <a
+                  href={tier.bookingUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-yellow-400 text-black font-semibold px-4 py-1 rounded-full mb-4 hover:bg-yellow-300 transition text-center"
+                >
+                  Get started
+                </a>
+                <p className="text-gray-400 text-center mb-4 text-sm">
+                  {tier.description}
+                </p>
+                <ul className="text-gray-200 text-sm space-y-2 w-full">
+                  {tier.features.map((feature, i) => (
+                    <li key={i} className="flex items-center gap-2">
+                      <span className="text-green-400">✔️</span> {feature}
+                    </li>
+                  ))}
+                </ul>
               </div>
-              <a
-                href="https://cal.com/securecloudx/cloud-security-consultation"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-yellow-400 text-black font-semibold px-4 py-1 rounded-full mb-4 hover:bg-yellow-300 transition text-center"
-              >
-                Get started
-              </a>
-              <p className="text-gray-400 text-center mb-4 text-sm">
-                Comprehensive consultation for small businesses. Azure • AWS
-              </p>
-              <ul className="text-gray-200 text-sm space-y-2 w-full">
-                <li className="flex items-center gap-2">
-                  <span className="text-green-400">✔️</span> Security assessment
-                  and penetration testing
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-green-400">✔️</span> Cloud
-                  infrastructure security engineering
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-green-400">✔️</span> Cloud migration
-                  strategy
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-green-400">✔️</span> Compliance
-                  framework discussion
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-green-400">✔️</span> Risk analysis and
-                  mitigation
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-green-400">✔️</span> Implementation
-                  roadmap
-                </li>
-                <li className="flex items-center gap-2">
-                  <span className="text-green-400">✔️</span> Follow-up
-                  recommendations
-                </li>
-              </ul>
-            </div>
+            ))}
           </div>
           {/* Footer Links */}
           <div className="flex flex-col items-center mt-4 mb-2">

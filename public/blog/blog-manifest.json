@@ -1,0 +1,272 @@
+{
+  "generatedAt": "2026-04-12T10:36:38.038Z",
+  "posts": [
+    {
+      "filename": "monitor-compliance.md",
+      "slug": "monitor-compliance",
+      "layout": "post",
+      "title": "Monitor Compliance with Key Expiration Policy",
+      "date": "2025-10-06 09:00:00 +0300",
+      "categories": [
+        "azure",
+        "storage",
+        "security"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "In today's blog (6/31), we are going to learn about how to monitor compliance with the key expiration policy hands-on. See yesterday's blog first to understand this.",
+      "readingTime": 1
+    },
+    {
+      "filename": "check-for-key-expiration-policy-violations.md",
+      "slug": "check-for-key-expiration-policy-violations",
+      "layout": "post",
+      "title": "Check for Key Expiration Policy Violations",
+      "date": "2025-10-05 09:00:00 +0300",
+      "categories": [
+        "azure",
+        "storage",
+        "security"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "In today's blog (5/31), we are going to learn about key expiration policies by doing.",
+      "readingTime": 2
+    },
+    {
+      "filename": "create-a-key-expiration-policy.md",
+      "slug": "create-a-key-expiration-policy",
+      "layout": "post",
+      "title": "Create a Key Expiration Policy",
+      "date": "2025-10-04 09:00:00 +0300",
+      "categories": [
+        "azure",
+        "storage",
+        "security"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "In today's blog (4/31), we are going to learn about key expiration policies by doing.",
+      "readingTime": 2
+    },
+    {
+      "filename": "azure-storage-account-keys.md",
+      "slug": "azure-storage-account-keys",
+      "layout": "post",
+      "title": "Azure Storage Account Keys",
+      "date": "2025-10-03 09:00:00 +0300",
+      "categories": [
+        "azure",
+        "storage",
+        "security"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "In today's blog (3/31), we are going to learn access keys.",
+      "readingTime": 2
+    },
+    {
+      "filename": "azure-storage-security-basics.md",
+      "slug": "azure-storage-security-basics",
+      "layout": "post",
+      "title": "Azure Storage Security Basics",
+      "date": "2025-10-02 09:00:00 +0300",
+      "categories": [
+        "azure",
+        "storage",
+        "security"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "In today's blog (2/31), we are going to learn basics.",
+      "readingTime": 2
+    },
+    {
+      "filename": "data-privacy-in-azure.md",
+      "slug": "data-privacy-in-azure",
+      "layout": "post",
+      "title": "Data Privacy in Azure",
+      "date": "2025-10-01 09:00:00 +0300",
+      "categories": [
+        "azure",
+        "privacy",
+        "cloud-security"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "> the customer is fully responsible for the security in the cloud while the cloud provider(in this case azure) is fully responsible for the security of the cloud.",
+      "readingTime": 3
+    },
+    {
+      "filename": "pentester-ports.md",
+      "slug": "pentester-ports",
+      "layout": "post",
+      "title": "Pentester's Guide to Common Network Ports and Protocols",
+      "date": "2025-09-03 09:00:00 +0300",
+      "categories": [
+        "pentesting",
+        "networking",
+        "security"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "One of the first steps in any penetration test is to identify open ports and the services running on them. Each port and protocol can present unique vulnerabilities or mi...",
+      "readingTime": 3
+    },
+    {
+      "filename": "secure-coding-practices.md",
+      "slug": "secure-coding-practices",
+      "layout": "post",
+      "title": "Secure Coding Practices",
+      "date": "2025-09-02 12:00:00 +0300",
+      "categories": [
+        "secure-coding",
+        "best-practices"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "No excerpt available.",
+      "readingTime": 1
+    },
+    {
+      "filename": "secure-coding.md",
+      "slug": "secure-coding",
+      "layout": "post",
+      "title": "Secure Coding Practices for Cloud Applications",
+      "date": "2025-09-02 09:00:00 +0300",
+      "categories": [
+        "secure-coding",
+        "cloud-security"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "Writing secure code is the first line of defense against cyber attacks. In cloud environments, where applications are distributed and accessible from anywhere, secure cod...",
+      "readingTime": 5
+    },
+    {
+      "filename": "cloud-security-fundamentals.md",
+      "slug": "cloud-security-fundamentals",
+      "layout": "post",
+      "title": "Cloud Security Fundamentals",
+      "date": "2025-09-01 09:00:00 +0300",
+      "categories": [
+        "cloud-security",
+        "fundamentals"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "Cloud security is the foundation of any modern digital infrastructure. Understanding these fundamentals is crucial for protecting your applications and data in the cloud.",
+      "readingTime": 3
+    },
+    {
+      "filename": "ctf-linux-security-12challenges.md",
+      "slug": "ctf-linux-security-12challenges",
+      "layout": "post",
+      "title": "CTF: 12 Linux Security Challenges for Real-World Skills",
+      "date": "2025-07-16",
+      "categories": [
+        "ctf",
+        "linux",
+        "security"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "Today, I tackled 12 hands-on Capture the Flag (CTF) challenges designed to sharpen my Linux, networking, and cybersecurity skills. Each challenge introduced a new concept...",
+      "readingTime": 3
+    },
+    {
+      "filename": "git-tools-security-learners.md",
+      "slug": "git-tools-security-learners",
+      "layout": "post",
+      "title": "Git Tools Every Security Learner Should Know",
+      "date": "2025-07-13",
+      "categories": [
+        "git",
+        "security",
+        "tools"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "Want to think like a hacker? Start by mastering Git history.",
+      "readingTime": 2,
+      "associatedLab": {
+        "title": "Forgotten Secret Lab",
+        "path": "/forgotten-secret-lab"
+      }
+    },
+    {
+      "filename": "oops-committed-secrets-git.md",
+      "slug": "oops-committed-secrets-git",
+      "layout": "post",
+      "title": "Oops! I Committed Secrets to Git — Now What?",
+      "date": "2025-07-13",
+      "categories": [
+        "git",
+        "security",
+        "incident-response"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "We all make mistakes. Here's how to respond like a security pro when secrets get committed.",
+      "readingTime": 2,
+      "associatedLab": {
+        "title": "Forgotten Secret Lab",
+        "path": "/forgotten-secret-lab"
+      }
+    },
+    {
+      "filename": "why-git-never-forgets.md",
+      "slug": "why-git-never-forgets",
+      "layout": "post",
+      "title": "Why Git Never Forgets",
+      "date": "2025-07-13",
+      "categories": [
+        "git",
+        "security",
+        "secrets"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "Learn how secrets live on in your code history — even after you hit delete.",
+      "readingTime": 2,
+      "associatedLab": {
+        "title": "Forgotten Secret Lab",
+        "path": "/forgotten-secret-lab"
+      }
+    },
+    {
+      "filename": "docker-best-practices.md",
+      "slug": "docker-best-practices",
+      "layout": "post",
+      "title": "Top 10 Docker Best Practices for Developers",
+      "date": "2025-07-09",
+      "categories": [
+        "docker",
+        "security",
+        "development"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "When working with Docker, following best practices can lead to more efficient, secure, and maintainable containers. Here are some top tips:",
+      "readingTime": 3
+    },
+    {
+      "filename": "azure-storage-security-checklist.md",
+      "slug": "azure-storage-security-checklist",
+      "layout": "post",
+      "title": "Azure Storage Account Security Checklist",
+      "date": "2025-07-08",
+      "categories": [
+        "azure",
+        "storage",
+        "security"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "Securing your data in Azure is critical for protecting sensitive information and maintaining compliance. This checklist provides practical steps and best practices to hel...",
+      "readingTime": 3,
+      "associatedLab": {
+        "title": "Data Security",
+        "day": 3
+      }
+    },
+    {
+      "filename": "push-to-different-git-branch.md",
+      "slug": "push-to-different-git-branch",
+      "layout": "post",
+      "title": "How to Push to a Different Git Branch",
+      "date": "2025-07-07",
+      "categories": [
+        "git",
+        "development"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "By default, when you push to a remote repository, Git pushes the current branch to the remote repository. However, there might be times when you want to push to a branch...",
+      "readingTime": 2
+    }
+  ]
+}

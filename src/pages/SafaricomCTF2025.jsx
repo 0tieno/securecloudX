@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import {
-  Terminal,
   Shield,
   ArrowLeft,
   Flag,
@@ -8,55 +7,21 @@ import {
   Trophy,
   ExternalLink,
 } from "lucide-react";
+import PageNav from "../components/PageNav";
 
 export default function SafaricomCTF2025() {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
-      {/* Navbar Header */}
-      <nav className="bg-gray-900 border-b border-gray-700 px-4 sm:px-6 py-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            {/* Left side - Logo */}
-            <div className="flex flex-col">
-              <div className="flex items-center">
-                <Terminal className="w-6 h-6 sm:w-8 sm:h-8 text-red-400 mr-2 sm:mr-3" />
-                <h1
-                  className="text-xl sm:text-2xl font-bold text-gray-300 cursor-pointer"
-                  onClick={() => navigate("/")}
-                >
-                  secure<span className="text-red-400">cloud</span>X
-                </h1>
-              </div>
-              <div className="ml-8 sm:ml-11 hidden lg:block">
-                <p className="text-gray-500 text-sm">
-                  // Safaricom CTF 2025 - Challenge Writeups
-                </p>
-                <div className="text-xs text-gray-600 mt-1">
-                  root@securecloudx:~# cd /ctf/safaricom2025/
-                </div>
-              </div>
-            </div>
-
-            {/* Right side - Navigation Links */}
-            <div className="flex items-center justify-start sm:justify-end space-x-3 sm:space-x-4 ml-8 sm:ml-0">
-              <button
-                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono whitespace-nowrap"
-                onClick={() => navigate("/get-started")}
-              >
-                ../get_started
-              </button>
-              <button
-                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono whitespace-nowrap"
-                onClick={() => navigate("/opensource-blog")}
-              >
-                ./blog
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <PageNav
+        subtitle="// Safaricom CTF 2025 - Challenge Writeups"
+        command="root@securecloudx:~# cd /ctf/safaricom2025/"
+        links={[
+          { label: "../get_started", path: "/get-started" },
+          { label: "./blog", path: "/opensource-blog" },
+        ]}
+      />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Back Navigation */}

@@ -1,1 +1,0 @@
-export const CHALLENGE_START_DATE = new Date("2025-06-27T03:00:00+03:00");

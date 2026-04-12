@@ -1,3 +1,13 @@
+---
+layout: post
+title: "Cloud Security Fundamentals"
+date: 2025-09-01 09:00:00 +0300
+author: s!rr0nn3y
+categories:
+  - cloud-security
+  - fundamentals
+---
+
 # Cloud Security Fundamentals
 
 Cloud security is the foundation of any modern digital infrastructure. Understanding these fundamentals is crucial for protecting your applications and data in the cloud.

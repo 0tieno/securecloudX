@@ -1,6 +1,5 @@
 import { useNavigate } from "react-router-dom";
 import {
-  Terminal,
   Shield,
   ArrowLeft,
   Copy,
@@ -9,6 +8,7 @@ import {
   Clock,
 } from "lucide-react";
 import { useState } from "react";
+import PageNav from "../components/PageNav";
 
 export default function RealIPHeistWriteup() {
   const navigate = useNavigate();
@@ -44,49 +44,14 @@ export default function RealIPHeistWriteup() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
-      {/* Navbar Header */}
-      <nav className="bg-gray-900 border-b border-gray-700 px-4 sm:px-6 py-4">
-        <div className="max-w-6xl mx-auto">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            {/* Left side - Logo */}
-            <div className="flex flex-col">
-              <div className="flex items-center">
-                <Terminal className="w-6 h-6 sm:w-8 sm:h-8 text-red-400 mr-2 sm:mr-3" />
-                <h1
-                  className="text-xl sm:text-2xl font-bold text-gray-300 cursor-pointer"
-                  onClick={() => navigate("/")}
-                >
-                  secure<span className="text-red-400">cloud</span>X
-                </h1>
-              </div>
-              <div className="ml-8 sm:ml-11 hidden lg:block">
-                <p className="text-gray-500 text-sm">
-                  // Real IP Heist - Safaricom CTF 2025 Writeup
-                </p>
-                <div className="text-xs text-gray-600 mt-1">
-                  root@securecloudx:~# cat /ctf/safaricom2025/real-ip-heist.md
-                </div>
-              </div>
-            </div>
-
-            {/* Right side - Navigation Links */}
-            <div className="flex items-center justify-start sm:justify-end space-x-3 sm:space-x-4 ml-8 sm:ml-0">
-              <button
-                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono whitespace-nowrap"
-                onClick={() => navigate("/ctf/safaricom-2025")}
-              >
-                ../safaricom_ctf
-              </button>
-              <button
-                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono whitespace-nowrap"
-                onClick={() => navigate("/get-started")}
-              >
-                ../get_started
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <PageNav
+        subtitle="// Real IP Heist - Safaricom CTF 2025 Writeup"
+        command="root@securecloudx:~# cat /ctf/safaricom2025/real-ip-heist.md"
+        links={[
+          { label: "../safaricom_ctf", path: "/ctf/safaricom-2025" },
+          { label: "../get_started", path: "/get-started" },
+        ]}
+      />
 
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Back Navigation */}

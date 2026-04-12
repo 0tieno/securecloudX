@@ -1,3 +1,14 @@
+---
+layout: post
+title: "Azure Storage Security Basics"
+date: 2025-10-02 09:00:00 +0300
+author: s!rr0nn3y
+categories:
+  - azure
+  - storage
+  - security
+---
+
 # Azure Storage Security Basics
 
 In today's blog (2/31), we are going to learn basics.

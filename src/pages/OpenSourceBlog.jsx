@@ -1,80 +1,10 @@
-import React, { useState, useEffect } from "react";
-import ReactMarkdown from "react-markdown";
+import { useEffect, useState } from "react";
 import { Calendar, Clock, ArrowLeft, Search, Terminal } from "lucide-react";
+import MarkdownContent from "../components/MarkdownContent";
+import { stripFrontmatter } from "../utils/frontmatter";
 
-// Helper to fetch markdown files from public/blog
 const BLOGS_PATH = "/blog/";
-
-// List of blog post filenames and their metadata
-const blogFiles = [
-  {
-    filename: "pentester-ports.md",
-    date: "2025-09-03",
-    author: "s!rr0nn3y",
-    tags: ["pentesting", "networking", "security"],
-  },
-  {
-    filename: "data-privacy-in-azure.md",
-    date: "2025-10-01",
-    author: "s!rr0nn3y",
-    tags: ["azure", "privacy", "cloudsecurity", "OctoberChallenge"],
-  },
-  {
-    filename: "azure-storage-security-basics.md",
-    date: "2025-10-02",
-    author: "s!rr0nn3y",
-    tags: ["azure", "storage", "security"],
-  },
-  {
-    filename: "azure-storage-account-keys.md",
-    date: "2025-10-03",
-    author: "s!rr0nn3y",
-    tags: ["azure", "storage", "security"],
-  },
-  {
-    filename: "create-a-key-expiration-policy.md",
-    date: "2025-10-04",
-    author: "s!rr0nn3y",
-    tags: ["azure", "storage", "security"],
-  },
-  {
-    filename: "check-for-key-expiration-policy-violations.md",
-    date: "2025-10-05",
-    author: "s!rr0nn3y",
-    tags: ["azure", "storage", "security"],
-  },
-  {
-    filename: "monitor-compliance.md",
-    date: "2025-10-06",
-    author: "s!rr0nn3y",
-    tags: ["azure", "storage", "security"],
-  },
-];
-
-function extractMetadataFromMarkdown(markdown) {
-  const lines = markdown.split("\n");
-
-  // Extract title from first # heading
-  const title =
-    lines.find((line) => line.startsWith("# "))?.replace("# ", "") ||
-    "Untitled";
-
-  // Extract excerpt from content (first few lines after title, excluding empty lines)
-  const contentLines = lines.filter(
-    (line) =>
-      !line.startsWith("#") &&
-      line.trim() !== "" &&
-      !line.startsWith("---") &&
-      !line.startsWith("_Posted on")
-  );
-  const excerpt = contentLines.slice(0, 2).join(" ").slice(0, 150) + "...";
-
-  // Extract reading time estimate (roughly 200 words per minute)
-  const wordCount = markdown.split(/\s+/).length;
-  const readingTime = Math.max(1, Math.ceil(wordCount / 200));
-
-  return { title, excerpt, readingTime };
-}
+const BLOG_MANIFEST_PATH = `${BLOGS_PATH}blog-manifest.json`;
 
 const OpenSourceBlog = () => {
   const [posts, setPosts] = useState([]);
@@ -82,42 +12,27 @@ const OpenSourceBlog = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState(null);
+  const [contentLoading, setContentLoading] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         setLoading(true);
 
-        const fetchedPosts = await Promise.all(
-          blogFiles.map(async (meta) => {
-            try {
-              const url = BLOGS_PATH + meta.filename;
+        const manifestResponse = await fetch(BLOG_MANIFEST_PATH);
+        if (!manifestResponse.ok) {
+          throw new Error(
+            `Failed to fetch blog manifest: ${manifestResponse.status}`
+          );
+        }
 
-              const res = await fetch(url);
-              if (!res.ok) {
-                console.warn(
-                  `Failed to fetch ${meta.filename}: ${res.status} ${res.statusText}`
-                );
-                return null;
-              }
+        const manifest = await manifestResponse.json();
+        const publishedPosts = Array.isArray(manifest.posts)
+          ? manifest.posts.filter((post) => post.layout === "post")
+          : [];
 
-              const text = await res.text();
-
-              const { title, excerpt, readingTime } =
-                extractMetadataFromMarkdown(text);
-              return { ...meta, title, excerpt, content: text, readingTime };
-            } catch (error) {
-              console.error(`Error fetching ${meta.filename}:`, error);
-              return null;
-            }
-          })
-        );
-
-        // Filter out failed fetches and sort by date
-        const validPosts = fetchedPosts
-          .filter((post) => post !== null)
-          .sort((a, b) => new Date(b.date) - new Date(a.date));
-        setPosts(validPosts);
+        setPosts(publishedPosts);
         setError(null);
       } catch (error) {
         console.error("Error fetching blog posts:", error);
@@ -130,22 +45,47 @@ const OpenSourceBlog = () => {
     fetchPosts();
   }, []);
 
-  const handleSelectPost = (post) => {
-    setSelectedPost(post);
+  const handleSelectPost = async (post) => {
+    if (!post?.filename) {
+      return;
+    }
+
+    try {
+      setContentLoading(true);
+      const response = await fetch(`${BLOGS_PATH}${post.filename}`);
+
+      if (!response.ok) {
+        throw new Error(`Failed to load post: ${response.status}`);
+      }
+
+      const markdown = await response.text();
+      setSelectedPost({ ...post, content: stripFrontmatter(markdown) });
+    } catch (contentError) {
+      console.error(`Error loading post ${post.filename}:`, contentError);
+      setError(contentError.message);
+    } finally {
+      setContentLoading(false);
+    }
   };
 
   const handleBackToList = () => {
     setSelectedPost(null);
   };
 
-  // Filter posts based on search only
+  const allCategories = [...new Set(posts.flatMap((p) => p.categories ?? []))].sort();
+
   const filteredPosts = posts.filter((post) => {
     const matchesSearch =
       !searchTerm ||
       post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
-
-    return matchesSearch;
+      post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (post.categories || []).some((c) =>
+        c.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+    const matchesCategory =
+      !selectedCategory ||
+      (post.categories || []).includes(selectedCategory);
+    return matchesSearch && matchesCategory;
   });
 
   if (loading) {
@@ -215,7 +155,7 @@ const OpenSourceBlog = () => {
             </div>
 
             {/* Search */}
-            <div className="mb-8">
+            <div className="mb-4">
               <div className="relative">
                 <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500 w-4 h-4" />
                 <input
@@ -228,6 +168,37 @@ const OpenSourceBlog = () => {
               </div>
             </div>
 
+            {/* Category Filter Pills */}
+            {allCategories.length > 0 && (
+              <div className="mb-8 flex flex-wrap gap-2">
+                <button
+                  onClick={() => setSelectedCategory(null)}
+                  className={`px-3 py-1 text-xs font-mono border transition-colors ${
+                    selectedCategory === null
+                      ? "border-green-500 text-green-400 bg-green-900/20"
+                      : "border-gray-700 text-gray-500 hover:border-gray-500 hover:text-gray-400"
+                  }`}
+                >
+                  all
+                </button>
+                {allCategories.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() =>
+                      setSelectedCategory(selectedCategory === cat ? null : cat)
+                    }
+                    className={`px-3 py-1 text-xs font-mono border transition-colors ${
+                      selectedCategory === cat
+                        ? "border-green-500 text-green-400 bg-green-900/20"
+                        : "border-gray-700 text-gray-500 hover:border-gray-500 hover:text-gray-400"
+                    }`}
+                  >
+                    #{cat}
+                  </button>
+                ))}
+              </div>
+            )}
+
             {/* Blog Posts List */}
             {filteredPosts.length === 0 ? (
               <div className="text-center py-12">
@@ -239,7 +210,7 @@ const OpenSourceBlog = () => {
               </div>
             ) : (
               <div className="space-y-4">
-                {filteredPosts.map((post, idx) => {
+                {filteredPosts.map((post) => {
                   const postDate = new Date(post.date);
                   const formattedDate = postDate.toLocaleDateString("en-US", {
                     year: "numeric",
@@ -271,7 +242,7 @@ const OpenSourceBlog = () => {
                             <div className="flex items-center">
                               <span className="text-gray-600">by</span>
                               <span className="text-gray-400 ml-1">
-                                {post.author}
+                                  {post.author || "securecloudX"}
                               </span>
                             </div>
                           </div>
@@ -280,6 +251,29 @@ const OpenSourceBlog = () => {
                         <p className="text-gray-400 mb-3 leading-relaxed text-sm">
                           {post.excerpt}
                         </p>
+
+                        {post.categories?.length > 0 && (
+                          <div className="flex flex-wrap gap-1 mb-3">
+                            {post.categories.map((cat) => (
+                              <button
+                                key={cat}
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  setSelectedCategory(
+                                    selectedCategory === cat ? null : cat
+                                  );
+                                }}
+                                className={`px-2 py-0.5 text-xs font-mono border transition-colors ${
+                                  selectedCategory === cat
+                                    ? "border-green-500 text-green-400 bg-green-900/20"
+                                    : "border-gray-700 text-gray-600 hover:border-gray-500 hover:text-gray-500"
+                                }`}
+                              >
+                                #{cat}
+                              </button>
+                            ))}
+                          </div>
+                        )}
 
                         <footer>
                           <span className="text-green-400 text-sm hover:text-green-300 transition-colors">
@@ -293,6 +287,11 @@ const OpenSourceBlog = () => {
               </div>
             )}
           </>
+        ) : contentLoading ? (
+          <div className="w-full max-w-4xl mx-auto py-20 text-center text-green-400">
+            <Terminal className="w-5 h-5 animate-pulse inline mr-2" />
+            loading post...
+          </div>
         ) : (
           /* Single Post View */
           <div className="w-full max-w-4xl mx-auto">
@@ -333,88 +332,7 @@ const OpenSourceBlog = () => {
               </header>
 
               <div className="prose prose-invert max-w-none text-gray-400 leading-relaxed">
-                <ReactMarkdown
-                  components={{
-                    h1: ({ node, children, ...props }) => {
-                      // Always skip the first h1 since it's the title shown in header
-                      return null;
-                    },
-                    h2: ({ node, ...props }) => (
-                      <h2
-                        className="text-xl text-gray-300 mb-4 mt-6 font-mono"
-                        {...props}
-                      />
-                    ),
-                    h3: ({ node, ...props }) => (
-                      <h3
-                        className="text-lg text-gray-300 mb-3 mt-5 font-mono"
-                        {...props}
-                      />
-                    ),
-                    p: ({ node, ...props }) => (
-                      <p
-                        className="text-gray-400 mb-4 leading-relaxed"
-                        {...props}
-                      />
-                    ),
-                    strong: ({ node, ...props }) => (
-                      <strong
-                        className="text-orange-300 font-bold"
-                        {...props}
-                      />
-                    ),
-                    em: ({ node, ...props }) => (
-                      <em className="text-green-300 italic" {...props} />
-                    ),
-                    code: ({ node, inline, ...props }) =>
-                      inline ? (
-                        <code
-                          className="bg-gray-900 px-2 py-1 text-green-400 text-sm font-mono border border-gray-700"
-                          {...props}
-                        />
-                      ) : (
-                        <code
-                          className="block bg-gray-900 p-4 text-green-400 text-sm overflow-x-auto font-mono border border-gray-700"
-                          {...props}
-                        />
-                      ),
-                    pre: ({ node, ...props }) => (
-                      <pre
-                        className="bg-gray-900 p-4 overflow-x-auto mb-4 border border-gray-700"
-                        {...props}
-                      />
-                    ),
-                    blockquote: ({ node, ...props }) => (
-                      <blockquote
-                        className="border-l-4 border-yellow-500 bg-gray-800/50 pl-4 pr-4 py-3 my-6 text-yellow-200 font-mono relative"
-                        {...props}
-                      />
-                    ),
-                    ul: ({ node, ...props }) => (
-                      <ul
-                        className="list-disc text-gray-400 mb-4 space-y-1"
-                        {...props}
-                      />
-                    ),
-                    ol: ({ node, ...props }) => (
-                      <ol
-                        className="list-decimal text-gray-400 mb-4 space-y-1"
-                        {...props}
-                      />
-                    ),
-                    li: ({ node, ...props }) => (
-                      <li className="text-gray-400" {...props} />
-                    ),
-                    a: ({ node, ...props }) => (
-                      <a
-                        className="text-green-400 hover:text-green-300 underline transition-colors"
-                        {...props}
-                      />
-                    ),
-                  }}
-                >
-                  {selectedPost.content}
-                </ReactMarkdown>
+                <MarkdownContent content={selectedPost.content} variant="blog" />
               </div>
             </article>
           </div>

@@ -5,7 +5,7 @@ const Footer = () => {
         &copy; {new Date().getFullYear()} securecloudX. some rights reserved.
       </p>
       <p className="text-xs mt-1">
-        Owner{" "}
+        Creator{" "}
         <a
           href="https://ronneyotieno.me"
           target="_blank"
@@ -16,10 +16,12 @@ const Footer = () => {
         </a>
       </p>
       <a
-        href="mailto:securecloudx.learn@gmail.com"
+        href="https://github.com/0tieno/securecloudX/issues/new?title=Bug%20Report%3A%20&labels=bug"
+        target="_blank"
+        rel="noopener noreferrer"
         className="text-blue-400 text-xs mt-1 hover:underline"
       >
-        📩 Report an Issue
+        Report an Issue
       </a>
     </footer>
   );

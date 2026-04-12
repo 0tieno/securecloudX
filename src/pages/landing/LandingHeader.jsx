@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Terminal, Shield, Lock, Zap } from "lucide-react";
+import { Terminal, Shield, Lock, CalendarDays } from "lucide-react";
+
+const PHRASES = [
+  "Cloud Security Engineering",
+  "Cloud Penetration Testing",
+  "Cloud Security Research",
+  "Cloud Ethical Hacking",
+];
 
 export default function LandingHeader() {
   const navigate = useNavigate();
-  const phrases = [
-    "Cloud Security Engineering",
-    "Cloud Penetration Testing",
-    "Cloud Security Research",
-    "Cloud Ethical Hacking",
-  ];
-  const [currentPhrase, setCurrentPhrase] = useState(phrases[0]);
   const [displayedText, setDisplayedText] = useState("");
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
@@ -19,9 +19,9 @@ export default function LandingHeader() {
   useEffect(() => {
     let timeout;
     if (typing) {
-      if (charIndex < phrases[phraseIndex].length) {
+      if (charIndex < PHRASES[phraseIndex].length) {
         timeout = setTimeout(() => {
-          setDisplayedText((prev) => prev + phrases[phraseIndex][charIndex]);
+          setDisplayedText((prev) => prev + PHRASES[phraseIndex][charIndex]);
           setCharIndex((prev) => prev + 1);
         }, 80);
       } else {
@@ -34,11 +34,11 @@ export default function LandingHeader() {
         setTyping(true);
         setCharIndex(0);
         setDisplayedText("");
-        setPhraseIndex((prev) => (prev + 1) % phrases.length);
+        setPhraseIndex((prev) => (prev + 1) % PHRASES.length);
       }, 800);
     }
     return () => clearTimeout(timeout);
-  }, [charIndex, typing, phraseIndex, phrases]);
+  }, [charIndex, typing, phraseIndex]);
 
   return (
     <div className="flex flex-col items-center mb-16 text-center font-mono">
@@ -91,13 +91,15 @@ export default function LandingHeader() {
           <Terminal className="w-5 h-5 group-hover:rotate-12 transition-transform" />
           <span>INITIALIZE SYSTEM</span>
         </button>
-        <button
-          className="bg-gray-800 hover:bg-gray-700 border border-gray-600 text-gray-300 font-mono font-semibold px-8 py-3 transition-all duration-200 group flex items-center space-x-2"
-          onClick={() => navigate("/home")}
+        <a
+          href="https://cal.com/i-am-ronney?redirect=false"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-gray-800 hover:bg-gray-700 border border-yellow-500 text-yellow-400 font-mono font-semibold px-8 py-3 transition-all duration-200 group flex items-center space-x-2"
         >
-          <Zap className="w-5 h-5 group-hover:text-red-400 transition-colors" />
-          <span>ACCESS LABS</span>
-        </button>
+          <CalendarDays className="w-5 h-5 group-hover:scale-110 transition-transform" />
+          <span>BOOK A SESSION</span>
+        </a>
       </div>
 
       <div className="flex items-center space-x-2 text-gray-500 text-sm mb-6">

@@ -1,3 +1,14 @@
+---
+layout: post
+title: "Check for Key Expiration Policy Violations"
+date: 2025-10-05 09:00:00 +0300
+author: s!rr0nn3y
+categories:
+  - azure
+  - storage
+  - security
+---
+
 # Check for key expiration policy violations
 
 In today's blog (5/31), we are going to learn about key expiration policies by doing.

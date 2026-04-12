@@ -58,7 +58,7 @@ const Home = () => {
 
             {/* Day 1 */}
             <Link
-              to="/day1"
+              to="/module1"
               className="bg-gray-800 border border-gray-700 hover:border-gray-600 p-6 transition-colors group"
             >
               <div className="flex items-start mb-2">
@@ -74,7 +74,7 @@ const Home = () => {
 
             {/* Day 2 */}
             <Link
-              to="/day2"
+              to="/module2"
               className="bg-gray-800 border border-gray-700 hover:border-gray-600 p-6 transition-colors group"
             >
               <div className="flex items-start mb-2">
@@ -90,7 +90,7 @@ const Home = () => {
 
             {/* Day 3 */}
             <Link
-              to="/day3"
+              to="/module3"
               className="bg-gray-800 border border-gray-700 hover:border-gray-600 p-6 transition-colors group"
             >
               <div className="flex items-start mb-2">
@@ -106,7 +106,7 @@ const Home = () => {
 
             {/* Day 4 */}
             <Link
-              to="/day4"
+              to="/module4"
               className="bg-gray-800 border border-gray-700 hover:border-gray-600 p-6 transition-colors group"
             >
               <div className="flex items-start mb-2">
@@ -122,7 +122,7 @@ const Home = () => {
 
             {/* Day 5 */}
             <Link
-              to="/day5"
+              to="/module5"
               className="bg-gray-800 border border-gray-700 hover:border-gray-600 p-6 transition-colors group"
             >
               <div className="flex items-start mb-2">
@@ -138,7 +138,7 @@ const Home = () => {
 
             {/* Day 6 */}
             <Link
-              to="/day6"
+              to="/module6"
               className="bg-gray-800 border border-gray-700 hover:border-gray-600 p-6 transition-colors group"
             >
               <div className="flex items-start mb-2">
@@ -154,7 +154,7 @@ const Home = () => {
 
             {/* Day 7 */}
             <Link
-              to="/day7"
+              to="/module7"
               className="bg-gray-800 border border-gray-700 hover:border-gray-600 p-6 transition-colors group"
             >
               <div className="flex items-start mb-2">
