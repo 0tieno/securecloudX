@@ -119,6 +119,14 @@ export const buildBlogManifest = (blogsDir) => {
                     ? [metadata.categories]
                     : [];
 
+            const associatedLab = metadata.associated_lab_title
+                ? {
+                    title: metadata.associated_lab_title,
+                    ...(metadata.associated_lab_day ? { day: parseInt(metadata.associated_lab_day, 10) } : {}),
+                    ...(metadata.associated_lab_path ? { path: metadata.associated_lab_path } : {}),
+                }
+                : null;
+
             return {
                 filename,
                 slug: filename.replace(/\.md$/i, ""),
@@ -129,6 +137,7 @@ export const buildBlogManifest = (blogsDir) => {
                 author: metadata.author || "s!rr0nn3y",
                 excerpt: extractExcerpt(content),
                 readingTime: getReadingTime(content),
+                ...(associatedLab ? { associatedLab } : {}),
             };
         })
         .sort((a, b) => new Date(b.date) - new Date(a.date));
