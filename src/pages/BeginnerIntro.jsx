@@ -229,7 +229,7 @@ const BeginnerIntro = () => {
             Ready to Begin?
           </h2>
           <Link
-            to="/day1"
+            to="/module1"
             className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white transition-colors border border-blue-500 text-base"
           >
             Start Day 1 Challenge <ArrowRight size={18} />
