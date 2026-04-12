@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-04-12T09:14:37.173Z",
+  "generatedAt": "2026-04-12T09:20:53.423Z",
   "posts": [
     {
       "filename": "monitor-compliance.md",
@@ -147,6 +147,126 @@
       "author": "s!rr0nn3y",
       "excerpt": "Cloud security is the foundation of any modern digital infrastructure. Understanding these fundamentals is crucial for protecting your applications and data in the cloud.",
       "readingTime": 3
+    },
+    {
+      "filename": "ctf-linux-security-12challenges.md",
+      "slug": "ctf-linux-security-12challenges",
+      "layout": "post",
+      "title": "CTF: 12 Linux Security Challenges for Real-World Skills",
+      "date": "2025-07-16",
+      "categories": [
+        "ctf",
+        "linux",
+        "security"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "Today, I tackled 12 hands-on Capture the Flag (CTF) challenges designed to sharpen my Linux, networking, and cybersecurity skills. Each challenge introduced a new concept...",
+      "readingTime": 3
+    },
+    {
+      "filename": "git-tools-security-learners.md",
+      "slug": "git-tools-security-learners",
+      "layout": "post",
+      "title": "Git Tools Every Security Learner Should Know",
+      "date": "2025-07-13",
+      "categories": [
+        "git",
+        "security",
+        "tools"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "Want to think like a hacker? Start by mastering Git history.",
+      "readingTime": 2,
+      "associatedLab": {
+        "title": "Forgotten Secret Lab",
+        "path": "/forgotten-secret-lab"
+      }
+    },
+    {
+      "filename": "oops-committed-secrets-git.md",
+      "slug": "oops-committed-secrets-git",
+      "layout": "post",
+      "title": "Oops! I Committed Secrets to Git — Now What?",
+      "date": "2025-07-13",
+      "categories": [
+        "git",
+        "security",
+        "incident-response"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "We all make mistakes. Here's how to respond like a security pro when secrets get committed.",
+      "readingTime": 2,
+      "associatedLab": {
+        "title": "Forgotten Secret Lab",
+        "path": "/forgotten-secret-lab"
+      }
+    },
+    {
+      "filename": "why-git-never-forgets.md",
+      "slug": "why-git-never-forgets",
+      "layout": "post",
+      "title": "Why Git Never Forgets",
+      "date": "2025-07-13",
+      "categories": [
+        "git",
+        "security",
+        "secrets"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "Learn how secrets live on in your code history — even after you hit delete.",
+      "readingTime": 2,
+      "associatedLab": {
+        "title": "Forgotten Secret Lab",
+        "path": "/forgotten-secret-lab"
+      }
+    },
+    {
+      "filename": "docker-best-practices.md",
+      "slug": "docker-best-practices",
+      "layout": "post",
+      "title": "Top 10 Docker Best Practices for Developers",
+      "date": "2025-07-09",
+      "categories": [
+        "docker",
+        "security",
+        "development"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "When working with Docker, following best practices can lead to more efficient, secure, and maintainable containers. Here are some top tips:",
+      "readingTime": 3
+    },
+    {
+      "filename": "azure-storage-security-checklist.md",
+      "slug": "azure-storage-security-checklist",
+      "layout": "post",
+      "title": "Azure Storage Account Security Checklist",
+      "date": "2025-07-08",
+      "categories": [
+        "azure",
+        "storage",
+        "security"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "Securing your data in Azure is critical for protecting sensitive information and maintaining compliance. This checklist provides practical steps and best practices to hel...",
+      "readingTime": 3,
+      "associatedLab": {
+        "title": "Data Security",
+        "day": 3
+      }
+    },
+    {
+      "filename": "push-to-different-git-branch.md",
+      "slug": "push-to-different-git-branch",
+      "layout": "post",
+      "title": "How to Push to a Different Git Branch",
+      "date": "2025-07-07",
+      "categories": [
+        "git",
+        "development"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "By default, when you push to a remote repository, Git pushes the current branch to the remote repository. However, there might be times when you want to push to a branch...",
+      "readingTime": 2
     }
   ]
 }
