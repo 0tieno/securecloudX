@@ -1,3 +1,14 @@
+---
+layout: post
+title: "Azure Storage Account Keys"
+date: 2025-10-03 09:00:00 +0300
+author: s!rr0nn3y
+categories:
+  - azure
+  - storage
+  - security
+---
+
 # Azure storage account access keys
 
 In today's blog (3/31), we are going to learn access keys.
