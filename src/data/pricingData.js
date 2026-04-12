@@ -5,7 +5,7 @@ export const pricingTiers = [
         originalPrice: "Ksh. 250",
         price: "Ksh. 200",
         duration: "/45 minutes",
-        bookingUrl: "https://cal.com/securecloudx/cloud-security-consultation",
+        bookingUrl: "https://cal.com/i-am-ronney/cloud-security-consultation",
         description:
             "Perfect for students needing guidance with cloud security. Azure • AWS",
         features: [
@@ -23,7 +23,7 @@ export const pricingTiers = [
         originalPrice: "Ksh. 4000",
         price: "Ksh. 1,000",
         duration: "/60 minutes",
-        bookingUrl: "https://cal.com/securecloudx/cloud-security-consultation",
+        bookingUrl: "https://cal.com/i-am-ronney/cloud-security-consultation",
         description:
             "Comprehensive consultation for small businesses. Azure • AWS",
         features: [
