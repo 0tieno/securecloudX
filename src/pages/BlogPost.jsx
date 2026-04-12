@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
 import { blogPosts } from "../data/blogData";
-import { ArrowLeft, Eye } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useCloudViewTracker } from "../hooks/useCloudViewTracker";
 
 const BlogPost = () => {
