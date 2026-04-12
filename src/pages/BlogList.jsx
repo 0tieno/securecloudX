@@ -1,21 +1,41 @@
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { Edit3, ExternalLink, Eye } from "lucide-react";
-import { blogPosts } from "../data/blogData";
+import { Edit3, ExternalLink } from "lucide-react";
+import { externalLinks } from "../data/externalLinks";
+
+const BLOG_MANIFEST_PATH = "/blog/blog-manifest.json";
 
 const BlogList = () => {
-  // Sort blog posts by date (most recent first)
-  const sortedBlogPosts = [...blogPosts].sort((a, b) => {
-    // Handle special dates like "Not yet"
-    if (a.date === "Not yet") return 1;
-    if (b.date === "Not yet") return -1;
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    // Parse dates for comparison
-    const dateA = new Date(a.date);
-    const dateB = new Date(b.date);
+  useEffect(() => {
+    const fetchPosts = async () => {
+      try {
+        const res = await fetch(BLOG_MANIFEST_PATH);
+        const manifest = await res.json();
+        const internalPosts = (manifest.posts ?? [])
+          .filter((p) => p.layout === "post")
+          .map((p) => ({ ...p, isExternal: false }));
 
-    // Sort in descending order (newest first)
-    return dateB - dateA;
-  });
+        const all = [...internalPosts, ...externalLinks].sort((a, b) => {
+          if (a.date === "Not yet") return 1;
+          if (b.date === "Not yet") return -1;
+          return new Date(b.date) - new Date(a.date);
+        });
+
+        setPosts(all);
+      } catch (e) {
+        console.error("Failed to load blog manifest:", e);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPosts();
+  }, []);
+
+  if (loading) return null;
 
   return (
     <div className="max-w-xl mx-auto mt-12 px-6">
@@ -32,7 +52,7 @@ const BlogList = () => {
       </p>
 
       <ul className="space-y-4">
-        {sortedBlogPosts.map((post, index) => (
+        {posts.map((post, index) => (
           <li key={index} className="text-gray-300 text-sm md:text-base">
             <div className="flex items-start justify-between">
               <div className="flex items-center flex-1">
@@ -49,11 +69,10 @@ const BlogList = () => {
                 ) : (
                   <div className="flex-1">
                     <Link
-                      to={`/posts/${post.id}`}
+                      to={`/posts/${post.slug}`}
                       className="text-gray-300 hover:text-gray-100 transition-colors underline decoration-1 underline-offset-3 decoration-gray-500 hover:decoration-gray-300 font-medium"
                     >
                       {post.title}
-                      {post.tags && post.tags.includes}
                     </Link>
                     {post.excerpt && (
                       <p className="text-gray-400 text-xs mt-1 ml-0">
@@ -74,11 +93,11 @@ const BlogList = () => {
               <div className="ml-4 mt-2">
                 {post.associatedLab.day ? (
                   <Link
-                    to={`/day${post.associatedLab.day}`}
+                    to={`/module${post.associatedLab.day}`}
                     className="inline-flex items-center text-xs text-blue-400 hover:text-blue-300 transition-colors"
                   >
                     <ExternalLink className="w-3 h-3 mr-1" />
-                    Related: Day {post.associatedLab.day} -{" "}
+                    Related: Module {post.associatedLab.day} -{" "}
                     {post.associatedLab.title}
                   </Link>
                 ) : post.associatedLab.path ? (
