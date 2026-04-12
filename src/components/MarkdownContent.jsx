@@ -1,4 +1,5 @@
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 
 const VARIANT_STYLES = {
   blog: {
@@ -8,7 +9,7 @@ const VARIANT_STYLES = {
     strong: "text-orange-300 font-bold",
     emphasis: "text-green-300 italic",
     codeInline:
-      "bg-gray-900 px-2 py-1 text-green-400 text-sm font-mono border border-gray-700",
+      "inline bg-gray-900 px-2 py-0.5 text-green-400 text-sm font-mono border border-gray-700 rounded",
     codeBlock:
       "block bg-gray-900 p-4 text-green-400 text-sm overflow-x-auto font-mono border border-gray-700",
     pre: "bg-gray-900 p-4 overflow-x-auto mb-4 border border-gray-700",
@@ -18,6 +19,9 @@ const VARIANT_STYLES = {
     ol: "list-decimal text-gray-400 mb-4 space-y-1",
     li: "text-gray-400",
     link: "text-green-400 hover:text-green-300 underline transition-colors",
+    table: "w-full border-collapse mb-6 text-sm font-mono",
+    th: "border border-gray-600 bg-gray-800 px-4 py-2 text-left text-green-400",
+    td: "border border-gray-600 px-4 py-2 text-gray-400",
     showH1: false,
   },
   lab: {
@@ -29,7 +33,7 @@ const VARIANT_STYLES = {
     strong: "text-red-300 font-bold",
     emphasis: "text-yellow-300 italic",
     codeInline:
-      "bg-gray-900 px-2 py-1 text-green-400 text-sm font-mono border border-gray-700",
+      "inline bg-gray-900 px-2 py-0.5 text-green-400 text-sm font-mono border border-gray-700 rounded",
     codeBlock:
       "block bg-gray-900 p-4 text-green-400 text-sm overflow-x-auto font-mono border border-gray-700",
     pre: "bg-gray-900 p-4 overflow-x-auto mb-4 border border-gray-700",
@@ -39,6 +43,9 @@ const VARIANT_STYLES = {
     ol: "list-decimal list-inside text-gray-400 mb-4 space-y-1",
     li: "text-gray-400",
     link: "text-red-400 hover:text-red-300 underline transition-colors",
+    table: "w-full border-collapse mb-6 text-sm font-mono",
+    th: "border border-gray-600 bg-gray-800 px-4 py-2 text-left text-red-400",
+    td: "border border-gray-600 px-4 py-2 text-gray-400",
     showH1: true,
   },
 };
@@ -69,12 +76,14 @@ const createMarkdownComponents = (variant) => {
       <strong className={styles.strong} {...withoutNode(props)} />
     ),
     em: (props) => <em className={styles.emphasis} {...withoutNode(props)} />,
-    code: ({ inline, ...props }) =>
-      inline ? (
-        <code className={styles.codeInline} {...withoutNode(props)} />
+    code: ({ children, className, ...props }) => {
+      const isBlock = className?.startsWith("language-");
+      return isBlock ? (
+        <code className={`${styles.codeBlock} ${className ?? ""}`} {...withoutNode(props)}>{children}</code>
       ) : (
-        <code className={styles.codeBlock} {...withoutNode(props)} />
-      ),
+        <code className={styles.codeInline} {...withoutNode(props)}>{children}</code>
+      );
+    },
     pre: (props) => <pre className={styles.pre} {...withoutNode(props)} />,
     blockquote: (props) => (
       <blockquote className={styles.blockquote} {...withoutNode(props)} />
@@ -83,11 +92,21 @@ const createMarkdownComponents = (variant) => {
     ol: (props) => <ol className={styles.ol} {...withoutNode(props)} />,
     li: (props) => <li className={styles.li} {...withoutNode(props)} />,
     a: (props) => <a className={styles.link} {...withoutNode(props)} />,
+    table: (props) => (
+      <div className="overflow-x-auto mb-4">
+        <table className={styles.table} {...withoutNode(props)} />
+      </div>
+    ),
+    thead: (props) => <thead {...withoutNode(props)} />,
+    tbody: (props) => <tbody {...withoutNode(props)} />,
+    tr: (props) => <tr className="even:bg-gray-800/30" {...withoutNode(props)} />,
+    th: (props) => <th className={styles.th} {...withoutNode(props)} />,
+    td: (props) => <td className={styles.td} {...withoutNode(props)} />,
   };
 };
 
 const MarkdownContent = ({ content, variant = "blog" }) => {
-  return <ReactMarkdown components={createMarkdownComponents(variant)}>{content}</ReactMarkdown>;
+  return <ReactMarkdown remarkPlugins={[remarkGfm]} components={createMarkdownComponents(variant)}>{content}</ReactMarkdown>;
 };
 
 export default MarkdownContent;
