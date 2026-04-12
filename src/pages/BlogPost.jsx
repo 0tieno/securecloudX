@@ -1,20 +1,55 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { useParams, Link, Navigate } from "react-router-dom";
-import { blogPosts } from "../data/blogData";
 import { ArrowLeft } from "lucide-react";
 import MarkdownContent from "../components/MarkdownContent";
+import { stripFrontmatter } from "../utils/frontmatter";
 
 const BlogPost = () => {
   const { id } = useParams();
-  const post = blogPosts.find((post) => post.id === id);
+  const [post, setPost] = useState(null);
+  const [content, setContent] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
 
-  if (!post) {
-    return <Navigate to="/posts" replace />;
+  useEffect(() => {
+    const fetchPost = async () => {
+      try {
+        const manifestRes = await fetch("/blog/blog-manifest.json");
+        if (!manifestRes.ok) throw new Error("Manifest not found");
+        const manifest = await manifestRes.json();
+
+        const found = (manifest.posts ?? []).find((p) => p.slug === id);
+        if (!found) {
+          setNotFound(true);
+          return;
+        }
+
+        setPost(found);
+
+        const mdRes = await fetch(`/blog/${found.filename}`);
+        if (!mdRes.ok) throw new Error("Post file not found");
+        const markdown = await mdRes.text();
+        setContent(stripFrontmatter(markdown));
+      } catch (e) {
+        console.error("Failed to load blog post:", e);
+        setNotFound(true);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPost();
+  }, [id]);
+
+  if (loading) {
+    return (
+      <div className="min-h-screen bg-gray-900 flex items-center justify-center">
+        <span className="text-gray-400 font-mono animate-pulse">Loading...</span>
+      </div>
+    );
   }
 
-  if (post.isExternal) {
-    // Redirect to external URL
-    window.open(post.url, "_blank");
+  if (notFound) {
     return <Navigate to="/posts" replace />;
   }
 
@@ -39,13 +74,12 @@ const BlogPost = () => {
           </h1>
           <div className="flex items-center justify-between text-gray-400 text-sm">
             <span>Published on {post.date}</span>
-
           </div>
         </header>
 
         {/* Blog post content */}
         <article className="text-gray-300">
-          <MarkdownContent content={post.content} variant="blog" />
+          <MarkdownContent content={content} variant="blog" />
         </article>
 
         {/* Back to posts link at the bottom */}
