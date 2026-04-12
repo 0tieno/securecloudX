@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ChevronRight, ChevronDown, Lock, Menu, X } from "lucide-react";
-import useChallengeUnlock from "../hooks/useChallengeUnlock";
+import { ChevronRight, ChevronDown, Menu, X } from "lucide-react";
 
 const topics = [
   { day: 1, title: "Identity & Access Management" },
@@ -14,8 +13,6 @@ const topics = [
 ];
 
 const Sidebar = () => {
-  const unlockedDays = useChallengeUnlock();
-
   const [openDay, setOpenDay] = useState({});
   const [openNextSteps, setOpenNextSteps] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -23,9 +20,7 @@ const Sidebar = () => {
   const location = useLocation();
 
   const toggleDropdown = (day) => {
-    if (unlockedDays.includes(day)) {
-      setOpenDay((prev) => ({ ...prev, [day]: !prev[day] }));
-    }
+    setOpenDay((prev) => ({ ...prev, [day]: !prev[day] }));
   };
 
   const toggleSidebar = () => {
@@ -135,46 +130,34 @@ const Sidebar = () => {
             </li>
 
             {topics.map(({ day, title }) => {
-              const isUnlocked = unlockedDays.includes(day);
               return (
                 <li key={day}>
                   <button
                     onClick={() => toggleDropdown(Number(day))}
-                    className={`w-full text-left px-4 py-2 flex justify-between items-center ${
-                      isUnlocked
-                        ? "hover:bg-gray-700"
-                        : "text-gray-500 cursor-not-allowed"
-                    } ${
-                      location.pathname.includes(`/day${day}`)
+                    className={`w-full text-left px-4 py-2 flex justify-between items-center hover:bg-gray-700 ${
+                      location.pathname.includes(`/module${day}`)
                         ? "bg-gray-700 text-white"
                         : ""
                     }`}
-                    disabled={!isUnlocked}
-                    title={
-                      isUnlocked ? `Open Day ${day}` : "This day is locked"
-                    }
+                    title={`Open Module ${day}`}
                   >
                     <span>
-                      <strong>Day {day}:</strong> {title}
+                      <strong>Module {day}:</strong> {title}
                     </span>
-                    {isUnlocked ? (
-                      openDay[day] ? (
-                        <ChevronDown size={18} />
-                      ) : (
-                        <ChevronRight size={18} />
-                      )
+                    {openDay[day] ? (
+                      <ChevronDown size={18} />
                     ) : (
-                      <Lock size={18} />
+                      <ChevronRight size={18} />
                     )}
                   </button>
 
-                  {openDay[day] && isUnlocked && (
+                  {openDay[day] && (
                     <ul className="ml-4 border-l-2 border-gray-600">
                       <li>
                         <Link
-                          to={`/day${day}`}
+                          to={`/module${day}`}
                           className={`block px-4 py-1 hover:bg-gray-600 ${
-                            location.pathname === `/day${day}`
+                            location.pathname === `/module${day}`
                               ? "bg-gray-700 text-white"
                               : ""
                           }`}
@@ -186,9 +169,9 @@ const Sidebar = () => {
                       </li>
                       <li>
                         <Link
-                          to={`/day${day}/task`}
+                          to={`/module${day}/task`}
                           className={`block px-4 py-1 hover:bg-gray-600 ${
-                            location.pathname === `/day${day}/task`
+                            location.pathname === `/module${day}/task`
                               ? "bg-gray-700 text-white"
                               : ""
                           }`}
@@ -204,9 +187,9 @@ const Sidebar = () => {
                         <ul className="ml-4 border-l-2 border-gray-600">
                           <li>
                             <Link
-                              to="/day3/task/phase1"
+                              to="/module3/task/phase1"
                               className={`block px-4 py-1 hover:bg-gray-600 ${
-                                location.pathname === "/day3/task/phase1"
+                                location.pathname === "/module3/task/phase1"
                                   ? "bg-gray-700 text-white"
                                   : ""
                               }`}
@@ -218,9 +201,9 @@ const Sidebar = () => {
                           </li>
                           <li>
                             <Link
-                              to="/day3/task/phase2"
+                              to="/module3/task/phase2"
                               className={`block px-4 py-1 hover:bg-gray-600 ${
-                                location.pathname === "/day3/task/phase2"
+                                location.pathname === "/module3/task/phase2"
                                   ? "bg-gray-700 text-white"
                                   : ""
                               }`}
@@ -232,9 +215,9 @@ const Sidebar = () => {
                           </li>
                           <li>
                             <Link
-                              to="/day3/task/phase3"
+                              to="/module3/task/phase3"
                               className={`block px-4 py-1 hover:bg-gray-600 ${
-                                location.pathname === "/day3/task/phase3"
+                                location.pathname === "/module3/task/phase3"
                                   ? "bg-gray-700 text-white"
                                   : ""
                               }`}
@@ -249,9 +232,9 @@ const Sidebar = () => {
 
                       <li>
                         <Link
-                          to={`/day/${day}/resources`}
+                          to={`/module/${day}/resources`}
                           className={`block px-4 py-1 hover:bg-gray-600 ${
-                            location.pathname === `/day/${day}/resources`
+                            location.pathname === `/module/${day}/resources`
                               ? "bg-gray-700 text-white"
                               : ""
                           }`}
@@ -270,36 +253,19 @@ const Sidebar = () => {
             {/* Next Steps Section */}
             <li>
               <button
-                onClick={() => {
-                  if (unlockedDays.includes(7)) {
-                    setOpenNextSteps(!openNextSteps);
-                  }
-                }}
-                className={`w-full text-left px-4 py-2 flex justify-between items-center ${
-                  unlockedDays.includes(7)
-                    ? "hover:bg-gray-700"
-                    : "text-gray-500 cursor-not-allowed"
-                } mt-4`}
-                disabled={!unlockedDays.includes(7)}
-                title={
-                  unlockedDays.includes(7)
-                    ? "Explore next steps"
-                    : "Unlocks after Day 7"
-                }
+                onClick={() => setOpenNextSteps(!openNextSteps)}
+                className="w-full text-left px-4 py-2 flex justify-between items-center hover:bg-gray-700 mt-4"
+                title="Explore next steps"
               >
                 <span>Next Steps</span>
-                {unlockedDays.includes(7) ? (
-                  openNextSteps ? (
-                    <ChevronDown size={18} />
-                  ) : (
-                    <ChevronRight size={18} />
-                  )
+                {openNextSteps ? (
+                  <ChevronDown size={18} />
                 ) : (
-                  <Lock size={18} />
+                  <ChevronRight size={18} />
                 )}
               </button>
 
-              {openNextSteps && unlockedDays.includes(7) && (
+              {openNextSteps && (
                 <ul className="ml-4 border-l-2 border-gray-600">
                   <li>
                     <Link
