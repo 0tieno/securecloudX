@@ -1,37 +1,78 @@
-import { useState, useEffect } from 'react';
-import { cloudViewTracker } from '../services/cloudViewTracker';
+import { useEffect, useState } from "react";
+
+const STORAGE_KEY = "blog_views";
+
+const readStoredViews = () => {
+  try {
+    const rawViews = localStorage.getItem(STORAGE_KEY);
+    return rawViews ? JSON.parse(rawViews) : {};
+  } catch (error) {
+    console.error("Error reading blog views:", error);
+    return {};
+  }
+};
+
+const writeStoredViews = (views) => {
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(views));
+  } catch (error) {
+    console.error("Error persisting blog views:", error);
+  }
+};
+
+const getViews = async (postId) => {
+  if (!postId) {
+    return 0;
+  }
+
+  const views = readStoredViews();
+  return views[postId] ?? 0;
+};
+
+const trackView = async (postId) => {
+  if (!postId) {
+    return 0;
+  }
+
+  const views = readStoredViews();
+  const nextCount = (views[postId] ?? 0) + 1;
+  views[postId] = nextCount;
+  writeStoredViews(views);
+  return nextCount;
+};
+
+const getAllViews = async () => readStoredViews();
 
 export const useCloudViewTracker = (postId) => {
   const [views, setViews] = useState(0);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(Boolean(postId));
 
   useEffect(() => {
+    let isActive = true;
+
     if (!postId) {
       setLoading(false);
-      return;
+      return undefined;
     }
 
-    const trackAndGetViews = async () => {
+    const loadViews = async () => {
       setLoading(true);
-      
-      try {
-        // Track the view
-        const newViewCount = await cloudViewTracker.trackView(postId);
-        setViews(newViewCount);
-      } catch (error) {
-        console.error('Error tracking view:', error);
-        // Fallback to getting existing count
-        const existingCount = await cloudViewTracker.getViews(postId);
-        setViews(existingCount);
-      } finally {
+      const nextCount = await getViews(postId);
+
+      if (isActive) {
+        setViews(nextCount);
         setLoading(false);
       }
     };
 
-    trackAndGetViews();
+    loadViews();
+
+    return () => {
+      isActive = false;
+    };
   }, [postId]);
 
-  return { views, loading };
+  return { views, loading, trackView, getViews, getAllViews };
 };
 
 export const useAllViews = () => {
@@ -39,21 +80,23 @@ export const useAllViews = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    let isActive = true;
+
     const fetchAllViews = async () => {
       setLoading(true);
-      
-      try {
-        const viewCounts = await cloudViewTracker.getAllViews();
+      const viewCounts = await getAllViews();
+
+      if (isActive) {
         setAllViews(viewCounts);
-      } catch (error) {
-        console.error('Error fetching all views:', error);
-        setAllViews({});
-      } finally {
         setLoading(false);
       }
     };
 
     fetchAllViews();
+
+    return () => {
+      isActive = false;
+    };
   }, []);
 
   return { allViews, loading };
