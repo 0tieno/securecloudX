@@ -1,3 +1,13 @@
+---
+layout: post
+title: "Secure Coding Practices for Cloud Applications"
+date: 2025-09-02 09:00:00 +0300
+author: s!rr0nn3y
+categories:
+  - secure-coding
+  - cloud-security
+---
+
 # Secure Coding Practices for Cloud Applications
 
 Writing secure code is the first line of defense against cyber attacks. In cloud environments, where applications are distributed and accessible from anywhere, secure coding becomes even more critical.
