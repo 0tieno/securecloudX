@@ -1,57 +1,22 @@
 import { useNavigate, Link } from "react-router-dom";
-import { Terminal, ArrowLeft } from "lucide-react";
+import PageNav from "../components/PageNav";
 
 export default function AboutAuthor() {
   const navigate = useNavigate();
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
-      {/* Navbar Header */}
-      <nav className="bg-gray-900 border-b border-gray-700 px-4 sm:px-6 py-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            {/* Left side - Logo */}
-            <div className="flex flex-col">
-              <div className="flex items-center">
-                <Terminal className="w-6 h-6 sm:w-8 sm:h-8 text-red-400 mr-2 sm:mr-3" />
-                <h1
-                  className="text-xl sm:text-2xl font-bold text-gray-300 cursor-pointer"
-                  onClick={() => navigate("/")}
-                >
-                  I'm <span className="text-red-400">$!rr0nn3y</span>
-                </h1>
-              </div>
-              <div className="ml-8 sm:ml-11 hidden sm:block">
-                <p className="text-gray-500 text-sm">
-                  Developer | Jnr Pentester(cloud & web)
-                </p>
-                <div className="text-xs text-gray-600 mt-1">
-                  Here is a little bit about myself...
-                </div>
-              </div>
-            </div>
-
-            {/* Right side - Navigation Links */}
-            <div className="flex items-center justify-start sm:justify-end space-x-4 sm:space-x-6 ml-8 sm:ml-0">
-              <button
-                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
-                onClick={() => navigate("/work")}
-              >
-                ./work
-              </button>
-              <button
-                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
-                onClick={() => navigate("/story")}
-              >
-                ./story
-              </button>
-              <button className="text-red-400 text-xs sm:text-sm font-mono cursor-default">
-                ./about
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <PageNav
+        variant="personal"
+        subtitle="Developer | Jnr Pentester(cloud &amp; web)"
+        command="Here is a little bit about myself..."
+        maxWidth="4xl"
+        links={[
+          { label: "./work", path: "/work" },
+          { label: "./story", path: "/story" },
+          { label: "./about", active: true },
+        ]}
+      />
 
       <div className="flex-1 flex flex-col items-center px-4 py-12">
         {/* Profile Section */}
