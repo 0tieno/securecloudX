@@ -1,12 +1,13 @@
 import { useNavigate } from "react-router-dom";
 import {
-  Terminal,
   ArrowLeft,
   Briefcase,
   ChevronDown,
   ChevronRight,
 } from "lucide-react";
 import { useState } from "react";
+import PageNav from "../components/PageNav";
+import { workExperience } from "../data/workData";
 
 export default function Work() {
   const navigate = useNavigate();
@@ -19,68 +20,19 @@ export default function Work() {
     }));
   };
 
-  const workExperience = [
-    {
-      id: "founder",
-      title: "Founder",
-      company: "Founder & CEO at X",
-      period: "(April, 2025 - present)",
-      color: "blue-400",
-      contributions: [
-        "Experimenting and Developing lots of user-centric cloud native software solutions for a probable company X. I've built 3 other applications currently in the hand of users. When things finally picks up, I'll be ready to update this. Or if they don't, I'll pivot.",
-        
-      ],
-    },
-  ];
-
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
-      {/* Navbar Header */}
-      <nav className="bg-gray-900 border-b border-gray-700 px-4 sm:px-6 py-4">
-        <div className="max-w-4xl mx-auto">
-          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-            {/* Left side - Logo */}
-            <div className="flex flex-col">
-              <div className="flex items-center">
-                <Terminal className="w-6 h-6 sm:w-8 sm:h-8 text-red-400 mr-2 sm:mr-3" />
-                <h1
-                  className="text-xl sm:text-2xl font-bold text-gray-300 cursor-pointer"
-                  onClick={() => navigate("/")}
-                >
-                  I'm <span className="text-red-400">$!rr0nn3y</span>
-                </h1>
-              </div>
-              <div className="ml-8 sm:ml-11 hidden sm:block">
-                <p className="text-gray-500 text-sm">
-                  Developer | Jnr Pentester(cloud & web)
-                </p>
-                <div className="text-xs text-gray-600 mt-1">
-                  // my professional journey and work experience
-                </div>
-              </div>
-            </div>
-
-            {/* Right side - Navigation Links */}
-            <div className="flex items-center justify-start sm:justify-end space-x-4 sm:space-x-6 ml-8 sm:ml-0">
-              <button className="text-red-400 text-xs sm:text-sm font-mono cursor-default">
-                ./work
-              </button>
-              <button
-                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
-                onClick={() => navigate("/story")}
-              >
-                ./story
-              </button>
-              <button
-                className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono"
-                onClick={() => navigate("/about")}
-              >
-                ./about
-              </button>
-            </div>
-          </div>
-        </div>
-      </nav>
+      <PageNav
+        variant="personal"
+        subtitle="Developer | Jnr Pentester(cloud &amp; web)"
+        command="// my professional journey and work experience"
+        maxWidth="4xl"
+        links={[
+          { label: "./work", active: true },
+          { label: "./story", path: "/story" },
+          { label: "./about", path: "/about" },
+        ]}
+      />
 
       <div className="flex-1 px-4 py-12">
         <div className="max-w-4xl mx-auto">
