@@ -1,3 +1,14 @@
+---
+layout: post
+title: "Monitor Compliance with Key Expiration Policy"
+date: 2025-10-06 09:00:00 +0300
+author: s!rr0nn3y
+categories:
+  - azure
+  - storage
+  - security
+---
+
 # Monitor compliance with the key expiration policy
 
 In today's blog (6/31), we are going to learn about how to monitor compliance with the key expiration policy hands-on. See yesterday's blog first to understand this.
