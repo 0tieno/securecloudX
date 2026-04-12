@@ -116,6 +116,9 @@ export default function Work() {
               <div className="text-gray-400 text-sm font-mono mt-1">
                 Intern @ Safaricom PLC
               </div>
+              <div className="text-gray-400 text-sm font-mono mt-1">
+                Microsoft Security MVP
+              </div>
             </div>
           </div>
         </div>
