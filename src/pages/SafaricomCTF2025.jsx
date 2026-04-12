@@ -6,6 +6,7 @@ import {
   Clock,
   Trophy,
   ExternalLink,
+  Terminal,
 } from "lucide-react";
 import PageNav from "../components/PageNav";
 

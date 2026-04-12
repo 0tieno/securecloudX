@@ -6,6 +6,7 @@ import {
   ExternalLink,
   Flag,
   Clock,
+  Terminal,
 } from "lucide-react";
 import { useState } from "react";
 import PageNav from "../components/PageNav";
