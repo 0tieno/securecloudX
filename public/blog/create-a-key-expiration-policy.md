@@ -1,3 +1,14 @@
+---
+layout: post
+title: "Create a Key Expiration Policy"
+date: 2025-10-04 09:00:00 +0300
+author: s!rr0nn3y
+categories:
+  - azure
+  - storage
+  - security
+---
+
 # Create a key expiration policy
 
 In today's blog (4/31), we are going to learn about key expiration policies by doing.
