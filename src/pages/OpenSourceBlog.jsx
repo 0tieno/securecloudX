@@ -1,11 +1,10 @@
 import { useEffect, useState } from "react";
 import { Calendar, Clock, ArrowLeft, Search, Terminal } from "lucide-react";
 import MarkdownContent from "../components/MarkdownContent";
-import {
-  BLOGS_PATH,
-  blogFiles,
-  extractMetadataFromMarkdown,
-} from "../data/openSourceContent";
+import { stripFrontmatter } from "../utils/frontmatter";
+
+const BLOGS_PATH = "/blog/";
+const BLOG_MANIFEST_PATH = `${BLOGS_PATH}blog-manifest.json`;
 
 const OpenSourceBlog = () => {
   const [posts, setPosts] = useState([]);
@@ -13,42 +12,26 @@ const OpenSourceBlog = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
+  const [contentLoading, setContentLoading] = useState(false);
 
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         setLoading(true);
 
-        const fetchedPosts = await Promise.all(
-          blogFiles.map(async (meta) => {
-            try {
-              const url = BLOGS_PATH + meta.filename;
+        const manifestResponse = await fetch(BLOG_MANIFEST_PATH);
+        if (!manifestResponse.ok) {
+          throw new Error(
+            `Failed to fetch blog manifest: ${manifestResponse.status}`
+          );
+        }
 
-              const res = await fetch(url);
-              if (!res.ok) {
-                console.warn(
-                  `Failed to fetch ${meta.filename}: ${res.status} ${res.statusText}`
-                );
-                return null;
-              }
+        const manifest = await manifestResponse.json();
+        const publishedPosts = Array.isArray(manifest.posts)
+          ? manifest.posts.filter((post) => post.layout === "post")
+          : [];
 
-              const text = await res.text();
-
-              const { title, excerpt, readingTime } =
-                extractMetadataFromMarkdown(text);
-              return { ...meta, title, excerpt, content: text, readingTime };
-            } catch (error) {
-              console.error(`Error fetching ${meta.filename}:`, error);
-              return null;
-            }
-          })
-        );
-
-        // Filter out failed fetches and sort by date
-        const validPosts = fetchedPosts
-          .filter((post) => post !== null)
-          .sort((a, b) => new Date(b.date) - new Date(a.date));
-        setPosts(validPosts);
+        setPosts(publishedPosts);
         setError(null);
       } catch (error) {
         console.error("Error fetching blog posts:", error);
@@ -61,8 +44,27 @@ const OpenSourceBlog = () => {
     fetchPosts();
   }, []);
 
-  const handleSelectPost = (post) => {
-    setSelectedPost(post);
+  const handleSelectPost = async (post) => {
+    if (!post?.filename) {
+      return;
+    }
+
+    try {
+      setContentLoading(true);
+      const response = await fetch(`${BLOGS_PATH}${post.filename}`);
+
+      if (!response.ok) {
+        throw new Error(`Failed to load post: ${response.status}`);
+      }
+
+      const markdown = await response.text();
+      setSelectedPost({ ...post, content: stripFrontmatter(markdown) });
+    } catch (contentError) {
+      console.error(`Error loading post ${post.filename}:`, contentError);
+      setError(contentError.message);
+    } finally {
+      setContentLoading(false);
+    }
   };
 
   const handleBackToList = () => {
@@ -74,7 +76,10 @@ const OpenSourceBlog = () => {
     const matchesSearch =
       !searchTerm ||
       post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
+      post.excerpt.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      (post.categories || []).some((category) =>
+        category.toLowerCase().includes(searchTerm.toLowerCase())
+      );
 
     return matchesSearch;
   });
@@ -202,7 +207,7 @@ const OpenSourceBlog = () => {
                             <div className="flex items-center">
                               <span className="text-gray-600">by</span>
                               <span className="text-gray-400 ml-1">
-                                {post.author}
+                                  {post.author || "securecloudX"}
                               </span>
                             </div>
                           </div>
@@ -224,6 +229,11 @@ const OpenSourceBlog = () => {
               </div>
             )}
           </>
+        ) : contentLoading ? (
+          <div className="w-full max-w-4xl mx-auto py-20 text-center text-green-400">
+            <Terminal className="w-5 h-5 animate-pulse inline mr-2" />
+            loading post...
+          </div>
         ) : (
           /* Single Post View */
           <div className="w-full max-w-4xl mx-auto">
