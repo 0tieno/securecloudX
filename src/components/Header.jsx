@@ -14,13 +14,6 @@ const Header = () => {
           </svg>
         </a>
 
-        {/* LinkedIn Icon */}
-        {/* <a href="https://www.linkedin.com/in/ronney-otieno/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-            <path d="M4.98 3.5a2.48 2.48 0 0 1 2.52 2.5c0 1.38-1.1 2.5-2.48 2.5H4.96C3.58 8.5 2.48 7.38 2.48 6a2.48 2.48 0 0 1 2.5-2.5h.02ZM3 9.5h4v11H3v-11ZM9 9.5h3.7v1.5h.1c.5-.9 1.6-1.9 3.3-1.9 3.6 0 4.3 2.4 4.3 5.5v6h-4v-5.4c0-1.3 0-3-1.8-3-1.8 0-2.1 1.4-2.1 2.9v5.5H9v-11Z"/>
-          </svg>
-        </a> */}
-
         {/* X (Twitter) Icon */}
         <a href="https://x.com/securecloudX" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
           <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
