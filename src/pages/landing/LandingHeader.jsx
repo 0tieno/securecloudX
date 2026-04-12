@@ -92,7 +92,7 @@ export default function LandingHeader() {
           <span>INITIALIZE SYSTEM</span>
         </button>
         <a
-          href="https://cal.com/i-am-ronney/cloud-security-consultation"
+          href="https://cal.com/i-am-ronney?redirect=false"
           target="_blank"
           rel="noopener noreferrer"
           className="bg-gray-800 hover:bg-gray-700 border border-yellow-500 text-yellow-400 font-mono font-semibold px-8 py-3 transition-all duration-200 group flex items-center space-x-2"
