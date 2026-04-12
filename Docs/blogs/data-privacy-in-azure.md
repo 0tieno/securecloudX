@@ -1,3 +1,14 @@
+---
+layout: post
+title: "Data Privacy in Azure"
+date: 2025-10-01 09:00:00 +0300
+author: s!rr0nn3y
+categories:
+  - azure
+  - privacy
+  - cloud-security
+---
+
 # Data Privacy in Azure
 
 > the customer is fully responsible for the security in the cloud while the cloud provider(in this case azure) is fully responsible for the security of the cloud.
