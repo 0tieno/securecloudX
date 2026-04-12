@@ -1,5 +1,4 @@
-import { Terminal, Zap } from "lucide-react";
-import { Link } from "react-router-dom";
+import { PartyPopper } from "lucide-react";
 
 export default function AnnouncementBar() {
   return (
@@ -9,24 +8,30 @@ export default function AnnouncementBar() {
     >
       {/* Desktop version */}
       <div className="hidden sm:flex items-center justify-center space-x-2">
-        <Terminal className="w-4 h-4 text-red-400" />
-        <span className="text-red-400">[SYSTEM ALERT]</span>
-        <span>The site is undergoing significant updates</span>
-        <Zap className="w-4 h-4 text-red-400 animate-pulse" />
+        <PartyPopper className="w-4 h-4 text-yellow-400" />
+        <span className="text-yellow-400">[MILESTONE]</span>
+        <span>
+          we just turned {""}
+          <span className="text-yellow-400 font-bold">
+            1yr
+          </span> with {""}
+          <span className="text-yellow-400 font-bold">
+            400 users/m
+          </span> on overall {""}
+          <span className="text-yellow-400 font-bold">
+            4k+ in 30+ countries
+          </span> {""}
+          — thank you for learning with us!
+        </span>
+        <PartyPopper className="w-4 h-4 text-yellow-400" />
       </div>
 
       {/* Mobile version */}
       <div className="flex sm:hidden items-center justify-center space-x-1">
-        <Terminal className="w-3 h-3 text-red-400 flex-shrink-0" />
-        <span className="text-red-400 text-xs">[ALERT]</span>
-        <span className="text-xs truncate">October blog challenge</span>
-        <Link
-          to="/opensource-blog"
-          className="px-2 py-1 bg-red-600 hover:bg-red-700 text-white rounded text-xs transition-colors font-semibold flex-shrink-0"
-        >
-          Join
-        </Link>
-        <Zap className="w-3 h-3 text-red-400 animate-pulse flex-shrink-0" />
+        <PartyPopper className="w-3 h-3 text-yellow-400 flex-shrink-0" />
+        <span className="text-yellow-400 text-xs font-bold">1 Year!</span>
+        <span className="text-xs">SecureCloudX turns 1 🎉</span>
+        <PartyPopper className="w-3 h-3 text-yellow-400 flex-shrink-0" />
       </div>
     </div>
   );
