@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Terminal, Shield, Lock, Zap } from "lucide-react";
+import { Terminal, Shield, Lock, CalendarDays } from "lucide-react";
 
 const PHRASES = [
   "Cloud Security Engineering",
@@ -91,13 +91,15 @@ export default function LandingHeader() {
           <Terminal className="w-5 h-5 group-hover:rotate-12 transition-transform" />
           <span>INITIALIZE SYSTEM</span>
         </button>
-        <button
-          className="bg-gray-800 hover:bg-gray-700 border border-gray-600 text-gray-300 font-mono font-semibold px-8 py-3 transition-all duration-200 group flex items-center space-x-2"
-          onClick={() => navigate("/home")}
+        <a
+          href="https://cal.com/i-am-ronney/cloud-security-consultation"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="bg-gray-800 hover:bg-gray-700 border border-yellow-500 text-yellow-400 font-mono font-semibold px-8 py-3 transition-all duration-200 group flex items-center space-x-2"
         >
-          <Zap className="w-5 h-5 group-hover:text-red-400 transition-colors" />
-          <span>ACCESS LABS</span>
-        </button>
+          <CalendarDays className="w-5 h-5 group-hover:scale-110 transition-transform" />
+          <span>BOOK A SESSION</span>
+        </a>
       </div>
 
       <div className="flex items-center space-x-2 text-gray-500 text-sm mb-6">
