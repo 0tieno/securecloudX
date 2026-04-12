@@ -1,0 +1,152 @@
+{
+  "generatedAt": "2026-04-12T06:56:32.161Z",
+  "posts": [
+    {
+      "filename": "monitor-compliance.md",
+      "slug": "monitor-compliance",
+      "layout": "post",
+      "title": "Monitor Compliance with Key Expiration Policy",
+      "date": "2025-10-06 09:00:00 +0300",
+      "categories": [
+        "azure",
+        "storage",
+        "security"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "In today's blog (6/31), we are going to learn about how to monitor compliance with the key expiration policy hands-on. See yesterday's blog first to understand this.",
+      "readingTime": 1
+    },
+    {
+      "filename": "check-for-key-expiration-policy-violations.md",
+      "slug": "check-for-key-expiration-policy-violations",
+      "layout": "post",
+      "title": "Check for Key Expiration Policy Violations",
+      "date": "2025-10-05 09:00:00 +0300",
+      "categories": [
+        "azure",
+        "storage",
+        "security"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "In today's blog (5/31), we are going to learn about key expiration policies by doing.",
+      "readingTime": 2
+    },
+    {
+      "filename": "create-a-key-expiration-policy.md",
+      "slug": "create-a-key-expiration-policy",
+      "layout": "post",
+      "title": "Create a Key Expiration Policy",
+      "date": "2025-10-04 09:00:00 +0300",
+      "categories": [
+        "azure",
+        "storage",
+        "security"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "In today's blog (4/31), we are going to learn about key expiration policies by doing.",
+      "readingTime": 2
+    },
+    {
+      "filename": "azure-storage-account-keys.md",
+      "slug": "azure-storage-account-keys",
+      "layout": "post",
+      "title": "Azure Storage Account Keys",
+      "date": "2025-10-03 09:00:00 +0300",
+      "categories": [
+        "azure",
+        "storage",
+        "security"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "In today's blog (3/31), we are going to learn access keys.",
+      "readingTime": 2
+    },
+    {
+      "filename": "azure-storage-security-basics.md",
+      "slug": "azure-storage-security-basics",
+      "layout": "post",
+      "title": "Azure Storage Security Basics",
+      "date": "2025-10-02 09:00:00 +0300",
+      "categories": [
+        "azure",
+        "storage",
+        "security"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "In today's blog (2/31), we are going to learn basics.",
+      "readingTime": 2
+    },
+    {
+      "filename": "data-privacy-in-azure.md",
+      "slug": "data-privacy-in-azure",
+      "layout": "post",
+      "title": "Data Privacy in Azure",
+      "date": "2025-10-01 09:00:00 +0300",
+      "categories": [
+        "azure",
+        "privacy",
+        "cloud-security"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "> the customer is fully responsible for the security in the cloud while the cloud provider(in this case azure) is fully responsible for the security of the cloud.",
+      "readingTime": 3
+    },
+    {
+      "filename": "pentester-ports.md",
+      "slug": "pentester-ports",
+      "layout": "post",
+      "title": "Pentester's Guide to Common Network Ports and Protocols",
+      "date": "2025-09-03 09:00:00 +0300",
+      "categories": [
+        "pentesting",
+        "networking",
+        "security"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "One of the first steps in any penetration test is to identify open ports and the services running on them. Each port and protocol can present unique vulnerabilities or mi...",
+      "readingTime": 3
+    },
+    {
+      "filename": "secure-coding-practices.md",
+      "slug": "secure-coding-practices",
+      "layout": "post",
+      "title": "Secure Coding Practices",
+      "date": "2025-09-02 12:00:00 +0300",
+      "categories": [
+        "secure-coding",
+        "best-practices"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "No excerpt available.",
+      "readingTime": 1
+    },
+    {
+      "filename": "secure-coding.md",
+      "slug": "secure-coding",
+      "layout": "post",
+      "title": "Secure Coding Practices for Cloud Applications",
+      "date": "2025-09-02 09:00:00 +0300",
+      "categories": [
+        "secure-coding",
+        "cloud-security"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "Writing secure code is the first line of defense against cyber attacks. In cloud environments, where applications are distributed and accessible from anywhere, secure cod...",
+      "readingTime": 5
+    },
+    {
+      "filename": "cloud-security-fundamentals.md",
+      "slug": "cloud-security-fundamentals",
+      "layout": "post",
+      "title": "Cloud Security Fundamentals",
+      "date": "2025-09-01 09:00:00 +0300",
+      "categories": [
+        "cloud-security",
+        "fundamentals"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "Cloud security is the foundation of any modern digital infrastructure. Understanding these fundamentals is crucial for protecting your applications and data in the cloud.",
+      "readingTime": 3
+    }
+  ]
+}
