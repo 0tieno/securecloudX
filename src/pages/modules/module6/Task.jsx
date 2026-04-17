@@ -27,7 +27,7 @@ const Task6 = () => {
         </div>
         <div className="mb-8">
           <div className="text-green-400 text-xs mb-3">$ ./lab_6_incident_response_sentinel.sh</div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Phase 6 Lab: Set Up Sentinel & Incident Response</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Module 6 Lab: Set Up Sentinel & Incident Response</h1>
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
             Detect, investigate, and respond to security incidents using Azure Sentinel and automated playbooks.
           </p>
@@ -132,10 +132,10 @@ const Task6 = () => {
         <MarkPhaseComplete phaseId={6} checkedCount={checked.size} total={TOTAL} />
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6 mt-8">
           <Link to="/module6" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
-            <ChevronLeft size={14} /> Phase 6 Overview
+            <ChevronLeft size={14} /> Module 6 Overview
           </Link>
           <Link to="/module7" className="flex items-center gap-1 text-gray-500 hover:text-red-400 transition-colors">
-            Phase 7 <ChevronRight size={14} />
+            Module 7 <ChevronRight size={14} />
           </Link>
         </div>
       </div>
