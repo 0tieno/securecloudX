@@ -1,4 +1,5 @@
 import AboutAuthor from "../pages/AboutAuthor";
+import Admin from "../pages/Admin";
 import AuthCallback from "../pages/AuthCallback";
 import BeginnerIntro from "../pages/BeginnerIntro";
 import BlogList from "../pages/BlogList";
@@ -59,6 +60,7 @@ export const standaloneRoutes = [
 
 export const shellRoutes = [
   { path: "/home", Component: Home },
+  { path: "/admin", Component: Admin },
   { path: "/forgotten-secret-lab", Component: ForgottenSecretLab },
   { path: "/module1", Component: Module1 },
   { path: "/module1/task", Component: ModuleTask1 },
