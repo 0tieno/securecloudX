@@ -1,10 +1,12 @@
+import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import Content from "../../../components/Content";
 import { Link } from "react-router-dom";
 
 const Day7 = () => {
   return (
     <Content>
-      <h2 className="text-3xl font-bold text-gray-300">Day 7: Capstone Project - Secure Azure Deployment 🏆</h2>
+      <AutoMarkOverview phaseId={7} />
+      <h2 className="text-3xl font-bold text-gray-300">Phase 7: Capstone Project - Secure Azure Deployment 🏆</h2>
       <p className="mt-2 text-gray-300">
         Apply everything you've learned throughout the challenge by securing an Azure deployment.
       </p>
@@ -73,7 +75,7 @@ const Day7 = () => {
     to="/module6"
     className="text-blue-400 hover:underline hover:text-blue-300"
   >
-    ← Previous: Day 6
+    ← Previous: Phase 6
   </Link>
   <Link
     to="/module7/task"
