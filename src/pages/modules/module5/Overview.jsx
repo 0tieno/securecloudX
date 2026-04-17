@@ -27,8 +27,8 @@ const Day5 = () => {
           <span>/</span><span className="text-gray-500">overview</span>
         </div>
         <div className="mb-8">
-          <div className="text-green-400 text-xs mb-3">$ cat phase_5_security_monitoring_overview.md</div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Phase 5: Security Monitoring & Threat Intelligence</h1>
+          <div className="text-green-400 text-xs mb-3">$ cat module_5_security_monitoring_overview.md</div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Module 5: Security Monitoring & Threat Intelligence</h1>
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
             Learn how to continuously monitor security events, detect threats, and use threat intelligence in Azure.
           </p>
@@ -100,10 +100,10 @@ const Day5 = () => {
         </div>
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">
           <Link to="/module4" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
-            <ChevronLeft size={14} /> Phase 4
+            <ChevronLeft size={14} /> Module 4
           </Link>
           <Link to="/module5/task" className="flex items-center gap-1 text-gray-500 hover:text-red-400 transition-colors">
-            Phase 5 Lab <ChevronRight size={14} />
+            Module 5 Lab <ChevronRight size={14} />
           </Link>
         </div>
       </div>
