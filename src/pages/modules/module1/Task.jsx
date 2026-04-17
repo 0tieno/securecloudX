@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
 import PhaseStepItem from "../../../components/PhaseStepItem";
+import { useStepProgress } from "../../../hooks/useStepProgress";
 
 const TOTAL = 7;
 const OBJECTIVES = [
@@ -13,9 +14,8 @@ const OBJECTIVES = [
 
 const Task1 = () => {
   const [open, setOpen] = useState(() => new Set([0, 1, 2, 3, 4, 5, 6]));
-  const [checked, setChecked] = useState(new Set());
+  const [checked, toggleChecked] = useStepProgress("scx_steps_1_task", TOTAL);
   const toggleOpen = (i) => setOpen(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
-  const toggleChecked = (i) => setChecked(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
@@ -154,7 +154,7 @@ const Task1 = () => {
           </PhaseStepItem>
         </div>
 
-        <MarkPhaseComplete phaseId={1} />
+        <MarkPhaseComplete phaseId={1} checkedCount={checked.size} total={TOTAL} />
 
         {/* Bottom Nav */}
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6 mt-8">
