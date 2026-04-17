@@ -477,7 +477,7 @@ const ForgottenSecretLab = () => {
             to="/module1"
             className="text-blue-400 hover:underline hover:text-blue-300"
           >
-            Continue to Day 1 →
+            Continue to Phase 1 →
           </Link>
         </div>
       </div>
