@@ -25,7 +25,7 @@ const Task7 = () => {
         </div>
         <div className="mb-8">
           <div className="text-green-400 text-xs mb-3">$ ./capstone_secure_azure_deployment.sh</div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Phase 7 Capstone: Secure Azure Deployment</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Module 7 Capstone: Secure Azure Deployment</h1>
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
             Apply everything you've learned to build and secure a complete Azure environment.
           </p>
@@ -146,7 +146,7 @@ const Task7 = () => {
         <MarkPhaseComplete phaseId={7} checkedCount={checked.size} total={TOTAL} />
         <div className="flex justify-start items-center text-sm border-t border-gray-700 pt-6 mt-8">
           <Link to="/module7" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
-            <ChevronLeft size={14} /> Phase 7 Overview
+            <ChevronLeft size={14} /> Module 7 Overview
           </Link>
         </div>
       </div>
