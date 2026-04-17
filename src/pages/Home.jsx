@@ -8,6 +8,7 @@ import {
   Lock,
 } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
+import { useAllStepCounts } from "../hooks/useStepProgress";
 import { useProgress } from "../hooks/useProgress";
 
 const PHASES = [
@@ -92,6 +93,7 @@ function PhaseStatusBadge({ overviewDone, taskDone }) {
 const Home = () => {
   const { user } = useAuth();
   const { isComplete, loading } = useProgress(user?.id);
+  const stepCounts = useAllStepCounts();
 
   const completedPhases = PHASES.filter(
     (p) => isComplete(p.id, "overview") && isComplete(p.id, "task")
@@ -191,6 +193,13 @@ const Home = () => {
           {PHASES.map((phase) => {
             const overviewDone = isComplete(phase.id, "overview");
             const taskDone = isComplete(phase.id, "task");
+            // Step progress for this phase
+            const stepKey = phase.id === 3 ? null : `scx_steps_${phase.id}_task`;
+            const stepsDone = phase.id === 3
+              ? (stepCounts["scx_steps_3_lab1"] ?? 0) + (stepCounts["scx_steps_3_lab2"] ?? 0) + (stepCounts["scx_steps_3_lab3"] ?? 0)
+              : (stepCounts[stepKey] ?? 0);
+            const stepsTotal = phase.id === 3 ? 20 : (phase.id === 4 ? 5 : (phase.id === 7 ? 8 : 7));
+
             return (
               <div
                 key={phase.id}
@@ -212,6 +221,24 @@ const Home = () => {
                     <p className="text-gray-500 text-sm leading-relaxed mb-3">
                       {phase.description}
                     </p>
+
+                    {/* Step progress mini-bar */}
+                    {stepsDone > 0 && !taskDone && (
+                      <div className="mb-3">
+                        <div className="flex justify-between text-xs text-gray-600 mb-1">
+                          <span className="text-gray-500">lab progress</span>
+                          <span className={stepsDone >= stepsTotal ? "text-green-400" : "text-gray-400"}>
+                            {stepsDone}/{stepsTotal} steps
+                          </span>
+                        </div>
+                        <div className="w-full bg-gray-700 h-1">
+                          <div
+                            className="h-1 bg-red-500 transition-all duration-500"
+                            style={{ width: `${Math.min((stepsDone / stepsTotal) * 100, 100)}%` }}
+                          />
+                        </div>
+                      </div>
+                    )}
 
                     {/* Sub-items */}
                     <div className="flex flex-col sm:flex-row gap-3 text-sm">
@@ -237,6 +264,9 @@ const Home = () => {
                           <Circle className="w-4 h-4 text-gray-600 shrink-0" />
                         )}
                         <span>Lab</span>
+                        {stepsDone > 0 && !taskDone && (
+                          <span className="text-xs text-gray-600 font-mono ml-1">{stepsDone}/{stepsTotal}</span>
+                        )}
                         <ChevronRight className="w-3 h-3 opacity-0 group-hover/link:opacity-100 transition-opacity" />
                       </Link>
                     </div>
