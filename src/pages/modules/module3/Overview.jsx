@@ -27,8 +27,8 @@ const Day3 = () => {
           <span>/</span><span className="text-gray-500">overview</span>
         </div>
         <div className="mb-8">
-          <div className="text-green-400 text-xs mb-3">$ cat phase_3_data_security_overview.md</div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Phase 3: Data Security & Encryption</h1>
+          <div className="text-green-400 text-xs mb-3">$ cat module_3_data_security_overview.md</div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Module 3: Data Security & Encryption</h1>
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
             Learn how to protect data at rest and in transit using encryption and access control mechanisms.
           </p>
@@ -98,9 +98,9 @@ const Day3 = () => {
             isChecked={checked.has(4)} onToggleChecked={() => toggleChecked(4)}>
             <p>By completing the following labs, you'll understand how encryption and access controls protect cloud data:</p>
             <ul className="space-y-1 mt-2">
-              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Phase 1 — Understanding Data Security Basics</span></li>
-              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Phase 2 — Securing Public Data in Azure Storage</span></li>
-              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Phase 3 — Protecting Private Data with High Availability</span></li>
+              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Module 1 — Understanding Data Security Basics</span></li>
+              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Module 2 — Securing Public Data in Azure Storage</span></li>
+              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Module 3 — Protecting Private Data with High Availability</span></li>
             </ul>
             <div className="mt-3">
               <Link to="/module3/task" className="text-red-400 hover:text-red-300 transition-colors">→ ./start_lab.sh</Link>
@@ -110,10 +110,10 @@ const Day3 = () => {
 
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">
           <Link to="/module2" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
-            <ChevronLeft size={14} /> Phase 2
+            <ChevronLeft size={14} /> Module 2
           </Link>
           <Link to="/module3/task" className="flex items-center gap-1 text-gray-500 hover:text-red-400 transition-colors">
-            Phase 3 Lab <ChevronRight size={14} />
+            Module 3 Lab <ChevronRight size={14} />
           </Link>
         </div>
       </div>
