@@ -110,7 +110,7 @@ const Home = () => {
         {/* User greeting */}
         <div className="mb-10 bg-gray-800 border border-gray-700 p-4">
           <div className="flex items-center space-x-2 text-gray-500 text-xs mb-2">
-            <div className="w-2.5 h-2.5 bg-red-500 rounded-full" />
+            <div className="w-2.5 h-2.5 bg-green-500 rounded-full" />
             <div className="w-2.5 h-2.5 bg-yellow-500 rounded-full" />
             <div className="w-2.5 h-2.5 bg-green-500 rounded-full" />
             <span className="ml-2">securecloudX — dashboard</span>
@@ -133,7 +133,7 @@ const Home = () => {
             </div>
             <div className="w-full bg-gray-700 h-2">
               <div
-                className="h-2 bg-red-500 transition-all duration-500"
+                className="h-2 bg-green-500 transition-all duration-500"
                 style={{
                   width: `${(completedPhases / PHASES.length) * 100}%`,
                 }}
@@ -172,7 +172,7 @@ const Home = () => {
         {/* Phase 0 — Starting from zero */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-300 mb-4">
-            // Your Journey
+            // Your Journey - The curriculum
           </h2>
 
           <Link
@@ -239,7 +239,7 @@ const Home = () => {
                         </div>
                         <div className="w-full bg-gray-700 h-1">
                           <div
-                            className="h-1 bg-red-500 transition-all duration-500"
+                            className="h-1 bg-green-500 transition-all duration-500"
                             style={{ width: `${Math.min((stepsDone / stepsTotal) * 100, 100)}%` }}
                           />
                         </div>
