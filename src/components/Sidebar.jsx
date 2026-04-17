@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ChevronRight, ChevronDown, Menu, X } from "lucide-react";
+import { ChevronRight, ChevronDown, Menu, X, CheckCircle2 } from "lucide-react";
+import { useAuth } from "../contexts/AuthContext";
+import { useProgress } from "../hooks/useProgress";
 
 const topics = [
   { day: 1, title: "Identity & Access Management" },
@@ -18,6 +20,8 @@ const Sidebar = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const sidebarRef = useRef(null);
   const location = useLocation();
+  const { user } = useAuth();
+  const { isComplete } = useProgress(user?.id);
 
   const toggleDropdown = (day) => {
     setOpenDay((prev) => ({ ...prev, [day]: !prev[day] }));
@@ -139,10 +143,15 @@ const Sidebar = () => {
                         ? "bg-gray-700 text-white"
                         : ""
                     }`}
-                    title={`Open Module ${day}`}
+                    title={`Open Phase ${day}`}
                   >
-                    <span>
-                      <strong>Module {day}:</strong> {title}
+                    <span className="flex items-center gap-2">
+                      {user && isComplete(day, "overview") && isComplete(day, "task") ? (
+                        <CheckCircle2 size={13} className="text-green-400 shrink-0" />
+                      ) : (
+                        <span className="w-3.5 h-3.5 shrink-0 inline-block" />
+                      )}
+                      <span><strong>Phase {day}:</strong> {title}</span>
                     </span>
                     {openDay[day] ? (
                       <ChevronDown size={18} />
@@ -162,7 +171,7 @@ const Sidebar = () => {
                               : ""
                           }`}
                           onClick={closeSidebar}
-                          title={`Overview for Day ${day}`}
+                          title={`Overview for Phase ${day}`}
                         >
                           Overview
                         </Link>
@@ -176,7 +185,7 @@ const Sidebar = () => {
                               : ""
                           }`}
                           onClick={closeSidebar}
-                          title={`Lab for Day ${day}`}
+                          title={`Lab for Phase ${day}`}
                         >
                           Labs
                         </Link>
@@ -239,7 +248,7 @@ const Sidebar = () => {
                               : ""
                           }`}
                           onClick={closeSidebar}
-                          title={`Resources for Day ${day}`}
+                          title={`Resources for Phase ${day}`}
                         >
                           Resources
                         </Link>
