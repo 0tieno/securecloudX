@@ -138,7 +138,7 @@ const Sidebar = () => {
                         ? "bg-gray-700 text-white"
                         : ""
                     }`}
-                    title={`Open Phase ${day}`}
+                    title={`Open Module ${day}`}
                   >
                     <span className="flex items-center gap-2">
                       {user && isComplete(day, "overview") && isComplete(day, "task") ? (
@@ -146,7 +146,7 @@ const Sidebar = () => {
                       ) : (
                         <span className="w-3.5 h-3.5 shrink-0 inline-block" />
                       )}
-                      <span><strong>Phase {day}:</strong> {title}</span>
+                      <span><strong>Module {day}:</strong> {title}</span>
                     </span>
                     {openDay[day] ? (
                       <ChevronDown size={18} />
@@ -166,7 +166,7 @@ const Sidebar = () => {
                               : ""
                           }`}
                           onClick={closeSidebar}
-                          title={`Overview for Phase ${day}`}
+                          title={`Overview for Module ${day}`}
                         >
                           Overview
                         </Link>
@@ -180,7 +180,7 @@ const Sidebar = () => {
                               : ""
                           }`}
                           onClick={closeSidebar}
-                          title={`Lab for Phase ${day}`}
+                          title={`Lab for Module ${day}`}
                         >
                           Labs
                         </Link>
@@ -198,7 +198,7 @@ const Sidebar = () => {
                                   : ""
                               }`}
                               onClick={closeSidebar}
-                              title="Phase 1: Setup & Enumeration"
+                              title="Module 1: Setup & Enumeration"
                             >
                               Lab 01
                             </Link>
@@ -212,7 +212,7 @@ const Sidebar = () => {
                                   : ""
                               }`}
                               onClick={closeSidebar}
-                              title="Phase 2: Threat Modeling"
+                              title="Module 2: Threat Modeling"
                             >
                               Lab 02
                             </Link>
@@ -226,7 +226,7 @@ const Sidebar = () => {
                                   : ""
                               }`}
                               onClick={closeSidebar}
-                              title="Phase 3: Secure Coding"
+                              title="Module 3: Secure Coding"
                             >
                               Lab 03
                             </Link>
@@ -243,7 +243,7 @@ const Sidebar = () => {
                               : ""
                           }`}
                           onClick={closeSidebar}
-                          title={`Resources for Phase ${day}`}
+                          title={`Resources for Module ${day}`}
                         >
                           Resources
                         </Link>
