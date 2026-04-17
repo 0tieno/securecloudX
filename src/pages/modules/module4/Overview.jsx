@@ -1,11 +1,13 @@
+import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import Content from "../../../components/Content";
 import { Link } from "react-router-dom";
 
 const Day4 = () => {
   return (
     <Content>
+      <AutoMarkOverview phaseId={4} />
       <h2 className="text-2xl sm:text-3xl font-bold text-gray-300">
-        Day 4: Application Security in Azure
+        Phase 4: Application Security in Azure
       </h2>
       <p className="mt-2 text-gray-300 text-sm sm:text-base">
         Learn how to secure applications deployed in Azure using security best practices.
@@ -77,7 +79,7 @@ const Day4 = () => {
     to="/module3"
     className="text-blue-400 hover:underline hover:text-blue-300"
   >
-    ← Previous: Day 3
+    ← Previous: Phase 3
   </Link>
   <Link
     to="/module4/task"
