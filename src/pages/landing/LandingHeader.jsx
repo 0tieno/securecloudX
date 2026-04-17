@@ -119,7 +119,7 @@ export default function LandingHeader() {
         ) : (
           <>
             <span>auth: github required</span>
-            <span className="text-yellow-400">⚠</span>
+            <span className="text-yellow-400"></span>
           </>
         )}
       </div>
