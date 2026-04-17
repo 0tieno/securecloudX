@@ -27,7 +27,7 @@ const Task4 = () => {
         </div>
         <div className="mb-8">
           <div className="text-green-400 text-xs mb-3">$ ./lab_4_app_security_waf_managed_identities.sh</div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Phase 4 Lab: Secure Web App with WAF & Managed Identities</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Module 4 Lab: Secure Web App with WAF & Managed Identities</h1>
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
             Implement security controls for web applications and APIs using WAF and Managed Identities.
           </p>
@@ -113,10 +113,10 @@ const Task4 = () => {
         <MarkPhaseComplete phaseId={4} checkedCount={checked.size} total={TOTAL} />
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6 mt-8">
           <Link to="/module4" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
-            <ChevronLeft size={14} /> Phase 4 Overview
+            <ChevronLeft size={14} /> Module 4 Overview
           </Link>
           <Link to="/module5" className="flex items-center gap-1 text-gray-500 hover:text-red-400 transition-colors">
-            Phase 5 <ChevronRight size={14} />
+            Module 5 <ChevronRight size={14} />
           </Link>
         </div>
       </div>
