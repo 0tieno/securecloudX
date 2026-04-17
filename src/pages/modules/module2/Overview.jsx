@@ -27,8 +27,8 @@ const Day2 = () => {
           <span>/</span><span className="text-gray-500">overview</span>
         </div>
         <div className="mb-8">
-          <div className="text-green-400 text-xs mb-3">$ cat phase_2_network_security_overview.md</div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Phase 2: Network Security & Perimeter Defense</h1>
+          <div className="text-green-400 text-xs mb-3">$ cat module_2_network_security_overview.md</div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Module 2: Network Security & Perimeter Defense</h1>
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
             Learn how to secure Azure resources by implementing Virtual Networks (VNet), Network Security Groups (NSG), Azure Firewall, and DDoS protection.
           </p>
@@ -126,10 +126,10 @@ const Day2 = () => {
 
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">
           <Link to="/module1" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
-            <ChevronLeft size={14} /> Phase 1
+            <ChevronLeft size={14} /> Module 1
           </Link>
           <Link to="/module2/task" className="flex items-center gap-1 text-gray-500 hover:text-red-400 transition-colors">
-            Phase 2 Lab <ChevronRight size={14} />
+            Module 2 Lab <ChevronRight size={14} />
           </Link>
         </div>
 
