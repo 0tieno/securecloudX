@@ -17,6 +17,7 @@
     "@tailwindcss/vite": "^4.0.15",
     "antd": "^5.26.3",
     "canvas-confetti": "^1.9.4",
+    "html2canvas": "^1.4.1",
     "lucide-react": "^0.483.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
