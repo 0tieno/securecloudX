@@ -1,133 +1,147 @@
-import Content from "../../../components/Content";
-import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
+import PhaseStepItem from "../../../components/PhaseStepItem";
 
-const Day6 = () => {
+const TOTAL = 7;
+const OBJECTIVES = [
+  "Enable Microsoft Defender for Cloud and act on security recommendations",
+  "Deploy Azure Sentinel and connect log data sources",
+  "Use Log Analytics to query and detect security anomalies",
+];
+
+const Task5 = () => {
+  const [open, setOpen] = useState(() => new Set([0]));
+  const [checked, setChecked] = useState(new Set());
+  const toggleOpen = (i) => setOpen(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
+  const toggleChecked = (i) => setChecked(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
+
   return (
-    <Content>
-      <h2 className="text-2xl sm:text-3xl font-bold text-gray-300">
-        Phase 5 Lab: Security Monitoring & Threat Intelligence 📊
-      </h2>
-      <p className="mt-2 text-gray-300 text-sm sm:text-base">
-        Learn how to continuously monitor security events, detect threats, and use threat intelligence in Azure.
-      </p>
-
-      {/* Task Breakdown */}
-      <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
-        <h3 className="text-xl sm:text-2xl font-semibold text-gray">What You’ll Do</h3>
-        <ul className="list-disc pl-5 text-gray-300 mt-2 space-y-2">
-          <li>Enable Microsoft Defender for Cloud and configure security recommendations.</li>
-          <li>Deploy Azure Sentinel and connect data sources.</li>
-          <li>Use Log Analytics to analyze security logs.</li>
-          <li>Set up threat intelligence integration for proactive security.</li>
-        </ul>
+    <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
+      <div className="max-w-3xl mx-auto px-4 py-10">
+        <div className="flex items-center gap-2 text-gray-600 text-xs mb-8">
+          <Link to="/home" className="hover:text-gray-400 transition-colors">// phases</Link>
+          <span>/</span><span className="text-gray-400">phase-5-security-monitoring</span>
+          <span>/</span><span className="text-gray-500">lab</span>
+        </div>
+        <div className="mb-8">
+          <div className="text-green-400 text-xs mb-3">$ ./lab_5_security_monitoring_sentinel.sh</div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Phase 5 Lab: Security Monitoring & Threat Intelligence</h1>
+          <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
+            Set up continuous security monitoring and threat intelligence using Azure tools.
+          </p>
+        </div>
+        <div className="mb-8">
+          <div className="flex items-center justify-between text-xs mb-2">
+            <span className="text-gray-500">{checked.size}/{TOTAL} complete</span>
+            <span className="text-gray-700"># check off steps as you go</span>
+          </div>
+          <div className="w-full bg-gray-800 border border-gray-700 h-1.5">
+            <div className="bg-red-500 h-full transition-all duration-500" style={{ width: `${(checked.size / TOTAL) * 100}%` }} />
+          </div>
+        </div>
+        <div className="mb-8 p-4 border border-gray-700 bg-gray-800/50">
+          <div className="text-blue-400 text-xs mb-3">$ cat learning_objectives.sh</div>
+          <ul className="space-y-2">
+            {OBJECTIVES.map((obj, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-gray-400">
+                <span className="text-green-400 flex-shrink-0 mt-0.5">&gt;</span><span>{obj}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <span>|</span>
+          <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
+        </div>
+        <div className="space-y-2 mb-10">
+          <PhaseStepItem number={1} type="PREP" title="What You'll Do"
+            isOpen={open.has(0)} onToggleOpen={() => toggleOpen(0)}
+            isChecked={checked.has(0)} onToggleChecked={() => toggleChecked(0)}>
+            <ul className="space-y-1">
+              <li className="flex items-start gap-2"><span className="text-gray-500">-</span><span>Enable Microsoft Defender for Cloud and review recommendations.</span></li>
+              <li className="flex items-start gap-2"><span className="text-gray-500">-</span><span>Deploy Azure Sentinel and connect security data sources.</span></li>
+              <li className="flex items-start gap-2"><span className="text-gray-500">-</span><span>Use Log Analytics to analyze security event logs.</span></li>
+              <li className="flex items-start gap-2"><span className="text-gray-500">-</span><span>Integrate threat intelligence feeds for proactive security.</span></li>
+            </ul>
+          </PhaseStepItem>
+          <PhaseStepItem number={2} type="AI" title="AI Prompt — Use this to guide you"
+            isOpen={open.has(1)} onToggleOpen={() => toggleOpen(1)}
+            isChecked={checked.has(1)} onToggleChecked={() => toggleChecked(1)}>
+            <p className="text-xs text-gray-500 mb-2">Copy and paste this into your AI assistant for interactive step-by-step guidance:</p>
+            <div className="p-3 bg-gray-900 border border-gray-700 text-gray-400 text-sm italic leading-relaxed">
+              "Walk me through a hands-on lab on setting up security monitoring and threat intelligence in Azure. The lab includes enabling Microsoft Defender for Cloud, deploying Azure Sentinel as a SIEM, configuring Log Analytics to query security events, and integrating threat intelligence feeds. Explain each step clearly with Azure portal navigation instructions."
+            </div>
+          </PhaseStepItem>
+          <PhaseStepItem number={3} type="PRACTICE" title="Step 1: Enable Microsoft Defender for Cloud"
+            isOpen={open.has(2)} onToggleOpen={() => toggleOpen(2)}
+            isChecked={checked.has(2)} onToggleChecked={() => toggleChecked(2)}>
+            <p className="text-xs text-gray-500 mb-2">Why? Defender for Cloud provides security posture management and threat protection.</p>
+            <ul className="space-y-1">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Sign in to <a href="https://portal.azure.com" className="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">Azure Portal</a></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Search for <strong className="text-gray-300">Microsoft Defender for Cloud</strong> and open it</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Click on <strong className="text-gray-300">Getting Started</strong> and enable Defender plans</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Review and action the security recommendations provided</span></li>
+            </ul>
+          </PhaseStepItem>
+          <PhaseStepItem number={4} type="PRACTICE" title="Step 2: Deploy Azure Sentinel"
+            isOpen={open.has(3)} onToggleOpen={() => toggleOpen(3)}
+            isChecked={checked.has(3)} onToggleChecked={() => toggleChecked(3)}>
+            <p className="text-xs text-gray-500 mb-2">Why? Sentinel is a cloud-native SIEM for threat detection and automated response.</p>
+            <ul className="space-y-1">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Search for <strong className="text-gray-300">Microsoft Sentinel</strong> and create a new workspace</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Connect data connectors (Azure AD, Azure Activity, Security Events)</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Enable analytics rules to detect suspicious activity</span></li>
+            </ul>
+          </PhaseStepItem>
+          <PhaseStepItem number={5} type="PRACTICE" title="Step 3: Use Log Analytics"
+            isOpen={open.has(4)} onToggleOpen={() => toggleOpen(4)}
+            isChecked={checked.has(4)} onToggleChecked={() => toggleChecked(4)}>
+            <p className="text-xs text-gray-500 mb-2">Why? Log Analytics lets you query and correlate security events across your environment.</p>
+            <ul className="space-y-1">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Open your Log Analytics workspace from the Azure Portal</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Use KQL queries to filter and analyze security logs</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Create custom alerts based on query results</span></li>
+            </ul>
+          </PhaseStepItem>
+          <PhaseStepItem number={6} type="PRACTICE" title="Step 4: Integrate Threat Intelligence"
+            isOpen={open.has(5)} onToggleOpen={() => toggleOpen(5)}
+            isChecked={checked.has(5)} onToggleChecked={() => toggleChecked(5)}>
+            <p className="text-xs text-gray-500 mb-2">Why? Threat intelligence helps identify and mitigate emerging threats proactively.</p>
+            <ul className="space-y-1">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>In Sentinel, navigate to <strong className="text-gray-300">Threat Intelligence</strong></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Add threat intelligence indicators (IPs, domains, file hashes)</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Create analytics rules that match logs against threat intel</span></li>
+            </ul>
+          </PhaseStepItem>
+          <PhaseStepItem number={7} type="PRACTICE" title="Step 5: Test & Validate"
+            isOpen={open.has(6)} onToggleOpen={() => toggleOpen(6)}
+            isChecked={checked.has(6)} onToggleChecked={() => toggleChecked(6)}>
+            <p className="text-xs text-gray-500 mb-2">Confirm your monitoring setup is working correctly.</p>
+            <ul className="space-y-1">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Generate test security events and confirm Sentinel detects them</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Verify alerts appear in the Sentinel Incidents dashboard</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Check Log Analytics for correlated event data</span></li>
+            </ul>
+            <div className="mt-3 p-2 border border-green-800/50 bg-green-900/10">
+              <p className="text-green-400 text-xs">Success: Security events are detected and incidents are visible in Sentinel.</p>
+            </div>
+          </PhaseStepItem>
+        </div>
+        <MarkPhaseComplete phaseId={5} />
+        <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6 mt-8">
+          <Link to="/module5" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
+            <ChevronLeft size={14} /> Phase 5 Overview
+          </Link>
+          <Link to="/module6" className="flex items-center gap-1 text-gray-500 hover:text-red-400 transition-colors">
+            Phase 6 <ChevronRight size={14} />
+          </Link>
+        </div>
       </div>
-
-
-       {/* AI Assistance Prompt */}
-       <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
-        <h3 className="text-xl sm:text-2xl font-semibold text-yellow-400">Use AI to Guide You</h3>
-        <p className="text-gray-300 text-sm sm:text-base mt-2">
-          Copy and paste this prompt into an AI assistant to get interactive guidance while completing the lab:
-        </p>
-        <blockquote className="mt-3 p-3 bg-gray-900 rounded-md text-gray-300 italic border-l-4 border-yellow-400">
-        "Provide a step-by-step hands-on lab on Security Monitoring & Threat Intelligence using Azure. The lab should include enabling Microsoft Defender for Cloud, deploying Azure Sentinel, using Log Analytics for security monitoring, and integrating threat intelligence for proactive defense. Include instructions on how to test and validate security alerts by simulating suspicious activities."
-        </blockquote>
-      </div>
-
-      {/* Step-by-Step Guide */}
-      <div className="mt-6">
-        <h3 className="text-xl sm:text-2xl font-semibold text-gray">Step-by-Step Guide</h3>
-
-        {/* Step 1: Enable Microsoft Defender for Cloud */}
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
-          <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 1: Enable Microsoft Defender for Cloud</h4>
-          <p className="text-gray-300 text-sm sm:text-base mt-2">
-            **Why?** Microsoft Defender for Cloud helps in security posture management and provides advanced threat protection.
-          </p>
-          <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-            <li>Go to Microsoft Defender for Cloud in the Azure portal.</li>
-            <li>Enable security recommendations for your subscriptions.</li>
-          </ul>
-        </div>
-
-        {/* Step 2: Deploy Azure Sentinel */}
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
-          <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 2: Deploy Azure Sentinel</h4>
-          <p className="text-gray-300 text-sm sm:text-base mt-2">
-            **Why?** Azure Sentinel is a cloud-native SIEM tool for detecting, investigating, and responding to security threats.
-          </p>
-          <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-            <li>Navigate to Azure Sentinel in the Azure portal.</li>
-            <li>Connect your data sources, such as Microsoft Defender for Identity and Azure Active Directory.</li>
-            <li>Configure alert rules for real-time threat detection.</li>
-          </ul>
-        </div>
-
-        {/* Step 3: Analyze Security Logs with Log Analytics */}
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
-          <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 3: Analyze Security Logs with Log Analytics</h4>
-          <p className="text-gray-300 text-sm sm:text-base mt-2">
-            **Why?** Log Analytics allows you to query and analyze security logs for detecting anomalies and suspicious activity.
-          </p>
-          <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-            <li>Go to Log Analytics in the Azure portal.</li>
-            <li>Run queries to examine security logs for any suspicious activities or anomalies.</li>
-          </ul>
-        </div>
-
-        {/* Step 4: Set Up Threat Intelligence Integration */}
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
-          <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 4: Set Up Threat Intelligence Integration</h4>
-          <p className="text-gray-300 text-sm sm:text-base mt-2">
-            **Why?** Threat intelligence helps identify emerging threats and enhance your security posture with proactive measures.
-          </p>
-          <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-            <li>Integrate Microsoft Threat Intelligence in Azure Sentinel.</li>
-            <li>Configure the system to alert on any emerging threats based on global intelligence.</li>
-          </ul>
-        </div>
-
-        {/* Step 5: Test & Validate */}
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-green-500">
-          <h4 className="text-lg sm:text-xl font-semibold text-green-400">Step 5: Test & Validate</h4>
-          <p className="text-gray-300 text-sm sm:text-base mt-2">
-            **Why?** Testing ensures that your security monitoring tools are functioning correctly and providing accurate alerts.
-          </p>
-          <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-            <li>Simulate suspicious activity (e.g., unauthorized login attempts) to verify that the tools detect it.</li>
-            <li>Ensure that alerts are triggered and threat intelligence is properly integrated.</li>
-          </ul>
-          <p className="text-gray-300 text-sm sm:text-base mt-3">
-            <strong>Success Criteria:</strong> Security incidents should be detected and alerted, with threat intelligence correctly integrated for proactive defense.
-          </p>
-        </div>
-
-        <p className="text-green-300 text-sm sm:text-base mt-3">
-            <strong>congrats!</strong> you just finished phase 5. Ensure to document your learning and findings. You will need them in the capstone project. See you on phase 6.
-          </p>
-      </div>
-
-
-<div className="mt-10 flex justify-between text-sm sm:text-base">
-  <Link
-    to="/module5"
-    className="text-blue-400 hover:underline hover:text-blue-300"
-  >
-    ← Back to Overview
-  </Link>
-  <Link
-    to="/day/5/resources"
-    className="text-blue-400 hover:underline hover:text-blue-300"
-  >
-    Day 5 Resources →
-  </Link>
-</div>
-
-
-      <MarkPhaseComplete phaseId={5} />
-    </Content>
+    </div>
   );
 };
 
-export default Day6;
+export default Task5;
