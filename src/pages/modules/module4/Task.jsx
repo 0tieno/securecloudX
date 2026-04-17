@@ -1,4 +1,5 @@
 import Content from "../../../components/Content";
+import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
 import { Link } from "react-router-dom";
 
 const Task4 = () => {
@@ -99,6 +100,7 @@ const Task4 = () => {
 </div>
 
 
+      <MarkPhaseComplete phaseId={4} />
     </Content>
   );
 };
