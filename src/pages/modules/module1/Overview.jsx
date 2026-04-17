@@ -1,11 +1,13 @@
+import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import Content from "../../../components/Content";
 import { Link } from "react-router-dom";
 
 const Day1 = () => {
   return (
     <Content>
+      <AutoMarkOverview phaseId={1} />
       <h2 className="text-2xl sm:text-3xl font-bold text-gray-300">
-        Day 1: Identity & Access Management (IAM) 🔐
+        Phase 1: Identity & Access Management (IAM) 🔐
       </h2>
       <p className="mt-2 text-gray-300 text-sm sm:text-base">
         Learn how to manage identities, access controls, and authentication using Microsoft Entra ID (Azure Active Directory).
