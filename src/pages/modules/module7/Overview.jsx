@@ -27,8 +27,8 @@ const Day7 = () => {
           <span>/</span><span className="text-gray-500">overview</span>
         </div>
         <div className="mb-8">
-          <div className="text-green-400 text-xs mb-3">$ cat phase_7_capstone_overview.md</div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Phase 7: Capstone Project — Secure Azure Deployment</h1>
+          <div className="text-green-400 text-xs mb-3">$ cat module_7_capstone_overview.md</div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Module 7: Capstone Project — Secure Azure Deployment</h1>
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
             Apply everything you've learned throughout the challenge by securing an end-to-end Azure deployment.
           </p>
@@ -101,10 +101,10 @@ const Day7 = () => {
         </div>
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">
           <Link to="/module6" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
-            <ChevronLeft size={14} /> Phase 6
+            <ChevronLeft size={14} /> Module 6
           </Link>
           <Link to="/module7/task" className="flex items-center gap-1 text-gray-500 hover:text-red-400 transition-colors">
-            Phase 7 Lab <ChevronRight size={14} />
+            Module 7 Lab <ChevronRight size={14} />
           </Link>
         </div>
       </div>
