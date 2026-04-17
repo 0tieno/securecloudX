@@ -1,11 +1,13 @@
+import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import Content from "../../../components/Content";
 import { Link } from "react-router-dom";
 
 const Day3 = () => {
   return (
     <Content>
+      <AutoMarkOverview phaseId={3} />
       <h2 className="text-2xl sm:text-3xl font-bold text-gray-300">
-        Day 3: Data Security & Encryption
+        Phase 3: Data Security & Encryption
       </h2>
       <p className="mt-2 text-gray-300 text-sm sm:text-base">
         Learn how to protect data at rest and in transit using encryption and access control mechanisms.
