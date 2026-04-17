@@ -2,8 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
 import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
-import PhaseStepItem from "../../../components/PhaseStepItem";
-
+import PhaseStepItem from "../../../components/PhaseStepItem";import { useStepProgress } from "../../../hooks/useStepProgress";
 const TOTAL = 8;
 const OBJECTIVES = [
   "Deploy a secure Azure VM with RBAC, MFA, and network controls",
@@ -13,9 +12,8 @@ const OBJECTIVES = [
 
 const Task7 = () => {
   const [open, setOpen] = useState(() => new Set([0]));
-  const [checked, setChecked] = useState(new Set());
+  const [checked, toggleChecked] = useStepProgress("scx_steps_7_task", TOTAL);
   const toggleOpen = (i) => setOpen(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
-  const toggleChecked = (i) => setChecked(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
@@ -145,7 +143,7 @@ const Task7 = () => {
             </div>
           </PhaseStepItem>
         </div>
-        <MarkPhaseComplete phaseId={7} />
+        <MarkPhaseComplete phaseId={7} checkedCount={checked.size} total={TOTAL} />
         <div className="flex justify-start items-center text-sm border-t border-gray-700 pt-6 mt-8">
           <Link to="/module7" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
             <ChevronLeft size={14} /> Phase 7 Overview
