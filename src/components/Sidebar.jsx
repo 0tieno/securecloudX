@@ -89,7 +89,7 @@ const Sidebar = () => {
           </Link>
         </h2>
 
-        <nav className="flex-1 overflow-y-auto">
+        <nav className="flex-1 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <ul>
             <li>
               <Link
