@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ChevronRight, ChevronDown, Menu, X, CheckCircle2 } from "lucide-react";
+import { ChevronRight, ChevronDown, ChevronLeft, Menu, X, CheckCircle2, PanelLeftClose, PanelLeftOpen } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
 import { useProgress } from "../hooks/useProgress";
 
@@ -18,6 +18,7 @@ const Sidebar = () => {
   const [openDay, setOpenDay] = useState({});
   const [openNextSteps, setOpenNextSteps] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const sidebarRef = useRef(null);
   const location = useLocation();
   const { user } = useAuth();
@@ -64,10 +65,20 @@ const Sidebar = () => {
       {/* Sidebar */}
       <div
         ref={sidebarRef}
-        className={`fixed md:static top-0 left-0 h-full w-64 bg-gray-800 text-gray-300 flex flex-col border-r border-gray-700 transition-transform duration-300 z-50 ${
+        className={`fixed md:static top-0 left-0 h-full bg-gray-800 text-gray-300 flex flex-col border-r border-gray-700 transition-all duration-300 z-50 ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
-        }`}
+        } ${isCollapsed ? "w-10" : "w-64"}`}
       >
+        {/* Desktop collapse toggle */}
+        <button
+          onClick={() => setIsCollapsed(!isCollapsed)}
+          className="hidden md:flex items-center justify-center h-8 w-full text-gray-500 hover:text-gray-300 hover:bg-gray-700/50 transition-colors border-b border-gray-700/50 flex-shrink-0"
+          title={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+        >
+          {isCollapsed ? <PanelLeftOpen size={14} /> : <PanelLeftClose size={14} />}
+        </button>
+
+        <div className={`flex flex-col flex-1 overflow-hidden ${isCollapsed ? "hidden md:hidden" : ""}`}>
         <h2 className="text-xl font-bold p-4 flex justify-between items-center">
           <Link
             to="/"
@@ -297,6 +308,7 @@ const Sidebar = () => {
             </li>
           </ul>
         </nav>
+        </div>
       </div>
     </>
   );
