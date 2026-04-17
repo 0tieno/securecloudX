@@ -159,6 +159,12 @@ const Home = () => {
           {!loading && !nextPhase && completedPhases === PHASES.length && (
             <div className="mt-3 text-sm text-green-400">
               <span>$</span> all phases complete — you are cloud security ready! 🎉
+              <Link
+                to="/certificate"
+                className="ml-3 text-red-400 hover:text-red-300 underline underline-offset-2"
+              >
+                → claim your certificate
+              </Link>
             </div>
           )}
         </div>
