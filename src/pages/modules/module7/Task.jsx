@@ -1,4 +1,5 @@
 import Content from "../../../components/Content";
+import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
 import { Link } from "react-router-dom";
 
 const Task7 = () => {
@@ -165,6 +166,7 @@ I want this to feel like a real-world security project where I’m learning by d
 </div>
 
       
+      <MarkPhaseComplete phaseId={7} />
     </Content>
   );
 };
