@@ -12,7 +12,11 @@ const Footer = () => {
   return (
     <footer className="border-t border-gray-800 bg-gray-900 text-gray-500 text-xs py-4 px-6 mt-8">
       <div className="max-w-6xl mx-auto flex flex-wrap items-center justify-center gap-x-3 gap-y-2">
-        <span className="text-gray-500">&copy; {new Date().getFullYear()} securecloudX</span> <Dot /> some rights reserved
+        <span className="text-gray-500">&copy; {new Date().getFullYear()} securecloudX</span>
+    
+        <Dot />
+        
+        <span className="text-gray-500">Some rights reserved</span>
 
         <Dot />
         <Link to="/about" className="hover:text-gray-300 transition-colors">Founder</Link>
