@@ -1,11 +1,12 @@
 import Content from "../../../components/Content";
+import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
 import { Link } from "react-router-dom";
 
 const Day6 = () => {
   return (
     <Content>
       <h2 className="text-2xl sm:text-3xl font-bold text-gray-300">
-        Day 6 Lab: Security Monitoring & Threat Intelligence 📊
+        Phase 5 Lab: Security Monitoring & Threat Intelligence 📊
       </h2>
       <p className="mt-2 text-gray-300 text-sm sm:text-base">
         Learn how to continuously monitor security events, detect threats, and use threat intelligence in Azure.
@@ -103,7 +104,7 @@ const Day6 = () => {
         </div>
 
         <p className="text-green-300 text-sm sm:text-base mt-3">
-            <strong>congrats!</strong> you just finished day 6. Ensure to document your learning and findings. You will need them in the capstone project. See you on day 7.
+            <strong>congrats!</strong> you just finished phase 5. Ensure to document your learning and findings. You will need them in the capstone project. See you on phase 6.
           </p>
       </div>
 
@@ -124,6 +125,7 @@ const Day6 = () => {
 </div>
 
 
+      <MarkPhaseComplete phaseId={5} />
     </Content>
   );
 };
