@@ -1,173 +1,158 @@
-import Content from "../../../components/Content";
-import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ChevronLeft } from "lucide-react";
+import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
+import PhaseStepItem from "../../../components/PhaseStepItem";
+
+const TOTAL = 8;
+const OBJECTIVES = [
+  "Deploy a secure Azure VM with RBAC, MFA, and network controls",
+  "Integrate Azure Key Vault, encryption, and WAF for defense-in-depth",
+  "Set up Sentinel for monitoring and conduct a final security audit",
+];
 
 const Task7 = () => {
+  const [open, setOpen] = useState(() => new Set([0]));
+  const [checked, setChecked] = useState(new Set());
+  const toggleOpen = (i) => setOpen(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
+  const toggleChecked = (i) => setChecked(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
+
   return (
-    <Content>
-      <h2 className="text-2xl sm:text-3xl font-bold text-gray-300">
-        Finale: Capstone Project - Secure Azure Deployment 🏆
-      </h2>
-      <p className="mt-2 text-gray-300 text-sm sm:text-base">
-        Apply everything you've learned throughout the challenge by securing an Azure deployment.
-      </p>
-
-      {/* Task Breakdown */}
-      <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
-        <h3 className="text-xl sm:text-2xl font-semibold text-gray">What You’ll Do</h3>
-        <ul className="list-disc pl-5 text-gray-300 mt-2 space-y-2">
-          <li>Deploy a secure Azure Virtual Machine (VM) with proper access restrictions.</li>
-          <li>Configure RBAC and enforce MFA for user logins.</li>
-          <li>Set up Azure Firewall and DDoS Protection for network security.</li>
-          <li>Ensure sensitive data is protected with Azure Key Vault.</li>
-          <li>Secure API keys by storing and retrieving them via Azure Key Vault.</li>
-          <li>Enable Azure Sentinel to monitor and respond to security events.</li>
-        </ul>
-      </div>
-
-
-       {/* AI Assistance Prompt */}
-       <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
-        <h3 className="text-xl sm:text-2xl font-semibold text-yellow-400">Use AI to Guide You</h3>
-        <p className="text-gray-300 text-sm sm:text-base mt-2">
-          Copy and paste this prompt into an AI assistant to get interactive guidance while completing the lab:
-        </p>
-        <blockquote className="mt-3 p-3 bg-gray-900 rounded-md text-gray-300 italic border-l-4 border-yellow-400">
-        "I’m working on my Capstone Project for securing an Azure deployment, and I need a hands-on, step-by-step guide to help me apply everything I’ve learned. The guide should walk me through deploying a secure Azure Virtual Machine (VM) with proper network security controls like Network Security Groups (NSGs), Azure Firewall, and DDoS Protection.
-
-I also need to configure identity security by setting up Role-Based Access Control (RBAC) and Multi-Factor Authentication (MFA) to ensure only authorized users can access resources. Additionally, I want to store and retrieve API keys securely using Azure Key Vault in a real-world scenario.
-
-For security monitoring, I need to set up Azure Sentinel to track security events, create alerts, and automate responses. A critical part of this project will be testing everything—simulating unauthorized access attempts and other security threats to validate that my setup detects and mitigates risks effectively.
-
-Finally, I need guidance on how to document my work in a structured report, including:
-
-A brief overview of my secure deployment
-
-The implementation steps I followed
-
-Screenshots of configurations (RBAC, MFA, Firewall, Sentinel, etc.)
-
-Testing & validation results
-
-Challenges I faced and key takeaways
-
-I want this to feel like a real-world security project where I’m learning by doing. The guide should be easy to follow, engaging, and help me gain practical Azure security skills that I can confidently apply in future projects. Thanks!"
-        </blockquote>
-      </div>
-
-      {/* Step-by-Step Guide */}
-      <div className="mt-6">
-        <h3 className="text-xl sm:text-2xl font-semibold text-gray">Step-by-Step Guide</h3>
-
-        {/* Steps */}
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
-          <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 1: Deploy a Secure Virtual Machine</h4>
-          <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-            <li>Deploy a secure Azure Virtual Machine (VM) from the Azure portal.</li>
-            <li>Attach a Network Security Group (NSG) to restrict inbound and outbound traffic based on specific rules.</li>
-          </ul>
+    <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
+      <div className="max-w-3xl mx-auto px-4 py-10">
+        <div className="flex items-center gap-2 text-gray-600 text-xs mb-8">
+          <Link to="/home" className="hover:text-gray-400 transition-colors">// phases</Link>
+          <span>/</span><span className="text-gray-400">phase-7-capstone</span>
+          <span>/</span><span className="text-gray-500">lab</span>
         </div>
-
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
-          <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 2: Configure Identity & Access Management</h4>
-          <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-            <li>Set up RBAC to ensure users have the least privilege access.</li>
-            <li>Enable Multi-Factor Authentication (MFA) to strengthen user login security.</li>
-          </ul>
-        </div>
-
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
-          <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 3: Configure Network & Data Security</h4>
-          <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-            <li>Deploy Azure Firewall to filter and control traffic to and from your network.</li>
-            <li>Enable Azure DDoS Protection to mitigate distributed denial-of-service attacks.</li>
-            <li>Store sensitive data and API keys in Azure Key Vault to ensure they’re encrypted and securely managed.</li>
-          </ul>
-        </div>
-
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
-          <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 4: Secure API Keys with Azure Key Vault</h4>
-          <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-            <li>Generate a dummy API key for testing.</li>
-            <li>Store the API key securely in Azure Key Vault.</li>
-            <li>Retrieve the API key using a Python script or an Azure Function.</li>
-            <li>Use the retrieved API key to make a secure API request.</li>
-          </ul>
-        </div>
-
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
-          <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 5: Enable Security Monitoring</h4>
-          <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-            <li>Enable Azure Security Center to provide security recommendations and threat detection.</li>
-            <li>Set up Azure Sentinel to monitor security events and investigate potential threats.</li>
-          </ul>
-        </div>
-
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-green-500">
-          <h4 className="text-lg sm:text-xl font-semibold text-green-400">Step 6: Test & Validate</h4>
-          <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-            <li>Perform tests, such as simulating unauthorized access or malicious activity, to verify detection and response mechanisms.</li>
-            <li>Ensure that alerts and logs are properly configured to notify you of suspicious behavior.</li>
-          </ul>
-          <p className="text-gray-300 text-sm sm:text-base mt-3">
-            <strong>Success Criteria:</strong> The Azure deployment is secure, with the appropriate monitoring tools detecting and responding to any incidents.
+        <div className="mb-8">
+          <div className="text-green-400 text-xs mb-3">$ ./capstone_secure_azure_deployment.sh</div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Phase 7 Capstone: Secure Azure Deployment</h1>
+          <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
+            Apply everything you've learned to build and secure a complete Azure environment.
           </p>
         </div>
+        <div className="mb-8">
+          <div className="flex items-center justify-between text-xs mb-2">
+            <span className="text-gray-500">{checked.size}/{TOTAL} complete</span>
+            <span className="text-gray-700"># check off steps as you go</span>
+          </div>
+          <div className="w-full bg-gray-800 border border-gray-700 h-1.5">
+            <div className="bg-red-500 h-full transition-all duration-500" style={{ width: `${(checked.size / TOTAL) * 100}%` }} />
+          </div>
+        </div>
+        <div className="mb-8 p-4 border border-gray-700 bg-gray-800/50">
+          <div className="text-blue-400 text-xs mb-3">$ cat learning_objectives.sh</div>
+          <ul className="space-y-2">
+            {OBJECTIVES.map((obj, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-gray-400">
+                <span className="text-green-400 flex-shrink-0 mt-0.5">&gt;</span><span>{obj}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <span>|</span>
+          <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
+        </div>
+        <div className="space-y-2 mb-10">
+          <PhaseStepItem number={1} type="PREP" title="What You'll Build"
+            isOpen={open.has(0)} onToggleOpen={() => toggleOpen(0)}
+            isChecked={checked.has(0)} onToggleChecked={() => toggleChecked(0)}>
+            <p className="text-xs text-gray-500 mb-2">A fully secured Azure environment for a healthcare provider (HIPAA/GDPR scenario).</p>
+            <ul className="space-y-1">
+              <li className="flex items-start gap-2"><span className="text-gray-500">-</span><span>Secure VM with IAM (RBAC + MFA)</span></li>
+              <li className="flex items-start gap-2"><span className="text-gray-500">-</span><span>Network controls (VNet, NSGs, Firewall)</span></li>
+              <li className="flex items-start gap-2"><span className="text-gray-500">-</span><span>Data security (encryption, Key Vault, SAS)</span></li>
+              <li className="flex items-start gap-2"><span className="text-gray-500">-</span><span>Monitoring (Sentinel + Defender for Cloud)</span></li>
+              <li className="flex items-start gap-2"><span className="text-gray-500">-</span><span>Final security audit and documentation</span></li>
+            </ul>
+          </PhaseStepItem>
+          <PhaseStepItem number={2} type="AI" title="AI Prompt — Your Capstone Guide"
+            isOpen={open.has(1)} onToggleOpen={() => toggleOpen(1)}
+            isChecked={checked.has(1)} onToggleChecked={() => toggleChecked(1)}>
+            <p className="text-xs text-gray-500 mb-2">Copy and paste this into your AI assistant for full capstone guidance:</p>
+            <div className="p-3 bg-gray-900 border border-gray-700 text-gray-400 text-sm italic leading-relaxed">
+              "Guide me through a capstone project where I secure a full Azure environment for a healthcare provider. This includes: (1) deploying a VM and securing access with RBAC and MFA, (2) configuring VNet, NSGs, and Azure Firewall, (3) encrypting data at rest and in transit, configuring Azure Key Vault, (4) deploying WAF and enabling Managed Identities, (5) setting up Microsoft Sentinel and Defender for Cloud for threat monitoring, and (6) conducting a security audit for HIPAA/GDPR compliance. Provide detailed steps for each phase with Azure portal navigation instructions."
+            </div>
+          </PhaseStepItem>
+          <PhaseStepItem number={3} type="PRACTICE" title="Step 1: Deploy a Secure Azure VM"
+            isOpen={open.has(2)} onToggleOpen={() => toggleOpen(2)}
+            isChecked={checked.has(2)} onToggleChecked={() => toggleChecked(2)}>
+            <p className="text-xs text-gray-500 mb-2">Why? A secure VM is the foundation of your cloud environment.</p>
+            <ul className="space-y-1">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Create a VM in the Azure Portal with a secure OS image</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Place it inside a secured VNet with a private subnet</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Disable password auth — use SSH keys or Azure Bastion only</span></li>
+            </ul>
+          </PhaseStepItem>
+          <PhaseStepItem number={4} type="PRACTICE" title="Step 2: Configure Identity & Access (IAM)"
+            isOpen={open.has(3)} onToggleOpen={() => toggleOpen(3)}
+            isChecked={checked.has(3)} onToggleChecked={() => toggleChecked(3)}>
+            <p className="text-xs text-gray-500 mb-2">Why? IAM ensures only authorized identities can access your resources.</p>
+            <ul className="space-y-1">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Create users in Microsoft Entra ID and assign roles (RBAC)</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Enable MFA with Conditional Access for all privileged accounts</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Apply least-privilege — remove any unused role assignments</span></li>
+            </ul>
+          </PhaseStepItem>
+          <PhaseStepItem number={5} type="PRACTICE" title="Step 3: Network & Data Security"
+            isOpen={open.has(4)} onToggleOpen={() => toggleOpen(4)}
+            isChecked={checked.has(4)} onToggleChecked={() => toggleChecked(4)}>
+            <p className="text-xs text-gray-500 mb-2">Why? Defense-in-depth layers protect data at the network and storage level.</p>
+            <ul className="space-y-1">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Configure NSGs to block unauthorized inbound traffic</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Deploy Azure Firewall with allow-list rules</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Enable encryption for storage accounts (SSE + customer-managed keys)</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Enforce HTTPS-only and TLS 1.2+ on all endpoints</span></li>
+            </ul>
+          </PhaseStepItem>
+          <PhaseStepItem number={6} type="PRACTICE" title="Step 4: Configure Azure Key Vault"
+            isOpen={open.has(5)} onToggleOpen={() => toggleOpen(5)}
+            isChecked={checked.has(5)} onToggleChecked={() => toggleChecked(5)}>
+            <p className="text-xs text-gray-500 mb-2">Why? Key Vault centralizes secrets management and prevents credential exposure.</p>
+            <ul className="space-y-1">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Create an Azure Key Vault and store application secrets and keys</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Enable soft delete and purge protection to prevent accidental loss</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Grant access via Managed Identity — no hardcoded credentials</span></li>
+            </ul>
+          </PhaseStepItem>
+          <PhaseStepItem number={7} type="PRACTICE" title="Step 5: Enable Monitoring & Threat Detection"
+            isOpen={open.has(6)} onToggleOpen={() => toggleOpen(6)}
+            isChecked={checked.has(6)} onToggleChecked={() => toggleChecked(6)}>
+            <p className="text-xs text-gray-500 mb-2">Why? Continuous monitoring detects and responds to threats in real-time.</p>
+            <ul className="space-y-1">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Enable Microsoft Defender for Cloud for all resource types</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Deploy Azure Sentinel and connect all data sources</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Create analytics rules for suspicious login and network anomalies</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Build a playbook to auto-block malicious IPs</span></li>
+            </ul>
+          </PhaseStepItem>
+          <PhaseStepItem number={8} type="EVALUATE" title="Step 6: Test, Document & Security Audit"
+            isOpen={open.has(7)} onToggleOpen={() => toggleOpen(7)}
+            isChecked={checked.has(7)} onToggleChecked={() => toggleChecked(7)}>
+            <p className="text-xs text-gray-500 mb-2">Final step: validate your entire setup and document your security posture.</p>
+            <ul className="space-y-1 mb-3">
+              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">✓</span><span>All unnecessary ports and access points closed?</span></li>
+              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">✓</span><span>RBAC and MFA enforced for all privileged accounts?</span></li>
+              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">✓</span><span>Network traffic controlled via NSGs and Firewall?</span></li>
+              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">✓</span><span>Sensitive data encrypted, secrets stored in Key Vault?</span></li>
+              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">✓</span><span>Sentinel detecting threats and Defender recommendations resolved?</span></li>
+            </ul>
+            <div className="p-2 border border-green-800/50 bg-green-900/10">
+              <p className="text-green-400 text-xs">You've completed the SecureCloud Challenge. Document your findings and share your work!</p>
+            </div>
+          </PhaseStepItem>
+        </div>
+        <MarkPhaseComplete phaseId={7} />
+        <div className="flex justify-start items-center text-sm border-t border-gray-700 pt-6 mt-8">
+          <Link to="/module7" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
+            <ChevronLeft size={14} /> Phase 7 Overview
+          </Link>
+        </div>
       </div>
-
-      {/* Submission Section */}
-      <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-purple-500">
-        <h3 className="text-xl sm:text-2xl font-semibold text-purple-400">Submission</h3>
-        <p className="text-gray-300 text-sm sm:text-base mt-2">
-          Your report should include:
-        </p>
-        <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-          <li><strong>Overview:</strong> Brief summary of your secure Azure deployment.</li>
-          <li><strong>Implementation Steps:</strong> Detailed description of how you deployed and configured security measures.</li>
-          <li><strong>Screenshots:</strong> Proof of configurations, including RBAC, MFA, Firewall, Sentinel, Security Center, and Key Vault API key security.</li>
-          <li><strong>Testing & Validation:</strong> Details of security tests performed and their outcomes.</li>
-          <li><strong>Challenges & Learnings:</strong> Any difficulties faced and insights gained during the process.</li>
-        </ul>
-       
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
-  <h4 className="text-lg sm:text-xl font-semibold text-yellow-400">🎯 Submit Your Report & Get Certified!</h4>
-  <p className="text-gray-300 text-sm sm:text-base mt-2">
-    Complete your detailed report for this capstone and submit it to receive your official Certificate from Microsoft Learn.  
-  </p>
-  <a 
-    href="https://forms.office.com/r/imQADHyNn7" 
-    className="inline-block mt-3 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-lg shadow-md transition duration-200"
-  >
-    📝 Submit Report
-  </a>
-</div>
-
-
-      </div>
-
-      <p className="text-green-300 text-sm sm:text-base mt-3">
-            <strong>congratulations!</strong> on making it to the end. It was challenging, but you tried anyway. Nonetheless who is hired to do easy peasy stuff. See what next page...
-          </p>
-
-
-<div className="mt-10 flex justify-between text-sm sm:text-base">
-  <Link
-    to="/module7"
-    className="text-blue-400 hover:underline hover:text-blue-300"
-  >
-    ← Back to Overview
-  </Link>
-  <Link
-    to="/day/7/resources"
-    className="text-blue-400 hover:underline hover:text-blue-300"
-  >
-    Day 7 Resources →
-  </Link>
-</div>
-
-      
-      <MarkPhaseComplete phaseId={7} />
-    </Content>
+    </div>
   );
 };
 
