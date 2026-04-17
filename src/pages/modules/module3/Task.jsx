@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
 
 const phases = [
@@ -6,57 +7,57 @@ const phases = [
     title: "Phase 1: Understanding Data Security Basics",
     description: "Learn the fundamentals of data security and why it matters in cloud environments.",
     link: "/module3/task/phase1",
+    cmd: "./phase_1_data_security_basics.sh",
   },
   {
     title: "Phase 2: Securing Public Data in Azure Storage",
     description: "Explore how to securely store and serve public website content using Azure Storage.",
     link: "/module3/task/phase2",
+    cmd: "./phase_2_azure_storage_public.sh",
   },
   {
     title: "Phase 3: Protecting Private Data with High Availability",
     description: "Implement strategies for securing private data and ensuring high availability in Azure.",
     link: "/module3/task/phase3",
+    cmd: "./phase_3_private_data_ha.sh",
   },
 ];
 
 const Task3 = () => {
   return (
-    <div className="min-h-screen p-6 text-gray bg-gray-900">
-      <div className="max-w-3xl mx-auto">
-        <h1 className="text-3xl font-bold text-gray-300 mb-4">Lab 3: Data Security</h1>
-        <p className="text-gray-300 mb-6">
-          This lab is split into 3 phases. Click on a phase below to begin:
-        </p>
-
-        <div className="space-y-4">
+    <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
+      <div className="max-w-3xl mx-auto px-4 py-10">
+        <div className="flex items-center gap-2 text-gray-600 text-xs mb-8">
+          <Link to="/home" className="hover:text-gray-400 transition-colors">// phases</Link>
+          <span>/</span><span className="text-gray-400">phase-3-data-security</span>
+          <span>/</span><span className="text-gray-500">lab</span>
+        </div>
+        <div className="mb-8">
+          <div className="text-green-400 text-xs mb-3">$ ls ./lab_3_data_security/</div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Phase 3 Lab: Data Security</h1>
+          <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
+            This lab is split into 3 phases. Select a phase below to begin.
+          </p>
+        </div>
+        <div className="space-y-3 mb-12">
           {phases.map((phase, index) => (
-            <Link
-              key={index}
-              to={phase.link}
-              className="block border border-gray-700 hover:border-gray-500 rounded-lg px-4 py-3 transition duration-200 hover:bg-gray-800"
-            >
-              <h2 className="text-lg font-semibold text-gray-300">{phase.title}</h2>
-              <p className="text-sm text-gray-400">{phase.description}</p>
+            <Link key={index} to={phase.link} className="block border border-gray-700 hover:border-gray-500 bg-gray-800/40 hover:bg-gray-800/70 px-4 py-4 transition-colors">
+              <div className="text-green-400 text-xs mb-1">{phase.cmd}</div>
+              <h2 className="text-sm font-semibold text-gray-300 mb-1">{phase.title}</h2>
+              <p className="text-xs text-gray-500">{phase.description}</p>
             </Link>
           ))}
         </div>
+        <MarkPhaseComplete phaseId={3} />
+        <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6 mt-8">
+          <Link to="/module3" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
+            <ChevronLeft size={14} /> Phase 3 Overview
+          </Link>
+          <Link to="/module4" className="flex items-center gap-1 text-gray-500 hover:text-red-400 transition-colors">
+            Phase 4 <ChevronRight size={14} />
+          </Link>
+        </div>
       </div>
-
-      <div className="mt-10 flex justify-between text-sm sm:text-base">
-              <Link
-                to="/module3"
-                className="text-blue-400 hover:underline hover:text-blue-300"
-              >
-                ← Back to Overview
-              </Link>
-              <Link
-                to="/module3/task/phase1"
-                className="text-blue-400 hover:underline hover:text-blue-300"
-              >
-                Go to Lab: 01 →
-              </Link>
-            </div>
-      <MarkPhaseComplete phaseId={3} />
     </div>
   );
 };
