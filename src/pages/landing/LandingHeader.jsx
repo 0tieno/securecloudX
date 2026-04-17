@@ -88,7 +88,7 @@ export default function LandingHeader() {
       <div className="flex flex-col sm:flex-row gap-4 mb-4">
         <button
           className="bg-red-600 hover:bg-red-700 border border-red-500 text-white font-mono font-semibold px-8 py-3 transition-all duration-200 group flex items-center space-x-2"
-          onClick={() => (user ? navigate("/home") : signIn())}
+          onClick={() => (user ? navigate("/get-started") : signIn())}
         >
           {user ? (
             <Terminal className="w-5 h-5 group-hover:rotate-12 transition-transform" />
