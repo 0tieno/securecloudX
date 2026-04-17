@@ -37,6 +37,7 @@ import ModuleTask5 from "../pages/modules/module5/Task";
 import ModuleTask6 from "../pages/modules/module6/Task";
 import ModuleTask7 from "../pages/modules/module7/Task";
 import TermsOfService from "../pages/TermsOfService";
+import VerifyCertificate from "../pages/VerifyCertificate";
 import Work from "../pages/Work";
 
 export const standaloneRoutes = [
@@ -57,6 +58,7 @@ export const standaloneRoutes = [
   { path: "/opensource-blog", Component: OpenSourceBlog },
   { path: "/pentesting-labs", Component: PentestingLabs },
   { path: "/auth/callback", Component: AuthCallback },
+  { path: "/verify/:certId", Component: VerifyCertificate },
 ];
 
 export const shellRoutes = [
