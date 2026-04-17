@@ -1,4 +1,5 @@
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../contexts/AuthContext";
 import {
   Terminal,
   Shield,
@@ -10,11 +11,18 @@ import {
 
 export default function GetStartedPage() {
   const navigate = useNavigate();
+  const { user, signOut } = useAuth();
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate("/");
+  };
+
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono flex flex-col">
       <div className="flex-1 flex flex-col items-center justify-center px-4 py-12">
         {/* Back Navigation Button */}
-        <div className="w-full max-w-md mb-8 flex justify-start">
+        <div className="w-full max-w-md mb-8 flex justify-between items-center">
           <button
             className="inline-flex items-center px-4 py-2 bg-gray-800 border border-gray-700 text-gray-300 font-mono hover:bg-gray-700 hover:border-gray-600 transition-colors group"
             onClick={() => navigate("/")}
@@ -22,6 +30,28 @@ export default function GetStartedPage() {
             <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
             cd ../
           </button>
+
+          {/* User profile */}
+          {user && (
+            <div className="flex items-center gap-2">
+              {user.user_metadata?.avatar_url && (
+                <img
+                  src={user.user_metadata.avatar_url}
+                  alt={user.user_metadata?.user_name ?? "avatar"}
+                  className="w-7 h-7 rounded-full border border-gray-600"
+                />
+              )}
+              <span className="text-xs text-gray-400 font-mono">
+                {user.user_metadata?.user_name ?? user.email}
+              </span>
+              <button
+                onClick={handleSignOut}
+                className="text-xs text-red-400 hover:text-red-300 font-mono border border-red-500/40 hover:border-red-400 px-2 py-1 transition-colors"
+              >
+                logout
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Information Note */}
