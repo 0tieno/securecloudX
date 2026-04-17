@@ -2,14 +2,15 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
 import PhaseStepItem from "../../../components/PhaseStepItem";
+import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
+import { useStepProgress } from "../../../hooks/useStepProgress";
 
 const TOTAL = 6;
 
 const Phase3 = () => {
   const [open, setOpen] = useState(() => new Set([0]));
-  const [checked, setChecked] = useState(new Set());
+  const [checked, toggleChecked] = useStepProgress("scx_steps_3_lab3", TOTAL);
   const toggleOpen = (i) => setOpen(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
-  const toggleChecked = (i) => setChecked(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
@@ -133,6 +134,7 @@ const Phase3 = () => {
             </ul>
           </PhaseStepItem>
         </div>
+        <MarkPhaseComplete phaseId={3} taskKey="task-phase3" checkedCount={checked.size} total={TOTAL} />
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">
           <Link to="/module3/task/phase2" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
             <ChevronLeft size={14} /> Lab 02
