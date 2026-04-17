@@ -13,6 +13,7 @@
     "blog:list": "node scripts/blog-manager.js list"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.103.3",
     "@tailwindcss/vite": "^4.0.15",
     "antd": "^5.26.3",
     "canvas-confetti": "^1.9.4",
