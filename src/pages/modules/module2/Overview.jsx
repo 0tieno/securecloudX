@@ -1,3 +1,4 @@
+import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import Content from "../../../components/Content";
 import { Link } from "react-router-dom";
 
@@ -5,9 +6,9 @@ import { Link } from "react-router-dom";
 const Day2 = () => {
   return (
     <Content>
-    
+    <AutoMarkOverview phaseId={2} />
       <h2 className="text-2xl sm:text-3xl font-bold text-gray-300">
-        Day 2: Network Security & Perimeter Defense
+        Phase 2: Network Security & Perimeter Defense
       </h2>
       <p className="mt-2 text-gray-300 text-sm sm:text-base">
         Without a thorough understanding of network security, an organization is vulnerable to attacks and performance issues on its network. This vulnerability can negatively affect the organization's finances and reputation.
@@ -121,7 +122,7 @@ const Day2 = () => {
     to="/module1"
     className="text-blue-400 hover:underline hover:text-blue-300"
   >
-    ← Previous: Day 1
+    ← Previous: Phase 1
   </Link>
   <Link
     to="/module2/task"
