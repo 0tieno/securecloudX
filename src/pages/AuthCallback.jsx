@@ -19,7 +19,7 @@ export default function AuthCallback() {
       (event) => {
         if (event === "SIGNED_IN") {
           subscription.unsubscribe();
-          navigate("/home", { replace: true });
+          navigate("/get-started", { replace: true });
         }
       }
     );
