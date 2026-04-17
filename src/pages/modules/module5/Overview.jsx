@@ -1,11 +1,13 @@
+import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import Content from "../../../components/Content";
 import { Link } from "react-router-dom";
 
 const Day5 = () => {
   return (
     <Content>
+      <AutoMarkOverview phaseId={5} />
       <h2 className="text-2xl sm:text-3xl font-bold text-gray-300">
-        Day 5: Security Monitoring & Threat Intelligence 📊
+        Phase 5: Security Monitoring & Threat Intelligence 📊
       </h2>
       <p className="mt-2 text-gray-300 text-sm sm:text-base">
         Learn how to continuously monitor security events, detect threats, and
@@ -109,7 +111,7 @@ const Day5 = () => {
           to="/module4"
           className="text-blue-400 hover:underline hover:text-blue-300"
         >
-          ← Previous: Day 4
+          ← Previous: Phase 4
         </Link>
         <Link
           to="/module5/task"
