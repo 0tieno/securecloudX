@@ -1,4 +1,5 @@
 import AboutAuthor from "../pages/AboutAuthor";
+import AuthCallback from "../pages/AuthCallback";
 import BeginnerIntro from "../pages/BeginnerIntro";
 import BlogList from "../pages/BlogList";
 import BlogPost from "../pages/BlogPost";
@@ -53,6 +54,7 @@ export const standaloneRoutes = [
   },
   { path: "/opensource-blog", Component: OpenSourceBlog },
   { path: "/pentesting-labs", Component: PentestingLabs },
+  { path: "/auth/callback", Component: AuthCallback },
 ];
 
 export const shellRoutes = [
