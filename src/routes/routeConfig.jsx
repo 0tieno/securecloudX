@@ -4,6 +4,7 @@ import AuthCallback from "../pages/AuthCallback";
 import BeginnerIntro from "../pages/BeginnerIntro";
 import BlogList from "../pages/BlogList";
 import BlogPost from "../pages/BlogPost";
+import CertificatePage from "../pages/CertificatePage";
 import Changelog from "../pages/Changelog";
 import Module1 from "../pages/modules/module1/Overview";
 import Module2 from "../pages/modules/module2/Overview";
@@ -61,6 +62,7 @@ export const standaloneRoutes = [
 export const shellRoutes = [
   { path: "/home", Component: Home },
   { path: "/admin", Component: Admin },
+  { path: "/certificate", Component: CertificatePage },
   { path: "/forgotten-secret-lab", Component: ForgottenSecretLab },
   { path: "/module1", Component: Module1 },
   { path: "/module1/task", Component: ModuleTask1 },
