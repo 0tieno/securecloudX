@@ -27,8 +27,8 @@ const Day4 = () => {
           <span>/</span><span className="text-gray-500">overview</span>
         </div>
         <div className="mb-8">
-          <div className="text-green-400 text-xs mb-3">$ cat phase_4_app_security_overview.md</div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Phase 4: Application Security in Azure</h1>
+          <div className="text-green-400 text-xs mb-3">$ cat module_4_app_security_overview.md</div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Module 4: Application Security in Azure</h1>
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
             Learn how to secure applications deployed in Azure using security best practices.
           </p>
@@ -100,10 +100,10 @@ const Day4 = () => {
         </div>
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">
           <Link to="/module3" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
-            <ChevronLeft size={14} /> Phase 3
+            <ChevronLeft size={14} /> Module 3
           </Link>
           <Link to="/module4/task" className="flex items-center gap-1 text-gray-500 hover:text-red-400 transition-colors">
-            Phase 4 Lab <ChevronRight size={14} />
+            Module 4 Lab <ChevronRight size={14} />
           </Link>
         </div>
       </div>
