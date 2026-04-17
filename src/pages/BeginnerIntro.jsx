@@ -19,6 +19,9 @@ const BeginnerIntro = () => {
           <p className="text-gray-400 max-w-3xl text-base">
             // Start with beginner-friendly resources to build your foundation
           </p>
+          <p className="text-gray-400 max-w-3xl text-base">
+            // securecloudx assumes the basic knowledge of linux
+          </p>
           
         </div>
 
@@ -232,7 +235,7 @@ const BeginnerIntro = () => {
             to="/module1"
             className="inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white transition-colors border border-blue-500 text-base"
           >
-            Start Phase 1 Challenge <ArrowRight size={18} />
+            Start Module 1 <ArrowRight size={18} />
           </Link>
         </div>
       </div>
