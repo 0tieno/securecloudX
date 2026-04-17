@@ -31,8 +31,8 @@ const Day1 = () => {
 
         {/* Title */}
         <div className="mb-8">
-          <div className="text-green-400 text-xs mb-3">$ cat phase_1_iam_overview.md</div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Phase 1: Identity & Access Management (IAM)</h1>
+          <div className="text-green-400 text-xs mb-3">$ cat module_1_iam_overview.md</div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Module 1: Identity & Access Management (IAM)</h1>
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
             Learn how to manage identities, access controls, and authentication using Microsoft Entra ID (Azure Active Directory).
           </p>
@@ -123,7 +123,7 @@ const Day1 = () => {
             <ChevronLeft size={14} /> /start
           </Link>
           <Link to="/module1/task" className="flex items-center gap-1 text-gray-500 hover:text-red-400 transition-colors">
-            Phase 1 Lab <ChevronRight size={14} />
+            Module 1 Lab <ChevronRight size={14} />
           </Link>
         </div>
 
