@@ -32,7 +32,7 @@ const Task1 = () => {
         {/* Title */}
         <div className="mb-8">
           <div className="text-green-400 text-xs mb-3">$ ./lab_1_iam_rbac_mfa.sh</div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Phase 1 Lab: Restrict Azure VM Access</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Module 1 Lab: Restrict Azure VM Access</h1>
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
             Configure RBAC and MFA to secure an Azure Virtual Machine from unauthorized access.
           </p>
@@ -149,7 +149,7 @@ const Task1 = () => {
             </ul>
             <p className="mt-2 text-green-400 text-xs">✓ Success: Unauthorized users cannot access the VM; MFA prompts for authorized users.</p>
             {checked.size === TOTAL && (
-              <p className="mt-3 text-green-400 font-semibold">$ echo "Phase 1 complete — document your findings for the capstone project."</p>
+              <p className="mt-3 text-green-400 font-semibold">$ echo "Module 1 complete — document your findings for the capstone project."</p>
             )}
           </PhaseStepItem>
         </div>
@@ -162,7 +162,7 @@ const Task1 = () => {
             <ChevronLeft size={14} /> Overview
           </Link>
           <Link to="/day/1/resources" className="flex items-center gap-1 text-gray-500 hover:text-blue-400 transition-colors">
-            Phase 1 Resources <ChevronRight size={14} />
+            Module 1 Resources <ChevronRight size={14} />
           </Link>
         </div>
 
