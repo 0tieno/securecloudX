@@ -1,11 +1,13 @@
+import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import Content from "../../../components/Content";
 import { Link } from "react-router-dom";
 
 const Day5 = () => {
   return (
     <Content>
+      <AutoMarkOverview phaseId={6} />
       <h2 className="text-2xl sm:text-3xl font-bold text-gray-300">
-        Day 6: Incident Response & Threat Detection 🚨
+        Phase 6: Incident Response & Threat Detection 🚨
       </h2>
       <p className="mt-2 text-gray-300 text-sm sm:text-base">
         Learn how to detect, investigate, and respond to security incidents in Azure.
@@ -77,7 +79,7 @@ const Day5 = () => {
     to="/module5"
     className="text-blue-400 hover:underline hover:text-blue-300"
   >
-    ← Previous: Day 5
+    ← Previous: Phase 5
   </Link>
   <Link
     to="/module6/task"
