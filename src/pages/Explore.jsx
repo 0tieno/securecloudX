@@ -1,77 +1,112 @@
-import React from 'react';
-import Content from '../components/Content';
-import { Link } from 'react-router-dom';
-import { FaXTwitter } from "react-icons/fa6"; 
-
+import { Link } from "react-router-dom";
+import { ChevronLeft } from "lucide-react";
 
 const Explore = () => {
   return (
-    <Content>
-      <div className="max-w-4xl mx-auto p-6">
-        {/* Page Header */}
-        <h2 className="text-3xl font-bold text-gray mb-4">Don't stop pushing</h2>
-        <p className="text-gray-300 mb-6">
-  Keep building! Experiment, break things, and rebuild—learning happens in the process.
-</p>
+    <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
+      <div className="max-w-3xl mx-auto px-4 py-10">
 
+        {/* Breadcrumb */}
+        <div className="flex items-center gap-2 text-gray-600 text-xs mb-8">
+          <Link to="/home" className="hover:text-gray-400 transition-colors">// phases</Link>
+          <span>/</span>
+          <span className="text-gray-400">explore</span>
+        </div>
 
-        {/* Next Steps Section */}
-        <div className="mt-8 bg-gray-800 p-6 rounded-lg shadow-md border-l-4 border-blue-500">
-          <h3 className="text-2xl font-semibold text-blue-400 mb-4">Next Steps</h3>
-          <p className="text-gray-300 mb-4">Advance your skills with these certifications and projects:</p>
-          
-          {/* Certifications */}
+        {/* Title */}
+        <div className="mb-8">
+          <div className="text-green-400 text-xs mb-3">$ cat explore.md</div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Don't stop pushing</h1>
+          <p className="text-gray-500 text-sm leading-relaxed">
+            Keep building. Experiment, break things, and rebuild — learning happens in the process.
+          </p>
+        </div>
+
+        {/* Next steps */}
+        <div className="mb-8 p-4 border border-gray-700 bg-gray-800/50">
+          <div className="text-blue-400 text-xs mb-4">$ cat next_steps.md</div>
+
           <div className="mb-6">
-            <h4 className="text-xl font-semibold text-blue-400">📜 Certifications</h4>
-            <ul className="list-disc pl-5 text-gray-300 mt-2 space-y-2">
-              <li>
-                <a href="https://learn.microsoft.com/en-us/certifications/azure-security-engineer/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
-                  Microsoft Certified: Azure Security Engineer Associate
-                </a>
-              </li>
-              <li>
-                <a href="https://learn.microsoft.com/en-us/certifications/azure-solutions-architect/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline">
-                  Microsoft Certified: Azure Solutions Architect Expert
-                </a>
-              </li>
+            <div className="text-gray-500 text-xs mb-3"># certifications</div>
+            <ul className="space-y-2">
+              {[
+                {
+                  label: "Microsoft Certified: Azure Security Engineer Associate",
+                  href: "https://learn.microsoft.com/en-us/certifications/azure-security-engineer/",
+                },
+                {
+                  label: "Microsoft Certified: Azure Solutions Architect Expert",
+                  href: "https://learn.microsoft.com/en-us/certifications/azure-solutions-architect/",
+                },
+              ].map(({ label, href }) => (
+                <li key={href} className="flex items-start gap-2 text-sm">
+                  <span className="text-green-400 flex-shrink-0">&gt;</span>
+                  <a
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-400 hover:text-blue-300 transition-colors"
+                  >
+                    {label} ↗
+                  </a>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Projects */}
           <div>
-            <h4 className="text-xl font-semibold text-blue-400">💻 Projects</h4>
-            <ul className="list-disc pl-5 text-gray-300 mt-2 space-y-2">
-              <li>
-                <Link to="/project/secure-web-app" className="text-blue-400 hover:underline">
-                  Deploy a Secure Azure Web Application
-                </Link>
-              </li>
-              <li>
-                <Link to="/project/security-dashboard" className="text-blue-400 hover:underline">
-                  Build an Azure Security Dashboard with Sentinel
-                </Link>
-              </li>
+            <div className="text-gray-500 text-xs mb-3"># projects</div>
+            <ul className="space-y-2">
+              {[
+                { label: "Deploy a Secure Azure Web Application", to: "/project/secure-web-app" },
+                { label: "Build an Azure Security Dashboard with Sentinel", to: "/project/security-dashboard" },
+              ].map(({ label, to }) => (
+                <li key={to} className="flex items-start gap-2 text-sm">
+                  <span className="text-green-400 flex-shrink-0">&gt;</span>
+                  <Link to={to} className="text-blue-400 hover:text-blue-300 transition-colors">
+                    {label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
-          
         </div>
 
-        {/* DevSecOps Coming Soon */}
-        <div className="mt-8 bg-gray-800 p-6 rounded-lg shadow-md border-l-4 border-yellow-500 text-center">
-          <h3 className="text-2xl font-semibold text-yellow-400 mb-4">DevSecOps – Coming Soon</h3>
-          <p className="text-gray-300">
-            Stay tuned for hands-on labs and resources on integrating security into DevOps workflows.
+        {/* DevSecOps coming soon */}
+        <div className="mb-8 p-4 border border-yellow-500/20 bg-yellow-500/5">
+          <div className="text-yellow-400 text-xs mb-2">$ cat devsecops.md</div>
+          <p className="text-gray-400 text-sm font-bold mb-1">DevSecOps — Coming Soon</p>
+          <p className="text-gray-500 text-sm">
+            Hands-on labs and resources on integrating security into DevOps workflows.
           </p>
         </div>
 
-        {/* Social Media Reminder */}
-        <div className="mt-8 text-center">
-          <p className="text-gray-300 text-lg flex items-center justify-center">
-            Share your progress on <a href="https://twitter.com/" target="_blank" rel="noopener noreferrer" className="text-blue-400 ml-2 hover:underline">X (Twitter)</a> <FaXTwitter className="ml-2 text-blue-400" />
+        {/* Share CTA */}
+        <div className="mb-8 p-4 border border-gray-700 bg-gray-800/50">
+          <div className="text-gray-500 text-xs mb-2"># share your progress</div>
+          <p className="text-gray-400 text-sm">
+            Post your wins on{" "}
+            <a
+              href="https://twitter.com/intent/tweet?text=Just%20completed%20a%20module%20on%20%40securecloudX%20%F0%9F%9B%A1%EF%B8%8F"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:text-blue-300 transition-colors"
+            >
+              X (Twitter) ↗
+            </a>
+            {" "}and tag <span className="text-gray-300">@securecloudX</span>
           </p>
         </div>
+
+        {/* Navigation */}
+        <div className="mt-10 flex items-center justify-between text-xs text-gray-500 border-t border-gray-800 pt-6">
+          <Link to="/home" className="inline-flex items-center gap-1 hover:text-gray-300 transition-colors">
+            <ChevronLeft size={14} /> back to modules
+          </Link>
+        </div>
+
       </div>
-    </Content>
+    </div>
   );
 };
 
