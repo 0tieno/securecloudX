@@ -1,10 +1,11 @@
 import Content from "../../../components/Content";
+import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
 import { Link } from "react-router-dom";
 
 const Task2 = () => {
   return (
     <Content>
-      <h2 className="text-2xl font-bold text-gray">Day 2 Lab: Secure an Azure VM with NSG & Firewall</h2>
+      <h2 className="text-2xl font-bold text-gray">Phase 2 Lab: Secure an Azure VM with NSG &amp; Firewall</h2>
       <p className="mt-2 text-gray-300">
         In this task, you'll configure <strong>Network Security Groups (NSGs) and Azure Firewall</strong> to <strong>protect an Azure Virtual Machine (VM) from unauthorized access.</strong>. Refer to resources page when stuck.
       </p>
@@ -178,6 +179,7 @@ const Task2 = () => {
     Day 2 Resources →
   </Link>
 </div>
+      <MarkPhaseComplete phaseId={2} />
     </Content>
   );
 };
