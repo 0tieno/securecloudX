@@ -1,10 +1,11 @@
 import Content from "../../../components/Content";
+import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
 import { Link } from "react-router-dom";
 
 const Task1 = () => {
   return (
     <Content>
-      <h2 className="text-2xl font-bold text-gray">Day 1 Lab: Restrict Azure VM Access</h2>
+      <h2 className="text-2xl font-bold text-gray">Phase 1 Lab: Restrict Azure VM Access</h2>
       <p className="mt-2 text-gray-300">
         In this task, you'll configure RBAC (Role-Based Access Control) and MFA (Multi-Factor Authentication) to secure an Azure Virtual Machine (VM) from unauthorized access.
       </p>
@@ -114,7 +115,7 @@ const Task1 = () => {
         </div>
 
         <p className="text-green-300 text-sm sm:text-base mt-3">
-            <strong>congrats!</strong> you just finished day 1. Ensure to document your learning and findings. You will need them in the capstone project. See you on day 2.
+            <strong>congrats!</strong> you just finished phase 1. Ensure to document your learning and findings. You will need them in the capstone project. See you on phase 2.
           </p>
       </div>
 
@@ -133,6 +134,7 @@ const Task1 = () => {
   </Link>
 </div>
 
+      <MarkPhaseComplete phaseId={1} />
     </Content>
   );
 };
