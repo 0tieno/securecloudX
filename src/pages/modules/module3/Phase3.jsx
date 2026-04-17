@@ -22,7 +22,7 @@ const Phase3 = () => {
           <span>/</span><span className="text-gray-500">lab-03</span>
         </div>
         <div className="mb-8">
-          <div className="text-green-400 text-xs mb-3">$ ./lab_3_phase_3_private_storage_ha.sh</div>
+          <div className="text-green-400 text-xs mb-3">$ ./lab_3_module_3_private_storage_ha.sh</div>
           <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Lab 03: Private Storage with High Availability</h1>
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
             Secure private company storage with GRS, SAS tokens, lifecycle management, and object replication.
@@ -140,7 +140,7 @@ const Phase3 = () => {
             <ChevronLeft size={14} /> Lab 02
           </Link>
           <Link to="/module4" className="flex items-center gap-1 text-gray-500 hover:text-red-400 transition-colors">
-            Phase 4 →
+            Module 4 →
           </Link>
         </div>
       </div>
