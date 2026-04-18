@@ -27,7 +27,7 @@ const Explore = () => {
           <div className="text-blue-400 text-xs mb-4">$ cat next_steps.md</div>
 
           <div className="mb-6">
-            <div className="text-gray-500 text-xs mb-3"># certifications</div>
+            <div className="text-gray-500 text-xs mb-3"># some good certifications</div>
             <ul className="space-y-2">
               {[
                 {
@@ -55,20 +55,8 @@ const Explore = () => {
           </div>
 
           <div>
-            <div className="text-gray-500 text-xs mb-3"># projects</div>
-            <ul className="space-y-2">
-              {[
-                { label: "Deploy a Secure Azure Web Application", to: "/project/secure-web-app" },
-                { label: "Build an Azure Security Dashboard with Sentinel", to: "/project/security-dashboard" },
-              ].map(({ label, to }) => (
-                <li key={to} className="flex items-start gap-2 text-sm">
-                  <span className="text-green-400 flex-shrink-0">&gt;</span>
-                  <Link to={to} className="text-blue-400 hover:text-blue-300 transition-colors">
-                    {label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+            <div className="text-gray-500 text-xs mb-3"># consider doing more projects</div>
+
           </div>
         </div>
 
