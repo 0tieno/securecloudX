@@ -1,6 +1,32 @@
-import { ArrowRight, BookOpen, ExternalLink, CheckCircle2, ChevronDown, ChevronRight, Target } from "lucide-react";
+import { ArrowRight, BookOpen, ExternalLink, CheckCircle2, ChevronDown, ChevronRight, Shield, Globe, Lock, AlertTriangle } from "lucide-react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+
+const Section = ({ command, children, className = "mb-8" }) => (
+  <div className={className}>
+    <div className="text-gray-400 text-base mb-3">{command}</div>
+    {children}
+  </div>
+);
+
+const ExtLink = ({ href, children }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="text-blue-400 hover:text-blue-300 transition-colors text-base flex items-center gap-2"
+  >
+    <ExternalLink size={16} />
+    {children}
+  </a>
+);
+
+const Objective = ({ children }) => (
+  <div className="flex items-start gap-3">
+    <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+    <p className="text-gray-300 text-base">{children}</p>
+  </div>
+);
 
 const BeginnerIntro = () => {
   const [isObjectivesOpen, setIsObjectivesOpen] = useState(false);
@@ -17,12 +43,11 @@ const BeginnerIntro = () => {
             </h1>
           </div>
           <p className="text-gray-400 max-w-3xl text-base">
-            // Start with beginner-friendly resources to build your foundation
+            // Build the foundational knowledge every cloud security professional needs
           </p>
           <p className="text-gray-400 max-w-3xl text-base">
-            // securecloudx assumes the basic knowledge of linux
+            // securecloudx assumes basic knowledge of linux and networking
           </p>
-          
         </div>
 
         {/* Learning Objectives */}
@@ -49,179 +74,236 @@ const BeginnerIntro = () => {
                 By the end of this section, you should be able to:
               </h3>
               <div className="space-y-3">
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                  <p className="text-gray-300 text-base">
-                    Explain the fundamental concepts of cloud computing and how it differs from traditional infrastructure
-                  </p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                  <p className="text-gray-300 text-base">
-                    Identify the key benefits and security considerations when using cloud services
-                  </p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                  <p className="text-gray-300 text-base">
-                    Understand different cloud service models (IaaS, PaaS, SaaS) and their security implications
-                  </p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                  <p className="text-gray-300 text-base">
-                    Navigate Microsoft Azure's core architectural components and services
-                  </p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                  <p className="text-gray-300 text-base">
-                    Recognize common cloud security breaches and vulnerabilities from real-world incidents
-                  </p>
-                </div>
-                <div className="flex items-start gap-3">
-                  <CheckCircle2 className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                  <p className="text-gray-300 text-base">
-                    Set up your Azure account and prepare your environment for hands-on security challenges
-                  </p>
-                </div>
+                <Objective>Explain how cloud computing works and how it differs from on-premises infrastructure</Objective>
+                <Objective>Describe the Shared Responsibility Model and know what you own vs. what the provider owns</Objective>
+                <Objective>Differentiate IaaS, PaaS, and SaaS and their security implications in real deployments</Objective>
+                <Objective>Understand the CIA Triad (Confidentiality, Integrity, Availability) as the basis of all security decisions</Objective>
+                <Objective>Recognize common cloud attack vectors — misconfigurations, exposed storage, credential leaks, and over-permissioned identities</Objective>
+                <Objective>Navigate the Azure Portal, understand subscriptions, resource groups, and regions</Objective>
+                <Objective>Set up your Azure environment with free credits and be ready for hands-on labs</Objective>
               </div>
             </div>
           )}
         </div>
 
-        {/* Cloud Fundamentals */}
-        <div className="mb-8">
-          <div className="text-gray-400 text-base mb-3">
-            $ cat what_is_cloud_security.sh
+        {/* 1. What is Cloud Computing */}
+        <Section command="$ cat 01_what_is_cloud_computing.sh">
+          <p className="text-gray-300 text-base leading-relaxed mb-4">
+            Cloud computing is on-demand delivery of IT resources over the internet. Instead of buying and maintaining physical servers, you rent compute, storage, and networking from a provider like Azure, AWS, or GCP. This is where every organization is moving — and where attackers follow.
+          </p>
+          <div className="space-y-2">
+            <ExtLink href="https://learn.microsoft.com/training/modules/describe-cloud-compute/?wt.mc_id=studentamb_387261">
+              → Microsoft Learn: describe_cloud_computing.md
+            </ExtLink>
+            <ExtLink href="https://learn.microsoft.com/training/modules/describe-benefits-use-cloud-services/?wt.mc_id=studentamb_387261">
+              → Microsoft Learn: cloud_service_benefits.md
+            </ExtLink>
+            <ExtLink href="https://youtu.be/jI8IKpjiCSM?si=oP0DHGhIMw6qk7bl">
+              → Watch: cloud_security_explained_in_10_minutes.mp4
+            </ExtLink>
+          </div>
+        </Section>
+
+        {/* 2. Service Models */}
+        <Section command="$ cat 02_service_models.sh">
+          <p className="text-gray-300 text-base leading-relaxed mb-4">
+            Every cloud service falls into one of three models. Understanding these is critical because your security responsibilities change depending on the model:
+          </p>
+          <div className="bg-gray-800 border border-gray-700 p-4 mb-4">
+            <div className="space-y-3 text-sm">
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-400 font-bold w-12 flex-shrink-0">IaaS</span>
+                <span className="text-gray-300">You manage: OS, runtime, apps, data. Provider manages: hardware, networking. <span className="text-gray-500">(e.g., Azure VMs, AWS EC2)</span></span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-400 font-bold w-12 flex-shrink-0">PaaS</span>
+                <span className="text-gray-300">You manage: apps and data. Provider manages: OS, runtime, infrastructure. <span className="text-gray-500">(e.g., Azure App Service, Azure SQL)</span></span>
+              </div>
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-400 font-bold w-12 flex-shrink-0">SaaS</span>
+                <span className="text-gray-300">You manage: data and access. Provider manages: everything else. <span className="text-gray-500">(e.g., Microsoft 365, Salesforce)</span></span>
+              </div>
+            </div>
           </div>
           <div className="space-y-2">
-            <a
-              href="https://cloud.google.com/learn/what-is-cloud-security"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 transition-colors text-base flex items-center gap-2"
-            >
-              <ExternalLink size={16} />
-              → Read: cloud_security_according_to_google.md
-            </a>
-            <a
-              href="https://www.microsoft.com/en-us/security/business/security-101/what-is-cloud-security"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 transition-colors text-base flex items-center gap-2"
-            >
-              <ExternalLink size={16} />
-              → Read: cloud_security_according_to_microsoft.md
-            </a>
-            <a
-              href="https://youtu.be/jI8IKpjiCSM?si=oP0DHGhIMw6qk7bl"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 transition-colors text-base flex items-center gap-2"
-            >
-              <ExternalLink size={16} />
-              → Watch video: cloud_security_explained_in_10_minutes.md
-            </a>
+            <ExtLink href="https://learn.microsoft.com/training/modules/describe-cloud-service-types/?wt.mc_id=studentamb_387261">
+              → Microsoft Learn: cloud_service_types.md
+            </ExtLink>
           </div>
-        </div>
+        </Section>
 
-        {/* Resources Section */}
-        <div className="mb-8">
-          <div className="text-gray-400 text-base mb-3">
-            $ ls -la ./resources
-          </div>
-          <div className="space-y-2">
-            <a
-              href="https://www.nojones.net/posts/breaking-into-cloudsec"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 transition-colors text-base flex items-center gap-2"
-            >
-              <ExternalLink size={16} />
-              → breaking_into_cloudsec.md
-            </a>
-            <a
-              href="https://blog.christophetd.fr/cloud-security-breaches-and-vulnerabilities-2021-in-review/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 transition-colors text-base flex items-center gap-2"
-            >
-              <ExternalLink size={16} />
-              → cloud_security_breaches_2021.analysis
-            </a>
-          </div>
-        </div>
-
-        {/* Cloud Fundamentals */}
-        <div className="mb-8">
-          <div className="text-gray-400 text-base mb-3">
-            $ cat cloud_fundamentals.sh
-          </div>
-          <div className="space-y-2">
-            <a
-              href="https://learn.microsoft.com/training/modules/describe-cloud-compute/?wt.mc_id=studentamb_387261"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 transition-colors text-base flex items-center gap-2"
-            >
-              <ExternalLink size={16} />
-              → describe_cloud_computing.md
-            </a>
-            <a
-              href="https://learn.microsoft.com/training/modules/describe-benefits-use-cloud-services/?wt.mc_id=studentamb_387261"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 transition-colors text-base flex items-center gap-2"
-            >
-              <ExternalLink size={16} />
-              → cloud_service_benefits.md
-            </a>
-            <a
-              href="https://learn.microsoft.com/training/modules/describe-cloud-service-types/?wt.mc_id=studentamb_387261"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 transition-colors text-base flex items-center gap-2"
-            >
-              <ExternalLink size={16} />
-              → cloud_service_types.md
-            </a>
-          </div>
-        </div>
-
-        {/* Azure Setup */}
-        <div className="mb-8">
-          <div className="text-yellow-400 text-base mb-3">
-            $ cat Finally.txt
+        {/* 3. Shared Responsibility Model */}
+        <Section command="$ cat 03_shared_responsibility_model.sh">
+          <div className="flex items-center gap-2 mb-3">
+            <Shield className="w-5 h-5 text-cyan-400" />
+            <span className="text-cyan-400 font-semibold text-base">Industry Essential</span>
           </div>
           <p className="text-gray-300 text-base leading-relaxed mb-4">
-            Ensure you have an azure account set up and ready to go. If you don't have one, you can create a <a
-              href="https://azure.microsoft.com/pricing/purchase-options/azure-account/?wt.mc_id=studentamb_387261"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 inline-flex items-center gap-1"
-            >
-              Free Account <ExternalLink size={14} />
-            </a>{" "} or a <a
-              href="https://azure.microsoft.com/free/students/?wt.mc_id=studentamb_387261"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 inline-flex items-center gap-1"
-            >
-              Student Account <ExternalLink size={14} />
-            </a>. This will be essential for completing the hands-on labs and challenges in the upcoming sections.
+            The Shared Responsibility Model is the single most important concept in cloud security. It defines who is responsible for what. The cloud provider secures the infrastructure <span className="text-gray-500">(physical hosts, network, datacenters)</span>. You secure everything you put on it <span className="text-gray-500">(data, identities, access policies, configurations)</span>. Most cloud breaches happen because organizations misunderstand this boundary.
           </p>
-          <div className="text-gray-400 text-base">
-            Currently we use <a
-              href="https://learn.microsoft.com/training/modules/describe-core-architectural-components-of-azure/?wt.mc_id=studentamb_387261"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-cyan-400 hover:text-cyan-300 underline inline-flex items-center gap-1"
-            >
-              Microsoft Azure <ExternalLink size={14} />
-            </a> as the cloud platform to apply security throughout this challenge.
+          <div className="space-y-2">
+            <ExtLink href="https://learn.microsoft.com/azure/security/fundamentals/shared-responsibility?wt.mc_id=studentamb_387261">
+              → Microsoft: shared_responsibility_model.md
+            </ExtLink>
+            <ExtLink href="https://cloudsecurityalliance.org/research/topics/shared-responsibility">
+              → CSA: cloud_security_alliance_shared_responsibility.md
+            </ExtLink>
           </div>
-        </div>
+        </Section>
+
+        {/* 4. CIA Triad */}
+        <Section command="$ cat 04_cia_triad.sh">
+          <p className="text-gray-300 text-base leading-relaxed mb-4">
+            Every security decision maps back to the CIA Triad. This is how the industry evaluates risk and designs controls:
+          </p>
+          <div className="bg-gray-800 border border-gray-700 p-4 mb-4">
+            <div className="space-y-3 text-sm">
+              <div className="flex items-start gap-3">
+                <Lock className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <span className="text-green-400 font-bold">Confidentiality</span>
+                  <span className="text-gray-300"> — Only authorized users can access the data. Controls: encryption, RBAC, private endpoints.</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <Shield className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <span className="text-blue-400 font-bold">Integrity</span>
+                  <span className="text-gray-300"> — Data cannot be altered without detection. Controls: hashing, audit logs, immutable storage.</span>
+                </div>
+              </div>
+              <div className="flex items-start gap-3">
+                <Globe className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" />
+                <div>
+                  <span className="text-yellow-400 font-bold">Availability</span>
+                  <span className="text-gray-300"> — Systems remain accessible when needed. Controls: redundancy, backups, DDoS protection.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Section>
+
+        {/* 5. What is Cloud Security */}
+        <Section command="$ cat 05_what_is_cloud_security.sh">
+          <p className="text-gray-300 text-base leading-relaxed mb-4">
+            Cloud security is the practice of protecting cloud-based systems, data, and infrastructure. In the real world, cloud security engineers work on identity and access management, network segmentation, data protection, threat detection, and compliance — exactly what this challenge covers.
+          </p>
+          <div className="space-y-2">
+            <ExtLink href="https://cloud.google.com/learn/what-is-cloud-security">
+              → Read: cloud_security_according_to_google.md
+            </ExtLink>
+            <ExtLink href="https://www.microsoft.com/en-us/security/business/security-101/what-is-cloud-security">
+              → Read: cloud_security_according_to_microsoft.md
+            </ExtLink>
+          </div>
+        </Section>
+
+        {/* 6. Real-World Threat Landscape */}
+        <Section command="$ cat 06_real_world_threats.sh">
+          <div className="flex items-center gap-2 mb-3">
+            <AlertTriangle className="w-5 h-5 text-red-400" />
+            <span className="text-red-400 font-semibold text-base">Why This Matters</span>
+          </div>
+          <p className="text-gray-300 text-base leading-relaxed mb-4">
+            Cloud misconfigurations are the #1 cause of cloud data breaches. Publicly exposed storage accounts, overly permissive IAM roles, leaked credentials in git repos, and unencrypted data at rest are not theoretical — they happen daily. Study these real incidents to understand what you're defending against.
+          </p>
+          <div className="space-y-2">
+            <ExtLink href="https://blog.christophetd.fr/cloud-security-breaches-and-vulnerabilities-2021-in-review/">
+              → cloud_security_breaches_2021.analysis
+            </ExtLink>
+            <ExtLink href="https://www.nojones.net/posts/breaking-into-cloudsec">
+              → breaking_into_cloudsec.md
+            </ExtLink>
+          </div>
+        </Section>
+
+        {/* 7. Azure Fundamentals */}
+        <Section command="$ cat 07_azure_fundamentals.sh">
+          <p className="text-gray-300 text-base leading-relaxed mb-4">
+            We use Microsoft Azure throughout this challenge. Before starting the modules, understand these core building blocks — they show up in every Azure security engagement:
+          </p>
+          <div className="bg-gray-800 border border-gray-700 p-4 mb-4">
+            <div className="space-y-2 text-sm text-gray-300">
+              <p><span className="text-cyan-400">Tenant</span> — Your organization's identity boundary in Azure AD (now Entra ID)</p>
+              <p><span className="text-cyan-400">Subscription</span> — A billing and access boundary. One tenant can have many subscriptions</p>
+              <p><span className="text-cyan-400">Resource Group</span> — A logical container for resources. Used to apply policies, RBAC, and tags</p>
+              <p><span className="text-cyan-400">Region</span> — A geographic datacenter location. Affects latency, compliance, and data residency</p>
+            </div>
+          </div>
+          <div className="space-y-2">
+            <ExtLink href="https://learn.microsoft.com/training/modules/describe-core-architectural-components-of-azure/?wt.mc_id=studentamb_387261">
+              → Microsoft Learn: azure_core_architecture.md
+            </ExtLink>
+          </div>
+        </Section>
+
+        {/* 8. Azure Account Setup */}
+        <Section command="$ cat 08_setup_azure_account.sh">
+          <p className="text-gray-300 text-base leading-relaxed mb-4">
+            You need an Azure account to complete the hands-on labs. Choose one of the following:
+          </p>
+          <div className="space-y-3 mb-6">
+            <div className="bg-gray-800 border border-gray-700 p-4">
+              <div className="flex items-start gap-3">
+                <span className="text-green-400 font-bold text-sm flex-shrink-0">OPTION 1</span>
+                <div>
+                  <a
+                    href="https://azure.microsoft.com/pricing/purchase-options/azure-account/?wt.mc_id=studentamb_387261"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-400 hover:text-blue-300 inline-flex items-center gap-1 font-semibold"
+                  >
+                    Azure Free Account <ExternalLink size={14} />
+                  </a>
+                  <p className="text-gray-400 text-sm mt-1">$200 credit for 30 days + 12 months of free services. Good for anyone.</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-gray-800 border border-gray-700 p-4">
+              <div className="flex items-start gap-3">
+                <span className="text-green-400 font-bold text-sm flex-shrink-0">OPTION 2</span>
+                <div>
+                  <a
+                    href="https://azure.microsoft.com/free/students/?wt.mc_id=studentamb_387261"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-400 hover:text-blue-300 inline-flex items-center gap-1 font-semibold"
+                  >
+                    Azure for Students <ExternalLink size={14} />
+                  </a>
+                  <p className="text-gray-400 text-sm mt-1">$100 credit, no credit card required. Verify with your school email.</p>
+                </div>
+              </div>
+            </div>
+            <div className="bg-gray-800 border border-yellow-600 p-4">
+              <div className="flex items-start gap-3">
+                <span className="text-yellow-400 font-bold text-sm flex-shrink-0">OPTION 3</span>
+                <div>
+                  <a
+                    href="https://techcommunity.microsoft.com/blog/skills-hub-blog/a-new-chapter-for-the-microsoft-student-ambassadors-program-built-for-you/4508104"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-yellow-400 hover:text-yellow-300 inline-flex items-center gap-1 font-semibold"
+                  >
+                    Microsoft Student Ambassadors <ExternalLink size={14} />
+                  </a>
+                  <p className="text-gray-400 text-sm mt-1">
+                    Become a Microsoft Student Ambassador and receive <span className="text-yellow-400 font-semibold">$150/month in Azure credits</span>, access to Microsoft 365 Copilot, Visual Studio Enterprise, and more. No application or interview required — just sign up at{" "}
+                    <a
+                      href="https://www.studentambassadors.com/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-400 hover:text-blue-300 underline"
+                    >
+                      studentambassadors.com
+                    </a>{" "}
+                    and start building.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Section>
 
         {/* Start Challenge */}
         <div className="bg-gray-800 border border-gray-700 p-6">
