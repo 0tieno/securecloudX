@@ -12,6 +12,7 @@ const topics = [
   { day: 5, title: "Cloud Security Posture Management" },
   { day: 6, title: "Detection Engineering & IR" },
   { day: 7, title: "Security Architecture Review" },
+  { day: 8, title: "DevSecOps Fundamentals" },
 ];
 
 const Sidebar = () => {
