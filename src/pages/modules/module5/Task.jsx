@@ -7,9 +7,11 @@ import { useStepProgress } from "../../../hooks/useStepProgress";
 
 const TOTAL = 7;
 const OBJECTIVES = [
-  "Enable Microsoft Defender for Cloud and act on security recommendations",
-  "Deploy Azure Sentinel and connect log data sources",
-  "Use Log Analytics to query and detect security anomalies",
+  "Enable Microsoft Defender for Cloud and review your Secure Score",
+  "Remediate top security recommendations to improve your posture",
+  "Create and assign Azure Policies to enforce security guardrails",
+  "Set up Log Analytics and connect critical log sources",
+  "Write KQL queries to detect suspicious activity",
 ];
 
 const Task5 = () => {
@@ -22,14 +24,14 @@ const Task5 = () => {
       <div className="max-w-3xl mx-auto px-4 py-10">
         <div className="flex items-center gap-2 text-gray-600 text-xs mb-8">
           <Link to="/home" className="hover:text-gray-400 transition-colors">// phases</Link>
-          <span>/</span><span className="text-gray-400">phase-5-security-monitoring</span>
+          <span>/</span><span className="text-gray-400">phase-5-security-posture</span>
           <span>/</span><span className="text-gray-500">lab</span>
         </div>
         <div className="mb-8">
-          <div className="text-green-400 text-xs mb-3">$ ./lab_5_security_monitoring_sentinel.sh</div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Module 5 Lab: Security Monitoring & Threat Intelligence</h1>
+          <div className="text-green-400 text-xs mb-3">$ ./lab_5_security_posture_compliance.sh</div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Module 5 Lab: Security Posture & Compliance Monitoring</h1>
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
-            Set up continuous security monitoring and threat intelligence using Azure tools.
+            Assess your environment's security posture, enforce compliance with Azure Policy, and build centralized monitoring with Log Analytics and KQL.
           </p>
         </div>
         <div className="mb-8">
@@ -60,73 +62,131 @@ const Task5 = () => {
           <PhaseStepItem number={1} type="PREP" title="What You'll Do"
             isOpen={open.has(0)} onToggleOpen={() => toggleOpen(0)}
             isChecked={checked.has(0)} onToggleChecked={() => toggleChecked(0)}>
+            <p className="mb-2">This lab mirrors what cloud security teams do every week — assess, remediate, enforce, and monitor:</p>
             <ul className="space-y-1">
-              <li className="flex items-start gap-2"><span className="text-gray-500">-</span><span>Enable Microsoft Defender for Cloud and review recommendations.</span></li>
-              <li className="flex items-start gap-2"><span className="text-gray-500">-</span><span>Deploy Azure Sentinel and connect security data sources.</span></li>
-              <li className="flex items-start gap-2"><span className="text-gray-500">-</span><span>Use Log Analytics to analyze security event logs.</span></li>
-              <li className="flex items-start gap-2"><span className="text-gray-500">-</span><span>Integrate threat intelligence feeds for proactive security.</span></li>
+              <li className="flex items-start gap-2"><span className="text-gray-500">-</span><span>Enable Defender for Cloud and review your Secure Score — the industry-standard measure of your security posture.</span></li>
+              <li className="flex items-start gap-2"><span className="text-gray-500">-</span><span>Remediate the top security recommendations to improve your score.</span></li>
+              <li className="flex items-start gap-2"><span className="text-gray-500">-</span><span>Create Azure Policies that prevent insecure configurations from being deployed.</span></li>
+              <li className="flex items-start gap-2"><span className="text-gray-500">-</span><span>Set up a Log Analytics workspace and connect your Activity Logs and Entra ID logs.</span></li>
+              <li className="flex items-start gap-2"><span className="text-gray-500">-</span><span>Write KQL queries to find suspicious activity.</span></li>
+              <li className="flex items-start gap-2"><span className="text-gray-500">-</span><span>Configure alert rules so you get notified when critical events occur.</span></li>
+              <li className="flex items-start gap-2"><span className="text-gray-500">-</span><span>Review the regulatory compliance dashboard and understand where you stand.</span></li>
             </ul>
           </PhaseStepItem>
+
           <PhaseStepItem number={2} type="AI" title="AI Prompt — Use this to guide you"
             isOpen={open.has(1)} onToggleOpen={() => toggleOpen(1)}
             isChecked={checked.has(1)} onToggleChecked={() => toggleChecked(1)}>
             <p className="text-xs text-gray-500 mb-2">Copy and paste this into your AI assistant for interactive step-by-step guidance:</p>
             <div className="p-3 bg-gray-900 border border-gray-700 text-gray-400 text-sm italic leading-relaxed">
-              "Walk me through a hands-on lab on setting up security monitoring and threat intelligence in Azure. The lab includes enabling Microsoft Defender for Cloud, deploying Azure Sentinel as a SIEM, configuring Log Analytics to query security events, and integrating threat intelligence feeds. Explain each step clearly with Azure portal navigation instructions."
+              "Walk me through a hands-on lab on cloud security posture management in Azure. The lab covers: 1) Enabling Microsoft Defender for Cloud and reviewing the Secure Score, 2) Remediating the top 3 security recommendations, 3) Creating Azure Policies to deny public IP addresses on VMs and require tags on resources, 4) Setting up a Log Analytics workspace and connecting Activity Logs and Entra ID sign-in logs, 5) Writing KQL queries to detect failed sign-ins, resource deletions, and role assignment changes, 6) Configuring an Action Group with email alerts for high-severity Defender alerts, 7) Reviewing the regulatory compliance dashboard against the Microsoft Cloud Security Benchmark. Walk me through each step with Azure portal navigation instructions and explain the security reasoning behind each action."
             </div>
           </PhaseStepItem>
-          <PhaseStepItem number={3} type="PRACTICE" title="Step 1: Enable Microsoft Defender for Cloud"
+
+          <PhaseStepItem number={3} type="PRACTICE" title="Step 1: Enable Defender for Cloud & Review Secure Score"
             isOpen={open.has(2)} onToggleOpen={() => toggleOpen(2)}
             isChecked={checked.has(2)} onToggleChecked={() => toggleChecked(2)}>
-            <p className="text-xs text-gray-500 mb-2">Why? Defender for Cloud provides security posture management and threat protection.</p>
+            <p className="text-xs text-gray-500 mb-2">Why? Secure Score is the single most-tracked security metric in Azure environments. Every security team monitors it.</p>
             <ul className="space-y-1">
               <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Sign in to <a href="https://portal.azure.com" className="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">Azure Portal</a></span></li>
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Search for <strong className="text-gray-300">Microsoft Defender for Cloud</strong> and open it</span></li>
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Click on <strong className="text-gray-300">Getting Started</strong> and enable Defender plans</span></li>
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Review and action the security recommendations provided</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Search for <strong className="text-gray-300">Microsoft Defender for Cloud</strong></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Go to <strong className="text-gray-300">Environment Settings</strong> → Select your subscription → Enable Defender plans (at minimum: Servers, Storage, Key Vault)</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Return to Defender for Cloud → <strong className="text-gray-300">Overview</strong> → Note your Secure Score percentage</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Click on the Secure Score to see the breakdown by security control (Identity, Network, Data, Compute)</span></li>
             </ul>
+            <div className="mt-3 p-2 border border-yellow-800/50 bg-yellow-900/10">
+              <p className="text-yellow-400 text-xs">Tip: Defender plans have costs. For learning, enable them briefly and disable after the lab. The free CSPM tier (Secure Score + recommendations) has no cost.</p>
+            </div>
           </PhaseStepItem>
-          <PhaseStepItem number={4} type="PRACTICE" title="Step 2: Deploy Azure Sentinel"
+
+          <PhaseStepItem number={4} type="PRACTICE" title="Step 2: Remediate Top Security Recommendations"
             isOpen={open.has(3)} onToggleOpen={() => toggleOpen(3)}
             isChecked={checked.has(3)} onToggleChecked={() => toggleChecked(3)}>
-            <p className="text-xs text-gray-500 mb-2">Why? Sentinel is a cloud-native SIEM for threat detection and automated response.</p>
+            <p className="text-xs text-gray-500 mb-2">Why? Recommendations are prioritized by impact. Fixing the top ones gives you the biggest security improvement.</p>
             <ul className="space-y-1">
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Search for <strong className="text-gray-300">Microsoft Sentinel</strong> and create a new workspace</span></li>
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Connect data connectors (Azure AD, Azure Activity, Security Events)</span></li>
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Enable analytics rules to detect suspicious activity</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>In Defender for Cloud → <strong className="text-gray-300">Recommendations</strong></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Sort by <strong className="text-gray-300">Impact</strong> (High first)</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Pick the top 3 recommendations and remediate each one. Common examples:</span></li>
+            </ul>
+            <div className="mt-2 p-2 bg-gray-900 border border-gray-700 text-sm">
+              <p className="text-gray-400">• "MFA should be enabled on accounts with owner permissions" → Enable MFA via Conditional Access</p>
+              <p className="text-gray-400">• "Storage accounts should restrict network access" → Configure firewall rules or Private Endpoints</p>
+              <p className="text-gray-400">• "Management ports should be closed on VMs" → Remove public RDP/SSH NSG rules, use Bastion instead</p>
+            </div>
+            <ul className="space-y-1 mt-2">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>After remediation, check the Secure Score again — it should increase</span></li>
             </ul>
           </PhaseStepItem>
-          <PhaseStepItem number={5} type="PRACTICE" title="Step 3: Use Log Analytics"
+
+          <PhaseStepItem number={5} type="PRACTICE" title="Step 3: Create & Assign Azure Policies"
             isOpen={open.has(4)} onToggleOpen={() => toggleOpen(4)}
             isChecked={checked.has(4)} onToggleChecked={() => toggleChecked(4)}>
-            <p className="text-xs text-gray-500 mb-2">Why? Log Analytics lets you query and correlate security events across your environment.</p>
+            <p className="text-xs text-gray-500 mb-2">Why? Policies prevent bad configurations from being deployed in the first place — proactive vs reactive security.</p>
             <ul className="space-y-1">
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Open your Log Analytics workspace from the Azure Portal</span></li>
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Use KQL queries to filter and analyze security logs</span></li>
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Create custom alerts based on query results</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Search for <strong className="text-gray-300">Azure Policy</strong> in the portal</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Go to <strong className="text-gray-300">Definitions</strong> → Filter by category "Network"</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Find and assign: <strong className="text-gray-300">"Network interfaces should not have public IPs"</strong> → Set effect to <span className="text-yellow-400">Deny</span></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Assign the policy to your resource group scope</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Now assign a second policy: <strong className="text-gray-300">"Require a tag and its value on resources"</strong> → Set tag name to "Environment"</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span><strong className="text-yellow-400">Test it:</strong> Try creating a VM with a public IP — it should be denied. Try creating a resource without the tag — it should be denied.</span></li>
             </ul>
+            <div className="mt-3 p-2 bg-gray-900 border border-gray-700 text-sm font-mono">
+              <p className="text-cyan-400">// Verify policy compliance via CLI</p>
+              <p className="text-gray-300">az policy state list --resource-group {"<your-rg>"} \</p>
+              <p className="text-gray-300">  --query "[?complianceState=='NonCompliant'].{`{Name:resourceId, Policy:policyDefinitionName}`}" \</p>
+              <p className="text-gray-300">  --output table</p>
+            </div>
           </PhaseStepItem>
-          <PhaseStepItem number={6} type="PRACTICE" title="Step 4: Integrate Threat Intelligence"
+
+          <PhaseStepItem number={6} type="PRACTICE" title="Step 4: Set Up Log Analytics & Write KQL Queries"
             isOpen={open.has(5)} onToggleOpen={() => toggleOpen(5)}
             isChecked={checked.has(5)} onToggleChecked={() => toggleChecked(5)}>
-            <p className="text-xs text-gray-500 mb-2">Why? Threat intelligence helps identify and mitigate emerging threats proactively.</p>
+            <p className="text-xs text-gray-500 mb-2">Why? Centralized logging + querying is the foundation of all security operations. You'll use this in every security role.</p>
             <ul className="space-y-1">
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>In Sentinel, navigate to <strong className="text-gray-300">Threat Intelligence</strong></span></li>
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Add threat intelligence indicators (IPs, domains, file hashes)</span></li>
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Create analytics rules that match logs against threat intel</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Search for <strong className="text-gray-300">Log Analytics workspaces</strong> → Create a new workspace</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Go to your subscription → <strong className="text-gray-300">Activity Log</strong> → <strong className="text-gray-300">Diagnostic settings</strong> → Send to your Log Analytics workspace</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Go to <strong className="text-gray-300">Entra ID</strong> → <strong className="text-gray-300">Diagnostic settings</strong> → Send Sign-in logs and Audit logs to the same workspace</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Open your workspace → <strong className="text-gray-300">Logs</strong> → Try these KQL queries:</span></li>
             </ul>
+            <div className="mt-2 space-y-3">
+              <div className="p-2 bg-gray-900 border border-gray-700 text-sm font-mono">
+                <p className="text-cyan-400">// Failed sign-ins in the last 7 days</p>
+                <p className="text-gray-300">SigninLogs</p>
+                <p className="text-gray-300">| where TimeGenerated {'>'} ago(7d)</p>
+                <p className="text-gray-300">| where ResultType != "0"</p>
+                <p className="text-gray-300">| summarize Failures = count() by UserPrincipalName, IPAddress, ResultDescription</p>
+                <p className="text-gray-300">| order by Failures desc</p>
+              </div>
+              <div className="p-2 bg-gray-900 border border-gray-700 text-sm font-mono">
+                <p className="text-cyan-400">// Resource deletions in the last 24 hours</p>
+                <p className="text-gray-300">AzureActivity</p>
+                <p className="text-gray-300">| where TimeGenerated {'>'} ago(24h)</p>
+                <p className="text-gray-300">| where OperationNameValue endswith "DELETE"</p>
+                <p className="text-gray-300">| project TimeGenerated, Caller, ResourceGroup, OperationNameValue, ActivityStatusValue</p>
+              </div>
+              <div className="p-2 bg-gray-900 border border-gray-700 text-sm font-mono">
+                <p className="text-cyan-400">// Role assignment changes (who got new permissions?)</p>
+                <p className="text-gray-300">AzureActivity</p>
+                <p className="text-gray-300">| where OperationNameValue == "MICROSOFT.AUTHORIZATION/ROLEASSIGNMENTS/WRITE"</p>
+                <p className="text-gray-300">| project TimeGenerated, Caller, ResourceGroup, ActivityStatusValue</p>
+              </div>
+            </div>
           </PhaseStepItem>
-          <PhaseStepItem number={7} type="PRACTICE" title="Step 5: Test & Validate"
+
+          <PhaseStepItem number={7} type="PRACTICE" title="Step 5: Configure Alerts & Review Compliance"
             isOpen={open.has(6)} onToggleOpen={() => toggleOpen(6)}
             isChecked={checked.has(6)} onToggleChecked={() => toggleChecked(6)}>
-            <p className="text-xs text-gray-500 mb-2">Confirm your monitoring setup is working correctly.</p>
+            <p className="text-xs text-gray-500 mb-2">Why? Real-time alerts mean you don't have to watch dashboards 24/7. Compliance dashboards prove your security posture to auditors.</p>
             <ul className="space-y-1">
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Generate test security events and confirm Sentinel detects them</span></li>
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Verify alerts appear in the Sentinel Incidents dashboard</span></li>
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Check Log Analytics for correlated event data</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>In Azure Monitor → <strong className="text-gray-300">Alerts</strong> → <strong className="text-gray-300">Action Groups</strong> → Create a new action group with your email</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Create an alert rule: <strong className="text-gray-300">Signal type: Activity Log</strong> → Operation: "Delete Virtual Machine" → Attach your action group</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span><strong className="text-yellow-400">Test it:</strong> Delete a test resource and verify you receive the email alert</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Go to Defender for Cloud → <strong className="text-gray-300">Regulatory compliance</strong></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Review the <strong className="text-gray-300">Microsoft Cloud Security Benchmark</strong> dashboard — note which controls pass and which fail</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Add the <strong className="text-gray-300">CIS Microsoft Azure Foundations Benchmark</strong> standard and compare your compliance</span></li>
             </ul>
             <div className="mt-3 p-2 border border-green-800/50 bg-green-900/10">
-              <p className="text-green-400 text-xs">Success: Security events are detected and incidents are visible in Sentinel.</p>
+              <p className="text-green-400 text-xs">Success: Your Secure Score has improved, Azure Policies are blocking insecure deployments, KQL queries are returning results, alerts are firing, and you can see your compliance posture against industry benchmarks.</p>
             </div>
           </PhaseStepItem>
         </div>
