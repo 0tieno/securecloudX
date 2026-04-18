@@ -19,7 +19,7 @@ const Footer = () => {
         <span className="text-gray-500">Some rights reserved</span>
 
         <Dot />
-        <Link to="/about" className="hover:text-gray-300 transition-colors">Founder</Link>
+        <Link to="https://0tieno.github.io/Blog/about/" className="hover:text-gray-300 transition-colors">Founder</Link>
         <Dot />
         <Link to="/changelog" className="hover:text-gray-300 transition-colors">Changelog</Link>
         <Dot />

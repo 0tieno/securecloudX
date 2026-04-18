@@ -128,7 +128,7 @@ export default function CertificatePage() {
           </div>
 
           <p className="text-gray-600 text-[11px] font-mono">
-            tag <span className="text-gray-400">@0tieno</span> on X · <span className="text-gray-400">@i_am_ronney</span> on LinkedIn · we love seeing your wins
+            tag <span className="text-gray-400">@securecloudX</span> on X · <span className="text-gray-400">@ronney otieno</span> on LinkedIn · we love seeing your wins
           </p>
         </div>
       </div>
