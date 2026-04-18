@@ -68,6 +68,14 @@ const PHASES = [
     path: "/module7",
     taskPath: "/module7/task",
   },
+  {
+    id: 8,
+    title: "DevSecOps Fundamentals",
+    description:
+      "Shift-left security — CI/CD pipeline hardening, SAST/SCA scanning, secret detection, container security, and IaC guardrails.",
+    path: "/module8",
+    taskPath: "/module8/task",
+  },
 ];
 
 function PhaseStatusBadge({ overviewDone, taskDone }) {
