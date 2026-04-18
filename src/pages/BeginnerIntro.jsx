@@ -159,21 +159,18 @@ const BeginnerIntro = () => {
           <div className="bg-gray-800 border border-gray-700 p-4 mb-4">
             <div className="space-y-3 text-sm">
               <div className="flex items-start gap-3">
-                <Lock className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
                 <div>
                   <span className="text-green-400 font-bold">Confidentiality</span>
                   <span className="text-gray-300"> — Only authorized users can access the data. Controls: encryption, RBAC, private endpoints.</span>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <Shield className="w-5 h-5 text-blue-400 flex-shrink-0 mt-0.5" />
                 <div>
                   <span className="text-blue-400 font-bold">Integrity</span>
                   <span className="text-gray-300"> — Data cannot be altered without detection. Controls: hashing, audit logs, immutable storage.</span>
                 </div>
               </div>
               <div className="flex items-start gap-3">
-                <Globe className="w-5 h-5 text-yellow-400 flex-shrink-0 mt-0.5" />
                 <div>
                   <span className="text-yellow-400 font-bold">Availability</span>
                   <span className="text-gray-300"> — Systems remain accessible when needed. Controls: redundancy, backups, DDoS protection.</span>
@@ -201,7 +198,6 @@ const BeginnerIntro = () => {
         {/* 6. Real-World Threat Landscape */}
         <Section command="$ cat 06_real_world_threats.sh">
           <div className="flex items-center gap-2 mb-3">
-            <AlertTriangle className="w-5 h-5 text-red-400" />
             <span className="text-red-400 font-semibold text-base">Why This Matters</span>
           </div>
           <p className="text-gray-300 text-base leading-relaxed mb-4">
