@@ -25,6 +25,7 @@ const SLUGS = {
   5: "phase-5-security-monitoring",
   6: "phase-6-incident-response",
   7: "phase-7-capstone-project",
+  8: "phase-8-devsecops",
 };
 
 const Resources = () => {
@@ -112,7 +113,7 @@ const Resources = () => {
           <Link to={`/module${module}/task`} className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
             <ChevronLeft size={14} /> Back to Lab
           </Link>
-          {moduleNum < 7 ? (
+          {moduleNum < 8 ? (
             <Link to={`/module${moduleNum + 1}`} className="flex items-center gap-1 text-gray-500 hover:text-red-400 transition-colors">
               Module {moduleNum + 1} <ChevronRight size={14} />
             </Link>
