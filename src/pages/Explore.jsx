@@ -72,18 +72,6 @@ const Explore = () => {
           </div>
         </div>
 
-        {/* DevSecOps Module */}
-        <div className="mb-8 p-4 border border-green-500/20 bg-green-500/5">
-          <div className="text-green-400 text-xs mb-2">$ cat devsecops.md</div>
-          <p className="text-gray-400 text-sm font-bold mb-1">DevSecOps Fundamentals — Module 8</p>
-          <p className="text-gray-500 text-sm mb-3">
-            Shift-left security — CI/CD pipeline hardening, SAST/SCA scanning, secret detection, container security, and IaC guardrails.
-          </p>
-          <Link to="/module8" className="text-green-400 hover:text-green-300 transition-colors text-sm">
-            → Start Module 8
-          </Link>
-        </div>
-
         {/* Share CTA */}
         <div className="mb-8 p-4 border border-gray-700 bg-gray-800/50">
           <div className="text-gray-500 text-xs mb-2"># share your progress</div>
