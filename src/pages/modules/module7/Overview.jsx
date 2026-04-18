@@ -4,15 +4,17 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import PhaseStepItem from "../../../components/PhaseStepItem";
 
-const TOTAL = 5;
+const TOTAL = 7;
 const OBJECTIVES = [
-  "Apply IAM, network, data, and app security in a unified Azure deployment",
-  "Deploy Azure Sentinel for comprehensive threat detection and response",
-  "Conduct a security audit and verify compliance with industry standards",
+  "Design and deploy a complete secure Azure architecture applying skills from all modules",
+  "Perform threat modeling using the STRIDE framework to identify risks before deployment",
+  "Conduct a security architecture review against CIS Azure Benchmark controls",
+  "Validate your Secure Score in Defender for Cloud and remediate findings",
+  "Write a professional security assessment report with executive summary",
 ];
 
 const Day7 = () => {
-  const [open, setOpen] = useState(() => new Set([0,1,2,3,4]));
+  const [open, setOpen] = useState(() => new Set([0,1,2,3,4,5,6]));
   const [checked, setChecked] = useState(new Set());
   const toggleOpen = (i) => setOpen(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
   const toggleChecked = (i) => setChecked(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
@@ -28,9 +30,9 @@ const Day7 = () => {
         </div>
         <div className="mb-8">
           <div className="text-green-400 text-xs mb-3">$ cat module_7_capstone_overview.md</div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Module 7: Capstone Project — Secure Azure Deployment</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Module 7: Capstone — Security Architecture Review</h1>
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
-            Apply everything you've learned throughout the challenge by securing an end-to-end Azure deployment.
+            This is the final module. You'll deploy a multi-tier Azure environment, threat model it using STRIDE, review it against CIS benchmarks, remediate findings, and deliver a professional security assessment report. This mirrors what cloud security engineers do in real engagements.
           </p>
         </div>
         <div className="mb-8">
@@ -53,7 +55,7 @@ const Day7 = () => {
           </ul>
         </div>
         <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
-          <button onClick={() => setOpen(new Set([0,1,2,3,4]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6]))} className="hover:text-gray-400 transition-colors">expand all</button>
           <span>|</span>
           <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
         </div>
@@ -61,40 +63,129 @@ const Day7 = () => {
           <PhaseStepItem number={1} type="READ" title="Domain & Goal"
             isOpen={open.has(0)} onToggleOpen={() => toggleOpen(0)}
             isChecked={checked.has(0)} onToggleChecked={() => toggleChecked(0)}>
-            <p><span className="text-gray-500">Domain:</span> Comprehensive Security Implementation</p>
-            <p className="mt-1"><span className="text-gray-500">Goal:</span> Secure an end-to-end Azure deployment by integrating security best practices from all 7 phases.</p>
+            <p><span className="text-gray-500">Domain:</span> Security Architecture Review & Assessment</p>
+            <p className="mt-1"><span className="text-gray-500">Goal:</span> Deploy a secure Azure environment, threat model it, review it against industry benchmarks, and produce a professional security assessment deliverable.</p>
+            <p className="mt-2 text-gray-500 text-xs">Industry alignment: SANS SEC549 (Cloud Security Architecture), AZ-500 (all domains), CIS Azure Benchmark v2.0, Microsoft Cloud Security Benchmark (MCSB), STRIDE Threat Modeling (Microsoft SDL)</p>
           </PhaseStepItem>
-          <PhaseStepItem number={2} type="READ" title="What is this Capstone & Why it Matters"
+
+          <PhaseStepItem number={2} type="READ" title="STRIDE Threat Modeling"
             isOpen={open.has(1)} onToggleOpen={() => toggleOpen(1)}
             isChecked={checked.has(1)} onToggleChecked={() => toggleChecked(1)}>
-            <p>The capstone project brings everything together — you'll secure a full Azure deployment using all the tools, configurations, and strategies learned across the previous 6 phases.</p>
-            <p className="mt-2">A secure deployment ensures your environment is protected from external and internal threats, preventing data breaches and operational disruptions.</p>
+            <p><span className="text-yellow-400">STRIDE</span> is Microsoft's threat modeling framework. Before deploying anything, you identify what could go wrong by analyzing each component against six threat categories.</p>
+            <div className="mt-3 p-3 border border-gray-700 bg-gray-800">
+              <div className="space-y-2 text-sm">
+                <div className="flex items-start gap-3">
+                  <span className="text-red-400 font-bold w-6 flex-shrink-0">S</span>
+                  <div><span className="text-gray-300">Spoofing</span> — Can someone pretend to be a legitimate user or service? <span className="text-gray-500">→ Mitigate: MFA, Managed Identity, certificate auth</span></div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-red-400 font-bold w-6 flex-shrink-0">T</span>
+                  <div><span className="text-gray-300">Tampering</span> — Can someone modify data in transit or at rest? <span className="text-gray-500">→ Mitigate: TLS, encryption, immutability policies</span></div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-red-400 font-bold w-6 flex-shrink-0">R</span>
+                  <div><span className="text-gray-300">Repudiation</span> — Can someone deny their actions? <span className="text-gray-500">→ Mitigate: Audit logs, sign-in logs, activity logs</span></div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-red-400 font-bold w-6 flex-shrink-0">I</span>
+                  <div><span className="text-gray-300">Information Disclosure</span> — Can data leak to unauthorized parties? <span className="text-gray-500">→ Mitigate: Private Endpoints, encryption, RBAC</span></div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-red-400 font-bold w-6 flex-shrink-0">D</span>
+                  <div><span className="text-gray-300">Denial of Service</span> — Can someone make the service unavailable? <span className="text-gray-500">→ Mitigate: DDoS Protection, rate limiting, redundancy</span></div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-red-400 font-bold w-6 flex-shrink-0">E</span>
+                  <div><span className="text-gray-300">Elevation of Privilege</span> — Can someone gain higher access than intended? <span className="text-gray-500">→ Mitigate: Least-privilege RBAC, PIM, Conditional Access</span></div>
+                </div>
+              </div>
+            </div>
+            <div className="mt-3 space-y-1">
+              <a href="https://learn.microsoft.com/azure/security/develop/threat-modeling-tool?wt.mc_id=studentamb_387261" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-sm block">→ Microsoft Learn: Threat Modeling Tool</a>
+            </div>
           </PhaseStepItem>
-          <PhaseStepItem number={3} type="SCENARIO" title="Real-World Scenario: Healthcare Provider Deployment"
+
+          <PhaseStepItem number={3} type="READ" title="CIS Azure Benchmark — The Security Baseline"
             isOpen={open.has(2)} onToggleOpen={() => toggleOpen(2)}
             isChecked={checked.has(2)} onToggleChecked={() => toggleChecked(2)}>
-            <p>You are a cloud security engineer tasked with securing a new Azure deployment for a large healthcare provider. The company handles sensitive patient data and must comply with strict privacy regulations (HIPAA, GDPR). Your job is to implement a comprehensive security posture across <span className="text-yellow-400">identity, network, and data layers</span> to ensure confidentiality, integrity, and availability.</p>
+            <p>The <span className="text-yellow-400">CIS Microsoft Azure Foundations Benchmark</span> is the industry-standard checklist for securing Azure environments. In your capstone, you'll validate your deployment against key CIS sections.</p>
+            <div className="mt-3 p-3 border border-gray-700 bg-gray-800">
+              <p className="text-gray-300 text-sm font-semibold mb-2">CIS Benchmark Sections You've Covered</p>
+              <ul className="space-y-1 text-sm text-gray-400">
+                <li>• <span className="text-gray-300">Section 1: IAM</span> — MFA, Conditional Access, PIM, least-privilege RBAC <span className="text-gray-600">(Module 1)</span></li>
+                <li>• <span className="text-gray-300">Section 3: Storage</span> — Encryption, HTTPS, key management, private access <span className="text-gray-600">(Module 3)</span></li>
+                <li>• <span className="text-gray-300">Section 6: Networking</span> — NSGs, no public IPs, Bastion, segmentation <span className="text-gray-600">(Module 2)</span></li>
+                <li>• <span className="text-gray-300">Section 7: VMs</span> — No public access, managed disks, endpoint protection <span className="text-gray-600">(Module 2)</span></li>
+                <li>• <span className="text-gray-300">Section 9: AppService</span> — HTTPS, TLS 1.2, authentication, managed identity <span className="text-gray-600">(Module 4)</span></li>
+                <li>• <span className="text-gray-300">Section 10: Monitoring</span> — Activity logs, Defender for Cloud, Sentinel <span className="text-gray-600">(Modules 5-6)</span></li>
+              </ul>
+            </div>
+            <div className="mt-3 space-y-1">
+              <a href="https://learn.microsoft.com/azure/governance/policy/samples/cis-azure-2-0-0?wt.mc_id=studentamb_387261" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-sm block">→ Microsoft Learn: CIS Azure Benchmark v2.0 policy initiative</a>
+            </div>
           </PhaseStepItem>
-          <PhaseStepItem number={4} type="NOTE" title="Final Task Overview"
+
+          <PhaseStepItem number={4} type="READ" title="The Security Assessment Report"
             isOpen={open.has(3)} onToggleOpen={() => toggleOpen(3)}
             isChecked={checked.has(3)} onToggleChecked={() => toggleChecked(3)}>
-            <ul className="space-y-1.5">
-              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span>Configure identity management with RBAC and MFA for all users.</span></li>
-              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span>Set up NSGs and Azure Firewall to monitor and control traffic.</span></li>
-              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span>Configure encryption for sensitive data in transit and at rest.</span></li>
-              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span>Deploy Azure Sentinel and configure real-time threat detection alerts.</span></li>
-              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span>Conduct a security audit for HIPAA/GDPR compliance.</span></li>
-            </ul>
+            <p>The final deliverable is a professional security assessment report — the same type of document that cloud security consultants deliver to clients. This is portfolio-worthy.</p>
+            <div className="mt-3 p-3 border border-gray-700 bg-gray-800">
+              <p className="text-gray-300 text-sm font-semibold mb-2">Report Structure</p>
+              <ul className="space-y-1 text-sm text-gray-400">
+                <li>• <span className="text-yellow-400">Executive Summary</span> — 1-page overview for non-technical stakeholders (overall risk posture, critical findings, Secure Score)</li>
+                <li>• <span className="text-yellow-400">Architecture Diagram</span> — Visual of deployed resources with security controls labeled</li>
+                <li>• <span className="text-yellow-400">STRIDE Threat Model</span> — Table mapping each component to threats and mitigations</li>
+                <li>• <span className="text-yellow-400">CIS Benchmark Assessment</span> — Pass/fail for each control you reviewed</li>
+                <li>• <span className="text-yellow-400">Findings & Recommendations</span> — Severity-rated findings with remediation steps</li>
+                <li>• <span className="text-yellow-400">Defender for Cloud Summary</span> — Secure Score, resolved vs. remaining recommendations</li>
+              </ul>
+            </div>
           </PhaseStepItem>
-          <PhaseStepItem number={5} type="EVALUATE" title="Final Evaluation Checklist"
+
+          <PhaseStepItem number={5} type="SCENARIO" title="Capstone Scenario: SecureMed Health Platform"
             isOpen={open.has(4)} onToggleOpen={() => toggleOpen(4)}
             isChecked={checked.has(4)} onToggleChecked={() => toggleChecked(4)}>
-            <ul className="space-y-1.5">
-              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">✓</span><span>All unnecessary access points removed?</span></li>
-              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">✓</span><span>Identity management secured with RBAC & MFA?</span></li>
-              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">✓</span><span>Network traffic monitored and protected with NSGs and Azure Firewall?</span></li>
-              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">✓</span><span>Sensitive data and secrets encrypted with Azure encryption?</span></li>
-              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">✓</span><span>Threat detection active with Azure Sentinel & Defender for Cloud?</span></li>
+            <p>You are the cloud security engineer for <span className="text-yellow-400">SecureMed</span>, a healthcare startup launching a patient portal on Azure. The platform must comply with HIPAA and handle Protected Health Information (PHI).</p>
+            <div className="mt-3 p-3 border border-gray-700 bg-gray-800">
+              <p className="text-gray-300 text-sm font-semibold mb-2">Architecture Requirements</p>
+              <ul className="space-y-1 text-sm text-gray-400">
+                <li>• <span className="text-gray-300">Web App</span> — Patient-facing portal (App Service)</li>
+                <li>• <span className="text-gray-300">Database</span> — Patient records (Azure Storage or SQL)</li>
+                <li>• <span className="text-gray-300">Secrets</span> — Connection strings, API keys (Key Vault)</li>
+                <li>• <span className="text-gray-300">Identity</span> — Admin users, app service identity (Entra ID)</li>
+                <li>• <span className="text-gray-300">Network</span> — Multi-tier VNet with segmented subnets</li>
+                <li>• <span className="text-gray-300">Monitoring</span> — Threat detection and compliance reporting</li>
+              </ul>
+            </div>
+            <p className="mt-2 text-gray-500 text-xs">Your task: deploy this architecture, secure every layer, threat model it, and deliver a security assessment report.</p>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={6} type="NOTE" title="Skills You'll Demonstrate"
+            isOpen={open.has(5)} onToggleOpen={() => toggleOpen(5)}
+            isChecked={checked.has(5)} onToggleChecked={() => toggleChecked(5)}>
+            <div className="p-3 border border-gray-700 bg-gray-800">
+              <ul className="space-y-1 text-sm text-gray-400">
+                <li>• <span className="text-gray-300">Module 1</span> — Zero Trust IAM: RBAC, Conditional Access, Managed Identity</li>
+                <li>• <span className="text-gray-300">Module 2</span> — Network segmentation: VNet, NSGs, Bastion, no public IPs</li>
+                <li>• <span className="text-gray-300">Module 3</span> — Data encryption: SSE, HTTPS, TLS 1.2, soft delete</li>
+                <li>• <span className="text-gray-300">Module 4</span> — App security: Key Vault, Managed Identity, EasyAuth, HTTPS Only</li>
+                <li>• <span className="text-gray-300">Module 5</span> — CSPM: Defender for Cloud, Azure Policy, Secure Score</li>
+                <li>• <span className="text-gray-300">Module 6</span> — Detection: Sentinel analytics rules, incident response</li>
+                <li>• <span className="text-gray-300">Module 7</span> — STRIDE threat modeling, CIS benchmark review, security report</li>
+              </ul>
+            </div>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={7} type="LAB" title="Your Task: Build, Secure, Assess, Report"
+            isOpen={open.has(6)} onToggleOpen={() => toggleOpen(6)}
+            isChecked={checked.has(6)} onToggleChecked={() => toggleChecked(6)}>
+            <p>Deploy the SecureMed architecture and deliver a complete security assessment:</p>
+            <ul className="space-y-1 mt-2">
+              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Deploy the multi-tier architecture (VNet, App Service, Storage, Key Vault)</span></li>
+              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Apply all security controls from Modules 1-6</span></li>
+              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Perform STRIDE threat modeling on every component</span></li>
+              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Review against CIS Azure Benchmark controls</span></li>
+              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Write and deliver your security assessment report</span></li>
             </ul>
             <div className="mt-3"><Link to="/module7/task" className="text-red-400 hover:text-red-300 transition-colors">→ ./start_capstone.sh</Link></div>
           </PhaseStepItem>
