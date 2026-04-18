@@ -133,14 +133,14 @@ export default function Certificate({ userName, userId, completedDate }) {
 
           {/* Achievement text */}
           <p className="text-sm font-mono leading-relaxed max-w-lg mb-2" style={{ color: "#9ca3af" }}>
-            has successfully completed all seven phases of the
+            has successfully completed all eight phases of the
           </p>
           <p className="text-base font-mono font-semibold tracking-wide mb-2" style={{ color: "#f87171" }}>
             Cloud Security Engineering Program
           </p>
           <p className="text-xs font-mono leading-relaxed max-w-md mb-8" style={{ color: "#6b7280" }}>
             demonstrating fundamental proficiency in IAM, network security, data security,
-            application security, monitoring, incident response, and secure cloud deployment.
+            application security, monitoring, incident response, DevSecOps, and secure cloud deployment.
           </p>
 
           {/* Divider */}
