@@ -75,4 +75,23 @@ export const resourcesData = {
             { title: "Case Studies & Real-World Scenarios", description: "Explore case studies and real-world scenarios to apply your knowledge.", type: "Video", url: "https://techcommunity.microsoft.com/t5/security-compliance-and-identity/bd-p/security-compliance-identity" },
         ],
     },
+    8: {
+        topic: "DevSecOps Fundamentals",
+        resources: [
+            { title: "Security hardening for GitHub Actions", description: "Best practices for securing your GitHub Actions workflows — secrets management, runner hardening, third-party action risks, and OIDC federation.", type: "Docs", url: "https://docs.github.com/en/actions/security-for-github-actions/security-guides/security-hardening-for-github-actions" },
+            { title: "Azure DevOps Pipeline Security", description: "Microsoft's guide to securing Azure Pipelines — service connections, approvals, branch control, and pipeline-as-code.", type: "Docs", url: "https://learn.microsoft.com/azure/devops/pipelines/security/overview?wt.mc_id=studentamb_387261" },
+            { title: "Introduction to GitHub Advanced Security", description: "Learn about code scanning (CodeQL), secret scanning, and dependency review — GitHub's built-in DevSecOps toolkit.", type: "Learning Module", url: "https://learn.microsoft.com/training/modules/introduction-github-advanced-security/?wt.mc_id=studentamb_387261" },
+            { title: "OWASP DevSecOps Guideline", description: "Comprehensive guide mapping security tools and practices to each phase of the CI/CD pipeline — from pre-commit to production.", type: "Docs", url: "https://owasp.org/www-project-devsecops-guideline/" },
+            { title: "Trivy — Container & IaC Scanner", description: "Open-source vulnerability scanner for container images, filesystems, git repositories, Kubernetes, and IaC templates.", type: "Docs", url: "https://aquasecurity.github.io/trivy/" },
+            { title: "Semgrep — Lightweight SAST", description: "Fast, open-source static analysis tool. Write custom rules or use 2,000+ community rules for security, correctness, and performance.", type: "Docs", url: "https://semgrep.dev/docs/getting-started/" },
+            { title: "Gitleaks — Secret Detection", description: "Open-source tool for detecting hardcoded secrets in git repos. Runs as a pre-commit hook or CI/CD step.", type: "Docs", url: "https://github.com/gitleaks/gitleaks" },
+            { title: "Checkov — IaC Security Scanner", description: "Static analysis for Terraform, Bicep, ARM, CloudFormation, Kubernetes, and Dockerfiles. 1,000+ built-in policies mapped to CIS benchmarks.", type: "Docs", url: "https://www.checkov.io/" },
+            { title: "NIST Secure Software Development Framework (SSDF)", description: "NIST SP 800-218 — the federal standard for secure software development practices. Maps directly to DevSecOps pipeline controls.", type: "Docs", url: "https://csrc.nist.gov/projects/ssdf" },
+            { title: "Software Bill of Materials (SBOM) — CISA", description: "CISA's guidance on SBOM generation, formats (SPDX, CycloneDX), and how SBOMs support vulnerability management.", type: "Docs", url: "https://www.cisa.gov/sbom" },
+            { title: "Microsoft Defender for Containers", description: "Azure-native container security — image scanning in ACR, runtime protection for AKS, and vulnerability assessments.", type: "Learning Module", url: "https://learn.microsoft.com/azure/defender-for-cloud/defender-for-containers-introduction?wt.mc_id=studentamb_387261" },
+            { title: "Use workload identity federation with GitHub Actions", description: "Eliminate stored credentials — authenticate GitHub Actions to Azure using OIDC federation with workload identity.", type: "Tutorial", url: "https://learn.microsoft.com/entra/workload-id/workload-identity-federation-create-trust-github?wt.mc_id=studentamb_387261" },
+            { title: "Implement CI/CD with GitHub Actions and Azure", description: "Hands-on learning path covering GitHub Actions workflows, deployment to Azure, and security best practices.", type: "Learning Module", url: "https://learn.microsoft.com/training/paths/implement-ci-cd-github-actions-azure/?wt.mc_id=studentamb_387261" },
+            { title: "DevSecOps on GitHub — Full Course", description: "End-to-end video walkthrough covering GitHub Actions security workflows, CodeQL, Dependabot, secret scanning, and container scanning.", type: "Video Tutorial", url: "https://www.youtube.com/watch?v=gLJdrXPn0ns" },
+        ],
+    },
 };
