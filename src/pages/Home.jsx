@@ -16,7 +16,7 @@ const PHASES = [
     id: 1,
     title: "Identity & Access Management",
     description:
-      "Master IAM principles, authentication, authorization, and RBAC in cloud environments.",
+      "Zero Trust IAM — Entra ID, RBAC, Conditional Access, PIM, and break-glass accounts.",
     path: "/module1",
     taskPath: "/module1/task",
   },
@@ -24,7 +24,7 @@ const PHASES = [
     id: 2,
     title: "Network Security & Perimeter Defense",
     description:
-      "NSG configuration, network segmentation, and perimeter defense strategies.",
+      "Defense in Depth — VNets, NSG micro-segmentation, Private Endpoints, Bastion, Network Watcher.",
     path: "/module2",
     taskPath: "/module2/task",
   },
@@ -32,7 +32,7 @@ const PHASES = [
     id: 3,
     title: "Data Security & Encryption",
     description:
-      "Data protection techniques, encryption at rest and in transit, and key management.",
+      "Data classification, AES-256 encryption at rest, TLS in transit, SAS tokens, soft delete & versioning.",
     path: "/module3",
     taskPath: "/module3/task",
   },
@@ -40,31 +40,31 @@ const PHASES = [
     id: 4,
     title: "Application Security in Azure",
     description:
-      "Secure coding practices, vulnerability management, and Azure-specific security features.",
+      "OWASP Top 10 cloud mapping, Key Vault + Managed Identity golden pattern, App Service hardening, EasyAuth.",
     path: "/module4",
     taskPath: "/module4/task",
   },
   {
     id: 5,
-    title: "Security Monitoring & Threat Intelligence",
+    title: "Cloud Security Posture Management",
     description:
-      "Security monitoring, logging, threat detection, and threat intelligence.",
+      "Defender for Cloud, Secure Score, Azure Policy, KQL logging, CIS/NIST/ISO compliance frameworks.",
     path: "/module5",
     taskPath: "/module5/task",
   },
   {
     id: 6,
-    title: "Incident Response & Threat Detection",
+    title: "Detection Engineering & Incident Response",
     description:
-      "Incident response plans, threat detection techniques, and security incident handling.",
+      "Microsoft Sentinel, NIST IR lifecycle, analytics rules, KQL detection queries, MITRE ATT&CK mapping.",
     path: "/module6",
     taskPath: "/module6/task",
   },
   {
     id: 7,
-    title: "Capstone Project — Secure Azure Deployment",
+    title: "Capstone — Security Architecture Review",
     description:
-      "Apply everything: build and deploy a secure, production-ready cloud application on Azure.",
+      "Deploy SecureMed, STRIDE threat model, CIS benchmark review, Secure Score remediation, assessment report.",
     path: "/module7",
     taskPath: "/module7/task",
   },
