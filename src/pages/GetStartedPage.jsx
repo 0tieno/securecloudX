@@ -60,7 +60,7 @@ export default function GetStartedPage() {
             $ cat important_note.txt
           </div>
           <div className="text-gray-300 text-sm sm:text-base leading-relaxed">
-            <span className="text-yellow-400">[INFO]</span> The posts on
+            <span className="text-yellow-400">[INFO]</span> The work on
             engineering, pentesting, or blogs assume{" "}
             <span className="text-green-400">
               no, or little, prior knowledge

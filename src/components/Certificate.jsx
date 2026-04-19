@@ -23,8 +23,10 @@ export default function Certificate({ userName, userId, completedDate }) {
   const [downloading, setDownloading] = useState(false);
   const [certId, setCertId] = useState(null);
   const [saving, setSaving] = useState(true);
-  const dateStr = formatDate(completedDate ?? new Date());
+  const issueDate = completedDate ?? new Date();
+  const dateStr = formatDate(issueDate);
   const verifyUrl = certId ? `${window.location.origin}/verify/${certId}` : null;
+  const shareUrl = certId ? `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/cert-share?certId=${certId}` : null;
 
   // On mount, check for existing cert or create one
   useEffect(() => {
@@ -58,6 +60,24 @@ export default function Certificate({ userName, userId, completedDate }) {
       setSaving(false);
     })();
   }, [userId, userName, completedDate]);
+
+  // Upload certificate image to Supabase Storage for social sharing previews
+  useEffect(() => {
+    if (!certId || saving || !certRef.current) return;
+    let cancelled = false;
+    (async () => {
+      try {
+        await new Promise(r => setTimeout(r, 800));
+        if (cancelled || !certRef.current) return;
+        const canvas = await html2canvas(certRef.current, { scale: 2, useCORS: true, backgroundColor: null });
+        if (cancelled) return;
+        const blob = await new Promise(resolve => canvas.toBlob(resolve, 'image/png'));
+        if (!blob || cancelled) return;
+        await supabase.storage.from('certificates').upload(`${certId}.png`, blob, { contentType: 'image/png', upsert: true });
+      } catch { /* silent — image upload is best-effort for social previews */ }
+    })();
+    return () => { cancelled = true; };
+  }, [certId, saving]);
 
   const handleDownload = async () => {
     if (!certRef.current) return;
@@ -214,13 +234,35 @@ export default function Certificate({ userName, userId, completedDate }) {
         )}
         {verifyUrl && (
           <a
-            href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(verifyUrl)}&title=${encodeURIComponent("Cloud Security Engineering Certificate — securecloudX")}&summary=${encodeURIComponent(`I just completed all 8 phases of the securecloudX Cloud Security Engineering Program — covering IAM, network security, data protection, threat detection, monitoring, incident response, capstone deployment, and DevSecOps.\n\nVerify my certificate: ${verifyUrl}`)}`}
+            href={`https://www.linkedin.com/profile/add?startTask=CERTIFICATION_NAME&name=${encodeURIComponent('Cloud Security Engineering')}&organizationName=${encodeURIComponent('securecloudX')}&issueYear=${issueDate.getFullYear()}&issueMonth=${issueDate.getMonth() + 1}&certUrl=${encodeURIComponent(verifyUrl)}&certId=${encodeURIComponent(certId)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 bg-blue-700 hover:bg-blue-600 text-white font-mono text-sm px-6 py-2.5 transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            Add to LinkedIn Profile
+          </a>
+        )}
+        {shareUrl && (
+          <a
+            href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(shareUrl)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 border border-blue-600 hover:border-blue-400 text-blue-400 hover:text-blue-300 font-mono text-sm px-6 py-2.5 transition-colors"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
             Share on LinkedIn
+          </a>
+        )}
+        {shareUrl && (
+          <a
+            href={`https://twitter.com/intent/tweet?text=${encodeURIComponent(`I just completed all 8 phases of the @securecloudX Cloud Security Engineering Program! \u{1F6E1}\n\nVerify my certificate:`)}&url=${encodeURIComponent(shareUrl)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 border border-gray-600 hover:border-gray-400 text-gray-400 hover:text-gray-200 font-mono text-sm px-6 py-2.5 transition-colors"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+            Share on X
           </a>
         )}
       </div>
