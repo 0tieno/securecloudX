@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Terminal, Shield, Lock, CalendarDays } from "lucide-react";
+import { Terminal, Shield, Lock, CalendarDays, LogIn } from "lucide-react";
+import { useAuth } from "../../contexts/AuthContext";
 
 const PHRASES = [
   "Cloud Security Engineering",
@@ -11,6 +12,7 @@ const PHRASES = [
 
 export default function LandingHeader() {
   const navigate = useNavigate();
+  const { user, signIn } = useAuth();
   const [displayedText, setDisplayedText] = useState("");
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
@@ -86,10 +88,14 @@ export default function LandingHeader() {
       <div className="flex flex-col sm:flex-row gap-4 mb-4">
         <button
           className="bg-red-600 hover:bg-red-700 border border-red-500 text-white font-mono font-semibold px-8 py-3 transition-all duration-200 group flex items-center space-x-2"
-          onClick={() => navigate("/get-started")}
+          onClick={() => (user ? navigate("/get-started") : signIn())}
         >
-          <Terminal className="w-5 h-5 group-hover:rotate-12 transition-transform" />
-          <span>INITIALIZE SYSTEM</span>
+          {user ? (
+            <Terminal className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+          ) : (
+            <LogIn className="w-5 h-5 group-hover:rotate-12 transition-transform" />
+          )}
+          <span>{user ? "OPEN DASHBOARD" : "INITIALIZE SYSTEM"}</span>
         </button>
         <a
           href="https://cal.com/i-am-ronney?redirect=false"
@@ -104,8 +110,18 @@ export default function LandingHeader() {
 
       <div className="flex items-center space-x-2 text-gray-500 text-sm mb-6">
         <span>└─$</span>
-        <span>No authentication required</span>
-        <span className="text-green-400">✓</span>
+        {user ? (
+          <>
+            <span className="text-green-400">{user.user_metadata?.user_name ?? user.email}</span>
+            <span>@securecloudX:~$</span>
+            <span className="text-green-400">session active ✓</span>
+          </>
+        ) : (
+          <>
+            <span>auth: github required</span>
+            <span className="text-yellow-400"></span>
+          </>
+        )}
       </div>
 
       {/* Social Links */}

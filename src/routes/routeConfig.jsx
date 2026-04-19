@@ -1,7 +1,10 @@
 import AboutAuthor from "../pages/AboutAuthor";
+import Admin from "../pages/Admin";
+import AuthCallback from "../pages/AuthCallback";
 import BeginnerIntro from "../pages/BeginnerIntro";
 import BlogList from "../pages/BlogList";
 import BlogPost from "../pages/BlogPost";
+import CertificatePage from "../pages/CertificatePage";
 import Changelog from "../pages/Changelog";
 import Module1 from "../pages/modules/module1/Overview";
 import Module2 from "../pages/modules/module2/Overview";
@@ -10,6 +13,7 @@ import Module4 from "../pages/modules/module4/Overview";
 import Module5 from "../pages/modules/module5/Overview";
 import Module6 from "../pages/modules/module6/Overview";
 import Module7 from "../pages/modules/module7/Overview";
+import Module8 from "../pages/modules/module8/Overview";
 import Explore from "../pages/Explore";
 import ForgottenSecretLab from "../pages/ForgottenSecretLab";
 import GetStartedPage from "../pages/GetStartedPage";
@@ -33,7 +37,9 @@ import ModuleTask4 from "../pages/modules/module4/Task";
 import ModuleTask5 from "../pages/modules/module5/Task";
 import ModuleTask6 from "../pages/modules/module6/Task";
 import ModuleTask7 from "../pages/modules/module7/Task";
+import ModuleTask8 from "../pages/modules/module8/Task";
 import TermsOfService from "../pages/TermsOfService";
+import VerifyCertificate from "../pages/VerifyCertificate";
 import Work from "../pages/Work";
 
 export const standaloneRoutes = [
@@ -53,10 +59,14 @@ export const standaloneRoutes = [
   },
   { path: "/opensource-blog", Component: OpenSourceBlog },
   { path: "/pentesting-labs", Component: PentestingLabs },
+  { path: "/auth/callback", Component: AuthCallback },
+  { path: "/verify/:certId", Component: VerifyCertificate },
 ];
 
 export const shellRoutes = [
   { path: "/home", Component: Home },
+  { path: "/admin", Component: Admin },
+  { path: "/certificate", Component: CertificatePage },
   { path: "/forgotten-secret-lab", Component: ForgottenSecretLab },
   { path: "/module1", Component: Module1 },
   { path: "/module1/task", Component: ModuleTask1 },
@@ -75,6 +85,8 @@ export const shellRoutes = [
   { path: "/module6/task", Component: ModuleTask6 },
   { path: "/module7", Component: Module7 },
   { path: "/module7/task", Component: ModuleTask7 },
+  { path: "/module8", Component: Module8 },
+  { path: "/module8/task", Component: ModuleTask8 },
   { path: "/module/:module/resources", Component: Resources },
   { path: "/explore", Component: Explore },
   { path: "/start", Component: BeginnerIntro },

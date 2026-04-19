@@ -1,168 +1,150 @@
-import Content from "../../../components/Content";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ChevronLeft } from "lucide-react";
+import PhaseStepItem from "../../../components/PhaseStepItem";
+import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
+import { useStepProgress } from "../../../hooks/useStepProgress";
+
+const TOTAL = 6;
 
 const Phase3 = () => {
+  const [open, setOpen] = useState(() => new Set([0]));
+  const [checked, toggleChecked] = useStepProgress("scx_steps_3_lab3", TOTAL);
+  const toggleOpen = (i) => setOpen(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
+
   return (
-    <Content>
-      <h2 className="text-2xl font-bold text-gray">Lab 3: Private Storage with High Availability</h2>
-     
-
-      <p className="mt-2 text-gray-300">
-        The company needs storage for their offices and departments. This content is private to the company and shouldn’t be shared without consent. This storage requires high availability if there’s a regional outage. The company wants to use this storage to back up the public website.
-        </p>
-
-       <p className="mt-2 text-gray-300">
-        Note: These instructions require you to have completed Lab 02.
-      </p>
-
-      {/* Skilling Tasks */}
-      <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
-        <h3 className="text-xl sm:text-2xl font-semibold text-gray">Your Tasks</h3>
-        <ul className="list-disc pl-5 text-gray-300 mt-2 space-y-2">
-          <li>Create a storage account for the company private documents.</li>
-          <li>Configure redundancy for the storage account.</li>
-          <li>Configure a shared access signature so partners have restricted access to a file.</li>
-          <li>Back up the public website storage.</li>
-          <li>Implement lifecycle management to move content to the cool tier.</li>
-        </ul>
+    <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
+      <div className="max-w-3xl mx-auto px-4 py-10">
+        <div className="flex items-center gap-2 text-gray-600 text-xs mb-8">
+          <Link to="/home" className="hover:text-gray-400 transition-colors">// phases</Link>
+          <span>/</span><span className="text-gray-400">phase-3-data-security</span>
+          <span>/</span><Link to="/module3/task" className="text-gray-400 hover:text-gray-300 transition-colors">lab</Link>
+          <span>/</span><span className="text-gray-500">lab-03</span>
+        </div>
+        <div className="mb-8">
+          <div className="text-green-400 text-xs mb-3">$ ./lab_3_module_3_private_storage_ha.sh</div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Lab 03: Private Storage with High Availability</h1>
+          <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
+            Secure private company storage with GRS, SAS tokens, lifecycle management, and object replication.
+          </p>
+          <div className="mt-3 p-2 border border-yellow-800/50 bg-yellow-900/10">
+            <p className="text-yellow-400 text-xs">prerequisite: complete Lab 02 before starting this lab</p>
+          </div>
+        </div>
+        <div className="mb-8">
+          <div className="flex items-center justify-between text-xs mb-2">
+            <span className="text-gray-500">{checked.size}/{TOTAL} complete</span>
+            <span className="text-gray-700"># check off steps as you go</span>
+          </div>
+          <div className="w-full bg-gray-800 border border-gray-700 h-1.5">
+            <div className="bg-red-500 h-full transition-all duration-500" style={{ width: `${(checked.size / TOTAL) * 100}%` }} />
+          </div>
+        </div>
+        <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <span>|</span>
+          <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
+        </div>
+        <div className="space-y-2 mb-10">
+          <PhaseStepItem number={1} type="SCENARIO" title="Context: Private Company Storage"
+            isOpen={open.has(0)} onToggleOpen={() => toggleOpen(0)}
+            isChecked={checked.has(0)} onToggleChecked={() => toggleChecked(0)}>
+            <p>The company needs storage for their offices and departments. This content is <span className="text-yellow-400">private</span> and shouldn't be shared without consent. This storage requires <span className="text-yellow-400">high availability</span> if there's a regional outage. The company also wants to use this storage to back up the public website from Lab 02.</p>
+          </PhaseStepItem>
+          <PhaseStepItem number={2} type="AI" title="AI Prompts — Explore before you start"
+            isOpen={open.has(1)} onToggleOpen={() => toggleOpen(1)}
+            isChecked={checked.has(1)} onToggleChecked={() => toggleChecked(1)}>
+            <p className="text-xs text-gray-500 mb-2">Ask your AI assistant these questions to build context:</p>
+            <ul className="space-y-2">
+              <li className="flex items-start gap-2"><span className="text-purple-400 flex-shrink-0">&gt;</span><span className="italic">"What security features are available to protect Azure storage?"</span></li>
+              <li className="flex items-start gap-2"><span className="text-purple-400 flex-shrink-0">&gt;</span><span className="italic">"What is an Azure SAS and how is it used?"</span></li>
+            </ul>
+          </PhaseStepItem>
+          <PhaseStepItem number={3} type="PRACTICE" title="Step 1: Create Storage Account with GRS Redundancy"
+            isOpen={open.has(2)} onToggleOpen={() => toggleOpen(2)}
+            isChecked={checked.has(2)} onToggleChecked={() => toggleChecked(2)}>
+            <ul className="space-y-1">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>In the Azure portal, search for and select <strong className="text-gray-300">Storage accounts</strong></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Select <strong className="text-gray-300">+ Create</strong>, use the same resource group from Lab 02</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Set name to <code className="text-yellow-400">private</code> + unique identifier, select <strong className="text-gray-300">Review</strong> then <strong className="text-gray-300">Create</strong></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Go to resource → <strong className="text-gray-300">Data management &gt; Redundancy</strong></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Select <code className="text-yellow-400">Geo-redundant storage (GRS)</code> — high availability, no secondary read access</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Save, refresh, and review the primary and secondary location information</span></li>
+            </ul>
+          </PhaseStepItem>
+          <PhaseStepItem number={4} type="PRACTICE" title="Step 2: Create Private Container & Configure SAS Token"
+            isOpen={open.has(3)} onToggleOpen={() => toggleOpen(3)}
+            isChecked={checked.has(3)} onToggleChecked={() => toggleChecked(3)}>
+            <div className="space-y-3">
+              <div>
+                <p className="text-gray-400 text-xs mb-1 font-semibold">// create private container and upload a file</p>
+                <ul className="space-y-1">
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Go to <strong className="text-gray-300">Data storage &gt; Containers</strong> → <strong className="text-gray-300">+ Container</strong></span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Name it <code className="text-yellow-400">private</code>, set access level to <code className="text-red-400">Private (no anonymous access)</code></span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Upload a test file to the container</span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Copy the file URL and paste it in a new tab — verify you get an <code className="text-red-400">error (no access)</code></span></li>
+                </ul>
+              </div>
+              <div>
+                <p className="text-gray-400 text-xs mb-1 font-semibold">// configure SAS token for partner access (24h read)</p>
+                <ul className="space-y-1">
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Select your uploaded blob file → go to the <strong className="text-gray-300">Generate SAS</strong> tab</span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>In Permissions, ensure only <code className="text-yellow-400">Read</code> is selected</span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Set expiry date/time to <strong className="text-gray-300">24 hours from now</strong></span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Select <strong className="text-gray-300">Generate SAS token and URL</strong></span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Copy the <strong className="text-gray-300">Blob SAS URL</strong> and paste it in a new tab — verify you can access the file</span></li>
+                </ul>
+              </div>
+            </div>
+          </PhaseStepItem>
+          <PhaseStepItem number={5} type="PRACTICE" title="Step 3: Lifecycle Management & Object Replication"
+            isOpen={open.has(4)} onToggleOpen={() => toggleOpen(4)}
+            isChecked={checked.has(4)} onToggleChecked={() => toggleChecked(4)}>
+            <div className="space-y-3">
+              <div>
+                <p className="text-gray-400 text-xs mb-1 font-semibold">// move blobs to cool tier after 30 days</p>
+                <ul className="space-y-1">
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Go to <strong className="text-gray-300">Data management &gt; Lifecycle management</strong> → <strong className="text-gray-300">Add rule</strong></span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Set rule name to <code className="text-yellow-400">movetocool</code>, scope to <code className="text-yellow-400">all blobs in storage account</code></span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Set condition: <strong className="text-gray-300">Last modified</strong> more than <code className="text-yellow-400">30</code> days ago</span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Set action to <code className="text-yellow-400">Move to cool storage</code> → Add rule</span></li>
+                </ul>
+              </div>
+              <div>
+                <p className="text-gray-400 text-xs mb-1 font-semibold">// replicate public website to backup container</p>
+                <ul className="space-y-1">
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>In your <code className="text-yellow-400">private</code> storage account, create a new container named <code className="text-yellow-400">backup</code></span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Navigate to the <code className="text-yellow-400">publicwebsite</code> storage account from Lab 02</span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Go to <strong className="text-gray-300">Data management &gt; Object replication</strong> → <strong className="text-gray-300">Create replication rules</strong></span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Set destination storage account to your <code className="text-yellow-400">private</code> account</span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Set source container to <code className="text-yellow-400">public</code> and destination to <code className="text-yellow-400">backup</code> → Create</span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Upload a file to the <code className="text-yellow-400">public</code> container and check the <code className="text-yellow-400">backup</code> container after a few minutes</span></li>
+                </ul>
+              </div>
+            </div>
+          </PhaseStepItem>
+          <PhaseStepItem number={6} type="NOTE" title="Key Takeaways"
+            isOpen={open.has(5)} onToggleOpen={() => toggleOpen(5)}
+            isChecked={checked.has(5)} onToggleChecked={() => toggleChecked(5)}>
+            <ul className="space-y-1.5">
+              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span>Azure storage has many data protection features: encryption, access control, network security, monitoring, and alerts.</span></li>
+              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span>A <strong className="text-gray-300">Shared Access Signature (SAS)</strong> provides secure delegated access with granular control over permissions and expiry.</span></li>
+              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span><strong className="text-gray-300">Lifecycle rules</strong> automate data tiering to optimize storage costs over time.</span></li>
+              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span><strong className="text-gray-300">Object replication</strong> asynchronously copies block blobs between a source and destination storage account.</span></li>
+            </ul>
+          </PhaseStepItem>
+        </div>
+        <MarkPhaseComplete phaseId={3} taskKey="task-phase3" checkedCount={checked.size} total={TOTAL} />
+        <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">
+          <Link to="/module3/task/phase2" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
+            <ChevronLeft size={14} /> Lab 02
+          </Link>
+          <Link to="/module4" className="flex items-center gap-1 text-gray-500 hover:text-red-400 transition-colors">
+            Module 4 →
+          </Link>
+        </div>
       </div>
-
-      {/* Step-by-step guide */}
-      <div className="mt-8 space-y-6">
-        <h3 className="text-xl sm:text-2xl font-semibold text-gray">Step-by-Step Guide</h3>
-        {/* Create a storage account and configure high availability */}
-        <div className="bg-gray-800 rounded-lg p-4 border-l-4 border-blue-500">
-          <h4 className="text-lg font-semibold text-blue-400">Create a storage account and configure high availability</h4>
-          <ul className="list-decimal pl-5 text-gray-300 mt-2 space-y-2">
-            <li>In the portal, search for and select <strong>Storage accounts</strong>.</li>
-            <li>Select <strong>+ Create</strong>.</li>
-            <li>Select the Resource group created in the previous lab.</li>
-            <li>Set the Storage account name to <code>private</code> and add an identifier to ensure the name is unique.</li>
-            <li>Select <strong>Review</strong>, then <strong>Create</strong> the storage account.</li>
-            <li>Wait for the storage account to deploy, then select <strong>Go to resource</strong>.</li>
-            <li>
-              This storage requires high availability if there’s a regional outage. Read access in the secondary region is not required. Configure the appropriate level of redundancy.
-            </li>
-            <li>In the storage account, in the <strong>Data management</strong> section, select the <strong>Redundancy</strong> blade.</li>
-            <li>Ensure <strong>Geo-redundant storage (GRS)</strong> is selected.</li>
-            <li>Refresh the page.</li>
-            <li>Review the primary and secondary location information.</li>
-            <li>Save your changes.</li>
-          </ul>
-        </div>
-
-        {/* Create a storage container, upload a file, and restrict access */}
-        <div className="bg-gray-800 rounded-lg p-4 border-l-4 border-blue-500">
-          <h4 className="text-lg font-semibold text-blue-400">Create a storage container, upload a file, and restrict access to the file</h4>
-          <ul className="list-decimal pl-5 text-gray-300 mt-2 space-y-2">
-            <li>In the storage account, in the <strong>Data storage</strong> section, select the <strong>Containers</strong> blade.</li>
-            <li>Select <strong>+ Container</strong>.</li>
-            <li>Ensure the Name of the container is <code>private</code>.</li>
-            <li>Ensure the Public access level is <strong>Private (no anonymous access)</strong>.</li>
-            <li>Review the Advanced settings as needed, but take the defaults.</li>
-            <li>Select <strong>Create</strong>.</li>
-            <li>For testing, upload a file to the private container (any small image or text file).</li>
-            <li>
-              <ul className="list-disc pl-5">
-                <li>Select the container.</li>
-                <li>Select <strong>Upload</strong>.</li>
-                <li>Browse to files and select a file.</li>
-                <li>Upload the file.</li>
-                <li>Select the uploaded file.</li>
-                <li>On the Overview tab, copy the URL.</li>
-                <li>Paste the URL into a new browser tab.</li>
-                <li>Verify the file doesn’t display and you receive an error.</li>
-              </ul>
-            </li>
-            <li>
-              An external partner requires read and write access to the file for at least the next 24 hours. Configure and test a shared access signature (SAS):
-              <ul className="list-disc pl-5">
-                <li>Select your uploaded blob file and move to the <strong>Generate SAS</strong> tab.</li>
-                <li>In the Permissions drop-down, ensure the partner has only <strong>Read</strong> permissions.</li>
-                <li>Verify the Start and expiry date/time is for the next 24 hours.</li>
-                <li>Select <strong>Generate SAS token and URL</strong>.</li>
-                <li>Copy the Blob SAS URL to a new browser tab.</li>
-                <li>Verify you can access the file.</li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-
-        {/* Configure storage access tiers and content replication */}
-        <div className="bg-gray-800 rounded-lg p-4 border-l-4 border-blue-500">
-          <h4 className="text-lg font-semibold text-blue-400">Configure storage access tiers and content replication</h4>
-          <ul className="list-decimal pl-5 text-gray-300 mt-2 space-y-2">
-            <li>
-              To save on costs, after 30 days, move blobs from the hot tier to the cool tier:
-              <ul className="list-disc pl-5">
-                <li>Return to the storage account.</li>
-                <li>In the Overview section, notice the Default access tier is set to <strong>Hot</strong>.</li>
-                <li>In the <strong>Data management</strong> section, select the <strong>Lifecycle management</strong> blade.</li>
-                <li>Select <strong>Add rule</strong>.</li>
-                <li>Set the Rule name to <code>movetocool</code>.</li>
-                <li>Set the Rule scope to <strong>Apply rule to all blobs in the storage account</strong>.</li>
-                <li>Select <strong>Next</strong>.</li>
-                <li>Ensure <strong>Last modified</strong> is selected.</li>
-                <li>Set <strong>More than (days ago)</strong> to 30.</li>
-                <li>In the Then drop-down select <strong>Move to cool storage</strong>.</li>
-                <li>Add the rule.</li>
-              </ul>
-            </li>
-            <li>
-              The public website files need to be backed up to another storage account:
-              <ul className="list-disc pl-5">
-                <li>In your storage account, create a new container called <code>backup</code>. Use the default values.</li>
-                <li>Navigate to your <code>publicwebsite</code> storage account (created in the previous exercise).</li>
-                <li>In the <strong>Data management</strong> section, select the <strong>Object replication</strong> blade.</li>
-                <li>Select <strong>Create replication rules</strong>.</li>
-                <li>Set the Destination storage account to the private storage account.</li>
-                <li>Set the Source container to <code>public</code> and the Destination container to <code>backup</code>.</li>
-                <li>Create the replication rule.</li>
-                <li>
-                  Optionally, upload a file to the public container. Return to the private storage account and refresh the backup container. Within a few minutes your public website file will appear in the backup folder.
-                </li>
-              </ul>
-            </li>
-          </ul>
-        </div>
-
-        <div className="bg-gray-800 mt-4 rounded-lg p-4 border-l-4 border-yellow-500">
-          <h4 className="text-lg font-semibold text-yellow-400">Extend Your Learning with Copilot</h4>
-          <ul className="list-disc pl-5 text-gray-300 mt-2 space-y-2">
-            <li>What security features are available to protect Azure storage?</li>
-            <li>What is an Azure SAS and how is it used?
-</li>
-          </ul>
-        </div>
-
-        <div className="bg-gray-800 mt-4 rounded-lg p-4 border-l-4 border-green-500">
-          <h4 className="text-lg font-semibold text-green-400">Key Takeaways</h4>
-          <ul className="list-disc pl-5 text-gray-300 mt-2 space-y-2">
-            <li>Azure storage has many data protection features including: encryption, access control, network security, monitoring, and alerts.</li>
-            <li>A shared access signature (SAS) provides secure delegated access to resources in your storage account. With a SAS, you have granular control over how a client can access your data.</li>
-            <li>Lifecycle rules help optimize cost by automating data tiering.</li>
-            <li>Azure Blob Storage lifecycle management offers a rule-based policy that you can use to transition blob data to the appropriate access tiers or to expire data at the end of the data lifecycle.</li>
-            <li>Object replication asynchronously copies block blobs between a source storage account and a destination account.</li>
-          </ul>
-        </div>
-
-      </div>
-
-      <div className="mt-10 flex justify-between text-sm sm:text-base">
-        <Link
-          to="/module3/task/phase2"
-          className="text-blue-400 hover:underline hover:text-blue-300"
-        >
-          ← Back to Lab 02
-        </Link>
-        <Link
-          to="/day/3/resources"
-          className="text-blue-400 hover:underline hover:text-blue-300"
-        >
-          Day 3 Resources →
-        </Link>
-      </div>
-    </Content>
+    </div>
   );
 };
 

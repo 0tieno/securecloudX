@@ -1,23 +1,29 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { ChevronRight, ChevronDown, Menu, X } from "lucide-react";
+import { ChevronRight, ChevronDown, ChevronLeft, Menu, X, CheckCircle2, PanelLeftClose, PanelLeftOpen } from "lucide-react";
+import { useAuth } from "../contexts/AuthContext";
+import { useProgress } from "../hooks/useProgress";
 
 const topics = [
   { day: 1, title: "Identity & Access Management" },
   { day: 2, title: "Network Security & Perimeter Defense" },
-  { day: 3, title: "Data Security" },
+  { day: 3, title: "Data Security & Encryption" },
   { day: 4, title: "Application Security" },
-  { day: 5, title: "Security Monitoring & Threat Intelligence" },
-  { day: 6, title: "Incident Response & Threat Detection" },
-  { day: 7, title: "Capstone Project" },
+  { day: 5, title: "Cloud Security Posture Management" },
+  { day: 6, title: "Detection Engineering & IR" },
+  { day: 7, title: "Security Architecture Review" },
+  { day: 8, title: "DevSecOps Fundamentals" },
 ];
 
 const Sidebar = () => {
   const [openDay, setOpenDay] = useState({});
   const [openNextSteps, setOpenNextSteps] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isCollapsed, setIsCollapsed] = useState(false);
   const sidebarRef = useRef(null);
   const location = useLocation();
+  const { user } = useAuth();
+  const { isComplete } = useProgress(user?.id);
 
   const toggleDropdown = (day) => {
     setOpenDay((prev) => ({ ...prev, [day]: !prev[day] }));
@@ -60,10 +66,20 @@ const Sidebar = () => {
       {/* Sidebar */}
       <div
         ref={sidebarRef}
-        className={`fixed md:static top-0 left-0 h-full w-64 bg-gray-800 text-gray-300 flex flex-col border-r border-gray-700 transition-transform duration-300 z-50 ${
+        className={`fixed md:static top-0 left-0 h-full bg-gray-800 text-gray-300 flex flex-col border-r border-gray-700 transition-all duration-300 z-50 ${
           isSidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
-        }`}
+        } ${isCollapsed ? "w-10" : "w-64"}`}
       >
+        {/* Desktop collapse toggle */}
+        <button
+          onClick={() => setIsCollapsed(!isCollapsed)}
+          className="hidden md:flex items-center justify-center h-8 w-full text-gray-500 hover:text-gray-300 hover:bg-gray-700/50 transition-colors border-b border-gray-700/50 flex-shrink-0"
+          title={isCollapsed ? "Expand sidebar" : "Collapse sidebar"}
+        >
+          {isCollapsed ? <PanelLeftOpen size={14} /> : <PanelLeftClose size={14} />}
+        </button>
+
+        <div className={`flex flex-col flex-1 overflow-hidden ${isCollapsed ? "hidden md:hidden" : ""}`}>
         <h2 className="text-xl font-bold p-4 flex justify-between items-center">
           <Link
             to="/"
@@ -85,7 +101,7 @@ const Sidebar = () => {
           </Link>
         </h2>
 
-        <nav className="flex-1 overflow-y-auto">
+        <nav className="flex-1 overflow-y-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <ul>
             <li>
               <Link
@@ -113,22 +129,6 @@ const Sidebar = () => {
               </Link>
             </li>
 
-            {/* Forgotten Secret Lab - Mini Hack */}
-            <li>
-              <Link
-                to="/forgotten-secret-lab"
-                className={`block px-3 py-2 mx-2 my-1 rounded-lg border transition-colors font-medium text-sm ${
-                  location.pathname === "/forgotten-secret-lab"
-                    ? "bg-red-500/20 border-red-400/50 text-red-300"
-                    : "text-red-400 hover:text-red-300 border-red-500/30 hover:border-red-400/50 bg-red-500/10 hover:bg-red-500/20"
-                }`}
-                onClick={closeSidebar}
-                title="Git History Forensics Mini-Hack"
-              >
-                Mini-Hack: forgotten-secret-lab
-              </Link>
-            </li>
-
             {topics.map(({ day, title }) => {
               return (
                 <li key={day}>
@@ -141,8 +141,13 @@ const Sidebar = () => {
                     }`}
                     title={`Open Module ${day}`}
                   >
-                    <span>
-                      <strong>Module {day}:</strong> {title}
+                    <span className="flex items-center gap-2">
+                      {user && isComplete(day, "overview") && isComplete(day, "task") ? (
+                        <CheckCircle2 size={13} className="text-green-400 shrink-0" />
+                      ) : (
+                        <span className="w-3.5 h-3.5 shrink-0 inline-block" />
+                      )}
+                      <span><strong>Module {day}:</strong> {title}</span>
                     </span>
                     {openDay[day] ? (
                       <ChevronDown size={18} />
@@ -162,7 +167,7 @@ const Sidebar = () => {
                               : ""
                           }`}
                           onClick={closeSidebar}
-                          title={`Overview for Day ${day}`}
+                          title={`Overview for Module ${day}`}
                         >
                           Overview
                         </Link>
@@ -176,7 +181,7 @@ const Sidebar = () => {
                               : ""
                           }`}
                           onClick={closeSidebar}
-                          title={`Lab for Day ${day}`}
+                          title={`Lab for Module ${day}`}
                         >
                           Labs
                         </Link>
@@ -194,7 +199,7 @@ const Sidebar = () => {
                                   : ""
                               }`}
                               onClick={closeSidebar}
-                              title="Phase 1: Setup & Enumeration"
+                              title="Module 1: Setup & Enumeration"
                             >
                               Lab 01
                             </Link>
@@ -208,7 +213,7 @@ const Sidebar = () => {
                                   : ""
                               }`}
                               onClick={closeSidebar}
-                              title="Phase 2: Threat Modeling"
+                              title="Module 2: Threat Modeling"
                             >
                               Lab 02
                             </Link>
@@ -222,7 +227,7 @@ const Sidebar = () => {
                                   : ""
                               }`}
                               onClick={closeSidebar}
-                              title="Phase 3: Secure Coding"
+                              title="Module 3: Secure Coding"
                             >
                               Lab 03
                             </Link>
@@ -239,7 +244,7 @@ const Sidebar = () => {
                               : ""
                           }`}
                           onClick={closeSidebar}
-                          title={`Resources for Day ${day}`}
+                          title={`Resources for Module ${day}`}
                         >
                           Resources
                         </Link>
@@ -283,9 +288,28 @@ const Sidebar = () => {
                   </li>
                 </ul>
               )}
+
+              
+            {/* Forgotten Secret Lab - Mini Hack */}
+            <li>
+              <Link
+                to="/forgotten-secret-lab"
+                className={`block px-3 py-2 mx-2 my-1 rounded-lg border transition-colors font-medium text-sm ${
+                  location.pathname === "/forgotten-secret-lab"
+                    ? "bg-red-500/20 border-red-400/50 text-red-300"
+                    : "text-red-400 hover:text-red-300 border-red-500/30 hover:border-red-400/50 bg-red-500/10 hover:bg-red-500/20"
+                }`}
+                onClick={closeSidebar}
+                title="Git History Forensics Mini-Hack"
+              >
+                Mini-Hack: forgotten-secret-lab
+              </Link>
+            </li>
+
             </li>
           </ul>
         </nav>
+        </div>
       </div>
     </>
   );

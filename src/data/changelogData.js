@@ -1,11 +1,47 @@
 export const changelog = [
     {
+        date: "19 Apr, 2026",
+        desc: "Launched securecloudx.xyz with fully revamped content, new domain, GitHub authentication, and Supabase-powered progress tracking & certificate system.",
+    },
+    {
+        date: "19 Apr, 2026",
+        desc: "Updated Terms of Service — accurate user data section reflecting GitHub OAuth & progress tracking, refreshed platform description, bumped to v1.2.",
+    },
+    {
+        date: "19 Apr, 2026",
+        desc: "Built a community growth graph on the admin panel — pure SVG, no dependencies. Cumulative signups by month with +N badges at each data point.",
+    },
+    {
+        date: "18 Apr, 2026",
+        desc: "Wired Module 8 into the certificate & progress system — updated PHASE_IDS, TOTAL_STEPS (61→68), phases denominator (/7→/8), and certificate body text.",
+    },
+    {
+        date: "18 Apr, 2026",
+        desc: "Added rich resources for Module 8 — 14 curated links covering GitHub Actions security, CodeQL, OWASP DevSecOps, Trivy, Semgrep, Gitleaks, Checkov, NIST SSDF, SBOM, and more.",
+    },
+    {
+        date: "17 Apr, 2026",
+        desc: "Launched Module 8: DevSecOps Fundamentals — shift-left security, CI/CD pipeline hardening, SAST, SCA, secret scanning, container security, and IaC scanning. Full overview + 7-step hands-on lab.",
+    },
+    {
+        date: "16 Apr, 2026",
+        desc: "Industry gap analysis — researched live job postings (Cloudflare, Okta, Datadog) and identified 6 curriculum gaps. DevSecOps was the #1 priority, leading to Module 8.",
+    },
+    {
+        date: "14 Apr, 2026",
+        desc: "Complete content revamp of all 7 modules — rewrote every overview and lab with richer, industry-aligned content. Fixed build errors in Modules 2 & 3.",
+    },
+    {
         date: "12 Apr, 2026",
-        desc: "Refactored the entire codebase to improve performance and maintainability. This was a major undertaking that involved restructuring components, optimizing state management, and enhancing the overall architecture of the application. The result is a faster, more responsive user experience and a codebase that is easier to work with for future development.",
+        desc: "Refactored the entire codebase to improve performance and maintainability. Restructured components, optimized state management, and enhanced overall architecture.",
+    },
+    {
+        date: "11 Apr, 2026",
+        desc: "Purchased securecloudx.xyz domain — the platform now has its own home on the web.",
     },
     {
         date: "10 Apr, 2026",
-        desc: "We turned 1 year old! Having reached 400 users/month and 4k+ users in 30+ countries. Thanks to everyone who has supported us on this journey. We have big plans for the future, so stay tuned for more updates and features coming your way!",
+        desc: "We turned 1 year old! 400+ users/month and 4k+ users in 30+ countries. The content revamp sprint begins — biggest update since launch.",
     },
     {
         date: "02 Sept, 2025",

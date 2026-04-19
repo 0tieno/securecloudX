@@ -1,139 +1,233 @@
-import Content from "../../../components/Content";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { ChevronLeft, ChevronRight } from "lucide-react";
+import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
+import PhaseStepItem from "../../../components/PhaseStepItem";
+import { useStepProgress } from "../../../hooks/useStepProgress";
+
+const TOTAL = 7;
+const OBJECTIVES = [
+  "Create users, groups, and understand identity types in Microsoft Entra ID",
+  "Assign RBAC roles at different scopes and verify least privilege enforcement",
+  "Build Conditional Access policies that require MFA and block legacy authentication",
+  "Explore Privileged Identity Management (PIM) for just-in-time admin access",
+  "Review sign-in and audit logs to verify your Zero Trust controls are working",
+];
 
 const Task1 = () => {
+  const [open, setOpen] = useState(() => new Set([0]));
+  const [checked, toggleChecked] = useStepProgress("scx_steps_1_task", TOTAL);
+  const toggleOpen = (i) => setOpen(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
+
   return (
-    <Content>
-      <h2 className="text-2xl font-bold text-gray">Day 1 Lab: Restrict Azure VM Access</h2>
-      <p className="mt-2 text-gray-300">
-        In this task, you'll configure RBAC (Role-Based Access Control) and MFA (Multi-Factor Authentication) to secure an Azure Virtual Machine (VM) from unauthorized access.
-      </p>
+    <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
+      <div className="max-w-3xl mx-auto px-4 py-10">
+        <div className="flex items-center gap-2 text-gray-600 text-xs mb-8">
+          <Link to="/home" className="hover:text-gray-400 transition-colors">// phases</Link>
+          <span>/</span>
+          <Link to="/module1" className="hover:text-gray-400 transition-colors text-gray-500">phase-1-iam</Link>
+          <span>/</span><span className="text-gray-400">lab</span>
+        </div>
+        <div className="mb-8">
+          <div className="text-green-400 text-xs mb-3">$ ./lab_1_zero_trust_iam.sh</div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Module 1 Lab: Implement Zero Trust IAM Controls</h1>
+          <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
+            Build a Zero Trust identity configuration from scratch. Create identities, enforce least privilege with RBAC, require MFA via Conditional Access, and verify your controls with sign-in logs.
+          </p>
+        </div>
+        <div className="mb-8">
+          <div className="flex items-center justify-between text-xs mb-2">
+            <span className="text-gray-500">{checked.size}/{TOTAL} complete</span>
+            <span className="text-gray-700"># check steps as you complete them</span>
+          </div>
+          <div className="w-full bg-gray-800 border border-gray-700 h-1.5">
+            <div className="bg-red-500 h-full transition-all duration-500" style={{ width: `${(checked.size / TOTAL) * 100}%` }} />
+          </div>
+        </div>
+        <div className="mb-8 p-4 border border-gray-700 bg-gray-800/50">
+          <div className="text-blue-400 text-xs mb-3">$ cat lab_objectives.sh</div>
+          <ul className="space-y-2">
+            {OBJECTIVES.map((obj, i) => (
+              <li key={i} className="flex items-start gap-2 text-sm text-gray-400">
+                <span className="text-green-400 flex-shrink-0 mt-0.5">&gt;</span><span>{obj}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+        <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <span>|</span>
+          <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
+        </div>
+        <div className="space-y-2 mb-8">
+          {/* Step 1: Prep */}
+          <PhaseStepItem number={1} type="PREP" title="What You'll Do — Zero Trust IAM"
+            isOpen={open.has(0)} onToggleOpen={() => toggleOpen(0)}
+            isChecked={checked.has(0)} onToggleChecked={() => toggleChecked(0)}>
+            <p className="text-sm mb-2">This lab builds a Zero Trust identity configuration step by step:</p>
+            <ul className="space-y-1">
+              <li className="flex items-start gap-2"><span className="text-yellow-400 flex-shrink-0">1</span><span>Create users and security groups in Entra ID</span></li>
+              <li className="flex items-start gap-2"><span className="text-yellow-400 flex-shrink-0">2</span><span>Assign RBAC roles at different scopes and test least privilege</span></li>
+              <li className="flex items-start gap-2"><span className="text-yellow-400 flex-shrink-0">3</span><span>Create Conditional Access policies requiring MFA</span></li>
+              <li className="flex items-start gap-2"><span className="text-yellow-400 flex-shrink-0">4</span><span>Explore PIM for just-in-time admin access</span></li>
+              <li className="flex items-start gap-2"><span className="text-yellow-400 flex-shrink-0">5</span><span>Review sign-in logs to verify everything works</span></li>
+            </ul>
+            <p className="mt-2 text-gray-600 italic text-xs">Steps have intentional gaps — designed to encourage critical thinking and exploration of the Azure portal.</p>
+          </PhaseStepItem>
 
-      {/* Task Breakdown */}
-      <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
-        <h3 className="text-xl sm:text-2xl font-semibold text-gray">What You’ll Do</h3>
-        <ul className="list-disc pl-5 text-gray-300 mt-2 space-y-2">
-          <li>Assign RBAC roles to control access to the Azure VM.</li>
-          <li>Enable MFA to require extra authentication before accessing the VM.</li>
-          <li>Test the setup to verify that only authorized users can log in.</li>
-        </ul>
+          {/* Step 2: AI Prompt */}
+          <PhaseStepItem number={2} type="AI" title="AI Prompt — Zero Trust IAM Guide"
+            isOpen={open.has(1)} onToggleOpen={() => toggleOpen(1)}
+            isChecked={checked.has(1)} onToggleChecked={() => toggleChecked(1)}>
+            <p className="text-xs text-gray-500 mb-2">Copy and paste this into your AI assistant for interactive step-by-step guidance:</p>
+            <div className="p-3 bg-gray-900 border border-gray-700 text-gray-400 text-sm italic leading-relaxed">
+              "Guide me through implementing Zero Trust IAM in Azure. The lab covers: (1) Navigate Microsoft Entra ID and explore the tenant — users, groups, app registrations. (2) Create two test users and a security group called 'SCX-Developers'. (3) Create a resource group and assign the 'Reader' role to the SCX-Developers group at the resource group scope — explain the RBAC components (security principal, role definition, scope). (4) Sign in as one of the test users and verify they can only read, not modify resources. (5) Create a Conditional Access policy that requires MFA for all users accessing the Azure Portal. (6) Create a second policy that blocks legacy authentication protocols. (7) Explain what Privileged Identity Management (PIM) is and walk me through viewing eligible roles. (8) Show me how to review sign-in logs in Entra ID to verify MFA was enforced. Explain each step with Azure portal navigation."
+            </div>
+          </PhaseStepItem>
+
+          {/* Step 3: Entra ID Users & Groups */}
+          <PhaseStepItem number={3} type="PRACTICE" title="Step 1: Create Users & Security Groups"
+            isOpen={open.has(2)} onToggleOpen={() => toggleOpen(2)}
+            isChecked={checked.has(2)} onToggleChecked={() => toggleChecked(2)}>
+            <p className="text-xs text-gray-500 mb-2">Zero Trust starts with identity. Create the identities you'll assign permissions to.</p>
+            <ul className="space-y-1.5">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Go to <a href="https://portal.azure.com" className="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">Azure Portal</a> → <strong className="text-gray-300">Microsoft Entra ID</strong></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Navigate to <strong className="text-gray-300">Users → New user → Create new user</strong></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Create two test users (e.g., <code className="text-yellow-400">dev-user1@yourtenant.onmicrosoft.com</code> and <code className="text-yellow-400">dev-user2@yourtenant.onmicrosoft.com</code>)</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Navigate to <strong className="text-gray-300">Groups → New group</strong></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Create a <strong className="text-gray-300">Security group</strong> named <code className="text-yellow-400">SCX-Developers</code> and add both users as members</span></li>
+            </ul>
+            <div className="mt-2 p-2 border border-gray-700 bg-gray-800">
+              <p className="text-xs text-gray-500"><span className="text-cyan-400">Explore:</span> While in Entra ID, browse <strong className="text-gray-300">App registrations</strong> and <strong className="text-gray-300">Enterprise applications</strong> to see where service principals live. Note the difference between human identities (users) and application identities (service principals).</p>
+            </div>
+            <div className="mt-2 space-y-1">
+              <a href="https://learn.microsoft.com/entra/fundamentals/how-to-create-delete-users?wt.mc_id=studentamb_387261" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-sm block">→ Microsoft Learn: Create users in Entra ID</a>
+            </div>
+          </PhaseStepItem>
+
+          {/* Step 4: RBAC */}
+          <PhaseStepItem number={4} type="PRACTICE" title="Step 2: Assign RBAC Roles & Test Least Privilege"
+            isOpen={open.has(3)} onToggleOpen={() => toggleOpen(3)}
+            isChecked={checked.has(3)} onToggleChecked={() => toggleChecked(3)}>
+            <p className="text-xs text-gray-500 mb-2">RBAC = Who can do what on which resources. Assign roles at the narrowest scope possible.</p>
+            <ul className="space-y-1.5">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Create a resource group (e.g., <code className="text-yellow-400">rg-scx-iam-lab</code>)</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Go to the resource group → <strong className="text-gray-300">Access control (IAM) → Add role assignment</strong></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Assign the <span className="text-green-400">Reader</span> role to the <code className="text-yellow-400">SCX-Developers</code> group</span></li>
+            </ul>
+            <div className="mt-2 p-2 bg-gray-900 border border-gray-700 text-sm">
+              <p className="text-gray-400 mb-1">RBAC assignment breakdown:</p>
+              <p className="text-gray-300">• <span className="text-yellow-400">Security principal:</span> SCX-Developers group</p>
+              <p className="text-gray-300">• <span className="text-yellow-400">Role definition:</span> Reader (view-only)</p>
+              <p className="text-gray-300">• <span className="text-yellow-400">Scope:</span> rg-scx-iam-lab (resource group level)</p>
+            </div>
+            <p className="text-sm mt-3 mb-2"><strong className="text-gray-300">Test it:</strong></p>
+            <ul className="space-y-1.5">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Open a private/incognito browser → Sign in as <code className="text-yellow-400">dev-user1</code></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Navigate to the resource group → Try to create a resource → <span className="text-red-400">It should fail</span></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Verify the user can <span className="text-green-400">view</span> resources but not modify or delete</span></li>
+            </ul>
+            <div className="mt-2 p-2 border border-red-800/50 bg-red-900/10">
+              <p className="text-red-400 text-xs">Challenge: Now try assigning Contributor at the subscription level. Notice how the blast radius expands — the user can modify anything in any resource group. This is why scope matters.</p>
+            </div>
+            <div className="mt-2 space-y-1">
+              <a href="https://learn.microsoft.com/azure/role-based-access-control/role-assignments-portal?wt.mc_id=studentamb_387261" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-sm block">→ Microsoft Learn: Assign Azure roles</a>
+            </div>
+          </PhaseStepItem>
+
+          {/* Step 5: Conditional Access + MFA */}
+          <PhaseStepItem number={5} type="PRACTICE" title="Step 3: Create Conditional Access Policies"
+            isOpen={open.has(4)} onToggleOpen={() => toggleOpen(4)}
+            isChecked={checked.has(4)} onToggleChecked={() => toggleChecked(4)}>
+            <p className="text-xs text-gray-500 mb-2">Conditional Access is the Zero Trust policy engine. Build two enterprise-standard policies.</p>
+            <p className="text-sm mb-2"><strong className="text-gray-300">Policy 1: Require MFA for Azure Portal access</strong></p>
+            <ul className="space-y-1.5">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Go to <strong className="text-gray-300">Entra ID → Security → Conditional Access → New policy</strong></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Name: <code className="text-yellow-400">SCX — Require MFA for Azure Portal</code></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Assignments → Users: <code className="text-yellow-400">All users</code> (exclude your break-glass account)</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Target resources → Cloud apps: <code className="text-yellow-400">Microsoft Azure Management</code></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Grant → <code className="text-yellow-400">Require multifactor authentication</code></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Enable policy: <code className="text-yellow-400">Report-only</code> first (to test without enforcing), then switch to <code className="text-yellow-400">On</code></span></li>
+            </ul>
+            <p className="text-sm mt-3 mb-2"><strong className="text-gray-300">Policy 2: Block legacy authentication</strong></p>
+            <ul className="space-y-1.5">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>New policy → Name: <code className="text-yellow-400">SCX — Block Legacy Auth</code></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Assignments → Users: <code className="text-yellow-400">All users</code></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Conditions → Client apps → Select <code className="text-yellow-400">Exchange ActiveSync clients</code> and <code className="text-yellow-400">Other clients</code></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Grant → <code className="text-yellow-400">Block access</code></span></li>
+            </ul>
+            <div className="mt-2 p-2 border border-yellow-800/50 bg-yellow-900/10">
+              <p className="text-yellow-400 text-xs">These two policies (require MFA + block legacy auth) are the absolute minimum for any organization. Microsoft's own security guidance calls them "security defaults on steroids."</p>
+            </div>
+            <div className="mt-2 space-y-1">
+              <a href="https://learn.microsoft.com/entra/identity/conditional-access/howto-conditional-access-policy-all-users-mfa?wt.mc_id=studentamb_387261" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-sm block">→ Microsoft Learn: Require MFA for all users</a>
+              <a href="https://learn.microsoft.com/entra/identity/conditional-access/howto-conditional-access-policy-block-legacy?wt.mc_id=studentamb_387261" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-sm block">→ Microsoft Learn: Block legacy authentication</a>
+            </div>
+          </PhaseStepItem>
+
+          {/* Step 6: PIM */}
+          <PhaseStepItem number={6} type="PRACTICE" title="Step 4: Explore Privileged Identity Management (PIM)"
+            isOpen={open.has(5)} onToggleOpen={() => toggleOpen(5)}
+            isChecked={checked.has(5)} onToggleChecked={() => toggleChecked(5)}>
+            <p className="text-xs text-gray-500 mb-2">PIM = no standing admin access. Admins request elevated roles only when needed, and they expire automatically.</p>
+            <ul className="space-y-1.5">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Go to <strong className="text-gray-300">Entra ID → Identity Governance → Privileged Identity Management</strong></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Click <strong className="text-gray-300">Microsoft Entra roles</strong> → Review the list of directory roles</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Click <strong className="text-gray-300">My roles</strong> → See which roles you're eligible for vs. actively assigned</span></li>
+            </ul>
+            <div className="mt-2 p-2 bg-gray-900 border border-gray-700 text-sm">
+              <p className="text-gray-400 mb-1">Key concepts to observe:</p>
+              <p className="text-gray-300">• <span className="text-yellow-400">Eligible</span> — User can request activation (not active by default)</p>
+              <p className="text-gray-300">• <span className="text-yellow-400">Active</span> — Role is currently activated (time-bound)</p>
+              <p className="text-gray-300">• <span className="text-yellow-400">Expired</span> — Activation window has passed</p>
+            </div>
+            <div className="mt-2 p-2 border border-gray-700 bg-gray-800">
+              <p className="text-xs text-gray-500"><span className="text-cyan-400">Note:</span> PIM requires Entra ID P2 licensing (included in free trials). If you don't have P2, browse the PIM interface and understand the concept — you'll encounter PIM in every enterprise environment and on the AZ-500 exam.</p>
+            </div>
+            <div className="mt-2 space-y-1">
+              <a href="https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-getting-started?wt.mc_id=studentamb_387261" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-sm block">→ Microsoft Learn: Start using PIM</a>
+            </div>
+          </PhaseStepItem>
+
+          {/* Step 7: Verify with Logs */}
+          <PhaseStepItem number={7} type="PRACTICE" title="Step 5: Review Sign-in Logs & Validate Controls"
+            isOpen={open.has(6)} onToggleOpen={() => toggleOpen(6)}
+            isChecked={checked.has(6)} onToggleChecked={() => toggleChecked(6)}>
+            <p className="text-xs text-gray-500 mb-2">Trust but verify. Check the logs to confirm your policies are actually enforcing.</p>
+            <ul className="space-y-1.5">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Go to <strong className="text-gray-300">Entra ID → Sign-in logs</strong></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Find the sign-in for your test user → Click it to see details</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Check the <strong className="text-gray-300">Conditional Access</strong> tab — it shows which policies applied and their result (Success, Failure, Not Applied)</span></li>
+            </ul>
+            <div className="mt-2 p-2 bg-gray-900 border border-gray-700 text-sm">
+              <p className="text-gray-400 mb-1">What to verify:</p>
+              <p className="text-gray-300">• MFA policy shows <span className="text-green-400">"Success"</span> — user was prompted for MFA</p>
+              <p className="text-gray-300">• Legacy auth policy shows <span className="text-green-400">"Not Applied"</span> — user used a modern client</p>
+              <p className="text-gray-300">• <strong className="text-gray-300">Authentication Details</strong> tab shows the MFA method used (Authenticator app, SMS, etc.)</p>
+            </div>
+            <ul className="space-y-1.5 mt-3">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Also check <strong className="text-gray-300">Entra ID → Audit logs</strong> to see the RBAC role assignments you made earlier</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Filter by Activity: <code className="text-yellow-400">"Add member to role"</code> to find your assignments</span></li>
+            </ul>
+            <div className="mt-3 p-2 border border-green-800/50 bg-green-900/10">
+              <p className="text-green-400 text-xs">Success: Test users can only view resources (Reader role). MFA is required for Azure Portal access. Legacy auth is blocked. Sign-in logs confirm enforcement.</p>
+            </div>
+            <div className="mt-2 p-2 border border-yellow-800/50 bg-yellow-900/10">
+              <p className="text-yellow-400 text-xs">Cleanup: Delete test users and the resource group when done. Set Conditional Access policies to "Off" or "Report-only" if sharing a tenant. Keep your break-glass account safe.</p>
+            </div>
+          </PhaseStepItem>
+        </div>
+        <MarkPhaseComplete phaseId={1} checkedCount={checked.size} total={TOTAL} />
+        <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6 mt-8">
+          <Link to="/module1" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
+            <ChevronLeft size={14} /> Overview
+          </Link>
+          <Link to="/module2" className="flex items-center gap-1 text-gray-500 hover:text-red-400 transition-colors">
+            Module 2 <ChevronRight size={14} />
+          </Link>
+        </div>
       </div>
-
-       {/* AI Assistance Prompt */}
-       <div className="mt-6 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-yellow-500">
-        <h3 className="text-xl sm:text-2xl font-semibold text-yellow-400">Use AI to Guide You</h3>
-        <p className="text-gray-300 text-sm sm:text-base mt-2">
-          Copy and paste this prompt into an AI assistant to get interactive guidance while completing the lab:
-        </p>
-        <blockquote className="mt-3 p-3 bg-gray-900 rounded-md text-gray-300 italic border-l-4 border-yellow-400">
-        "Walk me through a lab on securing an Azure Virtual Machine (VM). The lab covers setting up Azure Active Directory (AD), creating users and groups, assigning RBAC roles for controlled access, enabling Multi-Factor Authentication (MFA), and testing the setup to ensure only authorized users can log in. Please explain each step in simple terms and include Azure portal navigation instructions where necessary."
-        </blockquote>
-      </div>
-
-      {/* Step-by-Step Guide */}
-      <div className="mt-6">
-        <h3 className="text-xl sm:text-2xl font-semibold text-gray">Step-by-Step Guide</h3>
-
-          <p className="mt-3">⚠️ Heads up: The steps has some intentional gaps. These are designed to encourage critical thinking and problem-solving
-
-</p>
-
-        {/* Step 1: Set Up Azure AD */}
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
-          <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 1: Set Up Azure Active Directory (AD)</h4>
-          <p className="text-gray-300 text-sm sm:text-base mt-2">
-            Why? Azure AD manages user identities and access permissions across cloud resources.
-          </p>
-          <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-            <li>Go to <strong>Azure Portal</strong> (<a href="https://portal.azure.com" className="text-blue-400">https://portal.azure.com</a>).</li>
-            <li>Navigate to <strong>Azure Active Directory</strong>.</li>
-            <li>Explore Users, Groups, and Roles to understand how permissions work.</li>
-          </ul>
-        </div>
-
-        {/* Step 2: Create Users & Groups */}
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
-          <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 2: Create Users & Groups</h4>
-          <p className="text-gray-300 text-sm sm:text-base mt-2">
-            Why Assigning users to groups allows for easier role management instead of assigning permissions individually.
-          </p>
-          <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-            <li>Add a new user: <strong>IAM &gt; Users &gt; New User</strong>.</li>
-            <li>Create a group: <strong>IAM &gt; Groups &gt; New Group</strong> and add users.</li>
-            <li>Use meaningful names like "VM-Admins" or "Developers".</li>
-          </ul>
-        </div>
-
-        {/* Step 3: Assign RBAC Roles */}
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
-          <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 3: Assign RBAC Roles</h4>
-          <p className="text-gray-300 text-sm sm:text-base mt-2">
-            Why RBAC ensures that users have only the minimum required access to resources.
-          </p>
-          <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-            <li>Navigate to the Azure VM you want to secure or create one if you don't have already.</li>
-            <li>Go to <strong>IAM (Access Control) &gt; Role Assignments &gt; Add role assignment</strong>.</li>
-            <li>Assign a Reader role to a group/user (instead of Owner).</li>
-            <li>Ensure that only administrators have full access.</li>
-          </ul>
-          <p className="text-gray-300 text-sm sm:text-base mt-3">
-            <strong>Common Mistake:</strong> Assigning Owner or Contributor roles when Read-Only access is sufficient.
-          </p>
-        </div>
-
-        {/* Step 4: Enable Multi-Factor Authentication (MFA) */}
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-blue-500">
-          <h4 className="text-lg sm:text-xl font-semibold text-blue-400">Step 4: Enable Multi-Factor Authentication (MFA)</h4>
-          <p className="text-gray-300 text-sm sm:text-base mt-2">
-            Why MFA reduces the risk of account compromise even if passwords are leaked.
-          </p>
-          <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-            <li>Go to Azure Active Directory &gt; Security &gt; Conditional Access.</li>
-            <li>Create a new policy: Require MFA for VM Access.</li>
-            <li>Set the target users/groups and enable MFA enforcement.</li>
-          </ul>
-          <p className="text-gray-300 text-sm sm:text-base mt-3">
-            <strong>Best Practice:</strong> Exclude emergency accounts from MFA to avoid lockout.
-          </p>
-        </div>
-
-        {/* Step 5: Test Your Setup */}
-        <div className="mt-4 p-4 bg-gray-800 rounded-lg shadow-md border-l-4 border-green-500">
-          <h4 className="text-lg sm:text-xl font-semibold text-green-400">Step 5: Test & Validate</h4>
-          <p className="text-gray-300 text-sm sm:text-base mt-2">
-            Why Always verify security settings to ensure they work as expected.
-          </p>
-          <ul className="list-disc pl-5 text-gray-300 text-sm sm:text-base mt-2">
-            <li>Try accessing the VM without MFA – it should be blocked.</li>
-            <li>Attempt logging in with a user who lacks permissions – access should be denied.</li>
-            <li>Log in with an authorized user – MFA should prompt before access.</li>
-          </ul>
-          <p className="text-gray-300 text-sm sm:text-base mt-3">
-            <strong>Success Criteria:</strong> Unauthorized users cannot access the VM, and MFA prompts appear for the authorized users.
-          </p>
-        </div>
-
-        <p className="text-green-300 text-sm sm:text-base mt-3">
-            <strong>congrats!</strong> you just finished day 1. Ensure to document your learning and findings. You will need them in the capstone project. See you on day 2.
-          </p>
-      </div>
-
-<div className="mt-10 flex justify-between text-sm sm:text-base">
-  <Link
-    to="/module1"
-    className="text-blue-400 hover:underline hover:text-blue-300"
-  >
-    ← Back to Overview
-  </Link>
-  <Link
-    to="/day/1/resources"
-    className="text-blue-400 hover:underline hover:text-blue-300"
-  >
-    Day 1 Resources →
-  </Link>
-</div>
-
-    </Content>
+    </div>
   );
 };
 
