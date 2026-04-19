@@ -214,7 +214,7 @@ export default function Certificate({ userName, userId, completedDate }) {
         )}
         {verifyUrl && (
           <a
-            href={`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(verifyUrl)}`}
+            href={`https://www.linkedin.com/shareArticle?mini=true&url=${encodeURIComponent(verifyUrl)}&title=${encodeURIComponent("Cloud Security Engineering Certificate — securecloudX")}&summary=${encodeURIComponent(`I just completed all 8 phases of the securecloudX Cloud Security Engineering Program — covering IAM, network security, data protection, threat detection, monitoring, incident response, capstone deployment, and DevSecOps.\n\nVerify my certificate: ${verifyUrl}`)}`}
             target="_blank"
             rel="noopener noreferrer"
             className="flex items-center gap-2 border border-blue-600 hover:border-blue-400 text-blue-400 hover:text-blue-300 font-mono text-sm px-6 py-2.5 transition-colors"
