@@ -26,7 +26,7 @@ export default function Pricing() {
             <hr className="flex-grow border-t border-gray-700 mx-2" />
           </div>
           <p className="text-gray-300 text-center mb-8 mt-4 max-w-xl">
-            This guide is free and open sourced. Only one-on-one consultation is
+            NOTE: This guide is free and open sourced. Only one-on-one consultation is
             charged to support commitment with additional benefits.
           </p>
           <div className="flex flex-col md:flex-row gap-8 justify-center mb-8">

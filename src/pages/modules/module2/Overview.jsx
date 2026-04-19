@@ -4,15 +4,18 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import PhaseStepItem from "../../../components/PhaseStepItem";
 
-const TOTAL = 6;
+const TOTAL = 7;
 const OBJECTIVES = [
-  "Implement Virtual Networks (VNet) for secure resource isolation",
-  "Configure Network Security Groups (NSGs) to filter traffic",
-  "Deploy Azure Firewall and understand DDoS protection",
+  "Understand Defense in Depth as the layered security model for cloud networking",
+  "Design Virtual Networks (VNets) with proper segmentation using subnets",
+  "Configure Network Security Groups (NSGs) with inbound/outbound security rules",
+  "Implement Private Endpoints to eliminate public internet exposure for Azure services",
+  "Use Azure Bastion for secure, jump-box-free remote access to VMs",
+  "Understand hub-spoke network topology and Azure Firewall for centralized traffic control",
 ];
 
 const Day2 = () => {
-  const [open, setOpen] = useState(() => new Set([0,1,2,3,4,5]));
+  const [open, setOpen] = useState(() => new Set([0,1,2,3,4,5,6]));
   const [checked, setChecked] = useState(new Set());
   const toggleOpen = (i) => setOpen(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
   const toggleChecked = (i) => setChecked(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
@@ -28,14 +31,11 @@ const Day2 = () => {
         </div>
         <div className="mb-8">
           <div className="text-green-400 text-xs mb-3">$ cat module_2_network_security_overview.md</div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Module 2: Network Security & Perimeter Defense</h1>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Module 2: Network Security & Segmentation</h1>
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
-            Learn how to secure Azure resources by implementing Virtual Networks (VNet), Network Security Groups (NSG), Azure Firewall, and DDoS protection.
+            In the cloud, your network is software-defined — which means it can be misconfigured just as easily as it can be secured. This module teaches you how to segment networks, control traffic flow, eliminate public exposure, and implement Defense in Depth using the same patterns used in enterprise Azure environments.
           </p>
         </div>
-
-      {/* Domain & Goal */}
-        {/* Progress */}
         <div className="mb-8">
           <div className="flex items-center justify-between text-xs mb-2">
             <span className="text-gray-500">{checked.size}/{TOTAL} complete</span>
@@ -45,85 +45,163 @@ const Day2 = () => {
             <div className="bg-red-500 h-full transition-all duration-500" style={{ width: `${(checked.size / TOTAL) * 100}%` }} />
           </div>
         </div>
-
-        {/* Objectives */}
         <div className="mb-8 p-4 border border-gray-700 bg-gray-800/50">
           <div className="text-blue-400 text-xs mb-3">$ cat learning_objectives.sh</div>
           <ul className="space-y-2">
             {OBJECTIVES.map((obj, i) => (
               <li key={i} className="flex items-start gap-2 text-sm text-gray-400">
-                <span className="text-green-400 flex-shrink-0 mt-0.5">&gt;</span>
-                <span>{obj}</span>
+                <span className="text-green-400 flex-shrink-0 mt-0.5">&gt;</span><span>{obj}</span>
               </li>
             ))}
           </ul>
         </div>
-
         <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
-          <button onClick={() => setOpen(new Set([0,1,2,3,4,5]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6]))} className="hover:text-gray-400 transition-colors">expand all</button>
           <span>|</span>
           <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
         </div>
-
         <div className="space-y-2 mb-12">
           <PhaseStepItem number={1} type="READ" title="Domain & Goal"
             isOpen={open.has(0)} onToggleOpen={() => toggleOpen(0)}
             isChecked={checked.has(0)} onToggleChecked={() => toggleChecked(0)}>
-            <p><span className="text-gray-500">Domain:</span> Network Security</p>
-            <p className="mt-1"><span className="text-gray-500">Goal:</span> Implement perimeter security controls to protect Azure resources from unauthorized access and cyber threats.</p>
+            <p><span className="text-gray-500">Domain:</span> Network Security & Segmentation</p>
+            <p className="mt-1"><span className="text-gray-500">Goal:</span> Design and implement secure network architectures in Azure using VNets, NSGs, Private Endpoints, Bastion, and Azure Firewall.</p>
+            <p className="mt-2 text-gray-500 text-xs">Industry alignment: AZ-500 (Secure networking — 20-25% of exam), CIS Azure Benchmark Section 6 (Networking), NIST 800-53 SC (System and Communications Protection)</p>
           </PhaseStepItem>
 
-          <PhaseStepItem number={2} type="READ" title="What is Network Security & Why it Matters"
+          <PhaseStepItem number={2} type="READ" title="Defense in Depth — Layered Network Security"
             isOpen={open.has(1)} onToggleOpen={() => toggleOpen(1)}
             isChecked={checked.has(1)} onToggleChecked={() => toggleChecked(1)}>
-            <p>Network Security is a set of technologies and policies that help protect cloud infrastructure by controlling and filtering traffic.</p>
-            <p className="mt-2">Without proper security measures, attackers can exploit open ports, inject malware, or perform denial-of-service attacks. Proper network security ensures data integrity, availability, and confidentiality.</p>
-          </PhaseStepItem>
-
-          <PhaseStepItem number={3} type="READ" title="Must Read: Network Security Fundamentals"
-            isOpen={open.has(2)} onToggleOpen={() => toggleOpen(2)}
-            isChecked={checked.has(2)} onToggleChecked={() => toggleChecked(2)}>
-            <p>Before proceeding, review these foundational resources:</p>
-            <ul className="space-y-2 mt-2">
-              <li><a href="https://learn.microsoft.com/en-us/training/modules/network-fundamentals-2/?wt.mc_id=studentamb_387261" className="text-blue-400 hover:text-blue-300 transition-colors" target="_blank" rel="noopener noreferrer">→ Fundamentals of Network Security (Microsoft Learn)</a></li>
-              <li><a href="https://learn.microsoft.com/en-us/azure/security/fundamentals/shared-responsibility/?wt.mc_id=studentamb_387261" className="text-blue-400 hover:text-blue-300 transition-colors" target="_blank" rel="noopener noreferrer">→ Shared responsibility in the cloud (network security)</a></li>
-            </ul>
-          </PhaseStepItem>
-
-          <PhaseStepItem number={4} type="SCENARIO" title="Real-World Scenario: Open Ports Attack"
-            isOpen={open.has(3)} onToggleOpen={() => toggleOpen(3)}
-            isChecked={checked.has(3)} onToggleChecked={() => toggleChecked(3)}>
-            <p>A company deployed a web application on Azure, but their VMs had open RDP <span className="text-yellow-400">(port 3389)</span> and SSH <span className="text-yellow-400">(port 22)</span> ports exposed to the internet. Attackers exploited these to gain access. By implementing NSGs, firewalls, and DDoS protection, the company was able to prevent future breaches and secure their infrastructure.</p>
-          </PhaseStepItem>
-
-          <PhaseStepItem number={5} type="NOTE" title="Key Concepts"
-            isOpen={open.has(4)} onToggleOpen={() => toggleOpen(4)}
-            isChecked={checked.has(4)} onToggleChecked={() => toggleChecked(4)}>
-            <ul className="space-y-1.5">
-              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span><span className="text-gray-300">Virtual Networks (VNet)</span> allow resources to communicate securely and in isolation.</span></li>
-              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span><span className="text-gray-300">Network Security Groups (NSGs)</span> control inbound and outbound traffic rules.</span></li>
-              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span><span className="text-gray-300">Azure Firewall</span> provides centralized security policy enforcement.</span></li>
-              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span><span className="text-gray-300">DDoS Protection</span> helps mitigate denial-of-service attacks.</span></li>
-            </ul>
-            <p className="mt-2 text-gray-600 text-xs">→ Visit the resources page for deeper reading on each concept.</p>
-          </PhaseStepItem>
-
-          <PhaseStepItem number={6} type="LAB" title="Your Task: Secure Azure VM with NSGs & Firewall"
-            isOpen={open.has(5)} onToggleOpen={() => toggleOpen(5)}
-            isChecked={checked.has(5)} onToggleChecked={() => toggleChecked(5)}>
-            <p>Secure an Azure Virtual Machine using NSGs, a firewall, and DDoS protection. You'll:</p>
-            <ul className="space-y-1 mt-2">
-              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Create a Virtual Network (VNet) to organize resources</span></li>
-              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Configure Network Security Groups (NSGs) to restrict access</span></li>
-              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Deploy Azure Firewall to control traffic</span></li>
-              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Learn about DDoS Protection (advanced — <a href="https://learn.microsoft.com/en-us/training/modules/introduction-azure-ddos-protection/?wt.mc_id=studentamb_387261" className="text-blue-400 hover:text-blue-300" target="_blank" rel="noopener noreferrer">read more</a>)</span></li>
-            </ul>
-            <div className="mt-3">
-              <Link to="/module2/task" className="text-red-400 hover:text-red-300 transition-colors">→ ./start_lab.sh</Link>
+            <p>Defense in Depth is a security strategy that uses multiple layers of protection. If one layer fails, the next layer catches the threat. In cloud networking, every layer adds friction for an attacker:</p>
+            <div className="mt-3 p-3 border border-gray-700 bg-gray-800">
+              <div className="space-y-2 text-sm">
+                <div className="flex items-start gap-3">
+                  <span className="text-yellow-400 font-bold w-16 flex-shrink-0">Layer 1</span>
+                  <div><span className="text-gray-300">DDoS Protection</span> — Absorbs volumetric attacks before they reach your network</div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-yellow-400 font-bold w-16 flex-shrink-0">Layer 2</span>
+                  <div><span className="text-gray-300">Azure Firewall / WAF</span> — Centralized traffic filtering and application-layer protection</div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-yellow-400 font-bold w-16 flex-shrink-0">Layer 3</span>
+                  <div><span className="text-gray-300">VNet Segmentation</span> — Isolate workloads into separate VNets and subnets</div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-yellow-400 font-bold w-16 flex-shrink-0">Layer 4</span>
+                  <div><span className="text-gray-300">NSGs</span> — Allow/deny rules on subnets and NICs (network interface cards)</div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-yellow-400 font-bold w-16 flex-shrink-0">Layer 5</span>
+                  <div><span className="text-gray-300">Private Endpoints</span> — Remove public internet exposure for PaaS services entirely</div>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-yellow-400 font-bold w-16 flex-shrink-0">Layer 6</span>
+                  <div><span className="text-gray-300">Encryption</span> — TLS in transit, encryption at rest on every service</div>
+                </div>
+              </div>
+            </div>
+            <div className="mt-3 space-y-1">
+              <a href="https://learn.microsoft.com/azure/security/fundamentals/network-overview?wt.mc_id=studentamb_387261" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-sm block">→ Microsoft Learn: Azure network security overview</a>
             </div>
           </PhaseStepItem>
-        </div>
 
+          <PhaseStepItem number={3} type="READ" title="VNets, Subnets & NSGs — The Foundation"
+            isOpen={open.has(2)} onToggleOpen={() => toggleOpen(2)}
+            isChecked={checked.has(2)} onToggleChecked={() => toggleChecked(2)}>
+            <p>A Virtual Network (VNet) is your private network space in Azure. Subnets divide it into segments. NSGs control what traffic can flow between them.</p>
+            <div className="mt-3 p-3 border border-gray-700 bg-gray-800">
+              <p className="text-gray-300 text-sm font-semibold mb-2">VNet Design Principles</p>
+              <ul className="space-y-1 text-sm text-gray-400">
+                <li>• <span className="text-gray-300">One VNet per workload/environment</span> — Don't mix production and dev in the same VNet</li>
+                <li>• <span className="text-gray-300">Separate subnets by tier</span> — Web tier, app tier, data tier, management subnet</li>
+                <li>• <span className="text-gray-300">Plan CIDR ranges carefully</span> — Use non-overlapping address spaces (e.g., 10.1.0.0/16 for prod, 10.2.0.0/16 for dev)</li>
+              </ul>
+            </div>
+            <div className="mt-3 p-3 border border-gray-700 bg-gray-800">
+              <p className="text-gray-300 text-sm font-semibold mb-2">NSG Rules — How They Work</p>
+              <ul className="space-y-1 text-sm text-gray-400">
+                <li>• NSGs contain <span className="text-gray-300">inbound</span> and <span className="text-gray-300">outbound</span> security rules</li>
+                <li>• Each rule has: <span className="text-yellow-400">Priority</span> (100-4096, lower = higher priority), <span className="text-yellow-400">Source/Destination</span>, <span className="text-yellow-400">Port</span>, <span className="text-yellow-400">Action</span> (Allow/Deny)</li>
+                <li>• Rules are evaluated in priority order — first match wins</li>
+                <li>• Default rules: deny all inbound from internet, allow all outbound</li>
+              </ul>
+            </div>
+            <div className="mt-3 p-2 border border-red-800/50 bg-red-900/10">
+              <p className="text-red-400 text-xs">Never open RDP (3389) or SSH (22) to 0.0.0.0/0 (the entire internet). This is the #1 network misconfiguration in cloud environments and the first thing attackers scan for.</p>
+            </div>
+            <div className="mt-3 space-y-1">
+              <a href="https://learn.microsoft.com/azure/virtual-network/virtual-networks-overview?wt.mc_id=studentamb_387261" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-sm block">→ Microsoft Learn: What is Azure Virtual Network?</a>
+              <a href="https://learn.microsoft.com/azure/virtual-network/network-security-groups-overview?wt.mc_id=studentamb_387261" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-sm block">→ Microsoft Learn: Network security groups</a>
+            </div>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={4} type="READ" title="Private Endpoints — Eliminating Public Exposure"
+            isOpen={open.has(3)} onToggleOpen={() => toggleOpen(3)}
+            isChecked={checked.has(3)} onToggleChecked={() => toggleChecked(3)}>
+            <p>By default, Azure PaaS services (Storage, SQL, Key Vault) have public endpoints accessible from the internet. <span className="text-yellow-400">Private Endpoints</span> move the service's network interface into your VNet, making it accessible only through your private network.</p>
+            <div className="mt-3 p-3 border border-gray-700 bg-gray-800">
+              <p className="text-gray-300 text-sm font-semibold mb-2">Before vs. After Private Endpoints</p>
+              <div className="text-sm font-mono">
+                <p className="text-red-400">Before: App → Internet → storageaccount.blob.core.windows.net (public IP)</p>
+                <p className="text-green-400 mt-1">After:  App → VNet → Private Endpoint → storageaccount.blob.core.windows.net (private IP 10.x.x.x)</p>
+              </div>
+            </div>
+            <div className="mt-3 p-2 border border-yellow-800/50 bg-yellow-900/10">
+              <p className="text-yellow-400 text-xs">Private Endpoints are a top CIS Azure Benchmark recommendation. In enterprise environments, any PaaS service without a Private Endpoint is flagged as a security finding. You'll configure one in Module 3 (Data Security).</p>
+            </div>
+            <div className="mt-3 space-y-1">
+              <a href="https://learn.microsoft.com/azure/private-link/private-endpoint-overview?wt.mc_id=studentamb_387261" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-sm block">→ Microsoft Learn: What is a Private Endpoint?</a>
+            </div>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={5} type="READ" title="Azure Bastion — Secure Remote Access"
+            isOpen={open.has(4)} onToggleOpen={() => toggleOpen(4)}
+            isChecked={checked.has(4)} onToggleChecked={() => toggleChecked(4)}>
+            <p>Azure Bastion provides RDP and SSH access to VMs directly through the Azure portal — over TLS, without exposing any public IP on the VM. No jump box, no VPN, no open management ports.</p>
+            <div className="mt-3 p-3 border border-gray-700 bg-gray-800">
+              <p className="text-gray-300 text-sm font-semibold mb-2">Why Bastion Matters</p>
+              <ul className="space-y-1 text-sm text-gray-400">
+                <li>• <span className="text-gray-300">No public IP needed</span> — The VM has no internet-facing management port</li>
+                <li>• <span className="text-gray-300">TLS encrypted</span> — Connection goes through the Azure portal over HTTPS</li>
+                <li>• <span className="text-gray-300">No NSG rules for RDP/SSH</span> — Bastion connects via Azure's backbone network</li>
+                <li>• <span className="text-gray-300">Hardened by default</span> — Azure manages the Bastion host, patching, and availability</li>
+              </ul>
+            </div>
+            <div className="mt-3 space-y-1">
+              <a href="https://learn.microsoft.com/azure/bastion/bastion-overview?wt.mc_id=studentamb_387261" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-sm block">→ Microsoft Learn: What is Azure Bastion?</a>
+            </div>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={6} type="SCENARIO" title="Real-World Scenario: Exposed Database"
+            isOpen={open.has(5)} onToggleOpen={() => toggleOpen(5)}
+            isChecked={checked.has(5)} onToggleChecked={() => toggleChecked(5)}>
+            <p>A startup deploys an Azure SQL Database with the default configuration — public endpoint enabled, "Allow Azure services" firewall rule active, no Private Endpoint. An attacker discovers the server name (which follows a predictable pattern: <code className="text-yellow-400">servername.database.windows.net</code>) and begins brute-forcing credentials.</p>
+            <div className="mt-3 p-3 border border-gray-700 bg-gray-800">
+              <p className="text-gray-300 text-sm font-semibold mb-2">How Defense in Depth Would Have Prevented This</p>
+              <ul className="space-y-1 text-sm text-gray-400">
+                <li>• <span className="text-yellow-400">Private Endpoint</span> → Database not reachable from the internet at all</li>
+                <li>• <span className="text-yellow-400">NSG on subnet</span> → Only app tier subnet can reach database tier</li>
+                <li>• <span className="text-yellow-400">Disable public endpoint</span> → Remove the attack surface entirely</li>
+                <li>• <span className="text-yellow-400">Managed Identity</span> → No password to brute-force (from Module 1)</li>
+              </ul>
+            </div>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={7} type="LAB" title="Your Task: Build a Segmented Network with Secure Access"
+            isOpen={open.has(6)} onToggleOpen={() => toggleOpen(6)}
+            isChecked={checked.has(6)} onToggleChecked={() => toggleChecked(6)}>
+            <p>Design and implement a secure network architecture:</p>
+            <ul className="space-y-1 mt-2">
+              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Create a VNet with web, app, and data subnets</span></li>
+              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Configure NSGs to control traffic between tiers</span></li>
+              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Deploy a VM with no public IP and use Bastion for access</span></li>
+              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Verify NSG rules block unauthorized lateral movement</span></li>
+              <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Use Network Watcher to diagnose and validate traffic flow</span></li>
+            </ul>
+            <div className="mt-3"><Link to="/module2/task" className="text-red-400 hover:text-red-300 transition-colors">→ ./start_lab.sh</Link></div>
+          </PhaseStepItem>
+        </div>
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">
           <Link to="/module1" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
             <ChevronLeft size={14} /> Module 1
@@ -132,7 +210,6 @@ const Day2 = () => {
             Module 2 Lab <ChevronRight size={14} />
           </Link>
         </div>
-
       </div>
     </div>
   );

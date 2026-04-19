@@ -5,11 +5,12 @@ import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
 import PhaseStepItem from "../../../components/PhaseStepItem";
 import { useStepProgress } from "../../../hooks/useStepProgress";
 
-const TOTAL = 5;
+const TOTAL = 7;
 const OBJECTIVES = [
-  "Deploy Azure WAF to protect against OWASP vulnerabilities",
-  "Enable Managed Identities to remove credential-based access",
-  "Validate security by testing WAF rules and identity-based access",
+  "Create an Azure Key Vault and store secrets securely",
+  "Deploy an App Service with a System Managed Identity",
+  "Connect the App Service to Key Vault using zero credentials",
+  "Harden the App Service with HTTPS, TLS 1.2, authentication, and access restrictions",
 ];
 
 const Task4 = () => {
@@ -26,10 +27,10 @@ const Task4 = () => {
           <span>/</span><span className="text-gray-500">lab</span>
         </div>
         <div className="mb-8">
-          <div className="text-green-400 text-xs mb-3">$ ./lab_4_app_security_waf_managed_identities.sh</div>
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Module 4 Lab: Secure Web App with WAF & Managed Identities</h1>
+          <div className="text-green-400 text-xs mb-3">$ ./lab_4_keyvault_managed_identity.sh</div>
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-300 mb-3">Module 4 Lab: Key Vault, Managed Identity & App Hardening</h1>
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
-            Implement security controls for web applications and APIs using WAF and Managed Identities.
+            Build the golden pattern: an App Service that reads secrets from Key Vault using a Managed Identity — zero credentials in code. Then harden every security setting.
           </p>
         </div>
         <div className="mb-8">
@@ -52,61 +53,180 @@ const Task4 = () => {
           </ul>
         </div>
         <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
-          <button onClick={() => setOpen(new Set([0,1,2,3,4]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6]))} className="hover:text-gray-400 transition-colors">expand all</button>
           <span>|</span>
           <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
         </div>
         <div className="space-y-2 mb-10">
-          <PhaseStepItem number={1} type="PREP" title="What You'll Do"
+          {/* Step 1: Prep */}
+          <PhaseStepItem number={1} type="PREP" title="What You'll Build — The Golden Pattern"
             isOpen={open.has(0)} onToggleOpen={() => toggleOpen(0)}
             isChecked={checked.has(0)} onToggleChecked={() => toggleChecked(0)}>
-            <ul className="space-y-1">
-              <li className="flex items-start gap-2"><span className="text-gray-500">-</span><span>Deploy Azure Web Application Firewall (WAF) to protect web applications.</span></li>
-              <li className="flex items-start gap-2"><span className="text-gray-500">-</span><span>Use Managed Identities to enhance application security.</span></li>
-              <li className="flex items-start gap-2"><span className="text-gray-500">-</span><span>Test the setup to ensure protection against common web threats.</span></li>
-            </ul>
+            <p className="text-sm mb-2">This lab builds the most important application security pattern in Azure:</p>
+            <div className="p-2 bg-gray-900 border border-gray-700 text-sm font-mono">
+              <p className="text-gray-400">App Service (<span className="text-yellow-400">Managed Identity</span>)</p>
+              <p className="text-gray-400 pl-3">→ authenticates to Key Vault (no credentials)</p>
+              <p className="text-gray-400 pl-6">→ retrieves secrets at runtime</p>
+              <p className="text-gray-400 pl-9">→ zero secrets in code, config, or env vars</p>
+            </div>
+            <div className="mt-2 p-2 border border-gray-700 bg-gray-800">
+              <p className="text-xs text-gray-500"><span className="text-yellow-400">Cost note:</span> App Service Free tier (F1) + Key Vault Standard tier = minimal cost. Key Vault charges per operation (first 10,000 operations are essentially free).</p>
+            </div>
           </PhaseStepItem>
-          <PhaseStepItem number={2} type="AI" title="AI Prompt — Use this to guide you"
+
+          {/* Step 2: AI Prompt */}
+          <PhaseStepItem number={2} type="AI" title="AI Prompt — AppSec Architect Guide"
             isOpen={open.has(1)} onToggleOpen={() => toggleOpen(1)}
             isChecked={checked.has(1)} onToggleChecked={() => toggleChecked(1)}>
             <p className="text-xs text-gray-500 mb-2">Copy and paste this into your AI assistant for interactive step-by-step guidance:</p>
             <div className="p-3 bg-gray-900 border border-gray-700 text-gray-400 text-sm italic leading-relaxed">
-              "Walk me through a hands-on lab on securing web applications in Azure using WAF and Managed Identities. The lab should include deploying WAF to protect against web-based threats, enabling Managed Identities to remove credential-based authentication, and testing the setup to ensure security measures work."
+              "Guide me step-by-step through securing an Azure web application. The lab covers: (1) Create a Key Vault called kv-scx-lab with RBAC permission model, soft-delete enabled, and purge protection on. Store a secret called DatabasePassword. (2) Deploy an App Service on Free tier (F1) with a System Managed Identity enabled. (3) Grant the App Service's identity the 'Key Vault Secrets User' role on the Key Vault. (4) Add an App Setting on the App Service that references the Key Vault secret using the @Microsoft.KeyVault() syntax, and verify it resolves. (5) Harden the App Service: enable HTTPS Only, set minimum TLS to 1.2, disable FTP, disable remote debugging. (6) Enable built-in authentication (EasyAuth) with Microsoft Entra ID. (7) Review Defender for Cloud recommendations for the App Service. Explain each step with portal navigation and the security principle behind each decision."
             </div>
           </PhaseStepItem>
-          <PhaseStepItem number={3} type="PRACTICE" title="Step 1: Deploy Azure Web Application Firewall (WAF)"
+
+          {/* Step 3: Key Vault */}
+          <PhaseStepItem number={3} type="PRACTICE" title="Step 1: Create Key Vault & Store a Secret"
             isOpen={open.has(2)} onToggleOpen={() => toggleOpen(2)}
             isChecked={checked.has(2)} onToggleChecked={() => toggleChecked(2)}>
-            <p className="text-xs text-gray-500 mb-2">Why? WAF protects web apps from SQL injection, XSS, and OWASP threats.</p>
-            <ul className="space-y-1">
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Sign in to <a href="https://portal.azure.com" className="text-blue-400 hover:underline" target="_blank" rel="noopener noreferrer">Azure Portal</a></span></li>
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Navigate to <strong className="text-gray-300">Azure Front Door & WAF</strong> or <strong className="text-gray-300">Application Gateway</strong></span></li>
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Create a WAF Policy and apply it to a web application</span></li>
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Enable OWASP rule sets to protect against common vulnerabilities</span></li>
+            <p className="text-xs text-gray-500 mb-2">Key Vault is the centralized secrets store. Always use RBAC permission model over legacy access policies.</p>
+            <ul className="space-y-1.5">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Go to <strong className="text-gray-300">Key Vaults → Create</strong></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Resource group: <code className="text-yellow-400">rg-scx-appsec-lab</code></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Name: <code className="text-yellow-400">kv-scx-lab-[unique]</code> (Key Vault names must be globally unique)</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Permission model: <span className="text-yellow-400">Azure role-based access control (recommended)</span></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Enable <span className="text-gray-300">soft-delete</span> (on by default) and <span className="text-gray-300">purge protection</span></span></li>
             </ul>
+            <p className="text-sm mt-3 mb-2"><strong className="text-gray-300">Store a secret:</strong></p>
+            <ul className="space-y-1.5">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Go to the Key Vault → <strong className="text-gray-300">Secrets → Generate/Import</strong></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Name: <code className="text-yellow-400">DatabasePassword</code>, Value: any test string</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Copy the <span className="text-gray-300">Secret Identifier</span> URI — you'll need this in Step 3</span></li>
+            </ul>
+            <div className="mt-2 p-2 border border-yellow-800/50 bg-yellow-900/10">
+              <p className="text-yellow-400 text-xs">If you get "Access denied" when creating a secret, assign yourself the <code>Key Vault Secrets Officer</code> role on the Key Vault via Access Control (IAM).</p>
+            </div>
+            <div className="mt-2 space-y-1">
+              <a href="https://learn.microsoft.com/azure/key-vault/general/quick-create-portal?wt.mc_id=studentamb_387261" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-sm block">→ Quickstart: Create a Key Vault</a>
+            </div>
           </PhaseStepItem>
-          <PhaseStepItem number={4} type="PRACTICE" title="Step 2: Enable Managed Identities"
+
+          {/* Step 4: App Service + MI → KV */}
+          <PhaseStepItem number={4} type="PRACTICE" title="Step 2: Deploy App Service & Connect to Key Vault"
             isOpen={open.has(3)} onToggleOpen={() => toggleOpen(3)}
             isChecked={checked.has(3)} onToggleChecked={() => toggleChecked(3)}>
-            <p className="text-xs text-gray-500 mb-2">Why? Managed Identities eliminate stored credentials in application code.</p>
-            <ul className="space-y-1">
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Navigate to Azure App Service or Azure Functions</span></li>
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Go to <strong className="text-gray-300">Identity &gt; System Assigned Identity</strong> and enable it</span></li>
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Assign required RBAC roles to allow secure access to resources</span></li>
+            <p className="text-xs text-gray-500 mb-2">Deploy an App Service, enable its Managed Identity, then grant it access to Key Vault.</p>
+            <p className="text-sm mb-2"><strong className="text-gray-300">Create App Service:</strong></p>
+            <ul className="space-y-1.5">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Go to <strong className="text-gray-300">App Services → Create</strong></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Name: <code className="text-yellow-400">app-scx-lab-[unique]</code></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Runtime: <code className="text-yellow-400">Node 20 LTS</code> (or any runtime), Plan: <code className="text-yellow-400">Free (F1)</code></span></li>
             </ul>
+            <p className="text-sm mt-3 mb-2"><strong className="text-gray-300">Enable Managed Identity:</strong></p>
+            <ul className="space-y-1.5">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Go to the App Service → <strong className="text-gray-300">Identity → System assigned → Status: On → Save</strong></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Copy the <span className="text-gray-300">Object (principal) ID</span> — this is the identity</span></li>
+            </ul>
+            <p className="text-sm mt-3 mb-2"><strong className="text-gray-300">Grant Key Vault access:</strong></p>
+            <ul className="space-y-1.5">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Go to Key Vault → <strong className="text-gray-300">Access control (IAM) → Add role assignment</strong></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Role: <code className="text-yellow-400">Key Vault Secrets User</code> (read-only access to secrets)</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Assign to: <span className="text-gray-300">Managed identity</span> → select your App Service</span></li>
+            </ul>
+            <p className="text-sm mt-3 mb-2"><strong className="text-gray-300">Reference the secret:</strong></p>
+            <ul className="space-y-1.5">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Go to App Service → <strong className="text-gray-300">Configuration → Application settings → New</strong></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Name: <code className="text-yellow-400">DB_PASSWORD</code></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Value: <code className="text-yellow-400">@Microsoft.KeyVault(SecretUri=https://kv-scx-lab-[unique].vault.azure.net/secrets/DatabasePassword/)</code></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Save → Check the setting shows a green checkmark (resolved successfully)</span></li>
+            </ul>
+            <div className="mt-2 p-2 border border-green-800/50 bg-green-900/10">
+              <p className="text-green-400 text-xs">The app can now read the database password at runtime. Zero credentials exist in code, config files, or environment variables. The Managed Identity handles authentication automatically.</p>
+            </div>
+            <div className="mt-2 space-y-1">
+              <a href="https://learn.microsoft.com/azure/app-service/app-service-key-vault-references?wt.mc_id=studentamb_387261" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-sm block">→ Microsoft Learn: Key Vault references in App Service</a>
+            </div>
           </PhaseStepItem>
-          <PhaseStepItem number={5} type="PRACTICE" title="Step 3: Test & Validate"
+
+          {/* Step 5: Harden App Service */}
+          <PhaseStepItem number={5} type="PRACTICE" title="Step 3: Harden App Service Security Settings"
             isOpen={open.has(4)} onToggleOpen={() => toggleOpen(4)}
             isChecked={checked.has(4)} onToggleChecked={() => toggleChecked(4)}>
-            <p className="text-xs text-gray-500 mb-2">Why? Always verify security settings to ensure protection is working.</p>
-            <ul className="space-y-1">
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Test WAF by sending a request with a malicious payload</span></li>
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Verify that SQL injection and XSS attacks are blocked</span></li>
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Check Azure Security Center logs for blocked threats</span></li>
-              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Confirm Managed Identity works by accessing a resource without credentials in code</span></li>
+            <p className="text-xs text-gray-500 mb-2">Run through this security hardening checklist — these are CIS Benchmark requirements for App Service.</p>
+            <div className="p-3 bg-gray-900 border border-gray-700">
+              <ul className="space-y-2 text-sm">
+                <li className="flex items-start gap-3">
+                  <span className="text-yellow-400 font-mono w-4 flex-shrink-0">□</span>
+                  <div><span className="text-gray-300">HTTPS Only</span> → Settings → Configuration → General → <code className="text-cyan-400">HTTPS Only: On</code></div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-yellow-400 font-mono w-4 flex-shrink-0">□</span>
+                  <div><span className="text-gray-300">Minimum TLS Version</span> → Settings → Configuration → General → <code className="text-cyan-400">Minimum TLS: 1.2</code></div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-yellow-400 font-mono w-4 flex-shrink-0">□</span>
+                  <div><span className="text-gray-300">FTP State</span> → Settings → Configuration → General → <code className="text-cyan-400">FTP: Disabled</code></div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-yellow-400 font-mono w-4 flex-shrink-0">□</span>
+                  <div><span className="text-gray-300">Remote Debugging</span> → Settings → Configuration → General → <code className="text-cyan-400">Remote debugging: Off</code></div>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-yellow-400 font-mono w-4 flex-shrink-0">□</span>
+                  <div><span className="text-gray-300">Client Certificate Mode</span> → Settings → Configuration → General → <code className="text-cyan-400">Incoming client certificates: Require</code> (for mutual TLS scenarios)</div>
+                </li>
+              </ul>
+            </div>
+            <div className="mt-2 space-y-1">
+              <a href="https://learn.microsoft.com/azure/app-service/overview-security?wt.mc_id=studentamb_387261" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-sm block">→ Microsoft Learn: App Service security overview</a>
+            </div>
+          </PhaseStepItem>
+
+          {/* Step 6: Authentication */}
+          <PhaseStepItem number={6} type="PRACTICE" title="Step 4: Enable Built-in Authentication (EasyAuth)"
+            isOpen={open.has(5)} onToggleOpen={() => toggleOpen(5)}
+            isChecked={checked.has(5)} onToggleChecked={() => toggleChecked(5)}>
+            <p className="text-xs text-gray-500 mb-2">App Service has built-in authentication that integrates with Entra ID — no code changes required.</p>
+            <ul className="space-y-1.5">
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Go to App Service → <strong className="text-gray-300">Authentication → Add identity provider</strong></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Provider: <code className="text-yellow-400">Microsoft</code></span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>App registration: <span className="text-gray-300">Create new</span> (auto-creates an Entra ID app registration)</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Unauthenticated requests: <code className="text-yellow-400">Require authentication</code> (HTTP 302 redirect to login)</span></li>
+              <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Save → Try visiting the app URL in an incognito browser — you should be redirected to Microsoft login</span></li>
             </ul>
+            <div className="mt-2 p-2 border border-gray-700 bg-gray-800">
+              <p className="text-xs text-gray-500"><span className="text-cyan-400">Why this matters:</span> EasyAuth adds authentication at the platform level. Even if your app code has no auth logic, unauthenticated users are blocked before they reach your code. This is Defense in Depth applied to the application layer.</p>
+            </div>
+            <div className="mt-2 space-y-1">
+              <a href="https://learn.microsoft.com/azure/app-service/overview-authentication-authorization?wt.mc_id=studentamb_387261" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-sm block">→ Microsoft Learn: Authentication and authorization in App Service</a>
+            </div>
+          </PhaseStepItem>
+
+          {/* Step 7: Review */}
+          <PhaseStepItem number={7} type="PRACTICE" title="Step 5: Review Security Posture & Clean Up"
+            isOpen={open.has(6)} onToggleOpen={() => toggleOpen(6)}
+            isChecked={checked.has(6)} onToggleChecked={() => toggleChecked(6)}>
+            <p className="text-xs text-gray-500 mb-2">Review what you've built against the OWASP Top 10.</p>
+            <div className="p-2 bg-gray-900 border border-gray-700 text-sm">
+              <p className="text-gray-300 font-semibold mb-1">OWASP Coverage Mapping</p>
+              <ul className="space-y-0.5 text-gray-400">
+                <li>• <span className="text-red-400">A01 Broken Access Control</span> → EasyAuth + RBAC on Key Vault</li>
+                <li>• <span className="text-red-400">A02 Cryptographic Failures</span> → HTTPS Only + TLS 1.2 + Key Vault encryption</li>
+                <li>• <span className="text-red-400">A05 Security Misconfiguration</span> → Disabled FTP, remote debug, enforced settings</li>
+                <li>• <span className="text-red-400">A07 Auth Failures</span> → Managed Identity (no passwords), EasyAuth (enforced login)</li>
+              </ul>
+            </div>
+            <div className="mt-3 p-2 border border-gray-700 bg-gray-800">
+              <p className="text-xs text-gray-500 mb-1"><span className="text-cyan-400">Challenge:</span> Go to <strong className="text-gray-300">Defender for Cloud → Recommendations</strong> and filter by your App Service. Fix any remaining recommendations to improve your Secure Score.</p>
+            </div>
             <div className="mt-3 p-2 border border-green-800/50 bg-green-900/10">
-              <p className="text-green-400 text-xs">Success: Attacks are blocked; apps securely access resources via Managed Identities.</p>
+              <p className="text-green-400 text-xs">Success: App reads secrets from Key Vault via Managed Identity, no credentials in code, HTTPS enforced, authentication required, management interfaces disabled.</p>
+            </div>
+            <div className="mt-2 p-2 border border-yellow-800/50 bg-yellow-900/10">
+              <p className="text-yellow-400 text-xs">Cleanup: Delete the resource group to remove all resources. Key Vault will enter soft-delete state (recoverable for 90 days).</p>
+            </div>
+            <div className="mt-2">
+              <p className="text-xs text-gray-500 mb-1">guided portfolio project:</p>
+              <a href="https://learn.microsoft.com/training/modules/authenticate-apps-with-managed-identities/?wt.mc_id=studentamb_387261" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 text-sm transition-colors">→ Authenticate apps to Azure services by using managed identities</a>
             </div>
           </PhaseStepItem>
         </div>

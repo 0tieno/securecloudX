@@ -5,13 +5,16 @@
 [![Vite](https://img.shields.io/badge/Vite-6-purple.svg)](https://vitejs.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-teal.svg)](https://tailwindcss.com/)
 
-An open source platform for learning cloud security engineering and penetration testing. Free, practical, and community-driven.
+An open source platform for learning Azure cloud security engineering. 8 structured modules — from IAM and network security to DevSecOps — with hands-on labs, progress tracking, and curated resources. Free, practical, and community-driven.
+
+**Live site:** [securecloudx.xyz](https://securecloudx.xyz)
 
 ## Get started
 
 ```bash
 git clone https://github.com/0tieno/securecloudX.git
 cd securecloudX
+cp .env.example .env   # fill in your Supabase keys
 npm install
 npm run dev
 ```
@@ -22,8 +25,22 @@ Open [http://localhost:5173](http://localhost:5173).
 
 - **React 19 + Vite 6** — frontend
 - **Tailwind CSS 4** — styling
+- **Supabase** — auth (GitHub OAuth), progress tracking, certificates
 - **react-router-dom v7** — routing
 - **ReactMarkdown + remark-gfm** — markdown rendering
+
+## Modules
+
+| # | Module | Topics |
+|---|--------|--------|
+| 1 | Identity & Access Management | Entra ID, RBAC, Conditional Access, PIM |
+| 2 | Network Security | NSGs, Azure Firewall, Private Link, DDoS Protection |
+| 3 | Data Protection | Encryption, Key Vault, storage security, DLP |
+| 4 | Threat Detection | Microsoft Sentinel, Defender for Cloud, KQL |
+| 5 | Security Monitoring | Log Analytics, workbooks, alerting pipelines |
+| 6 | Incident Response | NIST framework, playbooks, containment, forensics |
+| 7 | Capstone Project | End-to-end secure architecture deployment |
+| 8 | DevSecOps Fundamentals | CI/CD security, SAST, SCA, secret scanning, IaC scanning |
 
 ## Project structure
 
@@ -36,13 +53,17 @@ securecloudX/
 │   └── blog-manager.js  # CLI helper for creating posts
 ├── src/
 │   ├── components/      # Shared UI components
+│   ├── contexts/        # Auth context (Supabase)
 │   ├── data/            # Static data (changelog, pricing, resources, etc.)
-│   ├── pages/           # Route-level components
+│   ├── hooks/           # useProgress, useStepProgress, etc.
+│   ├── lib/             # Supabase client
+│   ├── pages/           # Route-level components + module pages
 │   ├── routes/          # Route config
 │   └── utils/           # Helpers (frontmatter parser, etc.)
 ├── CONTRIBUTING_BLOGS.md
 ├── CONTRIBUTING_LABS.md
-└── LICENCE.md
+├── LICENCE.md
+└── SECURITY.md
 ```
 
 ## Blog system
@@ -56,6 +77,10 @@ To publish a post: add a `.md` file with frontmatter to `Docs/blogs/`. See [CONT
 - **Blog posts** → [CONTRIBUTING_BLOGS.md](CONTRIBUTING_BLOGS.md)
 - **Labs** → [CONTRIBUTING_LABS.md](CONTRIBUTING_LABS.md)
 
+## Security
+
+Found a vulnerability? Please report it responsibly — see [SECURITY.md](SECURITY.md).
+
 ## Contact
 
 - [Founder's profile](https://linkedin.com/in/ronney-otieno)
@@ -63,8 +88,7 @@ To publish a post: add a `.md` file with frontmatter to `Docs/blogs/`. See [CONT
 - GitHub: [github.com/0tieno/securecloudX](https://github.com/0tieno/securecloudX)
 - Twitter/X: [@securecloudX](https://x.com/securecloudX)
 
+## License
 
-[Founder's Note: This project is a labor of love and a gift to the community. If you find it useful, please consider giving it a star and sharing it with others who might benefit from it. Your support means a lot!]
-
-[Read License](LICENCE.md)
+[MIT](LICENCE.md) © 2025-present Ronney Otieno
 

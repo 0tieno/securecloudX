@@ -13,6 +13,7 @@ import Module4 from "../pages/modules/module4/Overview";
 import Module5 from "../pages/modules/module5/Overview";
 import Module6 from "../pages/modules/module6/Overview";
 import Module7 from "../pages/modules/module7/Overview";
+import Module8 from "../pages/modules/module8/Overview";
 import Explore from "../pages/Explore";
 import ForgottenSecretLab from "../pages/ForgottenSecretLab";
 import GetStartedPage from "../pages/GetStartedPage";
@@ -36,6 +37,7 @@ import ModuleTask4 from "../pages/modules/module4/Task";
 import ModuleTask5 from "../pages/modules/module5/Task";
 import ModuleTask6 from "../pages/modules/module6/Task";
 import ModuleTask7 from "../pages/modules/module7/Task";
+import ModuleTask8 from "../pages/modules/module8/Task";
 import TermsOfService from "../pages/TermsOfService";
 import VerifyCertificate from "../pages/VerifyCertificate";
 import Work from "../pages/Work";
@@ -83,6 +85,8 @@ export const shellRoutes = [
   { path: "/module6/task", Component: ModuleTask6 },
   { path: "/module7", Component: Module7 },
   { path: "/module7/task", Component: ModuleTask7 },
+  { path: "/module8", Component: Module8 },
+  { path: "/module8/task", Component: ModuleTask8 },
   { path: "/module/:module/resources", Component: Resources },
   { path: "/explore", Component: Explore },
   { path: "/start", Component: BeginnerIntro },

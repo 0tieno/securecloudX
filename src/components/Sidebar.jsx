@@ -7,11 +7,12 @@ import { useProgress } from "../hooks/useProgress";
 const topics = [
   { day: 1, title: "Identity & Access Management" },
   { day: 2, title: "Network Security & Perimeter Defense" },
-  { day: 3, title: "Data Security" },
+  { day: 3, title: "Data Security & Encryption" },
   { day: 4, title: "Application Security" },
-  { day: 5, title: "Security Monitoring & Threat Intelligence" },
-  { day: 6, title: "Incident Response & Threat Detection" },
-  { day: 7, title: "Capstone Project" },
+  { day: 5, title: "Cloud Security Posture Management" },
+  { day: 6, title: "Detection Engineering & IR" },
+  { day: 7, title: "Security Architecture Review" },
+  { day: 8, title: "DevSecOps Fundamentals" },
 ];
 
 const Sidebar = () => {
