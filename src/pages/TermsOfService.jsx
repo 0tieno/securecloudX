@@ -299,7 +299,7 @@ export default function TermsOfService() {
               </p>
               <div className="space-y-2 text-gray-400">
                 <div>
-                  📧 Email:{" "}
+                  Email:{" "}
                   <span className="text-red-400">securecloudx.learn@gmail.com</span>
                 </div>
                 <div>
