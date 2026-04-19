@@ -5,6 +5,7 @@ import { useProgress } from "../hooks/useProgress";
 import Certificate from "../components/Certificate";
 
 const PHASE_IDS = [1, 2, 3, 4, 5, 6, 7, 8];
+const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 
 export default function CertificatePage() {
   const { user, loading: authLoading } = useAuth();
@@ -99,6 +100,9 @@ export default function CertificatePage() {
         </div>
 
         {/* Social CTA */}
+        {(() => {
+          const certShareBase = `${SUPABASE_URL}/functions/v1/cert-share`;
+          return (
         <div className="mt-12 max-w-lg mx-auto text-center bg-gray-800 border border-gray-700 p-6">
           <p className="text-gray-300 text-sm mb-1">You earned it — now let the world know.</p>
           <p className="text-gray-500 text-xs leading-relaxed mb-5">
@@ -108,13 +112,13 @@ export default function CertificatePage() {
 
           <div className="flex flex-wrap items-center justify-center gap-3 mb-5">
             <a
-              href="https://twitter.com/intent/tweet?text=I%20just%20completed%20the%20Cloud%20Security%20Engineering%20Program%20on%20%40securecloudX%20%F0%9F%9B%A1%EF%B8%8F%20Check%20it%20out%3A%20https%3A%2F%2Fsecureclouds.pages.dev"
+              href={`https://twitter.com/intent/tweet?text=${encodeURIComponent('I just completed all 8 phases of the @securecloudX Cloud Security Engineering Program! \u{1F6E1}\n\nVerify my certificate:')}&url=${encodeURIComponent(certShareBase + '?certId=SCX')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 border border-gray-600 hover:border-gray-400 text-gray-400 hover:text-gray-200 font-mono text-xs px-4 py-2 transition-colors"
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-              Post on X
+              Share on X
             </a>
             <a
               href="https://github.com/0tieno/securecloudX"
@@ -131,6 +135,8 @@ export default function CertificatePage() {
             tag <span className="text-gray-400">@securecloudX</span> on X · <span className="text-gray-400">@ronney otieno</span> on LinkedIn · we love seeing your wins
           </p>
         </div>
+          );
+        })()}
       </div>
     </div>
   );
