@@ -39,7 +39,7 @@ export default function TermsOfService() {
             <p className="text-gray-500 max-w-3xl leading-relaxed">
               // Terms of use for securecloudX open source project
               <br />
-              // Last updated: September 2, 2025
+              // Last updated: April 19, 2026
             </p>
           </div>
 
@@ -52,9 +52,11 @@ export default function TermsOfService() {
               <p className="mb-3">
                 <span className="text-green-400">A:</span> securecloudX is an{" "}
                 <span className="text-yellow-400">open source educational platform</span>{" "}
-                focused on cloud security engineering and penetration testing. We provide
-                free learning resources, hands-on labs, and practical guidance for
-                mastering cloud security across Azure, AWS, and GCP platforms.
+                focused on cloud security engineering. We provide a structured 8-module
+                program covering IAM, network security, data protection, threat detection,
+                monitoring, incident response, capstone projects, and DevSecOps — with
+                hands-on labs, progress tracking, and curated resources for mastering
+                Azure cloud security.
               </p>
               <Link
                 to="/changelog"
@@ -74,7 +76,7 @@ export default function TermsOfService() {
             >
               <p className="mb-3">
                 <span className="text-green-400">A:</span> securecloudX is created and
-                maintained by <span className="text-yellow-400">$!rr0nn3y</span>, a
+                maintained by <span className="text-yellow-400">s!rr0nn3y</span>, a
                 passionate developer and junior penetration tester specializing in cloud
                 and web security.
               </p>
@@ -255,12 +257,17 @@ export default function TermsOfService() {
                 necessary for platform functionality:
               </p>
               <ul className="list-disc list-inside space-y-1 text-gray-400 mb-3">
-                <li>No personal information required for accessing content</li>
-                <li>Optional contact information for consultation services</li>
+                <li>GitHub profile data (username, email, avatar) via GitHub OAuth sign-in</li>
+                <li>Module and step completion progress stored in our database</li>
+                <li>Certificate records when you complete the program</li>
                 <li>Basic analytics for improving user experience</li>
-                <li>GitHub data for open source contributions</li>
               </ul>
-              <div className="text-xs text-gray-400">
+              <div className="bg-gray-900 border border-blue-600 p-3 rounded mt-3">
+                <div className="text-blue-400 text-sm">
+                  [NOTE] We do not sell or share your data with third parties. Your progress data is visible only to you and platform administrators.
+                </div>
+              </div>
+              <div className="text-xs text-gray-400 mt-3">
                 # Privacy-First • Minimal Data Collection • Transparent Practices
               </div>
             </QABlock>
@@ -296,14 +303,14 @@ export default function TermsOfService() {
                   <span className="text-red-400">securecloudx.learn@gmail.com</span>
                 </div>
                 <div>
-                  🐙 GitHub:{" "}
-                  <span className="text-red-400">github.com/securecloudx</span>
+                  GitHub:{" "}
+                  <a href="https://github.com/0tieno/securecloudX" target="_blank" rel="noopener noreferrer" className="text-red-400 hover:text-red-300 transition-colors">github.com/0tieno/securecloudX</a>
                 </div>
                 <div>
-                  🐦 Twitter: <span className="text-red-400">@securecloudX</span>
+                  Twitter: <span className="text-red-400">@securecloudX</span>
                 </div>
                 <div>
-                  💬 WhatsApp: <span className="text-red-400">Community Group</span>
+                  WhatsApp: <span className="text-red-400">Community Group</span>
                 </div>
               </div>
               <div className="text-xs text-gray-400 mt-3">
@@ -319,10 +326,10 @@ export default function TermsOfService() {
                 $ echo "Thank you for being part of the securecloudX community"
               </div>
               <div className="text-gray-500 text-xs">
-                Last updated: October 1, 2025 • Version: 1.1
+                Last updated: April 19, 2026 • Version: 1.2
               </div>
               <div className="text-gray-500 text-xs mt-2">
-                © 2025 securecloudX • Open Source Educational Platform
+                © 2025–2026 securecloudX • Open Source Educational Platform
               </div>
             </div>
           </div>
