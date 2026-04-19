@@ -4,7 +4,7 @@ import { Users, RefreshCw, ShieldAlert, TrendingUp } from "lucide-react";
 import { supabase } from "../lib/supabase";
 import { useAuth } from "../contexts/AuthContext";
 
-const ADMIN_UID = "c3bd4833-fa78-41ff-9bc9-de30c59115e9";
+const ADMIN_UID = import.meta.env.VITE_ADMIN_UID ?? "";
 const TOTAL_STEPS = 68; // 7+7+20+5+7+7+8+7
 
 /* ── Community Growth Graph (pure SVG) ── */
