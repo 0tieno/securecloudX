@@ -1,11 +1,106 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Users, RefreshCw, ShieldAlert } from "lucide-react";
+import { Users, RefreshCw, ShieldAlert, TrendingUp } from "lucide-react";
 import { supabase } from "../lib/supabase";
 import { useAuth } from "../contexts/AuthContext";
 
 const ADMIN_UID = "c3bd4833-fa78-41ff-9bc9-de30c59115e9";
 const TOTAL_STEPS = 61; // 7+7+20+5+7+7+8
+
+/* ── Community Growth Graph (pure SVG) ── */
+function GrowthGraph({ rows }) {
+  // Bucket signups by month
+  const buckets = {};
+  rows.forEach((r) => {
+    if (!r.created_at) return;
+    const d = new Date(r.created_at);
+    const key = `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "0")}`;
+    buckets[key] = (buckets[key] ?? 0) + 1;
+  });
+
+  const months = Object.keys(buckets).sort();
+  if (months.length === 0) return null;
+
+  // Build cumulative series
+  const series = [];
+  let cumulative = 0;
+  months.forEach((m) => {
+    cumulative += buckets[m];
+    series.push({ month: m, total: cumulative, newUsers: buckets[m] });
+  });
+
+  const maxVal = Math.max(...series.map((s) => s.total), 1);
+
+  // SVG dimensions
+  const W = 700, H = 200, PL = 40, PR = 16, PT = 16, PB = 32;
+  const plotW = W - PL - PR;
+  const plotH = H - PT - PB;
+
+  const x = (i) => PL + (series.length === 1 ? plotW / 2 : (i / (series.length - 1)) * plotW);
+  const y = (v) => PT + plotH - (v / maxVal) * plotH;
+
+  // Build SVG path
+  const points = series.map((s, i) => `${x(i)},${y(s.total)}`);
+  const linePath = `M${points.join(" L")}`;
+  const areaPath = `${linePath} L${x(series.length - 1)},${y(0)} L${x(0)},${y(0)} Z`;
+
+  // Y-axis ticks (max 4)
+  const yTicks = [];
+  const step = Math.max(1, Math.ceil(maxVal / 4));
+  for (let v = 0; v <= maxVal; v += step) yTicks.push(v);
+  if (yTicks[yTicks.length - 1] < maxVal) yTicks.push(maxVal);
+
+  return (
+    <div className="bg-gray-800 border border-gray-700 p-4 mb-8">
+      <div className="flex items-center gap-2 text-gray-500 text-xs mb-4">
+        <TrendingUp className="w-3.5 h-3.5" />
+        <span>community growth — cumulative signups by month</span>
+      </div>
+      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" style={{ maxHeight: 240 }}>
+        {/* Grid lines */}
+        {yTicks.map((v) => (
+          <g key={v}>
+            <line x1={PL} y1={y(v)} x2={W - PR} y2={y(v)} stroke="#374151" strokeWidth="0.5" />
+            <text x={PL - 6} y={y(v) + 3} fill="#6b7280" fontSize="9" textAnchor="end" fontFamily="monospace">{v}</text>
+          </g>
+        ))}
+
+        {/* Area + line */}
+        <path d={areaPath} fill="url(#growthGrad)" />
+        <path d={linePath} fill="none" stroke="#ef4444" strokeWidth="2" />
+
+        {/* Dots + labels */}
+        {series.map((s, i) => (
+          <g key={s.month}>
+            <circle cx={x(i)} cy={y(s.total)} r="3" fill="#ef4444" />
+            {/* New users badge */}
+            <text x={x(i)} y={y(s.total) - 10} fill="#9ca3af" fontSize="8" textAnchor="middle" fontFamily="monospace">
+              +{s.newUsers}
+            </text>
+            {/* Month label */}
+            <text
+              x={x(i)}
+              y={H - 8}
+              fill="#6b7280"
+              fontSize="8"
+              textAnchor="middle"
+              fontFamily="monospace"
+            >
+              {s.month.slice(2)} {/* e.g. 25-04 */}
+            </text>
+          </g>
+        ))}
+
+        <defs>
+          <linearGradient id="growthGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stopColor="#ef4444" stopOpacity="0.25" />
+            <stop offset="100%" stopColor="#ef4444" stopOpacity="0.02" />
+          </linearGradient>
+        </defs>
+      </svg>
+    </div>
+  );
+}
 
 export default function Admin() {
   const { user, loading: authLoading } = useAuth();
@@ -97,6 +192,9 @@ export default function Admin() {
             </div>
           </div>
         )}
+
+        {/* Community Growth Graph */}
+        {!loading && !error && rows.length > 0 && <GrowthGraph rows={rows} />}
 
         {/* Error */}
         {error && (
