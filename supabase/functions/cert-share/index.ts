@@ -36,8 +36,8 @@ Deno.serve(async (req) => {
     const verifyUrl = `${siteUrl}/verify/${cert.cert_id}`;
     const imageUrl = `${supabaseUrl}/storage/v1/object/public/certificates/${cert.cert_id}.png`;
     const safeName = escapeHtml(cert.user_name);
-    const title = "Cloud Security Engineering Certificate — securecloudX";
-    const description = `Verified certificate for ${safeName} — completed all 8 phases of the Cloud Security Engineering Program.`;
+    const title = "Cloud Security Engineering Certificate &mdash; securecloudX";
+    const description = `Verified certificate for ${safeName} &mdash; completed all 8 phases of the Cloud Security Engineering Program.`;
 
     const html = `<!DOCTYPE html>
 <html lang="en">
@@ -65,9 +65,10 @@ Deno.serve(async (req) => {
 </html>`;
 
     return new Response(html, {
+        status: 200,
         headers: {
-            "Content-Type": "text/html; charset=utf-8",
-            "Cache-Control": "public, max-age=86400",
+            "content-type": "text/html; charset=utf-8",
+            "cache-control": "public, max-age=86400",
         },
     });
 });
