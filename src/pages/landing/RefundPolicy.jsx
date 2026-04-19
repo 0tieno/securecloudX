@@ -55,7 +55,7 @@ export default function RefundPolicy() {
               <p className="mb-3">
                 This Refund Policy applies to all{" "}
                 <span className="text-yellow-400">consultation services</span>{" "}
-                purchased through securecloudX.guide. By making a purchase, you
+                purchased through securecloudX.xyz. By making a purchase, you
                 agree to the terms of this policy.
               </p>
               <p className="mb-3">
@@ -255,24 +255,24 @@ export default function RefundPolicy() {
               </p>
               <div className="space-y-2 text-gray-400">
                 <div>
-                  📧 Email:{" "}
+                  Email:{" "}
                   <span className="text-red-400">
                     securecloudx.learn@gmail.com
                   </span>
                 </div>
                 <div>
-                  📋 Subject:{" "}
+                  Subject:{" "}
                   <span className="text-green-400">
                     "Refund Request" or "Policy Question"
                   </span>
                 </div>
                 <div>
-                  ⏰ Response Time:{" "}
+                  Response Time:{" "}
                   <span className="text-yellow-400">3-5 business days</span>
                 </div>
                 <div>
-                  🌐 Website:{" "}
-                  <span className="text-red-400">securecloudx.guide</span>
+                  Website:{" "}
+                  <span className="text-red-400">securecloudx.xyz</span>
                 </div>
               </div>
               <div className="text-xs text-gray-400 mt-3">
