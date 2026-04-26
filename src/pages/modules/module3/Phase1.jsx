@@ -5,7 +5,7 @@ import PhaseStepItem from "../../../components/PhaseStepItem";
 import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
 import { useStepProgress } from "../../../hooks/useStepProgress";
 
-const TOTAL = 6;
+const TOTAL = 9;
 
 const Phase1 = () => {
   const [open, setOpen] = useState(() => new Set([0]));
@@ -27,6 +27,7 @@ const Phase1 = () => {
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
             Create and configure a basic Azure Storage account with security best practices.
           </p>
+          <p className="text-xs text-gray-600 mt-2 font-mono">~20 min read &nbsp;·&nbsp; Lab: ~15 min &nbsp;·&nbsp; Est. cost: $0.00 (storage free tier)</p>
         </div>
         <div className="mb-8">
           <div className="flex items-center justify-between text-xs mb-2">
@@ -38,7 +39,7 @@ const Phase1 = () => {
           </div>
         </div>
         <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
-          <button onClick={() => setOpen(new Set([0,1,2,3,4,5]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7,8]))} className="hover:text-gray-400 transition-colors">expand all</button>
           <span>|</span>
           <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
         </div>
@@ -128,6 +129,55 @@ const Phase1 = () => {
             </ul>
           </PhaseStepItem>
         </div>
+
+        <div className="space-y-2 mb-6">
+          <PhaseStepItem number={7} type="ATTACKER" title="What an attacker does with a leaked storage account key"
+            isOpen={open.has(6)} onToggleOpen={() => toggleOpen(6)}
+            isChecked={checked.has(6)} onToggleChecked={() => toggleChecked(6)}>
+            <p>Storage account keys grant <span className="text-red-400">full, unconditional access</span> — read, write, delete, manage containers, and generate SAS tokens — with no expiry and no audit attribution. If a key is found in a <code className="text-yellow-400">.env</code> file, GitHub repo, or application log, an attacker can immediately exfiltrate every blob in the account silently.</p>
+            <div className="mt-3 p-3 border border-red-800/40 bg-red-900/10">
+              <p className="text-red-400 text-xs font-bold mb-2">Attack steps with a leaked key</p>
+              <ul className="space-y-1 text-xs text-gray-400 font-mono">
+                <li>&gt; az storage blob list --account-name &lt;name&gt; --account-key &lt;key&gt; --container-name &lt;c&gt;</li>
+                <li>&gt; az storage blob download-batch --account-key &lt;key&gt; -s &lt;container&gt; -d ./exfil/</li>
+                <li>&gt; az storage container list --account-key &lt;key&gt;  # enumerate all containers</li>
+              </ul>
+            </div>
+            <p className="text-gray-500 text-xs mt-2">Key rotation revokes access but disrupts every app using the old key — so teams delay rotation, prolonging exposure. The fix is to never use keys: use Managed Identity + Azure AD auth instead.</p>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={8} type="WARN" title="Common mistakes in Lab 01"
+            isOpen={open.has(7)} onToggleOpen={() => toggleOpen(7)}
+            isChecked={checked.has(7)} onToggleChecked={() => toggleChecked(7)}>
+            <ul className="space-y-2 text-sm">
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Leaving &quot;Allow blob public access&quot; enabled:</span> Older storage accounts have this on by default. Any developer can then make a container public — disable it at the account level so no container can ever be public.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Using storage account keys in application code:</span> Keys should be treated as break-glass credentials only. Use Managed Identity + RBAC for application access — no secrets to manage, no keys to leak.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Choosing LRS for data that needs durability:</span> LRS replicates only within one datacenter. A fire or flood destroys it. Use ZRS or GRS for any data that matters beyond training/prototype workloads.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Not enabling &quot;Secure transfer required&quot;:</span> Without it, applications can connect over HTTP (unencrypted). Enable it — all traffic must use HTTPS/SMB 3.0.</span></li>
+            </ul>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={9} type="CLEANUP" title="Cleanup — delete the Lab 01 storage account"
+            isOpen={open.has(8)} onToggleOpen={() => toggleOpen(8)}
+            isChecked={checked.has(8)} onToggleChecked={() => toggleChecked(8)}>
+            <p className="text-sm text-gray-400 mb-3">LRS storage in East US costs ~$0.018/GB/month — minimal, but clean up anyway to keep your subscription tidy.</p>
+            <div className="space-y-2 text-xs font-mono">
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># Delete the storage account</p>
+                <p className="text-gray-400">az storage account delete --name &lt;your-storage-account&gt; --resource-group &lt;your-rg&gt; --yes</p>
+              </div>
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># Or delete the entire resource group if it only contains this lab</p>
+                <p className="text-gray-400">az group delete --name &lt;your-rg&gt; --yes --no-wait</p>
+              </div>
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># Verify no storage accounts remain</p>
+                <p className="text-gray-400">az storage account list --output table</p>
+              </div>
+            </div>
+          </PhaseStepItem>
+        </div>
+
         <MarkPhaseComplete phaseId={3} taskKey="task-phase1" checkedCount={checked.size} total={TOTAL} />
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">
           <Link to="/module3/task" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
