@@ -283,11 +283,11 @@ const Day7 = () => {
             <ArchitectNote title="Real-World Incidents — What Happens When This Fails">
               <div className="space-y-3">
                 <div className="p-3 border border-gray-700/50 bg-gray-800/40">
-                  <p className="text-red-400 text-xs font-bold mb-1">Colonial Pipeline — $4.4M Ransom, National Fuel Shortage (2021)</p>
+                  <p className="text-red-400 text-xs font-bold mb-1">Colonial Pipeline — $4.4M Ransom, National Fuel Shortage (2021) <a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa21-131a" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
                   <p className="text-gray-400 text-xs">DarkSide ransomware group compromised Colonial Pipeline's IT network via a single VPN account with no MFA enabled. The account credentials were found in a dark web leak. Colonial shut down 5,500 miles of pipeline proactively, causing fuel shortages across the US East Coast for 6 days. $4.4M ransom paid. <span className="text-gray-300">Lesson: a $5/month MFA licence per user would have prevented a $4.4M ransom and a national infrastructure crisis. Architecture must mandate MFA on every remote access path — VPN, RDP, SSH, all of it. No exceptions.</span></p>
                 </div>
                 <div className="p-3 border border-gray-700/50 bg-gray-800/40">
-                  <p className="text-red-400 text-xs font-bold mb-1">Twitter Bitcoin Scam — Insider Threat + Social Engineering (2020)</p>
+                  <p className="text-red-400 text-xs font-bold mb-1">Twitter Bitcoin Scam — Insider Threat + Social Engineering (2020) <a href="https://blog.twitter.com/en_us/topics/company/2020/an-update-on-our-security-incident" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
                   <p className="text-gray-400 text-xs">Attackers used phone-based social engineering to convince Twitter employees to hand over credentials to internal admin tools. 130 high-profile accounts (Obama, Biden, Musk, Apple, etc.) were hijacked to run a Bitcoin scam. The attack succeeded entirely through human manipulation — no technical exploit. <span className="text-gray-300">Lesson: architecture must assume insider threat and social engineering will succeed eventually. Privilege separation (no single admin tool has full platform control), access logging on internal tools, and break-glass monitoring are architectural requirements, not suggestions.</span></p>
                 </div>
               </div>
