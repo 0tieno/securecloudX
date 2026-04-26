@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import PhaseStepItem from "../../../components/PhaseStepItem";
 import ArchitectNote from "../../../components/ArchitectNote";
+import QuizCard from "../../../components/QuizCard";
 
 const TOTAL = 7;
 const OBJECTIVES = [
@@ -312,6 +313,47 @@ const Day1 = () => {
 
           </PhaseStepItem>
         </div>
+
+        {/* Knowledge Check */}
+        <div className="mb-8 p-4 border border-pink-800/30 bg-pink-950/10">
+          <div className="text-pink-400 text-xs mb-4">$ ./knowledge_check.sh --module 1</div>
+          <div className="space-y-4">
+            <QuizCard
+              question="A developer requests Global Administrator role in Entra ID to deploy a new app registration. What is the correct response?"
+              options={[
+                "Grant it temporarily and revoke after deployment",
+                "Deny — assign Application Administrator role scoped to that specific registration instead",
+                "Grant it — app registration requires tenant-wide permissions",
+                "Use a separate Entra ID tenant for the app"
+              ]}
+              answer={1}
+              explanation="Global Administrator is the highest-privilege role in Entra ID. Application Administrator can create and manage app registrations without tenant-wide access. Least privilege is non-negotiable — even temporary Global Admin grants are a security risk and violate Zero Trust."
+            />
+            <QuizCard
+              question="An attacker obtains an employee's username and password from a credential dump. Which Entra ID control stops them logging in?"
+              options={[
+                "RBAC role assignments",
+                "Conditional Access policy requiring MFA from a compliant device",
+                "Azure Policy deny assignments",
+                "Network Security Groups"
+              ]}
+              answer={1}
+              explanation="Credentials alone are not enough when Conditional Access requires MFA + device compliance. RBAC controls what authenticated users can do, not whether they can authenticate. NSGs operate at the network layer and don't affect identity auth."
+            />
+            <QuizCard
+              question="A service account has Owner role on the subscription 'to make automation easy.' What is the most precise least-privilege fix?"
+              options={[
+                "Downgrade to Contributor — still broad but not Owner",
+                "Remove the account and use a Managed Identity with a custom role granting only the required operations on required resources",
+                "Add a Conditional Access policy to the service account",
+                "Enable PIM for the Owner role on a time-limited basis"
+              ]}
+              answer={1}
+              explanation="Service principals and automation should use Managed Identities (no credentials to leak) with custom RBAC roles scoped to the minimum resource set. PIM is for human just-in-time access. Contributor is still a massive blast radius."
+            />
+          </div>
+        </div>
+
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">
           <Link to="/start" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
             <ChevronLeft size={14} /> /start
