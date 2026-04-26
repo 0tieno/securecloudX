@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import PhaseStepItem from "../../../components/PhaseStepItem";
+import ArchitectNote from "../../../components/ArchitectNote";
 
 const TOTAL = 7;
 const OBJECTIVES = [
@@ -15,7 +16,7 @@ const OBJECTIVES = [
 ];
 
 const Day8 = () => {
-  const [open, setOpen] = useState(() => new Set([0,1,2,3,4,5,6]));
+  const [open, setOpen] = useState(() => new Set([0,1,2,3,4,5,6,7]));
   const [checked, setChecked] = useState(new Set());
   const toggleOpen = (i) => setOpen(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
   const toggleChecked = (i) => setChecked(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
@@ -56,7 +57,7 @@ const Day8 = () => {
           </ul>
         </div>
         <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
-          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7]))} className="hover:text-gray-400 transition-colors">expand all</button>
           <span>|</span>
           <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
         </div>
@@ -350,6 +351,101 @@ const Day8 = () => {
             <div className="mt-3 p-2 border border-green-800/50 bg-green-900/10">
               <p className="text-green-400 text-xs">Takeaway: The pipeline is your last line of automated defense. A broken build is a success — it means the gates are working. Never bypass a failing security check without documented risk acceptance.</p>
             </div>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={8} type="ARCHITECT" title="Cloud Architect's Perspective — DevSecOps & Supply Chain Security"
+            isOpen={open.has(7)} onToggleOpen={() => toggleOpen(7)}
+            isChecked={checked.has(7)} onToggleChecked={() => toggleChecked(7)}>
+
+            <ArchitectNote title="Core Design Principles">
+              <ul className="space-y-1.5">
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Immutable artifacts prevent supply chain tampering.</span> Sign every container image and binary artifact using Sigstore/Cosign or Notary v2. Verify signatures at deployment time using admission controllers (Gatekeeper, Kyverno). An unsigned image should never reach production.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Pin dependencies by hash, not version tag.</span> A version tag like <code className="text-yellow-400">v2.1.0</code> can be reassigned to a different commit. A cryptographic hash (<code className="text-yellow-400">sha256:abc123…</code>) is immutable. For critical dependencies, pin to hashes and verify checksums in CI.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Pipeline service connections follow least privilege.</span> A CI/CD service connection with Subscription Contributor is an attacker's dream. If the pipeline is compromised, the attacker has full Azure control. Scope service connections to the minimum required: specific resource group, specific role (e.g., AcrPush for container registry).</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Treat your build environment as an attack surface.</span> Build runners execute arbitrary code from your repositories. A compromised runner can exfiltrate all secrets from the environment, modify build artifacts, and push malicious images. Self-hosted runners require hardening; ephemeral runners eliminate persistence.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Security gates must be non-bypassable by developers.</span> If a developer can push <code className="text-yellow-400">[skip ci]</code> to bypass all security checks, the gates are decorative. Enforce branch protection rules, require status checks, and audit bypass events.</span></li>
+              </ul>
+            </ArchitectNote>
+
+            <ArchitectNote title="STRIDE Threat Model — CI/CD & Supply Chain">
+              <div className="overflow-x-auto">
+                <table className="w-full text-xs font-mono border-collapse">
+                  <thead>
+                    <tr className="border-b border-indigo-800/50">
+                      <th className="text-left text-indigo-300 py-1 pr-4 font-semibold">Threat</th>
+                      <th className="text-left text-indigo-300 py-1 pr-4 font-semibold">Attack Vector</th>
+                      <th className="text-left text-indigo-300 py-1 font-semibold">Mitigation</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-gray-400">
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-orange-400 font-bold">Tampering</td>
+                      <td className="py-1.5 pr-4">Supply chain attack: malicious code injected into upstream package or build pipeline</td>
+                      <td className="py-1.5">Artifact signing (Sigstore), SBOM verification, pin dep hashes, private artifact registry</td>
+                    </tr>
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-blue-400 font-bold">Info Disclosure</td>
+                      <td className="py-1.5 pr-4">Secrets in CI environment variables, build logs, artifact metadata</td>
+                      <td className="py-1.5">Key Vault references in pipeline, secret masking, audit pipeline logs for credential patterns</td>
+                    </tr>
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-yellow-400 font-bold">Spoofing</td>
+                      <td className="py-1.5 pr-4">Unsigned container images deployed from a compromised registry mirror</td>
+                      <td className="py-1.5">Cosign image signing + verify at admission, use Azure Container Registry with trusted images</td>
+                    </tr>
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-red-400 font-bold">Elev. of Privilege</td>
+                      <td className="py-1.5 pr-4">Pipeline service principal with excessive permissions, workload identity federation misconfiguration</td>
+                      <td className="py-1.5">Least-privilege service connections, Workload Identity Federation (no client secrets in pipeline), OIDC tokens</td>
+                    </tr>
+                    <tr>
+                      <td className="py-1.5 pr-4 text-gray-400 font-bold">Repudiation</td>
+                      <td className="py-1.5 pr-4">No audit trail of who approved a deployment, pipeline run history deleted</td>
+                      <td className="py-1.5">Immutable pipeline run history, deployment approvals logged, Git commit signing (GPG/SSH)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ArchitectNote>
+
+            <ArchitectNote title="Compliance Mapping">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">NIST SP 800-218 (SSDF v1.1)</p>
+                  <p className="text-gray-400">Secure Software Development Framework. PO.3 (implement supporting toolchains), PW.1 (design software to meet security requirements), PW.4 (reuse existing, well-secured software), RV.1 (identify and confirm vulnerabilities). DevSecOps is SSDF operationalised.</p>
+                </div>
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">SLSA Framework (Levels 1–4)</p>
+                  <p className="text-gray-400">Supply chain Levels for Software Artifacts. Level 1: provenance generated. Level 2: signed provenance. Level 3: hardened build platform (isolated, ephemeral). Level 4: two-person review + hermetic builds. US EO 14028 references SLSA for federal software procurement.</p>
+                </div>
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">CSA CCM v4 — AIS Domain</p>
+                  <p className="text-gray-400">Application &amp; Interface Security (AIS-01 through AIS-06). AIS-04 specifically covers secure application design and lifecycle security, directly mapping to DevSecOps pipeline security gates and shift-left practices.</p>
+                </div>
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">CIS Software Supply Chain Guide</p>
+                  <p className="text-gray-400">CIS controls for source code management, build pipelines, dependency management, and artifact packaging. The most actionable checklist for hardening GitHub Actions, Azure DevOps pipelines, and container registries.</p>
+                </div>
+              </div>
+            </ArchitectNote>
+
+            <ArchitectNote title="Real-World Incidents — What Happens When This Fails">
+              <div className="space-y-3">
+                <div className="p-3 border border-gray-700/50 bg-gray-800/40">
+                  <p className="text-red-400 text-xs font-bold mb-1">SolarWinds Orion Build Pipeline Compromise (2020)</p>
+                  <p className="text-gray-400 text-xs">Attackers compromised SolarWinds' build environment and injected the SUNBURST backdoor into the Orion build process. The malicious DLL was compiled, signed with SolarWinds' legitimate code signing certificate, and shipped to ~18,000 customers as a standard software update. The attack was invisible to all downstream users because the artifact had a valid signature from a trusted vendor. <span className="text-gray-300">Lesson: artifact signing is necessary but not sufficient — you must also verify the build environment that produced the signed artifact. SLSA Level 3 (hardened, auditable build platform) is the architectural response to this class of attack.</span></p>
+                </div>
+                <div className="p-3 border border-gray-700/50 bg-gray-800/40">
+                  <p className="text-red-400 text-xs font-bold mb-1">3CX Supply Chain Attack (2023)</p>
+                  <p className="text-gray-400 text-xs">3CX's desktop application was compromised via a dependency confusion attack on a trading platform's npm package (Trading Technologies X_TRADER). A malicious version of X_TRADER was installed on a 3CX developer's machine, which then compromised the 3CX build environment, which then shipped a trojanised 3CX client to 600,000+ organisations. A supply chain attack feeding another supply chain attack. <span className="text-gray-300">Lesson: your security is bounded by the security of every package you depend on, and every developer machine in your build chain. Private package registries with vetting, developer machine hardening, and build system isolation are all required.</span></p>
+                </div>
+                <div className="p-3 border border-gray-700/50 bg-gray-800/40">
+                  <p className="text-red-400 text-xs font-bold mb-1">Codecov CI Script Tampering — Thousands of Pipelines (2021)</p>
+                  <p className="text-gray-400 text-xs">Attackers gained access to Codecov's CI environment via a leaked Docker Hub credential. They modified Codecov's bash uploader script to exfiltrate environment variables (including CI secrets, API keys, and credentials) from every CI pipeline that ran the script. Affected organisations included Twilio, HashiCorp, Twitch, and hundreds more. <span className="text-gray-300">Lesson: every third-party tool injected into your pipeline is a trust boundary. Pin tool versions by hash, use checksums, and treat CI script integrity as a security-critical concern equivalent to application code.</span></p>
+                </div>
+              </div>
+            </ArchitectNote>
+
           </PhaseStepItem>
         </div>
 
