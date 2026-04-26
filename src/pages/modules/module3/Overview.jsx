@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import PhaseStepItem from "../../../components/PhaseStepItem";
 import ArchitectNote from "../../../components/ArchitectNote";
+import QuizCard from "../../../components/QuizCard";
 
 const TOTAL = 7;
 const OBJECTIVES = [
@@ -277,6 +278,47 @@ const Day3 = () => {
 
           </PhaseStepItem>
         </div>
+
+        {/* Knowledge Check */}
+        <div className="mb-8 p-4 border border-pink-800/30 bg-pink-950/10">
+          <div className="text-pink-400 text-xs mb-4">$ ./knowledge_check.sh --module 3</div>
+          <div className="space-y-4">
+            <QuizCard
+              question="A storage account has 'Allow Blob public access' enabled and a container marked as 'Blob (anonymous read for blobs only).' What is the risk?"
+              options={[
+                "Only authenticated users can read the blobs",
+                "Anyone on the internet can read every blob in that container without authentication",
+                "Only users in the same Entra tenant can read the blobs",
+                "The blobs are readable only via SAS tokens"
+              ]}
+              answer={1}
+              explanation="Anonymous blob access means zero authentication — anyone who can guess or enumerate the blob URL can read the data. This is one of the most common causes of cloud data leaks. Microsoft now disables public access by default on new storage accounts."
+            />
+            <QuizCard
+              question="You need to give a vendor read access to one specific blob container for 48 hours. What is the correct approach?"
+              options={[
+                "Share the storage account access key with the vendor",
+                "Create a Service SAS token scoped to the container with read-only permission and a 48-hour expiry",
+                "Create a new storage account for the vendor",
+                "Add the vendor's email as a Contributor on the storage account"
+              ]}
+              answer={1}
+              explanation="A Service SAS token can be scoped to a specific container, limited to read operations, and set to expire in exactly 48 hours. Sharing the account key gives full account control with no expiry. RBAC Contributor is too broad and permanent."
+            />
+            <QuizCard
+              question="What is the difference between Microsoft-managed keys (MMK) and Customer-managed keys (CMK) for Azure Storage encryption?"
+              options={[
+                "MMK uses AES-128; CMK uses AES-256",
+                "With CMK, you control the key in Key Vault and can revoke it — disabling all access to encrypted data. With MMK, Microsoft controls the key lifecycle.",
+                "CMK is only available for Blob storage; MMK works for all storage types",
+                "CMK requires a Premium storage account tier"
+              ]}
+              answer={1}
+              explanation="CMK puts you in control: the encryption key lives in your Key Vault, you control rotation and can revoke it (instantly disabling access to encrypted data). MMK relies on Microsoft's key management — simpler, but you don't hold the keys. Regulated industries (finance, healthcare) typically require CMK."
+            />
+          </div>
+        </div>
+
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">
           <Link to="/module2" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
             <ChevronLeft size={14} /> Module 2
