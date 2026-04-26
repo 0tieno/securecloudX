@@ -289,15 +289,15 @@ const Day6 = () => {
             <ArchitectNote title="Real-World Incidents — What Happens When This Fails">
               <div className="space-y-3">
                 <div className="p-3 border border-gray-700/50 bg-gray-800/40">
-                  <p className="text-red-400 text-xs font-bold mb-1">Target Corporation — 40 Million Cards Stolen (2013)</p>
+                  <p className="text-red-400 text-xs font-bold mb-1">Target Corporation — 40 Million Cards Stolen (2013) <a href="https://krebsonsecurity.com/2014/05/the-target-breach-by-the-numbers/" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
                   <p className="text-gray-400 text-xs">Target's security tools (FireEye) detected the Citadel malware on Nov 30, 2013 and sent six high-priority alerts. The security operations team in Bangalore reviewed and dismissed every alert. The breach wasn't stopped until the US DOJ notified Target on December 12. 40 million credit/debit card numbers were exfiltrated. <span className="text-gray-300">Lesson: technology alone doesn't stop breaches — process does. An alert without a response SLA and an on-call escalation path is noise, not defence. Automated SOAR playbooks would have contained this without human hesitation.</span></p>
                 </div>
                 <div className="p-3 border border-gray-700/50 bg-gray-800/40">
-                  <p className="text-red-400 text-xs font-bold mb-1">Equifax — 147 Million Records, 78 Days Undetected (2017)</p>
+                  <p className="text-red-400 text-xs font-bold mb-1">Equifax — 147 Million Records, 78 Days Undetected (2017) <a href="https://www.ftc.gov/enforcement/refunds/equifax-data-breach-settlement" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
                   <p className="text-gray-400 text-xs">Attackers exploited Apache Struts CVE-2017-5638 on May 12, 2017. The breach wasn't discovered until July 29 — 78 days later. The primary reason for late detection: an expired SSL certificate on a network inspection device had disabled traffic inspection for 19 months. <span className="text-gray-300">Lesson: your detection tooling must itself be monitored. Certificate expiry on security appliances is a known blind spot. Automated certificate monitoring and health checks on SIEM connectors are mandatory.</span></p>
                 </div>
                 <div className="p-3 border border-gray-700/50 bg-gray-800/40">
-                  <p className="text-red-400 text-xs font-bold mb-1">SolarWinds Orion — 9 Months Undetected (2020)</p>
+                  <p className="text-red-400 text-xs font-bold mb-1">SolarWinds Orion — 9 Months Undetected (2020) <a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa20-352a" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
                   <p className="text-gray-400 text-xs">The SUNBURST backdoor was active from approximately March 2020. FireEye discovered anomalous activity in their own environment on December 8, 2020 — nine months after initial compromise. The attackers used living-off-the-land techniques and blended with legitimate traffic to evade detection. <span className="text-gray-300">Lesson: signature-based detection misses novel techniques. Behavioural analytics (UEBA in Sentinel) detects anomalies in user and entity behaviour patterns, catching attackers who blend with normal traffic.</span></p>
                 </div>
               </div>
