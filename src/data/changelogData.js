@@ -1,5 +1,29 @@
 export const changelog = [
     {
+        date: "26 Apr, 2026",
+        desc: "Launched Module 9: Kubernetes & AKS Security — 9-step overview covering K8s primer, AKS security planes, RBAC, Network Policies, Pod Security Admission, Runtime Security (Falco), Image Supply Chain, and a cryptominer scenario. Full AKS hardening lab included.",
+    },
+    {
+        date: "26 Apr, 2026",
+        desc: "Restructured curriculum: Modules 1–7 form the certified Core Path; Modules 8–9 are Advanced Topics (optional, no cert gate). Certificate now gates on 7 core phases only.",
+    },
+    {
+        date: "26 Apr, 2026",
+        desc: "Added prerequisites section to the Getting Started page — Linux CLI, networking fundamentals, and Bash/PowerShell scripting with curated free resources and time estimates.",
+    },
+    {
+        date: "26 Apr, 2026",
+        desc: "Added Azure-focus callout with a 10-service mapping table (Azure ↔ AWS ↔ GCP) on the Getting Started page — helps learners from other cloud backgrounds orient quickly.",
+    },
+    {
+        date: "26 Apr, 2026",
+        desc: "Wired Glossary URL params — clicking any glossary term in the search modal now navigates to /glossary?q=<term> and pre-fills the search input. 72 terms indexed in SearchModal.",
+    },
+    {
+        date: "26 Apr, 2026",
+        desc: "Fixed Admin panel: TOTAL_STEPS updated to 109 (all 9 modules), phases denominator corrected to /9.",
+    },
+    {
         date: "19 Apr, 2026",
         desc: "Launched securecloudx.xyz with fully revamped content, new domain, GitHub authentication, and Supabase-powered progress tracking & certificate system.",
     },
