@@ -296,15 +296,15 @@ const Day1 = () => {
             <ArchitectNote title="Real-World Incidents — What Happens When This Fails">
               <div className="space-y-3">
                 <div className="p-3 border border-gray-700/50 bg-gray-800/40">
-                  <p className="text-red-400 text-xs font-bold mb-1">Storm-0558 — Microsoft (2023)</p>
+                  <p className="text-red-400 text-xs font-bold mb-1">Storm-0558 — Microsoft (2023) <a href="https://msrc.microsoft.com/blog/2023/07/microsoft-mitigates-china-based-threat-actor-storm-0558-targeting-of-customer-email/" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
                   <p className="text-gray-400 text-xs">Chinese threat actor forged Azure AD authentication tokens using a stolen MSA signing key. Result: full mailbox read access to ~25 organisations including US government agencies. Root cause: signing key material accessible outside its security boundary, no anomaly detection on token claims. <span className="text-gray-300">Lesson: token validation must verify issuer, audience, and key provenance — not just signature.</span></p>
                 </div>
                 <div className="p-3 border border-gray-700/50 bg-gray-800/40">
-                  <p className="text-red-400 text-xs font-bold mb-1">Uber MFA Fatigue Attack (2022)</p>
+                  <p className="text-red-400 text-xs font-bold mb-1">Uber MFA Fatigue Attack (2022) <a href="https://www.uber.com/newsroom/security-update/" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
                   <p className="text-gray-400 text-xs">Attacker purchased Uber employee credentials from the dark web, then bombarded them with MFA push notifications until the employee accepted to stop the noise. Attacker then reached Okta admin panel and AWS console. <span className="text-gray-300">Lesson: number-matching MFA (FIDO2/passkeys) eliminates push-fatigue attacks entirely — this is now mandatory in the Microsoft Entra ID Conditional Access template library.</span></p>
                 </div>
                 <div className="p-3 border border-gray-700/50 bg-gray-800/40">
-                  <p className="text-red-400 text-xs font-bold mb-1">SolarWinds — OAuth Lateral Movement (2020)</p>
+                  <p className="text-red-400 text-xs font-bold mb-1">SolarWinds — OAuth Lateral Movement (2020) <a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa21-008a" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
                   <p className="text-gray-400 text-xs">After initial access via the Orion backdoor, attackers pivoted to Azure AD by forging SAML tokens (Golden SAML attack) and using OAuth tokens to access cloud resources without triggering MFA. Persisted for 9 months undetected. <span className="text-gray-300">Lesson: privileged service accounts in hybrid environments are a critical attack path — on-prem identity compromise should trigger cloud credential revocation.</span></p>
                 </div>
               </div>
