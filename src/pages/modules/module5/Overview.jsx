@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import PhaseStepItem from "../../../components/PhaseStepItem";
+import ArchitectNote from "../../../components/ArchitectNote";
 
 const TOTAL = 7;
 const OBJECTIVES = [
@@ -15,7 +16,7 @@ const OBJECTIVES = [
 ];
 
 const Day5 = () => {
-  const [open, setOpen] = useState(() => new Set([0,1,2,3,4,5,6]));
+  const [open, setOpen] = useState(() => new Set([0,1,2,3,4,5,6,7]));
   const [checked, setChecked] = useState(new Set());
   const toggleOpen = (i) => setOpen(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
   const toggleChecked = (i) => setChecked(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
@@ -56,7 +57,7 @@ const Day5 = () => {
           </ul>
         </div>
         <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
-          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7]))} className="hover:text-gray-400 transition-colors">expand all</button>
           <span>|</span>
           <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
         </div>
@@ -216,6 +217,96 @@ const Day5 = () => {
               <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Review the regulatory compliance dashboard</span></li>
             </ul>
             <div className="mt-3"><Link to="/module5/task" className="text-red-400 hover:text-red-300 transition-colors">→ ./start_lab.sh</Link></div>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={8} type="ARCHITECT" title="Cloud Architect's Perspective — Security Posture Management"
+            isOpen={open.has(7)} onToggleOpen={() => toggleOpen(7)}
+            isChecked={checked.has(7)} onToggleChecked={() => toggleChecked(7)}>
+
+            <ArchitectNote title="Core Design Principles">
+              <ul className="space-y-1.5">
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Secure Score is a directional indicator — not a KPI.</span> A 90% Secure Score doesn't mean you're 90% secure. It means you've implemented 90% of Microsoft's opinionated recommendations. Use it directionally: track trend over time and focus on Critical-severity findings first.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Policy-as-code enforces guardrails at deployment time.</span> Azure Policy with Deny effect prevents non-compliant resources from being created in the first place. This is governance-as-code: compliance is enforced by the platform, not by manual review after the fact.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">CSPM must cover ALL subscriptions, not just production.</span> Dev and staging environments are frequently used as pivot points to reach production. A compromised dev environment with access to a shared Key Vault or managed identity is a production breach waiting to happen.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Management Group hierarchy is your policy enforcement boundary.</span> Assign security policies at the Management Group level so they apply to all subscriptions. Any policy assigned at subscription level can be circumvented by creating a new subscription.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Alert fatigue kills SOC teams.</span> An alert system that fires hundreds of low-severity alerts per day will be ignored. Architect your alerting strategy with signal-to-noise ratio in mind: high-fidelity alerts for critical events, aggregated summaries for informational findings.</span></li>
+              </ul>
+            </ArchitectNote>
+
+            <ArchitectNote title="STRIDE Threat Model — Posture & Governance Layer">
+              <div className="overflow-x-auto">
+                <table className="w-full text-xs font-mono border-collapse">
+                  <thead>
+                    <tr className="border-b border-indigo-800/50">
+                      <th className="text-left text-indigo-300 py-1 pr-4 font-semibold">Threat</th>
+                      <th className="text-left text-indigo-300 py-1 pr-4 font-semibold">Attack Vector</th>
+                      <th className="text-left text-indigo-300 py-1 font-semibold">Mitigation</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-gray-400">
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-red-400 font-bold">Elev. of Privilege</td>
+                      <td className="py-1.5 pr-4">Misconfigured RBAC at management group level grants attacker subscription-wide control</td>
+                      <td className="py-1.5">RBAC access reviews, PIM for management group Owner role, audit privileged assignments weekly</td>
+                    </tr>
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-gray-400 font-bold">Repudiation</td>
+                      <td className="py-1.5 pr-4">Audit logs disabled, diagnostic settings not configured — breach with no forensic trail</td>
+                      <td className="py-1.5">Azure Policy: enforce diagnostic settings on all resources, immutable log storage, 1-year retention</td>
+                    </tr>
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-blue-400 font-bold">Info Disclosure</td>
+                      <td className="py-1.5 pr-4">Unrestricted outbound internet, public storage, unprotected management APIs</td>
+                      <td className="py-1.5">Defender for Cloud recommendations + Azure Policy Deny effects close these gaps</td>
+                    </tr>
+                    <tr>
+                      <td className="py-1.5 pr-4 text-orange-400 font-bold">Tampering</td>
+                      <td className="py-1.5 pr-4">Security policy definitions modified or assignments deleted by a compromised admin</td>
+                      <td className="py-1.5">Policy assignment locks, change tracking in Activity Log, alerts on policy assignment changes</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ArchitectNote>
+
+            <ArchitectNote title="Compliance Mapping">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">NIST CSF 2.0</p>
+                  <p className="text-gray-400">Cybersecurity Framework functions: Govern (GV), Identify (ID), Protect (PR). CSPM directly implements these — Defender for Cloud's Secure Score maps to the Identify and Protect functions. The new Govern function (added in CSF 2.0) maps to Azure Policy and management group governance.</p>
+                </div>
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">CSA CCM v4 — GRC Domain</p>
+                  <p className="text-gray-400">Governance, Risk & Compliance (GRC-01 through GRC-12). Policy management, risk assessment, compliance monitoring, and audit planning — all implemented via Defender for Cloud + Azure Policy.</p>
+                </div>
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">Microsoft Cloud Security Benchmark</p>
+                  <p className="text-gray-400">MCSB v1 is the default compliance standard in Defender for Cloud. It consolidates CIS Azure Benchmark, NIST SP 800-53, and Microsoft internal security standards into a single, Azure-native control set.</p>
+                </div>
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">CIS Azure Benchmark v2.0</p>
+                  <p className="text-gray-400">The complete benchmark covers all services. Section 4 (Azure Defender), Section 5 (Logging & Monitoring), and Section 1 (IAM) are the highest-impact areas for Secure Score improvement in most tenants.</p>
+                </div>
+              </div>
+            </ArchitectNote>
+
+            <ArchitectNote title="Real-World Incidents — What Happens When This Fails">
+              <div className="space-y-3">
+                <div className="p-3 border border-gray-700/50 bg-gray-800/40">
+                  <p className="text-red-400 text-xs font-bold mb-1">Tesla Kubernetes Dashboard — Cryptominer Deployed (2018)</p>
+                  <p className="text-gray-400 text-xs">Researchers discovered Tesla's Kubernetes admin dashboard was accessible on the public internet with no authentication required. Attackers had already deployed a cryptominer, configured it to run at low CPU utilisation to avoid detection, and stored AWS credentials in Kubernetes secrets — which they used to access Tesla's S3 buckets containing sensitive telemetry data. <span className="text-gray-300">Lesson: a basic CSPM scan with "internet-exposed management interfaces" check would have flagged this on day one. Defender for Cloud includes this exact check.</span></p>
+                </div>
+                <div className="p-3 border border-gray-700/50 bg-gray-800/40">
+                  <p className="text-red-400 text-xs font-bold mb-1">Twitch Source Code Leak (2021) — 125GB of Data</p>
+                  <p className="text-gray-400 text-xs">An anonymous user leaked 125GB of Twitch's internal data including source code, internal security tools, streamer payout data, and internal red team tools. The breach originated from a misconfigured cloud server that allowed unauthenticated access to internal repositories. <span className="text-gray-300">Lesson: posture management must include internal developer infrastructure, not just production. Dev servers with misconfigured access controls are as dangerous as misconfigured production systems.</span></p>
+                </div>
+                <div className="p-3 border border-gray-700/50 bg-gray-800/40">
+                  <p className="text-red-400 text-xs font-bold mb-1">Capital One — Azure Policy Could Have Prevented It (Counterfactual)</p>
+                  <p className="text-gray-400 text-xs">The Capital One breach (described in Module 2) also succeeded because there was no alerting on unusual data exfiltration volumes from S3. A single Azure Monitor alert rule on “Storage account access from unexpected IP ranges” or Defender for Storage anomaly detection would have fired within minutes. <span className="text-gray-300">Lesson: CSPM without alerting is a dashboard, not a defence. Every critical finding needs a detection rule, not just a remediation recommendation.</span></p>
+                </div>
+              </div>
+            </ArchitectNote>
+
           </PhaseStepItem>
         </div>
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">
