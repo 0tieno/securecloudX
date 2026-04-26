@@ -6,10 +6,10 @@ import PhaseStepItem from "../../../components/PhaseStepItem";
 import ArchitectNote from "../../../components/ArchitectNote";
 import QuizCard from "../../../components/QuizCard";
 
-const TOTAL = 7;
+const TOTAL = 9;
 
 const Module9 = () => {
-  const [open, setOpen] = useState(() => new Set([0,1,2,3,4,5,6,7]));
+  const [open, setOpen] = useState(() => new Set([0,1,2,3,4,5,6,7,8,9]));
   const [checked, setChecked] = useState(new Set());
   const toggleOpen = (i) => setOpen(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
   const toggleChecked = (i) => setChecked(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
@@ -40,17 +40,75 @@ const Module9 = () => {
         </div>
         <AutoMarkOverview phaseId={9} checkedCount={checked.size} total={TOTAL} />
         <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
-          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7,8,9]))} className="hover:text-gray-400 transition-colors">expand all</button>
           <span>|</span>
           <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
         </div>
 
         <div className="space-y-2 mb-10">
 
-          {/* Step 1: Two Security Planes */}
-          <PhaseStepItem number={1} type="READ" title="The Two Security Planes of AKS"
+          {/* Step 0: Kubernetes Primer */}
+          <PhaseStepItem number={1} type="PREP" title="Kubernetes Primer — What You Need to Know Before the Security Starts"
             isOpen={open.has(0)} onToggleOpen={() => toggleOpen(0)}
             isChecked={checked.has(0)} onToggleChecked={() => toggleChecked(0)}>
+            <p>Kubernetes (K8s) is the industry-standard container orchestration platform. AKS is Azure's managed version. Before learning how to <em>secure</em> a Kubernetes cluster, you need to understand what you're securing. This step is the minimum viable K8s knowledge to make sense of everything that follows.</p>
+            <div className="mt-3 p-3 border border-gray-700 bg-gray-800">
+              <p className="text-gray-300 text-sm font-semibold mb-3">Core Kubernetes Concepts</p>
+              <div className="space-y-2 text-sm text-gray-400">
+                <div className="flex items-start gap-3">
+                  <span className="text-yellow-400 font-mono font-bold w-28 flex-shrink-0">Pod</span>
+                  <span>The smallest deployable unit in K8s. One or more containers sharing a network namespace and storage. Think of it as a single running instance of your app.</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-yellow-400 font-mono font-bold w-28 flex-shrink-0">Node</span>
+                  <span>A VM (or physical machine) that runs pods. In AKS, nodes are Azure VMs in a node pool. The <span className="text-gray-300">kubelet</span> agent runs on each node and talks to the control plane.</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-yellow-400 font-mono font-bold w-28 flex-shrink-0">Namespace</span>
+                  <span>A logical partition inside a cluster. Used to isolate workloads (e.g., <span className="font-mono text-xs bg-gray-900 px-1">production</span>, <span className="font-mono text-xs bg-gray-900 px-1">staging</span>, <span className="font-mono text-xs bg-gray-900 px-1">kube-system</span>). RBAC, Network Policies, and resource quotas are all scoped to namespaces.</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-yellow-400 font-mono font-bold w-28 flex-shrink-0">Deployment</span>
+                  <span>Declares the desired state for a set of pods (e.g., "run 3 replicas of this container image"). The control plane continuously reconciles actual state to match desired state.</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-yellow-400 font-mono font-bold w-28 flex-shrink-0">Service</span>
+                  <span>A stable network endpoint that routes traffic to a set of pods. Pods are ephemeral — their IPs change. Services give them a fixed DNS name inside the cluster.</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-yellow-400 font-mono font-bold w-28 flex-shrink-0">ServiceAccount</span>
+                  <span>The Kubernetes identity assigned to a pod. Used for RBAC — what API calls can this pod make to the K8s API server? This is where workload identity attacks begin.</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-yellow-400 font-mono font-bold w-28 flex-shrink-0">API Server</span>
+                  <span>The brain of Kubernetes. Every action — creating a pod, reading a secret, scaling a deployment — goes through the API server. Securing access to it is the most critical K8s security control.</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-yellow-400 font-mono font-bold w-28 flex-shrink-0">etcd</span>
+                  <span>The distributed key-value store where all cluster state is persisted — including Kubernetes Secrets (base64-encoded, not encrypted by default). An attacker with access to etcd owns the cluster.</span>
+                </div>
+              </div>
+            </div>
+            <div className="mt-3 p-3 border border-gray-700 bg-gray-900 text-xs font-mono text-gray-400">
+              <p className="text-gray-500 mb-2"># essential kubectl commands — run these to verify your cluster access in the lab</p>
+              <p>kubectl get nodes                    <span className="text-gray-600"># list cluster nodes</span></p>
+              <p>kubectl get pods -A                  <span className="text-gray-600"># all pods across all namespaces</span></p>
+              <p>kubectl get namespaces               <span className="text-gray-600"># list all namespaces</span></p>
+              <p>kubectl describe pod &lt;name&gt; -n &lt;ns&gt;  <span className="text-gray-600"># inspect a specific pod</span></p>
+              <p>kubectl get secrets -n &lt;ns&gt;          <span className="text-gray-600"># list secrets (dangerous if unrestricted)</span></p>
+              <p>kubectl auth can-i --list             <span className="text-gray-600"># what can the current identity do?</span></p>
+            </div>
+            <div className="mt-3 space-y-1">
+              <a href="https://kubernetes.io/docs/concepts/overview/" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-sm block">→ Kubernetes Docs: Overview of Kubernetes</a>
+              <a href="https://learn.microsoft.com/azure/aks/concepts-clusters-workloads?wt.mc_id=studentamb_387261" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-sm block">→ Microsoft Learn: AKS core concepts for apps and workloads</a>
+              <a href="https://www.youtube.com/watch?v=s_o8dwzRlu4" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:underline text-sm block">→ Watch: Kubernetes Explained in 6 Minutes (Fireship)</a>
+            </div>
+          </PhaseStepItem>
+
+          {/* Step 2: Two Security Planes */}
+          <PhaseStepItem number={2} type="READ" title="The Two Security Planes of AKS"
+            isOpen={open.has(1)} onToggleOpen={() => toggleOpen(1)}
+            isChecked={checked.has(1)} onToggleChecked={() => toggleChecked(1)}>
             <p>AKS gives you two completely separate security planes. Confusing them is the most common AKS security mistake.</p>
             <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="p-3 border border-blue-800/40 bg-blue-900/10">
@@ -77,10 +135,10 @@ const Module9 = () => {
             </div>
           </PhaseStepItem>
 
-          {/* Step 2: K8s RBAC */}
-          <PhaseStepItem number={2} type="READ" title="Kubernetes RBAC — Least Privilege Inside the Cluster"
-            isOpen={open.has(1)} onToggleOpen={() => toggleOpen(1)}
-            isChecked={checked.has(1)} onToggleChecked={() => toggleChecked(1)}>
+          {/* Step 3: K8s RBAC */}
+          <PhaseStepItem number={3} type="READ" title="Kubernetes RBAC — Least Privilege Inside the Cluster"
+            isOpen={open.has(2)} onToggleOpen={() => toggleOpen(2)}
+            isChecked={checked.has(2)} onToggleChecked={() => toggleChecked(2)}>
             <p>Kubernetes RBAC controls what identities (service accounts, users) can do within the cluster via the API server. Without it, any pod can potentially read all secrets in the cluster.</p>
             <div className="mt-3 p-3 border border-gray-700 bg-gray-800">
               <p className="text-gray-300 text-sm font-semibold mb-2">Core RBAC Resources</p>
@@ -112,10 +170,10 @@ const Module9 = () => {
             </div>
           </PhaseStepItem>
 
-          {/* Step 3: Network Policies */}
-          <PhaseStepItem number={3} type="READ" title="Network Policies — Zero Trust for Pod Traffic"
-            isOpen={open.has(2)} onToggleOpen={() => toggleOpen(2)}
-            isChecked={checked.has(2)} onToggleChecked={() => toggleChecked(2)}>
+          {/* Step 4: Network Policies */}
+          <PhaseStepItem number={4} type="READ" title="Network Policies — Zero Trust for Pod Traffic"
+            isOpen={open.has(3)} onToggleOpen={() => toggleOpen(3)}
+            isChecked={checked.has(3)} onToggleChecked={() => toggleChecked(3)}>
             <p>By default, Kubernetes allows all pod-to-pod communication. A compromised frontend pod can reach your database pod directly. Network Policies are the Zero Trust firewall for inter-pod traffic.</p>
             <div className="mt-3 p-3 border border-gray-700 bg-gray-800">
               <p className="text-gray-300 text-sm font-semibold mb-2">Network Policy Concepts</p>
@@ -142,10 +200,10 @@ const Module9 = () => {
             </div>
           </PhaseStepItem>
 
-          {/* Step 4: Pod Security + Admission */}
-          <PhaseStepItem number={4} type="READ" title="Pod Security Admission — No Root, No Privilege"
-            isOpen={open.has(3)} onToggleOpen={() => toggleOpen(3)}
-            isChecked={checked.has(3)} onToggleChecked={() => toggleChecked(3)}>
+          {/* Step 5: Pod Security + Admission */}
+          <PhaseStepItem number={5} type="READ" title="Pod Security Admission — No Root, No Privilege"
+            isOpen={open.has(4)} onToggleOpen={() => toggleOpen(4)}
+            isChecked={checked.has(4)} onToggleChecked={() => toggleChecked(4)}>
             <p>Pod Security Admission (PSA) replaced Pod Security Policies (deprecated in K8s 1.21). It enforces security standards at the namespace level, preventing pods from running with dangerous configurations.</p>
             <div className="mt-3 p-3 border border-gray-700 bg-gray-800">
               <p className="text-gray-300 text-sm font-semibold mb-2">PSA Security Standards</p>
@@ -181,10 +239,10 @@ const Module9 = () => {
             </div>
           </PhaseStepItem>
 
-          {/* Step 5: Runtime Security */}
-          <PhaseStepItem number={5} type="READ" title="Runtime Security — Falco & Defender for Containers"
-            isOpen={open.has(4)} onToggleOpen={() => toggleOpen(4)}
-            isChecked={checked.has(4)} onToggleChecked={() => toggleChecked(4)}>
+          {/* Step 6: Runtime Security */}
+          <PhaseStepItem number={6} type="READ" title="Runtime Security — Falco & Defender for Containers"
+            isOpen={open.has(5)} onToggleOpen={() => toggleOpen(5)}
+            isChecked={checked.has(5)} onToggleChecked={() => toggleChecked(5)}>
             <p>Admission controllers prevent bad configurations at deploy time. Runtime security detects malicious behaviour after the workload is running — when an attacker has already breached a container.</p>
             <div className="mt-3 p-3 border border-gray-700 bg-gray-800">
               <p className="text-gray-300 text-sm font-semibold mb-2">Falco — Open Source Runtime Detection</p>
@@ -212,10 +270,10 @@ const Module9 = () => {
             </div>
           </PhaseStepItem>
 
-          {/* Step 6: Supply Chain in K8s */}
-          <PhaseStepItem number={6} type="READ" title="Image Security & Supply Chain in Kubernetes"
-            isOpen={open.has(5)} onToggleOpen={() => toggleOpen(5)}
-            isChecked={checked.has(5)} onToggleChecked={() => toggleChecked(5)}>
+          {/* Step 7: Supply Chain in K8s */}
+          <PhaseStepItem number={7} type="READ" title="Image Security & Supply Chain in Kubernetes"
+            isOpen={open.has(6)} onToggleOpen={() => toggleOpen(6)}
+            isChecked={checked.has(6)} onToggleChecked={() => toggleChecked(6)}>
             <p>Container images are the unit of deployment. A compromised or misconfigured image is the most direct path to cluster compromise. Supply chain security for Kubernetes starts at image build and ends at runtime.</p>
             <div className="mt-3 p-3 border border-gray-700 bg-gray-800">
               <p className="text-gray-300 text-sm font-semibold mb-2">Image Security Controls</p>
@@ -244,10 +302,10 @@ const Module9 = () => {
             </div>
           </PhaseStepItem>
 
-          {/* Step 7: Real-World Scenario */}
-          <PhaseStepItem number={7} type="SCENARIO" title="Real-World Scenario: The Cryptominer That Shouldn't Have Existed"
-            isOpen={open.has(6)} onToggleOpen={() => toggleOpen(6)}
-            isChecked={checked.has(6)} onToggleChecked={() => toggleChecked(6)}>
+          {/* Step 8: Real-World Scenario */}
+          <PhaseStepItem number={8} type="SCENARIO" title="Real-World Scenario: The Cryptominer That Shouldn't Have Existed"
+            isOpen={open.has(7)} onToggleOpen={() => toggleOpen(7)}
+            isChecked={checked.has(7)} onToggleChecked={() => toggleChecked(7)}>
             <p>A financial services company runs a multi-tenant AKS cluster. One of the tenant namespaces is a test environment with lax network policies and a misconfigured service account. A junior developer accidentally deploys a container image that has a cryptomining binary baked in (pulled from an unverified DockerHub source).</p>
             <div className="mt-3 p-3 border border-gray-700 bg-gray-800">
               <p className="text-gray-300 text-sm font-semibold mb-2">What the Attacker Finds</p>
@@ -278,10 +336,10 @@ const Module9 = () => {
             </div>
           </PhaseStepItem>
 
-          {/* Step 8: Architect's Note */}
-          <PhaseStepItem number={8} type="ARCHITECT" title="Cloud Architect's Perspective — AKS Security"
-            isOpen={open.has(7)} onToggleOpen={() => toggleOpen(7)}
-            isChecked={checked.has(7)} onToggleChecked={() => toggleChecked(7)}>
+          {/* Step 9: Architect's Note */}
+          <PhaseStepItem number={9} type="ARCHITECT" title="Cloud Architect's Perspective — AKS Security"
+            isOpen={open.has(8)} onToggleOpen={() => toggleOpen(8)}
+            isChecked={checked.has(8)} onToggleChecked={() => toggleChecked(8)}>
 
             <ArchitectNote title="Core Design Principles">
               <ul className="space-y-1.5">
