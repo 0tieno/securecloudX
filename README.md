@@ -5,7 +5,7 @@
 [![Vite](https://img.shields.io/badge/Vite-6-purple.svg)](https://vitejs.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-4-teal.svg)](https://tailwindcss.com/)
 
-An open source platform for learning Azure cloud security engineering. 8 structured modules — from IAM and network security to DevSecOps — with hands-on labs, progress tracking, and curated resources. Free, practical, and community-driven.
+An open source platform for learning Azure cloud security engineering. 9 structured modules — from IAM and network security to DevSecOps and Kubernetes — with hands-on labs, progress tracking, and curated resources. Free, practical, and community-driven.
 
 **Live site:** [securecloudx.xyz](https://securecloudx.xyz)
 
@@ -31,16 +31,19 @@ Open [http://localhost:5173](http://localhost:5173).
 
 ## Modules
 
-| # | Module | Topics |
-|---|--------|--------|
-| 1 | Identity & Access Management | Entra ID, RBAC, Conditional Access, PIM |
-| 2 | Network Security | NSGs, Azure Firewall, Private Link, DDoS Protection |
-| 3 | Data Protection | Encryption, Key Vault, storage security, DLP |
-| 4 | Threat Detection | Microsoft Sentinel, Defender for Cloud, KQL |
-| 5 | Security Monitoring | Log Analytics, workbooks, alerting pipelines |
-| 6 | Incident Response | NIST framework, playbooks, containment, forensics |
-| 7 | Capstone Project | End-to-end secure architecture deployment |
-| 8 | DevSecOps Fundamentals | CI/CD security, SAST, SCA, secret scanning, IaC scanning |
+Modules 1–7 form the **Core Path** — complete all seven to earn your certificate. Modules 8–9 are **Advanced Topics** (optional, no cert gate).
+
+| # | Module | Topics | Path |
+|---|--------|--------|------|
+| 1 | Identity & Access Management | Entra ID, RBAC, Conditional Access, PIM | Core |
+| 2 | Network Security | NSGs, Azure Firewall, Private Link, DDoS Protection | Core |
+| 3 | Data Protection | Encryption, Key Vault, storage security, DLP | Core |
+| 4 | Threat Detection | Microsoft Sentinel, Defender for Cloud, KQL | Core |
+| 5 | Security Monitoring | Log Analytics, workbooks, alerting pipelines | Core |
+| 6 | Incident Response | NIST framework, playbooks, containment, forensics | Core |
+| 7 | Capstone Project | End-to-end secure architecture deployment | Core |
+| 8 | DevSecOps Fundamentals | CI/CD security, SAST, SCA, secret scanning, IaC scanning | Advanced |
+| 9 | Kubernetes & AKS Security | K8s primer, AKS security planes, RBAC, Network Policies, Pod Security Admission, Falco, image supply chain | Advanced |
 
 ## Project structure
 
