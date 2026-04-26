@@ -282,15 +282,15 @@ const Day2 = () => {
             <ArchitectNote title="Real-World Incidents — What Happens When This Fails">
               <div className="space-y-3">
                 <div className="p-3 border border-gray-700/50 bg-gray-800/40">
-                  <p className="text-red-400 text-xs font-bold mb-1">Capital One Data Breach (2019) — 106 Million Records</p>
+                  <p className="text-red-400 text-xs font-bold mb-1">Capital One Data Breach (2019) — 106 Million Records <a href="https://krebsonsecurity.com/2019/07/what-we-can-learn-from-the-capital-one-hack/" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
                   <p className="text-gray-400 text-xs">A misconfigured WAF (AWS) allowed a Server-Side Request Forgery (SSRF) attack. The attacker used the WAF's IAM role to query the EC2 Instance Metadata Service (IMDS) and steal credentials. No network segmentation meant the WAF had direct access to S3 buckets containing customer data. <span className="text-gray-300">Lesson: block IMDS access from web-facing tiers via network controls; never give WAF roles access to data storage directly.</span></p>
                 </div>
                 <div className="p-3 border border-gray-700/50 bg-gray-800/40">
-                  <p className="text-red-400 text-xs font-bold mb-1">Microsoft Exchange ProxyLogon (2021)</p>
+                  <p className="text-red-400 text-xs font-bold mb-1">Microsoft Exchange ProxyLogon (2021) <a href="https://msrc.microsoft.com/blog/2021/03/multiple-security-updates-released-for-exchange-server/" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
                   <p className="text-gray-400 text-xs">Four zero-day vulnerabilities in on-premises Exchange Server were exploited via ports 443 and 80 exposed directly to the internet. 250,000+ servers compromised globally within days of disclosure. <span className="text-gray-300">Lesson: management interfaces must never be internet-reachable. Azure Bastion and JIT VM Access solve this for cloud VMs — no management port should have a public inbound NSG rule.</span></p>
                 </div>
                 <div className="p-3 border border-gray-700/50 bg-gray-800/40">
-                  <p className="text-red-400 text-xs font-bold mb-1">Misconfigured Kubernetes Dashboard — Tesla (2018)</p>
+                  <p className="text-red-400 text-xs font-bold mb-1">Misconfigured Kubernetes Dashboard — Tesla (2018) <a href="https://www.wired.com/story/cryptojacking-tesla-amazon-cloud/" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
                   <p className="text-gray-400 text-xs">Tesla's Kubernetes dashboard was exposed on the public internet with no authentication. Within minutes of discovery, attackers deployed a cryptominer, exfiltrated AWS credentials from environment variables, and accessed S3 buckets containing telemetry data. <span className="text-gray-300">Lesson: every management UI must be behind private networking + authenticated access. No public-facing admin panel is acceptable.</span></p>
                 </div>
               </div>
