@@ -6,7 +6,7 @@ import PhaseStepItem from "../../../components/PhaseStepItem";
 import ArchitectNote from "../../../components/ArchitectNote";
 import QuizCard from "../../../components/QuizCard";
 
-const TOTAL = 9;
+const TOTAL = 8;
 
 const Module9 = () => {
   const [open, setOpen] = useState(() => new Set([0,1,2,3,4,5,6,7,8,9]));
@@ -38,7 +38,7 @@ const Module9 = () => {
             <div className="bg-red-500 h-full transition-all duration-500" style={{ width: `${(checked.size / TOTAL) * 100}%` }} />
           </div>
         </div>
-        <AutoMarkOverview phaseId={9} checkedCount={checked.size} total={TOTAL} />
+        <AutoMarkOverview phaseId={9} />
         <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
           <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7,8,9]))} className="hover:text-gray-400 transition-colors">expand all</button>
           <span>|</span>
