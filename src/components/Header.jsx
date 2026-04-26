@@ -1,9 +1,25 @@
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { Search } from "lucide-react";
 import { useAuth } from "../contexts/AuthContext";
+import SearchModal from "./SearchModal";
 
 const Header = () => {
   const { user, signOut } = useAuth();
   const navigate = useNavigate();
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  // Global Ctrl+K / Cmd+K shortcut
+  useEffect(() => {
+    const handler = (e) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === "k") {
+        e.preventDefault();
+        setSearchOpen(true);
+      }
+    };
+    document.addEventListener("keydown", handler);
+    return () => document.removeEventListener("keydown", handler);
+  });
 
   const handleSignOut = async () => {
     await signOut();
@@ -11,6 +27,8 @@ const Header = () => {
   };
 
   return (
+    <>
+    {searchOpen && <SearchModal onClose={() => setSearchOpen(false)} />}
     <header className="w-full bg-gray-800 p-4 text-gray-300 shadow-md flex justify-between items-center">
       <div>
         <h1 className="text-xl font-bold">securecloudX<span className="text-xs bg-gray-600 text-white px-2 py-0.5 rounded ml-2 md:hidden">SCX</span></h1>
@@ -18,12 +36,19 @@ const Header = () => {
       </div>
 
       <div className="flex items-center space-x-3">
-        {/* GitHub Icon */}
-        <a href="https://github.com/securecloudx/" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="w-5 h-5">
-            <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.207 11.387.6.113.793-.262.793-.583 0-.287-.012-1.237-.017-2.245-3.338.725-4.042-1.613-4.042-1.613-.547-1.387-1.337-1.755-1.337-1.755-1.09-.745.083-.73.083-.73 1.205.087 1.84 1.24 1.84 1.24 1.07 1.833 2.805 1.304 3.49.997.108-.775.418-1.305.76-1.605-2.665-.305-5.466-1.333-5.466-5.93 0-1.31.468-2.383 1.236-3.223-.125-.303-.536-1.523.116-3.176 0 0 1.007-.323 3.3 1.23.96-.267 1.987-.4 3.008-.405 1.02.005 2.048.138 3.008.405 2.293-1.553 3.298-1.23 3.298-1.23.653 1.653.242 2.873.118 3.176.77.84 1.235 1.913 1.235 3.223 0 4.61-2.805 5.622-5.476 5.92.43.37.813 1.098.813 2.213 0 1.598-.015 2.888-.015 3.282 0 .324.19.7.8.58C20.565 21.797 24 17.295 24 12c0-6.63-5.37-12-12-12Z"/>
-          </svg>
-        </a>
+        {/* Search */}
+        <button
+          onClick={() => setSearchOpen(true)}
+          className="flex items-center gap-2 text-gray-400 hover:text-blue-400 border border-gray-700 hover:border-gray-500 px-2.5 py-1 transition-colors font-mono text-xs"
+          aria-label="Open search"
+        >
+          <Search size={13} />
+          <span className="hidden sm:inline">Search</span>
+          <span className="hidden sm:flex items-center gap-0.5 text-gray-600">
+            <kbd className="text-[10px] bg-gray-700 border border-gray-600 px-1 py-0.5 rounded">Ctrl</kbd>
+            <kbd className="text-[10px] bg-gray-700 border border-gray-600 px-1 py-0.5 rounded">K</kbd>
+          </span>
+        </button>
 
         {/* X (Twitter) Icon */}
         <a href="https://x.com/securecloudX" target="_blank" rel="noopener noreferrer" className="hover:text-blue-400">
@@ -56,6 +81,7 @@ const Header = () => {
         )}
       </div>
     </header>
+    </>
   );
 };
 

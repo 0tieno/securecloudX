@@ -5,7 +5,7 @@ import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
 import PhaseStepItem from "../../../components/PhaseStepItem";
 import { useStepProgress } from "../../../hooks/useStepProgress";
 
-const TOTAL = 7;
+const TOTAL = 10;
 const OBJECTIVES = [
   "Set up a GitHub Actions workflow with security scanning stages",
   "Integrate secret scanning to catch leaked credentials before merge",
@@ -33,6 +33,7 @@ const Task8 = () => {
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
             Build a GitHub Actions pipeline with four automated security gates: secret scanning, SAST, dependency scanning, and container image scanning. Every gate must pass before code can merge.
           </p>
+          <p className="text-xs text-gray-600 mt-2 font-mono">~45 min read &nbsp;·&nbsp; Lab: ~60 min &nbsp;·&nbsp; Est. cost: $0.00 (GitHub Actions free tier)</p>
         </div>
         <div className="mb-8">
           <div className="flex items-center justify-between text-xs mb-2">
@@ -54,7 +55,7 @@ const Task8 = () => {
           </ul>
         </div>
         <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
-          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7,8,9]))} className="hover:text-gray-400 transition-colors">expand all</button>
           <span>|</span>
           <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
         </div>
@@ -341,6 +342,56 @@ const Task8 = () => {
             <div className="mt-2">
               <p className="text-xs text-gray-500 mb-1">guided portfolio project:</p>
               <a href="https://docs.github.com/en/actions/security-for-github-actions/security-guides/using-secrets-in-github-actions" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 text-sm transition-colors">→ GitHub Docs: Using secrets in GitHub Actions</a>
+            </div>
+          </PhaseStepItem>
+        </div>
+
+        <div className="space-y-2 mb-6">
+          <PhaseStepItem number={8} type="ATTACKER" title="What the attacker sees if this lab is misconfigured"
+            isOpen={open.has(7)} onToggleOpen={() => toggleOpen(7)}
+            isChecked={checked.has(7)} onToggleChecked={() => toggleChecked(7)}>
+            <p>If your CI/CD pipeline has <span className="text-yellow-400">ACTIONS_RUNNER_DEBUG</span> or secrets printed in logs, every person with repo read access can see them in the Actions run output. Public repositories expose this to the entire internet.</p>
+            <div className="mt-3 p-3 border border-red-800/40 bg-red-900/10">
+              <p className="text-red-400 text-xs font-bold mb-2">Attack path: pipeline poisoning via dependency confusion</p>
+              <p className="text-gray-400 text-xs">If your pipeline runs <code className="text-yellow-400">npm install</code> without a lockfile and no private registry, an attacker publishes a malicious package to npmjs.com with a higher version number than your internal package. npm resolves the public version over the internal one. Your build installs the malicious package, which exfiltrates CI environment variables (including AWS_SECRET_ACCESS_KEY, AZURE_CLIENT_SECRET) to the attacker's server.</p>
+            </div>
+            <div className="mt-2 p-2 border border-red-800/40 bg-red-900/10">
+              <p className="text-gray-400 text-xs"><span className="text-red-400">PR from forked repos:</span> GitHub Actions workflows triggered by <code className="text-yellow-400">pull_request</code> from a fork do NOT have access to secrets by default. But <code className="text-yellow-400">pull_request_target</code> does — and it's frequently misconfigured to run attacker-controlled code with access to production secrets.</p>
+            </div>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={9} type="WARN" title="Common mistakes in this lab"
+            isOpen={open.has(8)} onToggleOpen={() => toggleOpen(8)}
+            isChecked={checked.has(8)} onToggleChecked={() => toggleChecked(8)}>
+            <ul className="space-y-2 text-sm">
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Pinning actions by tag instead of commit hash:</span> <code className="text-yellow-400">uses: actions/checkout@v4</code> can be hijacked if the tag is moved. Pin to a specific SHA: <code className="text-yellow-400">uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683</code> for supply chain safety.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Gitleaks not blocking the pipeline on findings:</span> If Gitleaks runs with <code className="text-yellow-400">--no-git</code> or the job continues on failure, it reports secrets but doesn't block the push. Use <code className="text-yellow-400">exit-code: 1</code> and ensure the job is required before merge.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">SAST findings not reviewed:</span> Running Semgrep or CodeQL but not reviewing findings is checkbox security. Create a process: high/critical findings block merge, medium/low go to backlog. Integrate with GitHub Security tab for visibility.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Container image rebuilt from scratch each time without base image pinning:</span> <code className="text-yellow-400">FROM ubuntu:latest</code> pulls a different image on each build. Pin to a digest: <code className="text-yellow-400">FROM ubuntu@sha256:abc123...</code> for reproducible, auditable builds.</span></li>
+            </ul>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={10} type="CLEANUP" title="Cleanup — remove pipeline credentials and resources"
+            isOpen={open.has(9)} onToggleOpen={() => toggleOpen(9)}
+            isChecked={checked.has(9)} onToggleChecked={() => toggleChecked(9)}>
+            <p className="text-sm text-gray-400 mb-3">Container registries and any deployed resources from the pipeline incur costs. Remove secrets from GitHub before deleting resources.</p>
+            <div className="space-y-2 text-xs font-mono">
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># 1. Delete GitHub Actions secrets</p>
+                <p className="text-gray-400">GitHub → repo Settings → Secrets and variables → Actions → delete each secret</p>
+              </div>
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># 2. Delete Azure Container Registry</p>
+                <p className="text-gray-400">az acr delete --name &lt;registry-name&gt; --resource-group &lt;rg&gt; --yes</p>
+              </div>
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># 3. Revoke the service principal used by the pipeline</p>
+                <p className="text-gray-400">az ad sp delete --id &lt;appId&gt;</p>
+              </div>
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># 4. Delete remaining resource group</p>
+                <p className="text-gray-400">az group delete --name rg-devsecops-lab --yes --no-wait</p>
+              </div>
             </div>
           </PhaseStepItem>
         </div>

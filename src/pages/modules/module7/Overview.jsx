@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import PhaseStepItem from "../../../components/PhaseStepItem";
 import ArchitectNote from "../../../components/ArchitectNote";
+import QuizCard from "../../../components/QuizCard";
 
 const TOTAL = 7;
 const OBJECTIVES = [
@@ -295,6 +296,47 @@ const Day7 = () => {
 
           </PhaseStepItem>
         </div>
+
+        {/* Knowledge Check */}
+        <div className="mb-8 p-4 border border-pink-800/30 bg-pink-950/10">
+          <div className="text-pink-400 text-xs mb-4">$ ./knowledge_check.sh --module 7</div>
+          <div className="space-y-4">
+            <QuizCard
+              question="During a STRIDE threat model, you identify that an attacker could intercept API calls between the web tier and the database tier. Which STRIDE category applies?"
+              options={[
+                "Spoofing — the attacker impersonates the database",
+                "Tampering — the attacker modifies data in transit",
+                "Information Disclosure — the attacker reads data in transit (network sniffing)",
+                "Denial of Service — the attacker disrupts the connection"
+              ]}
+              answer={2}
+              explanation="Intercepting unencrypted traffic between components is Information Disclosure — the attacker reads confidential data. If they also modify it in transit, that adds Tampering. STRIDE is not mutually exclusive — a single attack can cover multiple categories. The control is TLS encryption for all internal service communication."
+            />
+            <QuizCard
+              question="A CIS Benchmark Level 2 control requires audit logging enabled on all SQL databases. Your architecture review finds 3 databases without auditing. What is the correct document entry?"
+              options={[
+                "Mark as Not Applicable — SQL auditing is a compliance formality",
+                "Log a finding with: control ID, current state, risk (no forensic trail for data access), remediation (enable SQL Audit to Log Analytics), and owner",
+                "Fix it silently and don't document it to avoid embarrassing the team",
+                "Defer it to the next sprint without documenting the risk"
+              ]}
+              answer={1}
+              explanation="Security architecture findings must be documented with: the specific control violated, evidence of current state, risk assessment (what can an attacker do?), clear remediation steps, and an assigned owner. Undocumented risks are unmanaged risks — and in regulated environments, undocumented gaps are audit findings."
+            />
+            <QuizCard
+              question="You are reviewing the SecureMed architecture. The patient data API has no WAF, no input validation, and uses direct SQL string concatenation. What is the highest-severity threat?"
+              options={[
+                "Spoofing — an attacker can impersonate a doctor",
+                "SQL Injection leading to full database exfiltration (Tampering + Information Disclosure + Elevation of Privilege)",
+                "Denial of Service — the API has no rate limiting",
+                "Repudiation — no logging of API calls"
+              ]}
+              answer={1}
+              explanation="SQL injection in a patient data API is a critical finding — an attacker can read, modify, or delete all patient records. This maps to OWASP A03, STRIDE Tampering + Information Disclosure, and violates HIPAA/GDPR data protection requirements. Parameterised queries + WAF + input validation are required controls."
+            />
+          </div>
+        </div>
+
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">
           <Link to="/module6" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
             <ChevronLeft size={14} /> Module 6

@@ -5,7 +5,7 @@ import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
 import PhaseStepItem from "../../../components/PhaseStepItem";
 import { useStepProgress } from "../../../hooks/useStepProgress";
 
-const TOTAL = 7;
+const TOTAL = 10;
 const OBJECTIVES = [
   "Enable Microsoft Defender for Cloud and review your Secure Score",
   "Remediate top security recommendations to improve your posture",
@@ -33,6 +33,7 @@ const Task5 = () => {
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
             Assess your environment's security posture, enforce compliance with Azure Policy, and build centralized monitoring with Log Analytics and KQL.
           </p>
+          <p className="text-xs text-gray-600 mt-2 font-mono">~40 min read &nbsp;·&nbsp; Lab: ~60 min &nbsp;·&nbsp; Est. cost: $0.00 (Defender 30-day free trial)</p>
         </div>
         <div className="mb-8">
           <div className="flex items-center justify-between text-xs mb-2">
@@ -54,7 +55,7 @@ const Task5 = () => {
           </ul>
         </div>
         <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
-          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7,8,9]))} className="hover:text-gray-400 transition-colors">expand all</button>
           <span>|</span>
           <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
         </div>
@@ -190,6 +191,53 @@ const Task5 = () => {
             </div>
           </PhaseStepItem>
         </div>
+
+        <div className="space-y-2 mb-6">
+          <PhaseStepItem number={8} type="ATTACKER" title="What the attacker sees if this lab is misconfigured"
+            isOpen={open.has(7)} onToggleOpen={() => toggleOpen(7)}
+            isChecked={checked.has(7)} onToggleChecked={() => toggleChecked(7)}>
+            <p>If Defender for Cloud is on the <span className="text-yellow-400">Free tier</span>, you get Secure Score recommendations but no threat detection. An attacker can establish persistence, move laterally, and exfiltrate data — and Defender for Cloud shows nothing in the Alerts blade.</p>
+            <div className="mt-3 p-3 border border-red-800/40 bg-red-900/10">
+              <p className="text-red-400 text-xs font-bold mb-2">Attack path: policy bypass via resource locks misconfiguration</p>
+              <p className="text-gray-400 text-xs">Azure Policies with "Audit" effect only log non-compliance — they don't prevent resource deployment. An attacker (or negligent developer) with Contributor can deploy any resource. If your compliance posture relies on Audit-only policies, it's a detective control, not a preventive one. Switch critical policies to "Deny" for true enforcement.</p>
+            </div>
+            <div className="mt-2 p-2 border border-red-800/40 bg-red-900/10">
+              <p className="text-gray-400 text-xs"><span className="text-red-400">Secure Score manipulation:</span> Secure Score reflects recommendations, not actual security. An attacker with enough privilege can dismiss recommendations as "mitigated by alternative controls" — improving the score without fixing anything. Always back score with technical evidence.</p>
+            </div>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={9} type="WARN" title="Common mistakes in this lab"
+            isOpen={open.has(8)} onToggleOpen={() => toggleOpen(8)}
+            isChecked={checked.has(8)} onToggleChecked={() => toggleChecked(8)}>
+            <ul className="space-y-2 text-sm">
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Confusing "Audit" with "Deny" policy effect:</span> Audit creates a compliance finding in the dashboard. Deny prevents the resource from being created. For security-critical controls, Audit alone is insufficient — it shows you're non-compliant but doesn't stop it.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Defender for Cloud plans not enabled on all subscriptions:</span> If you have multiple subscriptions, Defender must be enabled on each one. Auto-provisioning of the MMA/AMA agent also must be enabled per subscription.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">KQL query syntax errors silently returning zero results:</span> An invalid KQL filter returns empty results without error. Always verify your query returns expected results with known data before using it as a detection rule.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Assigning policies at resource group scope only:</span> New subscriptions or resource groups created later won't inherit the policy. Assign security policies at the Management Group or Subscription level for blanket coverage.</span></li>
+            </ul>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={10} type="CLEANUP" title="Cleanup — prevent unexpected charges"
+            isOpen={open.has(9)} onToggleOpen={() => toggleOpen(9)}
+            isChecked={checked.has(9)} onToggleChecked={() => toggleChecked(9)}>
+            <p className="text-sm text-gray-400 mb-3">Defender for Cloud enhanced plans (Defender for Servers, Storage, etc.) cost per resource-hour. Disable plans when lab is complete.</p>
+            <div className="space-y-2 text-xs font-mono">
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># 1. Disable Defender plans</p>
+                <p className="text-gray-400">Portal: Defender for Cloud → Environment settings → subscription → disable plans</p>
+              </div>
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># 2. Remove custom Azure Policy assignments</p>
+                <p className="text-gray-400">az policy assignment delete --name &lt;assignment-name&gt; --scope /subscriptions/&lt;subId&gt;</p>
+              </div>
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># 3. Delete Log Analytics workspace (if created for lab)</p>
+                <p className="text-gray-400">az monitor log-analytics workspace delete --resource-group &lt;rg&gt; --workspace-name &lt;name&gt; --yes</p>
+              </div>
+            </div>
+          </PhaseStepItem>
+        </div>
+
         <MarkPhaseComplete phaseId={5} checkedCount={checked.size} total={TOTAL} />
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6 mt-8">
           <Link to="/module5" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">

@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import PhaseStepItem from "../../../components/PhaseStepItem";
 import ArchitectNote from "../../../components/ArchitectNote";
+import QuizCard from "../../../components/QuizCard";
 
 const TOTAL = 7;
 const OBJECTIVES = [
@@ -298,6 +299,47 @@ const Day2 = () => {
 
           </PhaseStepItem>
         </div>
+
+        {/* Knowledge Check */}
+        <div className="mb-8 p-4 border border-pink-800/30 bg-pink-950/10">
+          <div className="text-pink-400 text-xs mb-4">$ ./knowledge_check.sh --module 2</div>
+          <div className="space-y-4">
+            <QuizCard
+              question="An NSG rule allows port 22 (SSH) inbound from 0.0.0.0/0 on a production VM. What is the correct remediation?"
+              options={[
+                "Change the port to a non-standard SSH port (e.g., 2222)",
+                "Remove the rule and enable Azure Bastion for SSH access — no public inbound required",
+                "Restrict the source to the office IP range",
+                "Add a second NSG rule to deny SSH from known bad IPs"
+              ]}
+              answer={1}
+              explanation="Azure Bastion provides browser-based SSH/RDP through the Azure portal without any public inbound ports on the VM. Changing ports is security through obscurity. Office IPs change. Deny rules for bad IPs are impossible to maintain exhaustively."
+            />
+            <QuizCard
+              question="A web app needs to query an Azure SQL database. What network architecture enforces Zero Trust connectivity?"
+              options={[
+                "Allow the app to connect over the public internet with TLS",
+                "Place both in the same VNet subnet with no NSG",
+                "Use a Private Endpoint for SQL and a VNet Integration for the App Service — no public DB exposure",
+                "Whitelist the app's outbound IP in the SQL firewall"
+              ]}
+              answer={2}
+              explanation="Private Endpoints put the SQL database on a private IP in your VNet — unreachable from the public internet. VNet Integration lets App Service route outbound traffic through a VNet. IP whitelisting still exposes the database publicly."
+            />
+            <QuizCard
+              question="What is the primary purpose of a Hub-Spoke network topology in Azure?"
+              options={[
+                "To reduce costs by sharing a single VNet across all workloads",
+                "To centralise shared services (firewall, DNS, Bastion) in a hub while isolating workloads in peered spoke VNets",
+                "To allow all spoke VNets to communicate directly without going through the hub",
+                "To replace NSGs with route tables"
+              ]}
+              answer={1}
+              explanation="Hub-Spoke centralises security inspection at the hub (Azure Firewall, Bastion) while each spoke is isolated. All traffic between spokes (and to internet) flows through the hub firewall. This is the Microsoft and enterprise standard for Azure network architecture."
+            />
+          </div>
+        </div>
+
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">
           <Link to="/module1" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
             <ChevronLeft size={14} /> Module 1

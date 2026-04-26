@@ -11,6 +11,10 @@ const TYPE_CONFIG = {
   PREP:      { label: "PREP",           color: "text-gray-400",   border: "border-gray-500/40",   bg: "bg-gray-700/50"   },
   EVALUATE:  { label: "EVALUATE",       color: "text-green-400",  border: "border-green-500/40",  bg: "bg-green-500/10"  },
   ARCHITECT: { label: "ARCHITECT",      color: "text-indigo-400", border: "border-indigo-500/40", bg: "bg-indigo-500/10" },
+  WARN:      { label: "COMMON MISTAKES",color: "text-orange-400", border: "border-orange-500/40", bg: "bg-orange-500/10" },
+  CLEANUP:   { label: "CLEANUP",        color: "text-green-400",  border: "border-green-500/40",  bg: "bg-green-500/10"  },
+  QUIZ:      { label: "KNOWLEDGE CHECK",color: "text-pink-400",   border: "border-pink-500/40",   bg: "bg-pink-500/10"   },
+  ATTACKER:  { label: "ATTACKER VIEW",  color: "text-red-400",    border: "border-red-500/40",    bg: "bg-red-500/10"    },
 };
 
 /**

@@ -5,7 +5,7 @@ import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
 import PhaseStepItem from "../../../components/PhaseStepItem";
 import { useStepProgress } from "../../../hooks/useStepProgress";
 
-const TOTAL = 7;
+const TOTAL = 10;
 const OBJECTIVES = [
   "Create an Azure Key Vault and store secrets securely",
   "Deploy an App Service with a System Managed Identity",
@@ -32,6 +32,7 @@ const Task4 = () => {
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
             Build the golden pattern: an App Service that reads secrets from Key Vault using a Managed Identity — zero credentials in code. Then harden every security setting.
           </p>
+          <p className="text-xs text-gray-600 mt-2 font-mono">~45 min read &nbsp;·&nbsp; Lab: ~60 min &nbsp;·&nbsp; Est. cost: $0.00 (App Service F1 free tier)</p>
         </div>
         <div className="mb-8">
           <div className="flex items-center justify-between text-xs mb-2">
@@ -53,7 +54,7 @@ const Task4 = () => {
           </ul>
         </div>
         <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
-          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7,8,9]))} className="hover:text-gray-400 transition-colors">expand all</button>
           <span>|</span>
           <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
         </div>
@@ -230,6 +231,53 @@ const Task4 = () => {
             </div>
           </PhaseStepItem>
         </div>
+
+        <div className="space-y-2 mb-6">
+          <PhaseStepItem number={8} type="ATTACKER" title="What the attacker sees if this lab is misconfigured"
+            isOpen={open.has(7)} onToggleOpen={() => toggleOpen(7)}
+            isChecked={checked.has(7)} onToggleChecked={() => toggleChecked(7)}>
+            <p>If your App Service has a connection string or secret stored in <span className="text-yellow-400">Application Settings</span> (environment variables visible in the portal), any developer with Contributor access to the resource group can read them. The portal displays them in plaintext — no audit log by default.</p>
+            <div className="mt-3 p-3 border border-red-800/40 bg-red-900/10">
+              <p className="text-red-400 text-xs font-bold mb-2">Attack path: SSRF to IMDS token theft</p>
+              <p className="text-gray-400 text-xs">If your app fetches URLs from user input without validation, an attacker submits <code className="text-yellow-400">http://169.254.169.254/metadata/identity/oauth2/token?api-version=2018-02-01&amp;resource=https://storage.azure.com/</code> as the URL. The server fetches it and returns a valid Azure storage token scoped to the Managed Identity. Attacker now has full storage access.</p>
+            </div>
+            <div className="mt-2 p-2 border border-red-800/40 bg-red-900/10">
+              <p className="text-gray-400 text-xs"><span className="text-red-400">WAF bypass:</span> Azure WAF in Detection mode logs attacks but doesn't block them. If you forget to switch to Prevention mode, your WAF is a logging system, not a security control.</p>
+            </div>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={9} type="WARN" title="Common mistakes in this lab"
+            isOpen={open.has(8)} onToggleOpen={() => toggleOpen(8)}
+            isChecked={checked.has(8)} onToggleChecked={() => toggleChecked(8)}>
+            <ul className="space-y-2 text-sm">
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Key Vault firewall blocking the App Service:</span> If you enable Key Vault network restrictions but forget to allow the App Service's VNet Integration subnet or Trusted Azure Services, your app will get 403 errors from Key Vault at runtime.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Managed Identity not assigned the right Key Vault role:</span> System-assigned identity must have "Key Vault Secrets User" (read) or "Key Vault Secrets Officer" (read/write). "Key Vault Contributor" (ARM role) does NOT grant data plane access — a very common confusion.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">CORS set to '*':</span> Wildcard CORS allows any origin to make cross-origin requests to your API. This enables CSRF attacks and breaks SameSite cookie security. Always restrict CORS to specific known origins.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Debug endpoints left enabled in production:</span> /debug, /trace, /swagger, /actuator endpoints expose internal state. Disable them or restrict to internal IPs via App Service IP restrictions.</span></li>
+            </ul>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={10} type="CLEANUP" title="Cleanup — prevent unexpected charges"
+            isOpen={open.has(9)} onToggleOpen={() => toggleOpen(9)}
+            isChecked={checked.has(9)} onToggleChecked={() => toggleChecked(9)}>
+            <p className="text-sm text-gray-400 mb-3">App Service Plans, Key Vault, and Application Gateway incur costs even when idle.</p>
+            <div className="space-y-2 text-xs font-mono">
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># 1. Delete the resource group</p>
+                <p className="text-gray-400">az group delete --name rg-appsec-lab --yes --no-wait</p>
+              </div>
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># 2. Purge soft-deleted Key Vault (optional — avoids name reservation)</p>
+                <p className="text-gray-400">az keyvault purge --name &lt;kv-name&gt; --location &lt;region&gt;</p>
+              </div>
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># 3. Verify App Service Plan deleted</p>
+                <p className="text-gray-400">az appservice plan list --output table</p>
+              </div>
+            </div>
+          </PhaseStepItem>
+        </div>
+
         <MarkPhaseComplete phaseId={4} checkedCount={checked.size} total={TOTAL} />
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6 mt-8">
           <Link to="/module4" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">

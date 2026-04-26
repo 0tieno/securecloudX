@@ -5,7 +5,7 @@ import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
 import PhaseStepItem from "../../../components/PhaseStepItem";
 import { useStepProgress } from "../../../hooks/useStepProgress";
 
-const TOTAL = 7;
+const TOTAL = 10;
 const OBJECTIVES = [
   "Deploy a multi-tier Azure architecture (VNet, App Service, Storage, Key Vault)",
   "Apply security controls from every module to the deployment",
@@ -32,6 +32,7 @@ const Task7 = () => {
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
             Deploy the SecureMed patient portal architecture, secure every layer, threat model it, and deliver a professional security assessment report.
           </p>
+          <p className="text-xs text-gray-600 mt-2 font-mono">~60 min read &nbsp;·&nbsp; Lab: ~120 min &nbsp;·&nbsp; Est. cost: ~$1–3 (VMs, delete when done)</p>
         </div>
         <div className="mb-8">
           <div className="flex items-center justify-between text-xs mb-2">
@@ -53,7 +54,7 @@ const Task7 = () => {
           </ul>
         </div>
         <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
-          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7,8,9]))} className="hover:text-gray-400 transition-colors">expand all</button>
           <span>|</span>
           <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
         </div>
@@ -257,6 +258,50 @@ const Task7 = () => {
             </div>
           </PhaseStepItem>
         </div>
+
+        <div className="space-y-2 mb-6">
+          <PhaseStepItem number={8} type="ATTACKER" title="What the attacker sees if this lab is misconfigured"
+            isOpen={open.has(7)} onToggleOpen={() => toggleOpen(7)}
+            isChecked={checked.has(7)} onToggleChecked={() => toggleChecked(7)}>
+            <p>A security assessment report that identifies critical findings but assigns no owner and no deadline is operationally useless. Attackers know that most findings in audit reports take <span className="text-yellow-400">6-18 months</span> to remediate in enterprise environments. They read public breach post-mortems and target known-weak patterns in organizations that match the finding profile.</p>
+            <div className="mt-3 p-3 border border-red-800/40 bg-red-900/10">
+              <p className="text-red-400 text-xs font-bold mb-2">STRIDE: the gaps attackers target in SecureMed</p>
+              <p className="text-gray-400 text-xs">The SecureMed scenario has several common architecture weaknesses: no WAF in front of the patient API (OWASP A01, A03), no encryption of data at rest for the imaging store (Information Disclosure), shared DB credentials across services (Privilege Escalation), and no audit logging on the admin console (Repudiation). Each unmitigated STRIDE finding is a potential breach path.</p>
+            </div>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={9} type="WARN" title="Common mistakes in this lab"
+            isOpen={open.has(8)} onToggleOpen={() => toggleOpen(8)}
+            isChecked={checked.has(8)} onToggleChecked={() => toggleChecked(8)}>
+            <ul className="space-y-2 text-sm">
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">STRIDE applied at too high a level:</span> "The entire application could be spoofed" is too vague to be actionable. Apply STRIDE to specific data flows and trust boundaries: "an attacker on the same LAN can intercept unencrypted HTTP traffic between the API gateway and the auth service (Information Disclosure)."</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Recommendations without controls:</span> "Fix SQL injection" is a finding, not a recommendation. A recommendation specifies the control: "Parameterise all SQL queries using prepared statements in the DAL layer and add WAF rule group SQLi-v2 on the Application Gateway."</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Risk score without business context:</span> A CVSS score alone doesn't communicate business impact. A finding rated CVSS 7.5 on a test system is different from the same finding on a HIPAA-regulated patient database. Always add business context to risk ratings.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Skipping the executive summary:</span> Technical findings must be translated into business language for stakeholders who approve remediation budget. A missing executive summary means the report is read only by the security team — who can't approve the budget to fix it.</span></li>
+            </ul>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={10} type="CLEANUP" title="Cleanup — delete lab resources"
+            isOpen={open.has(9)} onToggleOpen={() => toggleOpen(9)}
+            isChecked={checked.has(9)} onToggleChecked={() => toggleChecked(9)}>
+            <p className="text-sm text-gray-400 mb-3">The capstone lab primarily involves documentation and analysis — clean up any Azure resources created during the assessment exercise.</p>
+            <div className="space-y-2 text-xs font-mono">
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># 1. Delete the capstone resource group</p>
+                <p className="text-gray-400">az group delete --name rg-securemed-capstone --yes --no-wait</p>
+              </div>
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># 2. Verify no running VMs or databases remain</p>
+                <p className="text-gray-400">az vm list --output table && az sql server list --output table</p>
+              </div>
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># 3. Store your completed assessment report securely</p>
+                <p className="text-gray-400"># Upload to a private repo or OneDrive — it's a portfolio artefact</p>
+              </div>
+            </div>
+          </PhaseStepItem>
+        </div>
+
         <MarkPhaseComplete phaseId={7} checkedCount={checked.size} total={TOTAL} />
         <div className="flex justify-start items-center text-sm border-t border-gray-700 pt-6 mt-8">
           <Link to="/module7" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">

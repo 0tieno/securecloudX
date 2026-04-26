@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import PhaseStepItem from "../../../components/PhaseStepItem";
 import ArchitectNote from "../../../components/ArchitectNote";
+import QuizCard from "../../../components/QuizCard";
 
 const TOTAL = 7;
 const OBJECTIVES = [
@@ -318,6 +319,47 @@ const Day4 = () => {
 
           </PhaseStepItem>
         </div>
+
+        {/* Knowledge Check */}
+        <div className="mb-8 p-4 border border-pink-800/30 bg-pink-950/10">
+          <div className="text-pink-400 text-xs mb-4">$ ./knowledge_check.sh --module 4</div>
+          <div className="space-y-4">
+            <QuizCard
+              question="An App Service needs to read secrets from Key Vault. What is the most secure credential approach?"
+              options={[
+                "Store the Key Vault client secret in app settings (environment variables)",
+                "Hardcode the client ID and secret in the application code",
+                "Enable a system-assigned Managed Identity on the App Service and grant it Key Vault Secrets User role",
+                "Use a shared service principal credential stored in Azure DevOps"
+              ]}
+              answer={2}
+              explanation="Managed Identity eliminates all credentials — the platform issues short-lived tokens automatically. No client secret means nothing to leak, rotate, or store. Key Vault Secrets User gives read-only access without write or management permissions."
+            />
+            <QuizCard
+              question="A penetration tester submits the URL: https://app.example.com/fetch?url=http://169.254.169.254/metadata/identity/oauth2/token. What attack is this?"
+              options={[
+                "SQL Injection — the URL parameter is used in a database query",
+                "Server-Side Request Forgery (SSRF) — forcing the server to query the Azure IMDS endpoint to steal Managed Identity tokens",
+                "Cross-Site Scripting — the URL is reflected in the response",
+                "Path traversal — accessing files outside the web root"
+              ]}
+              answer={1}
+              explanation="SSRF tricks the server into making requests on the attacker's behalf. The Azure Instance Metadata Service (IMDS) at 169.254.169.254 returns Managed Identity access tokens — if the server fetches that URL and returns the response, the attacker has a valid Azure token. Disable IMDS access where not needed, validate URL inputs strictly."
+            />
+            <QuizCard
+              question="Your DAST scanner finds that the app reflects the 'X-Forwarded-For' header value directly into HTML without encoding. What vulnerability is this?"
+              options={[
+                "SQL Injection",
+                "Reflected Cross-Site Scripting (XSS)",
+                "XML External Entity (XXE) injection",
+                "CSRF"
+              ]}
+              answer={1}
+              explanation="Reflecting unencoded user-controlled input (including HTTP headers) into HTML output is Reflected XSS. The X-Forwarded-For header can be set by any client or proxy. Always HTML-encode output, use Content Security Policy (CSP), and treat all header values as untrusted input."
+            />
+          </div>
+        </div>
+
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">
           <Link to="/module3" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
             <ChevronLeft size={14} /> Module 3

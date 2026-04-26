@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import PhaseStepItem from "../../../components/PhaseStepItem";
 import ArchitectNote from "../../../components/ArchitectNote";
+import QuizCard from "../../../components/QuizCard";
 
 const TOTAL = 7;
 const OBJECTIVES = [
@@ -309,6 +310,47 @@ const Day5 = () => {
 
           </PhaseStepItem>
         </div>
+
+        {/* Knowledge Check */}
+        <div className="mb-8 p-4 border border-pink-800/30 bg-pink-950/10">
+          <div className="text-pink-400 text-xs mb-4">$ ./knowledge_check.sh --module 5</div>
+          <div className="space-y-4">
+            <QuizCard
+              question="Defender for Cloud shows a 'Secure Score' of 42%. What does this number represent?"
+              options={[
+                "42% of your VMs are running security agents",
+                "42% of the applicable security recommendations across your subscriptions have been remediated",
+                "Your environment has passed 42% of Azure Policy compliance checks",
+                "42% of your resources have no security alerts"
+              ]}
+              answer={1}
+              explanation="Secure Score represents the percentage of security recommendations that have been implemented. Each recommendation has a point value — completing high-impact recommendations increases your score significantly. It's a posture metric, not a patch coverage metric."
+            />
+            <QuizCard
+              question="An Azure Policy with effect 'Deny' blocks deployment of storage accounts without HTTPS-only enabled. A dev deploys a storage account and it fails. What happened?"
+              options={[
+                "The policy audited the account and created an alert",
+                "The ARM deployment was rejected at the control plane before the resource was created",
+                "The storage account was created but automatically deleted after 24 hours",
+                "The policy added a tag to the storage account for remediation"
+              ]}
+              answer={1}
+              explanation="'Deny' effect blocks the ARM API call at deployment time — the resource is never created. 'Audit' creates a compliance finding without blocking. 'DeployIfNotExists' and 'Modify' can remediate existing resources. 'Deny' is the preventive control; Audit is the detective control."
+            />
+            <QuizCard
+              question="Your KQL query in Log Analytics returns sign-ins from 15 countries in the last hour for a single user account. What Defender for Cloud / Sentinel feature would automate alerting on this?"
+              options={[
+                "Azure Policy compliance report",
+                "An Analytics Rule in Sentinel with the KQL query as the detection logic, triggering an incident when the condition is met",
+                "Defender for Cloud Secure Score recommendation",
+                "Azure Monitor metric alert on SignIn count"
+              ]}
+              answer={1}
+              explanation="Sentinel Analytics Rules run KQL queries on a schedule and create incidents when conditions are met. This is the core of detection engineering — turning a KQL hypothesis into an automated alert. Secure Score tracks configuration compliance, not behavioral anomalies."
+            />
+          </div>
+        </div>
+
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">
           <Link to="/module4" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
             <ChevronLeft size={14} /> Module 4

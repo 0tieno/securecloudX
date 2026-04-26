@@ -68,6 +68,9 @@ const PHASES = [
     path: "/module7",
     taskPath: "/module7/task",
   },
+];
+
+const ADVANCED = [
   {
     id: 8,
     title: "DevSecOps Fundamentals",
@@ -75,6 +78,14 @@ const PHASES = [
       "Shift-left security — CI/CD pipeline hardening, SAST/SCA scanning, secret detection, container security, and IaC guardrails.",
     path: "/module8",
     taskPath: "/module8/task",
+  },
+  {
+    id: 9,
+    title: "Kubernetes & AKS Security",
+    description:
+      "AKS hardening — K8s RBAC, network policies, OPA/Gatekeeper admission control, Falco runtime security, Workload Identity.",
+    path: "/module9",
+    taskPath: "/module9/task",
   },
 ];
 
@@ -106,6 +117,8 @@ const Home = () => {
   const completedPhases = PHASES.filter(
     (p) => isComplete(p.id, "overview") && isComplete(p.id, "task")
   ).length;
+
+  const coreDone = completedPhases === PHASES.length;
 
   const nextPhase = PHASES.find(
     (p) => !isComplete(p.id, "overview") || !isComplete(p.id, "task")
@@ -164,9 +177,9 @@ const Home = () => {
               </span>
             </div>
           )}
-          {!loading && !nextPhase && completedPhases === PHASES.length && (
+          {!loading && coreDone && (
             <div className="mt-3 text-sm text-green-400">
-              <span>$</span> all phases complete — you are cloud security ready! 🎉
+              <span>$</span> core path complete — cloud security engineer ready! 🎉
               <Link
                 to="/certificate"
                 className="ml-3 text-red-400 hover:text-red-300 underline underline-offset-2"
@@ -212,7 +225,7 @@ const Home = () => {
             const stepsDone = phase.id === 3
               ? (stepCounts["scx_steps_3_lab1"] ?? 0) + (stepCounts["scx_steps_3_lab2"] ?? 0) + (stepCounts["scx_steps_3_lab3"] ?? 0)
               : (stepCounts[stepKey] ?? 0);
-            const stepsTotal = phase.id === 3 ? 20 : (phase.id === 4 ? 5 : (phase.id === 7 ? 8 : 7));
+            const stepsTotal = phase.id === 3 ? 29 : 10;
 
             return (
               <div
@@ -289,6 +302,81 @@ const Home = () => {
               </div>
             );
           })}
+        </div>
+
+        {/* Advanced Topics */}
+        <div className="mt-12 mb-2">
+          <div className="flex items-center gap-3 mb-4">
+            <h2 className="text-xl font-bold text-gray-300">// Advanced Topics</h2>
+            <span className="text-xs font-mono text-yellow-400 border border-yellow-500/40 bg-yellow-500/10 px-2 py-0.5">OPTIONAL</span>
+          </div>
+          <p className="text-gray-500 text-sm mb-6 leading-relaxed">
+            Complete the core path first. These modules extend your skills into specialist domains that are increasingly in-demand but assume the M1–M7 foundation.
+          </p>
+          <div className="space-y-4">
+            {ADVANCED.map((adv) => {
+              const overviewDone = isComplete(adv.id, "overview");
+              const taskDone = isComplete(adv.id, "task");
+              const advStepsDone = stepCounts[`scx_steps_${adv.id}_task`] ?? 0;
+              const advStepsTotal = 10;
+              return (
+                <div key={adv.id} className="bg-gray-800 border border-yellow-900/40 hover:border-yellow-700/50 transition-colors">
+                  <div className="flex items-start gap-4 p-5">
+                    <span className="text-yellow-700 font-bold text-xl w-8 shrink-0">{adv.id}</span>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex flex-wrap items-center gap-2 mb-2">
+                        <h3 className="text-lg font-semibold text-gray-300">{adv.title}</h3>
+                        {!loading && (
+                          <PhaseStatusBadge overviewDone={overviewDone} taskDone={taskDone} />
+                        )}
+                        <span className="text-xs font-mono text-yellow-600 border border-yellow-700/40 px-1.5 py-0.5">ADVANCED</span>
+                      </div>
+                      <p className="text-gray-500 text-sm leading-relaxed mb-3">{adv.description}</p>
+                      {advStepsDone > 0 && !taskDone && (
+                        <div className="mb-3">
+                          <div className="flex justify-between text-xs text-gray-600 mb-1">
+                            <span className="text-gray-500">lab progress</span>
+                            <span className={advStepsDone >= advStepsTotal ? "text-green-400" : "text-gray-400"}>
+                              {advStepsDone}/{advStepsTotal} steps
+                            </span>
+                          </div>
+                          <div className="w-full bg-gray-700 h-1">
+                            <div
+                              className="h-1 bg-yellow-600 transition-all duration-500"
+                              style={{ width: `${Math.min((advStepsDone / advStepsTotal) * 100, 100)}%` }}
+                            />
+                          </div>
+                        </div>
+                      )}
+                      <div className="flex flex-col sm:flex-row gap-3 text-sm">
+                        <Link to={adv.path} className="flex items-center gap-2 text-gray-400 hover:text-blue-400 transition-colors group/link">
+                          {!loading && overviewDone ? (
+                            <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0" />
+                          ) : (
+                            <Circle className="w-4 h-4 text-gray-600 shrink-0" />
+                          )}
+                          <span>Overview</span>
+                          <ChevronRight className="w-3 h-3 opacity-0 group-hover/link:opacity-100 transition-opacity" />
+                        </Link>
+                        <Link to={adv.taskPath} className="flex items-center gap-2 text-gray-400 hover:text-red-400 transition-colors group/link">
+                          {!loading && taskDone ? (
+                            <CheckCircle2 className="w-4 h-4 text-green-400 shrink-0" />
+                          ) : (
+                            <Circle className="w-4 h-4 text-gray-600 shrink-0" />
+                          )}
+                          <span>Lab</span>
+                          {advStepsDone > 0 && !taskDone && (
+                            <span className="text-xs text-gray-600 font-mono ml-1">{advStepsDone}/{advStepsTotal}</span>
+                          )}
+                          <ChevronRight className="w-3 h-3 opacity-0 group-hover/link:opacity-100 transition-opacity" />
+                        </Link>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
         </div>
 
         {/* Community */}

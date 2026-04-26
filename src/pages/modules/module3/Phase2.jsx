@@ -5,7 +5,7 @@ import PhaseStepItem from "../../../components/PhaseStepItem";
 import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
 import { useStepProgress } from "../../../hooks/useStepProgress";
 
-const TOTAL = 8;
+const TOTAL = 11;
 
 const Phase2 = () => {
   const [open, setOpen] = useState(() => new Set([0]));
@@ -27,6 +27,7 @@ const Phase2 = () => {
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
             Configure Azure Blob Storage for a public-facing website with high availability, versioning, and soft delete.
           </p>
+          <p className="text-xs text-gray-600 mt-2 font-mono">~20 min read &nbsp;·&nbsp; Lab: ~20 min &nbsp;·&nbsp; Est. cost: $0.00 (RA-GRS free tier)</p>
         </div>
         <div className="mb-8">
           <div className="flex items-center justify-between text-xs mb-2">
@@ -38,7 +39,7 @@ const Phase2 = () => {
           </div>
         </div>
         <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
-          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7,8,9,10]))} className="hover:text-gray-400 transition-colors">expand all</button>
           <span>|</span>
           <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
         </div>
@@ -151,6 +152,55 @@ const Phase2 = () => {
             </ul>
           </PhaseStepItem>
         </div>
+
+        <div className="space-y-2 mb-6">
+          <PhaseStepItem number={9} type="ATTACKER" title="What an attacker finds in a misconfigured public container"
+            isOpen={open.has(8)} onToggleOpen={() => toggleOpen(8)}
+            isChecked={checked.has(8)} onToggleChecked={() => toggleChecked(8)}>
+            <p>When container-level anonymous blob access is enabled, <span className="text-red-400">no authentication is required</span> to read any blob in that container. Anonymous reads generate no sign-in audit entries — the access is invisible in Entra ID logs.</p>
+            <div className="mt-3 p-3 border border-red-800/40 bg-red-900/10">
+              <p className="text-red-400 text-xs font-bold mb-2">Enumeration with no credentials</p>
+              <ul className="space-y-1 text-xs text-gray-400 font-mono">
+                <li>&gt; az storage blob list --container-name &lt;name&gt; --account-name &lt;name&gt; --auth-mode anonymous</li>
+                <li>&gt; curl https://&lt;account&gt;.blob.core.windows.net/&lt;container&gt;?restype=container&amp;comp=list</li>
+                <li>&gt; az storage blob download-batch --source &lt;container-url&gt; -d ./exfil/ --no-auth</li>
+              </ul>
+            </div>
+            <p className="text-gray-500 text-xs mt-2">If the &quot;public website storage&quot; account also happens to have a <code className="text-yellow-400">private</code> container, a developer who later enables anonymous access on the wrong container exposes private data. The fix: disable <code className="text-yellow-400">allowBlobPublicAccess</code> at the account level — then no container can be made public, ever.</p>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={10} type="WARN" title="Common mistakes in Lab 02"
+            isOpen={open.has(9)} onToggleOpen={() => toggleOpen(9)}
+            isChecked={checked.has(9)} onToggleChecked={() => toggleChecked(9)}>
+            <ul className="space-y-2 text-sm">
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Enabling container-level access instead of using a CDN:</span> Public website content should be served via Azure CDN or Front Door, not via direct blob anonymous access. CDN gives you DDoS protection, custom domains, and you can revoke CDN access without changing storage.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Not disabling blob public access at the account level:</span> Even if today's containers are all private, leaving <code className="text-yellow-400">allowBlobPublicAccess: true</code> means any future developer can accidentally make a container public. Lock it off at the account level.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Soft delete retention too short:</span> A 1-day retention window isn't enough to detect and respond to a ransomware attack that silently overwrites blobs over several days. Set retention to at least 7–30 days for meaningful recovery.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">RA-GRS secondary endpoint exposed:</span> The secondary read-only endpoint is publicly accessible. If an attacker knows the account name, they can query the secondary endpoint directly — ensure network rules are applied to both endpoints.</span></li>
+            </ul>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={11} type="CLEANUP" title="Cleanup — delete the Lab 02 storage account"
+            isOpen={open.has(10)} onToggleOpen={() => toggleOpen(10)}
+            isChecked={checked.has(10)} onToggleChecked={() => toggleChecked(10)}>
+            <p className="text-sm text-gray-400 mb-3">RA-GRS storage costs more than LRS (~$0.05/GB/month) — delete the account when done.</p>
+            <div className="space-y-2 text-xs font-mono">
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># Delete the public website storage account</p>
+                <p className="text-gray-400">az storage account delete --name &lt;your-public-account&gt; --resource-group &lt;your-rg&gt; --yes</p>
+              </div>
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># Or delete the resource group</p>
+                <p className="text-gray-400">az group delete --name &lt;your-rg&gt; --yes --no-wait</p>
+              </div>
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># Verify deletion</p>
+                <p className="text-gray-400">az storage account list --output table</p>
+              </div>
+            </div>
+          </PhaseStepItem>
+        </div>
+
         <MarkPhaseComplete phaseId={3} taskKey="task-phase2" checkedCount={checked.size} total={TOTAL} />
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">
           <Link to="/module3/task/phase1" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">

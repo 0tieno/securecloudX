@@ -5,7 +5,7 @@ import { supabase } from "../lib/supabase";
 import { useAuth } from "../contexts/AuthContext";
 
 const ADMIN_UID = import.meta.env.VITE_ADMIN_UID ?? "";
-const TOTAL_STEPS = 68; // 7+7+20+5+7+7+8+7
+const TOTAL_STEPS = 109; // 10+10+29+10+10+10+10+10+10 (M3=Phase1:9+Phase2:11+Phase3:9)
 
 /* ── Community Growth Graph (pure SVG) ── */
 function GrowthGraph({ rows }) {
@@ -252,7 +252,7 @@ export default function Admin() {
                       </td>
                       <td className="px-4 py-3 text-right">
                         <span className={Number(row.phases_completed) > 0 ? "text-green-400" : "text-gray-600"}>
-                          {row.phases_completed}<span className="text-gray-600">/8</span>
+                          {row.phases_completed}<span className="text-gray-600">/9</span>
                         </span>
                       </td>
                       <td className="px-4 py-3 text-right">

@@ -4,8 +4,11 @@ import AuthCallback from "../pages/AuthCallback";
 import BeginnerIntro from "../pages/BeginnerIntro";
 import BlogList from "../pages/BlogList";
 import BlogPost from "../pages/BlogPost";
+import BrokenByDesign from "../pages/BrokenByDesign";
+import CertMap from "../pages/CertMap";
 import CertificatePage from "../pages/CertificatePage";
 import Changelog from "../pages/Changelog";
+import Glossary from "../pages/Glossary";
 import Module1 from "../pages/modules/module1/Overview";
 import Module2 from "../pages/modules/module2/Overview";
 import Module3 from "../pages/modules/module3/Overview";
@@ -14,6 +17,8 @@ import Module5 from "../pages/modules/module5/Overview";
 import Module6 from "../pages/modules/module6/Overview";
 import Module7 from "../pages/modules/module7/Overview";
 import Module8 from "../pages/modules/module8/Overview";
+import Module9 from "../pages/modules/module9/Overview";
+import ModuleTask9 from "../pages/modules/module9/Task";
 import Explore from "../pages/Explore";
 import ForgottenSecretLab from "../pages/ForgottenSecretLab";
 import GetStartedPage from "../pages/GetStartedPage";
@@ -24,11 +29,13 @@ import PentestingLabs from "../pages/PentestingLabs";
 import Phase1 from "../pages/modules/module3/Phase1";
 import Phase2 from "../pages/modules/module3/Phase2";
 import Phase3 from "../pages/modules/module3/Phase3";
+import Plan from "../pages/Plan";
 import Pricing from "../pages/Pricing";
 import RealIPHeistWriteup from "../pages/RealIPHeistWriteup";
 import RefundPolicyPage from "../pages/RefundPolicyPage";
 import Resources from "../pages/Resources";
 import SafaricomCTF2025 from "../pages/SafaricomCTF2025";
+import Search from "../pages/Search";
 import Story from "../pages/Story";
 import ModuleTask1 from "../pages/modules/module1/Task";
 import ModuleTask2 from "../pages/modules/module2/Task";
@@ -87,10 +94,17 @@ export const shellRoutes = [
   { path: "/module7/task", Component: ModuleTask7 },
   { path: "/module8", Component: Module8 },
   { path: "/module8/task", Component: ModuleTask8 },
+  { path: "/module9", Component: Module9 },
+  { path: "/module9/task", Component: ModuleTask9 },
   { path: "/module/:module/resources", Component: Resources },
   { path: "/explore", Component: Explore },
   { path: "/start", Component: BeginnerIntro },
   { path: "/posts", Component: BlogList },
   { path: "/posts/:id", Component: BlogPost },
   { path: "/resources", Component: Resources },
+  { path: "/glossary", Component: Glossary },
+  { path: "/cert-map", Component: CertMap },
+  { path: "/lab/broken-by-design", Component: BrokenByDesign },
+  { path: "/plan", Component: Plan },
+  { path: "/search", Component: Search },
 ];

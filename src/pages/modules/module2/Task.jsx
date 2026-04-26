@@ -5,7 +5,7 @@ import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
 import PhaseStepItem from "../../../components/PhaseStepItem";
 import { useStepProgress } from "../../../hooks/useStepProgress";
 
-const TOTAL = 7;
+const TOTAL = 10;
 const OBJECTIVES = [
   "Design a multi-tier VNet with web, app, and data subnets",
   "Configure NSG rules to enforce micro-segmentation between tiers",
@@ -32,6 +32,7 @@ const Task2 = () => {
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
             Design a multi-tier network, lock down traffic with NSGs, deploy a VM with no public IP, and use Bastion for secure access. Validate everything with Network Watcher.
           </p>
+          <p className="text-xs text-gray-600 mt-2 font-mono">~45 min read &nbsp;·&nbsp; Lab: ~75 min &nbsp;·&nbsp; Est. cost: ~$0.50–1.00 (Bastion + VM)</p>
         </div>
         <div className="mb-8">
           <div className="flex items-center justify-between text-xs mb-2">
@@ -53,7 +54,7 @@ const Task2 = () => {
           </ul>
         </div>
         <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
-          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7,8,9]))} className="hover:text-gray-400 transition-colors">expand all</button>
           <span>|</span>
           <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
         </div>
@@ -222,6 +223,53 @@ const Task2 = () => {
             </div>
           </PhaseStepItem>
         </div>
+
+        <div className="space-y-2 mb-6">
+          <PhaseStepItem number={8} type="ATTACKER" title="What the attacker sees if this lab is misconfigured"
+            isOpen={open.has(7)} onToggleOpen={() => toggleOpen(7)}
+            isChecked={checked.has(7)} onToggleChecked={() => toggleChecked(7)}>
+            <p>If your NSG allows inbound SSH/RDP from <span className="text-yellow-400">0.0.0.0/0</span>, every automated scanner on the internet is hitting your VM's port 22 within minutes of deployment. Most Azure VMs face brute-force attempts within 30 seconds of a public IP assignment.</p>
+            <div className="mt-3 p-3 border border-red-800/40 bg-red-900/10">
+              <p className="text-red-400 text-xs font-bold mb-2">Attack path: exposed management ports</p>
+              <p className="text-gray-400 text-xs">Attacker runs <code className="text-yellow-400">masscan -p 22,3389 &lt;your-IP&gt;</code>, finds the open port, brute-forces with credential lists. Without Azure Defender for Servers, this may go undetected. Result: shell access or RDP session on your VM.</p>
+            </div>
+            <div className="mt-2 p-2 border border-red-800/40 bg-red-900/10">
+              <p className="text-gray-400 text-xs"><span className="text-red-400">Missing Private Endpoints:</span> If your storage account or SQL database has a public endpoint and the "Allow Azure services" firewall rule enabled, any Azure-hosted attacker resource (including free trial VMs) can attempt to connect to it.</p>
+            </div>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={9} type="WARN" title="Common mistakes in this lab"
+            isOpen={open.has(8)} onToggleOpen={() => toggleOpen(8)}
+            isChecked={checked.has(8)} onToggleChecked={() => toggleChecked(8)}>
+            <ul className="space-y-2 text-sm">
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">NSG allow-all rule left in place:</span> "Allow inbound Any:Any" or source 0.0.0.0/0 on high-value ports (22, 3389, 445) is one of the most common misconfigurations found in cloud pen tests. Always verify NSG effective rules after configuration.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">VNet peering without route tables:</span> By default peered VNets communicate directly. In Hub-Spoke, you must add User Defined Routes (UDRs) pointing to the hub firewall so traffic is inspected, not bypassed.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Forgetting to enable Bastion diagnostic logs:</span> Bastion logs (SSH sessions, RDP connections) go to a Log Analytics workspace — but only if you configure diagnostic settings. Without logs, you have no audit trail.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Private Endpoint without disabling public endpoint:</span> Creating a Private Endpoint doesn't disable the public endpoint automatically. You must explicitly set <code className="text-yellow-400">publicNetworkAccess: Disabled</code> on the resource too.</span></li>
+            </ul>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={10} type="CLEANUP" title="Cleanup — prevent unexpected charges"
+            isOpen={open.has(9)} onToggleOpen={() => toggleOpen(9)}
+            isChecked={checked.has(9)} onToggleChecked={() => toggleChecked(9)}>
+            <p className="text-sm text-gray-400 mb-3">Azure Firewall and Bastion are expensive if left running. Delete them first.</p>
+            <div className="space-y-2 text-xs font-mono">
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># 1. Delete the resource group (removes VNet, NSGs, Bastion, Firewall)</p>
+                <p className="text-gray-400">az group delete --name rg-network-lab --yes --no-wait</p>
+              </div>
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># 2. Delete Private Endpoints (if in separate RG)</p>
+                <p className="text-gray-400">az network private-endpoint delete --name &lt;pe-name&gt; --resource-group &lt;rg&gt;</p>
+              </div>
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># 3. Verify no Azure Firewall policy remains (charged separately)</p>
+                <p className="text-gray-400">az network firewall policy list --output table</p>
+              </div>
+            </div>
+          </PhaseStepItem>
+        </div>
+
         <MarkPhaseComplete phaseId={2} checkedCount={checked.size} total={TOTAL} />
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6 mt-8">
           <Link to="/module2" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
