@@ -4,7 +4,7 @@ import { useAuth } from "../contexts/AuthContext";
 import { useProgress } from "../hooks/useProgress";
 import Certificate from "../components/Certificate";
 
-const PHASE_IDS = [1, 2, 3, 4, 5, 6, 7, 8];
+const PHASE_IDS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 const SUPABASE_URL = import.meta.env.VITE_SUPABASE_URL;
 
 export default function CertificatePage() {
@@ -33,7 +33,7 @@ export default function CertificatePage() {
           <Lock className="w-12 h-12 text-gray-600 mx-auto mb-6" />
           <h1 className="text-xl text-gray-300 mb-3">Certificate Locked</h1>
           <p className="text-gray-500 text-sm leading-relaxed mb-6">
-            Complete all 8 phases (overview + lab) to unlock your certificate.
+            Complete all 9 phases (overview + lab) to unlock your certificate.
           </p>
           <div className="inline-flex flex-col gap-2 text-left text-sm">
             {PHASE_IDS.map((id) => {
