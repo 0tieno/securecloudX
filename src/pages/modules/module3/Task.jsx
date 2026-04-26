@@ -38,6 +38,7 @@ const Task3 = () => {
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
             This lab is split into 3 phases. Select a phase below to begin.
           </p>
+          <p className="text-xs text-gray-600 mt-2 font-mono">~40 min read &nbsp;·&nbsp; Lab: ~45 min &nbsp;·&nbsp; Est. cost: $0.00 (storage free tier)</p>
         </div>
         <div className="space-y-3 mb-12">
           {phases.map((phase, index) => (
