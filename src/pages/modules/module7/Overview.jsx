@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import PhaseStepItem from "../../../components/PhaseStepItem";
+import ArchitectNote from "../../../components/ArchitectNote";
 
 const TOTAL = 7;
 const OBJECTIVES = [
@@ -14,7 +15,7 @@ const OBJECTIVES = [
 ];
 
 const Day7 = () => {
-  const [open, setOpen] = useState(() => new Set([0,1,2,3,4,5,6]));
+  const [open, setOpen] = useState(() => new Set([0,1,2,3,4,5,6,7]));
   const [checked, setChecked] = useState(new Set());
   const toggleOpen = (i) => setOpen(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
   const toggleChecked = (i) => setChecked(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
@@ -55,7 +56,7 @@ const Day7 = () => {
           </ul>
         </div>
         <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
-          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7]))} className="hover:text-gray-400 transition-colors">expand all</button>
           <span>|</span>
           <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
         </div>
@@ -188,6 +189,110 @@ const Day7 = () => {
               <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Write and deliver your security assessment report</span></li>
             </ul>
             <div className="mt-3"><Link to="/module7/task" className="text-red-400 hover:text-red-300 transition-colors">→ ./start_capstone.sh</Link></div>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={8} type="ARCHITECT" title="Cloud Architect's Perspective — Security Architecture & Threat Modelling"
+            isOpen={open.has(7)} onToggleOpen={() => toggleOpen(7)}
+            isChecked={checked.has(7)} onToggleChecked={() => toggleChecked(7)}>
+
+            <ArchitectNote title="Core Design Principles">
+              <ul className="space-y-1.5">
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Security architecture review is not a compliance checkbox.</span> A checkbox review asks “did we implement control X?” A real architecture review asks “is our entire threat surface covered, and does our defence-in-depth hold if any one layer fails?” These are fundamentally different questions.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">STRIDE threat modelling before deployment = 10× cheaper to fix.</span> The cost of fixing a security flaw in design is ~1x. In development: ~6x. In production: ~100x. Performing STRIDE on your architecture diagram before writing a single line of code is the highest-ROI security activity in the development lifecycle.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Every architectural component must encode Zero Trust.</span> No implicit trust between services. Every service call is authenticated (managed identity), authorised (RBAC), encrypted (TLS 1.2+), and logged (diagnostic settings). Zero Trust is an architecture property, not a product feature.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Risk = Likelihood × Impact. Architects prioritise by this formula.</span> A critical vulnerability with low exploitation likelihood may rank below a medium vulnerability with high likelihood. Remediation priority must be driven by risk calculus, not severity labels alone.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Document your architecture trust boundaries explicitly.</span> Every data flow that crosses a trust boundary (internet → DMZ, DMZ → internal, internal → data tier) must have an explicit security control. Un-documented trust boundaries become blind spots in every future security review.</span></li>
+              </ul>
+            </ArchitectNote>
+
+            <ArchitectNote title="Full STRIDE Architecture Assessment Framework">
+              <p className="text-gray-400 text-xs mb-3">For each component in your architecture diagram, apply the full STRIDE assessment. This table shows the synthesis of all prior modules into a unified capstone threat model:</p>
+              <div className="overflow-x-auto">
+                <table className="w-full text-xs font-mono border-collapse">
+                  <thead>
+                    <tr className="border-b border-indigo-800/50">
+                      <th className="text-left text-indigo-300 py-1 pr-3 font-semibold">Layer</th>
+                      <th className="text-left text-indigo-300 py-1 pr-3 font-semibold">Component</th>
+                      <th className="text-left text-indigo-300 py-1 pr-3 font-semibold">Top STRIDE Threat</th>
+                      <th className="text-left text-indigo-300 py-1 font-semibold">Arch. Control</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-gray-400">
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-3 text-cyan-400">Identity</td>
+                      <td className="py-1.5 pr-3">Entra ID / RBAC</td>
+                      <td className="py-1.5 pr-3">Spoofing, EoP</td>
+                      <td className="py-1.5">PIM, Conditional Access, MFA</td>
+                    </tr>
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-3 text-cyan-400">Network</td>
+                      <td className="py-1.5 pr-3">VNet / NSG / Firewall</td>
+                      <td className="py-1.5 pr-3">Tampering, Info Disclosure</td>
+                      <td className="py-1.5">Hub-Spoke, Private Endpoints, TLS</td>
+                    </tr>
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-3 text-cyan-400">Data</td>
+                      <td className="py-1.5 pr-3">Storage / Key Vault</td>
+                      <td className="py-1.5 pr-3">Info Disclosure, Tampering</td>
+                      <td className="py-1.5">CMK, WORM, no public access, RBAC</td>
+                    </tr>
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-3 text-cyan-400">Application</td>
+                      <td className="py-1.5 pr-3">App Service / API Mgmt</td>
+                      <td className="py-1.5 pr-3">Tampering, EoP</td>
+                      <td className="py-1.5">Managed Identity, input validation, API gateway auth</td>
+                    </tr>
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-3 text-cyan-400">Posture</td>
+                      <td className="py-1.5 pr-3">Defender for Cloud</td>
+                      <td className="py-1.5 pr-3">Repudiation</td>
+                      <td className="py-1.5">Policy-as-code, immutable logs, Secure Score</td>
+                    </tr>
+                    <tr>
+                      <td className="py-1.5 pr-3 text-cyan-400">Detection</td>
+                      <td className="py-1.5 pr-3">Sentinel / KQL</td>
+                      <td className="py-1.5 pr-3">All categories</td>
+                      <td className="py-1.5">UEBA, MITRE-mapped rules, SOAR playbooks</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ArchitectNote>
+
+            <ArchitectNote title="Compliance Mapping">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">NIST SP 800-160 Vol. 1</p>
+                  <p className="text-gray-400">Engineering Trustworthy Secure Systems. The primary reference for security systems engineering methodology — how to embed security throughout the entire system lifecycle from concept to decommission.</p>
+                </div>
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">SABSA Framework</p>
+                  <p className="text-gray-400">Sherwood Applied Business Security Architecture. A risk-driven enterprise security architecture framework. Maps business attributes → risks → controls → mechanisms across six architectural layers (contextual to component).</p>
+                </div>
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">CSA CCM v4 — Full Coverage</p>
+                  <p className="text-gray-400">The capstone architecture should demonstrate coverage across all 17 CCM domains. The Cloud Controls Matrix is the most comprehensive cloud-specific control framework and maps to ISO 27001, NIST 800-53, PCI-DSS, and HIPAA.</p>
+                </div>
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">Microsoft STRIDE + SDL</p>
+                  <p className="text-gray-400">Microsoft's Security Development Lifecycle (SDL) is the process framework that operationalises STRIDE. Threat modelling is a mandatory SDL activity. Azure Threat Modeling Tool automates STRIDE assessment for Azure architectures.</p>
+                </div>
+              </div>
+            </ArchitectNote>
+
+            <ArchitectNote title="Real-World Incidents — What Happens When This Fails">
+              <div className="space-y-3">
+                <div className="p-3 border border-gray-700/50 bg-gray-800/40">
+                  <p className="text-red-400 text-xs font-bold mb-1">Colonial Pipeline — $4.4M Ransom, National Fuel Shortage (2021)</p>
+                  <p className="text-gray-400 text-xs">DarkSide ransomware group compromised Colonial Pipeline's IT network via a single VPN account with no MFA enabled. The account credentials were found in a dark web leak. Colonial shut down 5,500 miles of pipeline proactively, causing fuel shortages across the US East Coast for 6 days. $4.4M ransom paid. <span className="text-gray-300">Lesson: a $5/month MFA licence per user would have prevented a $4.4M ransom and a national infrastructure crisis. Architecture must mandate MFA on every remote access path — VPN, RDP, SSH, all of it. No exceptions.</span></p>
+                </div>
+                <div className="p-3 border border-gray-700/50 bg-gray-800/40">
+                  <p className="text-red-400 text-xs font-bold mb-1">Twitter Bitcoin Scam — Insider Threat + Social Engineering (2020)</p>
+                  <p className="text-gray-400 text-xs">Attackers used phone-based social engineering to convince Twitter employees to hand over credentials to internal admin tools. 130 high-profile accounts (Obama, Biden, Musk, Apple, etc.) were hijacked to run a Bitcoin scam. The attack succeeded entirely through human manipulation — no technical exploit. <span className="text-gray-300">Lesson: architecture must assume insider threat and social engineering will succeed eventually. Privilege separation (no single admin tool has full platform control), access logging on internal tools, and break-glass monitoring are architectural requirements, not suggestions.</span></p>
+                </div>
+              </div>
+            </ArchitectNote>
+
           </PhaseStepItem>
         </div>
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">
