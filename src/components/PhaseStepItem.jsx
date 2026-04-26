@@ -1,19 +1,20 @@
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 const TYPE_CONFIG = {
-  READ:     { label: "READ",      color: "text-blue-400",   border: "border-blue-500/40",   bg: "bg-blue-500/10"   },
-  WATCH:    { label: "WATCH",     color: "text-cyan-400",   border: "border-cyan-500/40",   bg: "bg-cyan-500/10"   },
-  SCENARIO: { label: "SCENARIO",  color: "text-yellow-400", border: "border-yellow-500/40", bg: "bg-yellow-500/10" },
-  NOTE:     { label: "KEY NOTES", color: "text-green-400",  border: "border-green-500/40",  bg: "bg-green-500/10"  },
-  LAB:      { label: "LAB",       color: "text-red-400",    border: "border-red-500/40",    bg: "bg-red-500/10"    },
-  PRACTICE: { label: "PRACTICE",  color: "text-cyan-400",   border: "border-cyan-500/40",   bg: "bg-cyan-500/10"   },
-  AI:       { label: "AI PROMPT", color: "text-purple-400", border: "border-purple-500/40", bg: "bg-purple-500/10" },
-  PREP:     { label: "PREP",      color: "text-gray-400",   border: "border-gray-500/40",   bg: "bg-gray-700/50"   },
-  EVALUATE: { label: "EVALUATE",  color: "text-green-400",  border: "border-green-500/40",  bg: "bg-green-500/10"  },
+  READ:      { label: "READ",           color: "text-blue-400",   border: "border-blue-500/40",   bg: "bg-blue-500/10"   },
+  WATCH:     { label: "WATCH",          color: "text-cyan-400",   border: "border-cyan-500/40",   bg: "bg-cyan-500/10"   },
+  SCENARIO:  { label: "SCENARIO",       color: "text-yellow-400", border: "border-yellow-500/40", bg: "bg-yellow-500/10" },
+  NOTE:      { label: "KEY NOTES",      color: "text-green-400",  border: "border-green-500/40",  bg: "bg-green-500/10"  },
+  LAB:       { label: "LAB",            color: "text-red-400",    border: "border-red-500/40",    bg: "bg-red-500/10"    },
+  PRACTICE:  { label: "PRACTICE",       color: "text-cyan-400",   border: "border-cyan-500/40",   bg: "bg-cyan-500/10"   },
+  AI:        { label: "AI PROMPT",      color: "text-purple-400", border: "border-purple-500/40", bg: "bg-purple-500/10" },
+  PREP:      { label: "PREP",           color: "text-gray-400",   border: "border-gray-500/40",   bg: "bg-gray-700/50"   },
+  EVALUATE:  { label: "EVALUATE",       color: "text-green-400",  border: "border-green-500/40",  bg: "bg-green-500/10"  },
+  ARCHITECT: { label: "ARCHITECT",      color: "text-indigo-400", border: "border-indigo-500/40", bg: "bg-indigo-500/10" },
 };
 
 /**
- * Controlled expandable step item in the learntocloud.guide style with terminal theme.
+ * Controlled expandable step item style with terminal theme.
  *
  * Props:
  *   number          – step number shown in header
