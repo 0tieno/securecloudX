@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import PhaseStepItem from "../../../components/PhaseStepItem";
 import ArchitectNote from "../../../components/ArchitectNote";
+import QuizCard from "../../../components/QuizCard";
 
 const TOTAL = 7;
 const OBJECTIVES = [
@@ -447,6 +448,46 @@ const Day8 = () => {
             </ArchitectNote>
 
           </PhaseStepItem>
+        </div>
+
+        {/* Knowledge Check */}
+        <div className="mb-8 p-4 border border-pink-800/30 bg-pink-950/10">
+          <div className="text-pink-400 text-xs mb-4">$ ./knowledge_check.sh --module 8</div>
+          <div className="space-y-4">
+            <QuizCard
+              question="Your GitHub Actions pipeline runs 'npm install' in CI. A dependency in package.json has been compromised via a supply chain attack. Which DevSecOps control catches this earliest?"
+              options={[
+                "SAST — static analysis of your application source code",
+                "SCA (Software Composition Analysis) — scanning dependencies against known CVE databases (e.g., Dependabot, Snyk, OWASP Dependency-Check)",
+                "DAST — dynamic scanning of the running application",
+                "Infrastructure-as-Code scanning with Checkov"
+              ]}
+              answer={1}
+              explanation="SCA scans your dependency manifest (package.json, requirements.txt, go.mod) against vulnerability databases. It catches known-vulnerable packages before they reach production. SAST analyses your own code. DAST tests the running app. IaC scanning checks infrastructure config — none of these see dependency CVEs."
+            />
+            <QuizCard
+              question="A developer accidentally commits an AWS access key to a public GitHub repo. The secret is now in git history. What is the correct immediate response?"
+              options={[
+                "Delete the commit — this removes the secret from git history",
+                "Set the repo to private — this hides the secret",
+                "Revoke/rotate the key immediately, then use git-filter-repo or BFG to remove from history, treat the key as fully compromised",
+                "Add a .gitignore rule so it won't be committed again"
+              ]}
+              answer={2}
+              explanation="The key must be revoked within minutes — assume it was scraped by automated bots immediately after push. GitHub, GitLab, and other platforms actively scan for secrets and notify cloud providers. Deleting commits doesn't remove them from forks or cached copies. Rotation is step 1; history rewriting is step 2."
+            />
+            <QuizCard
+              question="A Checkov scan of a Terraform plan flags: 'CKV_AZURE_3: Ensure storage account has secure transfer enabled.' What does this mean and what is the fix?"
+              options={[
+                "The storage account is publicly accessible — enable firewall rules",
+                "The storage account allows HTTP connections — set enable_https_traffic_only = true in the Terraform resource",
+                "The storage account encryption key has expired — rotate the CMK",
+                "The storage account has no diagnostic logging — enable diagnostic settings"
+              ]}
+              answer={1}
+              explanation="'Secure transfer required' forces all connections to use HTTPS/TLS — rejecting plain HTTP. In Terraform azurerm_storage_account, set enable_https_traffic_only = true (or https_traffic_only_enabled = true in newer provider versions). This is a CIS Azure Benchmark Level 1 control."
+            />
+          </div>
         </div>
 
         <div className="mb-8 p-4 border border-gray-700 bg-gray-800/50">
