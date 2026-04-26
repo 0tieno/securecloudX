@@ -5,7 +5,7 @@ import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
 import PhaseStepItem from "../../../components/PhaseStepItem";
 import { useStepProgress } from "../../../hooks/useStepProgress";
 
-const TOTAL = 7;
+const TOTAL = 10;
 const OBJECTIVES = [
   "Create users, groups, and understand identity types in Microsoft Entra ID",
   "Assign RBAC roles at different scopes and verify least privilege enforcement",
@@ -34,6 +34,7 @@ const Task1 = () => {
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
             Build a Zero Trust identity configuration from scratch. Create identities, enforce least privilege with RBAC, require MFA via Conditional Access, and verify your controls with sign-in logs.
           </p>
+          <p className="text-xs text-gray-600 mt-2 font-mono">~45 min read &nbsp;·&nbsp; Lab: ~60 min &nbsp;·&nbsp; Est. cost: $0.00 (portal only)</p>
         </div>
         <div className="mb-8">
           <div className="flex items-center justify-between text-xs mb-2">
@@ -55,7 +56,7 @@ const Task1 = () => {
           </ul>
         </div>
         <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
-          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7,8,9]))} className="hover:text-gray-400 transition-colors">expand all</button>
           <span>|</span>
           <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
         </div>
@@ -217,6 +218,57 @@ const Task1 = () => {
             </div>
           </PhaseStepItem>
         </div>
+
+        <div className="space-y-2 mb-6">
+          <PhaseStepItem number={8} type="ATTACKER" title="What the attacker sees if this lab is misconfigured"
+            isOpen={open.has(7)} onToggleOpen={() => toggleOpen(7)}
+            isChecked={checked.has(7)} onToggleChecked={() => toggleChecked(7)}>
+            <p>If your Conditional Access policies are in <span className="text-yellow-400">Report-only</span> mode instead of Enabled, they generate audit data but block nothing. An attacker with stolen credentials can log in from any location, any device, without MFA — and your logs show the policy <em>would have blocked them</em> while they move freely.</p>
+            <div className="mt-3 p-3 border border-red-800/40 bg-red-900/10">
+              <p className="text-red-400 text-xs font-bold mb-2">Attack path: standing Global Admin</p>
+              <p className="text-gray-400 text-xs">If you assign Global Admin or Owner permanently instead of using PIM, an attacker who compromises that account has immediate tenant-wide access. With PIM disabled, there's no just-in-time barrier. Most identity-related breaches start with overprivileged standing accounts, not zero-days.</p>
+            </div>
+            <div className="mt-2 p-2 border border-red-800/40 bg-red-900/10">
+              <p className="text-gray-400 text-xs"><span className="text-red-400">Guest user risk:</span> leaving guest accounts without an access review policy means former contractors and vendors retain access indefinitely. Run: <code className="text-yellow-400">Get-AzureADUser -Filter "UserType eq 'Guest'"</code> to enumerate them.</p>
+            </div>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={9} type="WARN" title="Common mistakes in this lab"
+            isOpen={open.has(8)} onToggleOpen={() => toggleOpen(8)}
+            isChecked={checked.has(8)} onToggleChecked={() => toggleChecked(8)}>
+            <ul className="space-y-2 text-sm">
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Leaving CA policies in Report-only:</span> Nothing is enforced. Always switch to "On" to test real blocking behaviour — use a test user account, never your admin account.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Locking yourself out of the tenant:</span> Always create a break-glass account (cloud-only, excluded from all CA policies, MFA registered) before enabling CA. Store credentials in a physical safe.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Assigning Owner instead of a scoped RBAC role:</span> Owner gives full control of the subscription including deleting resource groups and changing IAM. Use Contributor or a custom role unless Owner is explicitly required.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Not verifying PIM activation:</span> Creating a PIM-eligible assignment doesn't test whether activation works. Activate the role as a test user and verify it shows up in Azure RBAC assignments for the activation window only.</span></li>
+            </ul>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={10} type="CLEANUP" title="Cleanup — prevent unexpected charges & tenant pollution"
+            isOpen={open.has(9)} onToggleOpen={() => toggleOpen(9)}
+            isChecked={checked.has(9)} onToggleChecked={() => toggleChecked(9)}>
+            <p className="text-sm text-gray-400 mb-3">Run these in order. Skipping cleanup leaves orphaned identities and misconfigured policies that could create security gaps in your tenant.</p>
+            <div className="space-y-2 text-xs font-mono">
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># 1. Disable or delete test Conditional Access policies</p>
+                <p className="text-gray-400">Portal: Entra ID → Security → Conditional Access → select test policies → State: Off → Save</p>
+              </div>
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># 2. Remove RBAC role assignments created during lab</p>
+                <p className="text-gray-400">az role assignment delete --assignee &lt;objectId&gt; --role &lt;role-name&gt; --scope /subscriptions/&lt;subId&gt;</p>
+              </div>
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># 3. Delete test users</p>
+                <p className="text-gray-400">az ad user delete --id &lt;upn-or-objectId&gt;</p>
+              </div>
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># 4. Remove PIM eligible assignments (if added)</p>
+                <p className="text-gray-400">Portal: Entra ID → Privileged Identity Management → Azure AD Roles → Assignments → Eligible → Remove</p>
+              </div>
+            </div>
+          </PhaseStepItem>
+        </div>
+
         <MarkPhaseComplete phaseId={1} checkedCount={checked.size} total={TOTAL} />
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6 mt-8">
           <Link to="/module1" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
