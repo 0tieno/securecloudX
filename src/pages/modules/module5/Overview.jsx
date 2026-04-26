@@ -293,15 +293,15 @@ const Day5 = () => {
             <ArchitectNote title="Real-World Incidents — What Happens When This Fails">
               <div className="space-y-3">
                 <div className="p-3 border border-gray-700/50 bg-gray-800/40">
-                  <p className="text-red-400 text-xs font-bold mb-1">Tesla Kubernetes Dashboard — Cryptominer Deployed (2018)</p>
+                  <p className="text-red-400 text-xs font-bold mb-1">Tesla Kubernetes Dashboard — Cryptominer Deployed (2018) <a href="https://www.wired.com/story/cryptojacking-tesla-amazon-cloud/" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
                   <p className="text-gray-400 text-xs">Researchers discovered Tesla's Kubernetes admin dashboard was accessible on the public internet with no authentication required. Attackers had already deployed a cryptominer, configured it to run at low CPU utilisation to avoid detection, and stored AWS credentials in Kubernetes secrets — which they used to access Tesla's S3 buckets containing sensitive telemetry data. <span className="text-gray-300">Lesson: a basic CSPM scan with "internet-exposed management interfaces" check would have flagged this on day one. Defender for Cloud includes this exact check.</span></p>
                 </div>
                 <div className="p-3 border border-gray-700/50 bg-gray-800/40">
-                  <p className="text-red-400 text-xs font-bold mb-1">Twitch Source Code Leak (2021) — 125GB of Data</p>
+                  <p className="text-red-400 text-xs font-bold mb-1">Twitch Source Code Leak (2021) — 125GB of Data <a href="https://techcrunch.com/2021/10/06/twitch-source-code-and-creator-revenue-figures-leaked-online/" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
                   <p className="text-gray-400 text-xs">An anonymous user leaked 125GB of Twitch's internal data including source code, internal security tools, streamer payout data, and internal red team tools. The breach originated from a misconfigured cloud server that allowed unauthenticated access to internal repositories. <span className="text-gray-300">Lesson: posture management must include internal developer infrastructure, not just production. Dev servers with misconfigured access controls are as dangerous as misconfigured production systems.</span></p>
                 </div>
                 <div className="p-3 border border-gray-700/50 bg-gray-800/40">
-                  <p className="text-red-400 text-xs font-bold mb-1">Capital One — Azure Policy Could Have Prevented It (Counterfactual)</p>
+                  <p className="text-red-400 text-xs font-bold mb-1">Capital One — Azure Policy Could Have Prevented It (Counterfactual) <a href="https://krebsonsecurity.com/2019/07/what-we-can-learn-from-the-capital-one-hack/" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
                   <p className="text-gray-400 text-xs">The Capital One breach (described in Module 2) also succeeded because there was no alerting on unusual data exfiltration volumes from S3. A single Azure Monitor alert rule on “Storage account access from unexpected IP ranges” or Defender for Storage anomaly detection would have fired within minutes. <span className="text-gray-300">Lesson: CSPM without alerting is a dashboard, not a defence. Every critical finding needs a detection rule, not just a remediation recommendation.</span></p>
                 </div>
               </div>
