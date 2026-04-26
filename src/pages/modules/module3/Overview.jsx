@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import PhaseStepItem from "../../../components/PhaseStepItem";
+import ArchitectNote from "../../../components/ArchitectNote";
 
 const TOTAL = 7;
 const OBJECTIVES = [
@@ -15,7 +16,7 @@ const OBJECTIVES = [
 ];
 
 const Day3 = () => {
-  const [open, setOpen] = useState(() => new Set([0,1,2,3,4,5,6]));
+  const [open, setOpen] = useState(() => new Set([0,1,2,3,4,5,6,7]));
   const [checked, setChecked] = useState(new Set());
   const toggleOpen = (i) => setOpen(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
   const toggleChecked = (i) => setChecked(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
@@ -56,7 +57,7 @@ const Day3 = () => {
           </ul>
         </div>
         <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
-          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7]))} className="hover:text-gray-400 transition-colors">expand all</button>
           <span>|</span>
           <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
         </div>
@@ -184,6 +185,96 @@ const Day3 = () => {
               <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span><strong className="text-gray-300">Lab 03</strong> — Private Storage: GRS, SAS tokens, lifecycle management, object replication</span></li>
             </ul>
             <div className="mt-3"><Link to="/module3/task" className="text-red-400 hover:text-red-300 transition-colors">→ ./start_lab.sh</Link></div>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={8} type="ARCHITECT" title="Cloud Architect's Perspective — Data Security"
+            isOpen={open.has(7)} onToggleOpen={() => toggleOpen(7)}
+            isChecked={checked.has(7)} onToggleChecked={() => toggleChecked(7)}>
+
+            <ArchitectNote title="Core Design Principles">
+              <ul className="space-y-1.5">
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Classify before you encrypt.</span> Encryption without classification is theatre. You must know what data is sensitive to apply the right controls — public data doesn't need CMK; HIPAA/PCI data does. Sensitivity labels drive DLP, encryption, and access decisions.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">CMK vs PMK — it's a compliance and ownership decision.</span> Platform-managed keys (PMK) are secure for most workloads. Choose Customer-Managed Keys (CMK) in Azure Key Vault when compliance mandates you own the key lifecycle (PCI-DSS, HIPAA, FedRAMP) or when you need to revoke access by destroying the key.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">SAS tokens must be short-lived and narrow-scoped.</span> A shared access signature with a 1-year expiry and full permissions on a container is effectively a permanent credential. Design SAS generation into your application layer with the minimum permissions and maximum 1-hour expiry for user delegation SAS.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Immutability policies = ransomware protection for backups.</span> WORM (Write Once Read Many) immutability prevents any principal — including administrators — from deleting or modifying blob data during the retention period. This is the last line of defence when ransomware has compromised admin credentials.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Disable public blob access at the storage account level.</span> The default allows it. Every Azure storage account should have <code className="text-yellow-400">allowBlobPublicAccess: false</code> enforced via Azure Policy. This single control would have prevented dozens of major data breaches.</span></li>
+              </ul>
+            </ArchitectNote>
+
+            <ArchitectNote title="STRIDE Threat Model — Data Layer">
+              <div className="overflow-x-auto">
+                <table className="w-full text-xs font-mono border-collapse">
+                  <thead>
+                    <tr className="border-b border-indigo-800/50">
+                      <th className="text-left text-indigo-300 py-1 pr-4 font-semibold">Threat</th>
+                      <th className="text-left text-indigo-300 py-1 pr-4 font-semibold">Attack Vector</th>
+                      <th className="text-left text-indigo-300 py-1 font-semibold">Mitigation</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-gray-400">
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-blue-400 font-bold">Info Disclosure</td>
+                      <td className="py-1.5 pr-4">Public storage access, leaked SAS tokens in logs or repos</td>
+                      <td className="py-1.5">Disable public access, short-lived SAS, Defender for Storage anomaly detection</td>
+                    </tr>
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-orange-400 font-bold">Tampering</td>
+                      <td className="py-1.5 pr-4">No immutability → attacker encrypts/deletes backup data after compromise</td>
+                      <td className="py-1.5">WORM immutability policies, soft delete, versioning with locked retention</td>
+                    </tr>
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-gray-400 font-bold">Repudiation</td>
+                      <td className="py-1.5 pr-4">No audit log → breach discovered, no forensics trail exists</td>
+                      <td className="py-1.5">Storage diagnostic logs → Log Analytics, Defender for Storage alert stream</td>
+                    </tr>
+                    <tr>
+                      <td className="py-1.5 pr-4 text-red-400 font-bold">Elev. of Privilege</td>
+                      <td className="py-1.5 pr-4">Storage account key grants full access; key leaked via env var or config</td>
+                      <td className="py-1.5">Disable storage account key access, use Azure AD auth + RBAC (Storage Blob Data Reader/Contributor)</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ArchitectNote>
+
+            <ArchitectNote title="Compliance Mapping">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">CIS Azure Benchmark v2.0</p>
+                  <p className="text-gray-400">Section 3 — Storage Accounts (Controls 3.1–3.15). Covers secure transfer, public access, key rotation, logging, and infrastructure encryption.</p>
+                </div>
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">NIST SP 800-111</p>
+                  <p className="text-gray-400">Guide to Storage Encryption Technologies for End User Devices. Key management lifecycle principles — generation, distribution, storage, rotation, destruction — apply directly to CMK design in Azure Key Vault.</p>
+                </div>
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">CSA CCM v4 — DSP Domain</p>
+                  <p className="text-gray-400">Data Security & Privacy Lifecycle Management (DSP-01 through DSP-17). Classification, encryption, retention, and secure disposal requirements for cloud-stored data.</p>
+                </div>
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">GDPR Art. 25 &amp; PCI-DSS Req. 3</p>
+                  <p className="text-gray-400">Data Protection by Design (GDPR) and Protection of Stored Cardholder Data (PCI-DSS). Both require encryption of sensitive data at rest with documented key management procedures.</p>
+                </div>
+              </div>
+            </ArchitectNote>
+
+            <ArchitectNote title="Real-World Incidents — What Happens When This Fails">
+              <div className="space-y-3">
+                <div className="p-3 border border-gray-700/50 bg-gray-800/40">
+                  <p className="text-red-400 text-xs font-bold mb-1">Microsoft Power Apps — 38 Million Records Exposed (2021)</p>
+                  <p className="text-gray-400 text-xs">Multiple organisations (American Airlines, Ford, NY MTA, Indiana state government) used Power Apps portals with table permissions set to public by default. 38 million rows of sensitive data — COVID vaccination status, Social Security Numbers, employee records — were accessible without authentication. <span className="text-gray-300">Lesson: platform defaults are rarely secure defaults. Architect must explicitly define access controls — deny-by-default, not allow-by-default.</span></p>
+                </div>
+                <div className="p-3 border border-gray-700/50 bg-gray-800/40">
+                  <p className="text-red-400 text-xs font-bold mb-1">Toyota Connected Car Data — 2.15 Million Records for 10 Years (2023)</p>
+                  <p className="text-gray-400 text-xs">Toyota's cloud environment exposed vehicle location data for ~2.15 million customers for a decade (2013–2023) due to a misconfigured cloud database with public access. No monitoring was in place to detect the exposure. <span className="text-gray-300">Lesson: Defender for Storage + Azure Policy (deny public blob access) would have flagged this on day one. Security posture monitoring is not optional.</span></p>
+                </div>
+                <div className="p-3 border border-gray-700/50 bg-gray-800/40">
+                  <p className="text-red-400 text-xs font-bold mb-1">Cognyte — 5 Billion Records (2021)</p>
+                  <p className="text-gray-400 text-xs">Cybersecurity intelligence firm Cognyte left an Elasticsearch database containing 5 billion user records (from previous breaches they were analysing) openly accessible with no authentication for at least 4 days before it was discovered by a security researcher. <span className="text-gray-300">Lesson: data you hold about breaches is itself a high-value target. Every data store must be private-network-only with access logging enabled from day one.</span></p>
+                </div>
+              </div>
+            </ArchitectNote>
+
           </PhaseStepItem>
         </div>
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">
