@@ -5,6 +5,10 @@ export const changelog = [
     },
     {
         date: "26 Apr, 2026",
+        desc: "Added cloud security architect's perspective layer content — STRIDE tables, compliance mapping, real-world breach references, and AWS equivalent callouts for each module.",
+    },
+    {
+        date: "26 Apr, 2026",
         desc: "Restructured curriculum: Modules 1–7 form the certified Core Path; Modules 8–9 are Advanced Topics (optional, no cert gate). Certificate now gates on 7 core phases only.",
     },
     {
