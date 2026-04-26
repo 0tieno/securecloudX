@@ -50,6 +50,76 @@ const BeginnerIntro = () => {
           </p>
         </div>
 
+        {/* Prerequisites check */}
+        <div className="mb-8 border border-yellow-700/50 bg-yellow-900/10 p-5">
+          <div className="text-yellow-400 text-sm mb-3">$ cat prerequisites_check.sh</div>
+          <p className="text-gray-300 text-sm leading-relaxed mb-4">
+            Before starting Module 1, you should be comfortable with the topics below. You don't need to master them — but stalling on a lab because you don't know what a port is will slow you down. Work through the resources here first if any topic feels unfamiliar.
+          </p>
+          <div className="space-y-5">
+
+            {/* Linux CLI */}
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-green-400 font-semibold text-sm">01 — Linux CLI basics</span>
+                <span className="text-xs text-gray-600 border border-gray-700 px-1.5 py-0.5">~2 hrs</span>
+              </div>
+              <p className="text-gray-500 text-xs mb-2">
+                All labs use the Azure CLI, kubectl, and shell commands. You need to navigate directories, read files, pipe output, and run scripts without getting lost.
+              </p>
+              <div className="text-xs text-gray-600 mb-2 font-mono">
+                # minimum: cd, ls, cat, grep, curl, chmod, ps, sudo, pipe |, redirect &gt;
+              </div>
+              <div className="space-y-1.5">
+                <ExtLink href="https://linuxjourney.com/">→ linuxjourney.com — free, interactive, beginner-friendly</ExtLink>
+                <ExtLink href="https://overthewire.org/wargames/bandit/">→ OverTheWire: Bandit — learn Linux by doing (levels 0–10)</ExtLink>
+                <ExtLink href="https://www.youtube.com/watch?v=ZtqBQ68cfJc">→ Watch: Linux Command Line Full Course (freeCodeCamp)</ExtLink>
+              </div>
+            </div>
+
+            {/* Networking */}
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-green-400 font-semibold text-sm">02 — Networking fundamentals</span>
+                <span className="text-xs text-gray-600 border border-gray-700 px-1.5 py-0.5">~3 hrs</span>
+              </div>
+              <p className="text-gray-500 text-xs mb-2">
+                Module 2 (Network Security) and every lab after it assumes you know what an IP address, subnet, port, and DNS record are. Without this, NSG rules and Private Endpoints will feel like magic.
+              </p>
+              <div className="text-xs text-gray-600 mb-2 font-mono">
+                # minimum: IP/CIDR, TCP/UDP ports, DNS, HTTP vs HTTPS, firewalls, subnets
+              </div>
+              <div className="space-y-1.5">
+                <ExtLink href="https://www.youtube.com/watch?v=qiQR5rTSshw">→ Watch: Computer Networking Full Course (freeCodeCamp)</ExtLink>
+                <ExtLink href="https://tryhackme.com/room/introtonetworking">→ TryHackMe: Intro to Networking (free room)</ExtLink>
+                <ExtLink href="https://www.cloudflare.com/learning/network-layer/what-is-a-subnet/">→ Cloudflare: What is a subnet? (5 min read)</ExtLink>
+              </div>
+            </div>
+
+            {/* Bash/PowerShell */}
+            <div>
+              <div className="flex items-center gap-2 mb-2">
+                <span className="text-green-400 font-semibold text-sm">03 — Bash / PowerShell scripting</span>
+                <span className="text-xs text-gray-600 border border-gray-700 px-1.5 py-0.5">~1 hr</span>
+              </div>
+              <p className="text-gray-500 text-xs mb-2">
+                Lab commands are given step-by-step — you don't need to write scripts from scratch. But you do need to read and run them without confusion. Variables, loops, and conditional logic should be readable to you.
+              </p>
+              <div className="space-y-1.5">
+                <ExtLink href="https://learn.microsoft.com/training/modules/introduction-to-bash/?wt.mc_id=studentamb_387261">→ Microsoft Learn: Introduction to Bash</ExtLink>
+                <ExtLink href="https://learn.microsoft.com/training/modules/introduction-to-powershell/?wt.mc_id=studentamb_387261">→ Microsoft Learn: Introduction to PowerShell</ExtLink>
+              </div>
+            </div>
+
+          </div>
+
+          <div className="mt-4 pt-4 border-t border-yellow-800/30">
+            <p className="text-yellow-600 text-xs">
+              ⚠ Already comfortable with all three? Skip straight to the Azure account setup below and start Module 1.
+            </p>
+          </div>
+        </div>
+
         {/* Learning Objectives */}
         <div className="mb-8 bg-gray-800 border border-gray-700">
           <button
@@ -300,6 +370,43 @@ const BeginnerIntro = () => {
             </div>
           </div>
         </Section>
+
+        {/* Azure-focus callout */}
+        <div className="mb-8 border border-blue-800/50 bg-blue-900/10 p-5">
+          <div className="text-blue-400 text-sm mb-3">$ cat platform_scope.md</div>
+          <div className="flex items-start gap-3 mb-3">
+            <Globe className="w-5 h-5 text-blue-400 shrink-0 mt-0.5" />
+            <p className="text-gray-300 text-sm leading-relaxed">
+              <span className="text-blue-400 font-semibold">This roadmap is Azure-first.</span> The security concepts — Zero Trust, least privilege, defence in depth, CSPM — are universal. But the tools, CLI commands, and labs are Azure. That's a deliberate choice: Azure dominates enterprise cloud security hiring, and AZ-500 is the most recognised cloud security certification.
+            </p>
+          </div>
+          <p className="text-gray-500 text-xs mb-4">
+            If you later work in AWS or GCP, the concepts transfer directly. The services have different names but the same security primitives. Here's a quick mapping:
+          </p>
+          <div className="overflow-x-auto">
+            <table className="w-full text-xs font-mono border border-gray-700">
+              <thead>
+                <tr className="border-b border-gray-700 text-gray-500">
+                  <th className="text-left px-3 py-2 text-blue-400">Azure</th>
+                  <th className="text-left px-3 py-2 text-yellow-600">AWS</th>
+                  <th className="text-left px-3 py-2 text-green-600">GCP</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-gray-800">
+                <tr><td className="px-3 py-1.5 text-gray-300">Entra ID (Azure AD)</td><td className="px-3 py-1.5 text-gray-400">IAM + Cognito</td><td className="px-3 py-1.5 text-gray-400">Cloud Identity / IAM</td></tr>
+                <tr><td className="px-3 py-1.5 text-gray-300">RBAC (Azure roles)</td><td className="px-3 py-1.5 text-gray-400">IAM Policies & Roles</td><td className="px-3 py-1.5 text-gray-400">IAM Roles & Bindings</td></tr>
+                <tr><td className="px-3 py-1.5 text-gray-300">NSG</td><td className="px-3 py-1.5 text-gray-400">Security Groups / NACLs</td><td className="px-3 py-1.5 text-gray-400">VPC Firewall Rules</td></tr>
+                <tr><td className="px-3 py-1.5 text-gray-300">Private Endpoint</td><td className="px-3 py-1.5 text-gray-400">VPC Endpoint</td><td className="px-3 py-1.5 text-gray-400">Private Service Connect</td></tr>
+                <tr><td className="px-3 py-1.5 text-gray-300">Key Vault</td><td className="px-3 py-1.5 text-gray-400">Secrets Manager / KMS</td><td className="px-3 py-1.5 text-gray-400">Secret Manager / Cloud KMS</td></tr>
+                <tr><td className="px-3 py-1.5 text-gray-300">Defender for Cloud</td><td className="px-3 py-1.5 text-gray-400">Security Hub + GuardDuty</td><td className="px-3 py-1.5 text-gray-400">Security Command Center</td></tr>
+                <tr><td className="px-3 py-1.5 text-gray-300">Microsoft Sentinel</td><td className="px-3 py-1.5 text-gray-400">Security Lake + OpenSearch</td><td className="px-3 py-1.5 text-gray-400">Chronicle SIEM</td></tr>
+                <tr><td className="px-3 py-1.5 text-gray-300">Azure Policy</td><td className="px-3 py-1.5 text-gray-400">AWS Config + SCPs</td><td className="px-3 py-1.5 text-gray-400">Organization Policy</td></tr>
+                <tr><td className="px-3 py-1.5 text-gray-300">Managed Identity</td><td className="px-3 py-1.5 text-gray-400">IAM Instance Profile / IRSA</td><td className="px-3 py-1.5 text-gray-400">Workload Identity / Service Account</td></tr>
+                <tr><td className="px-3 py-1.5 text-gray-300">AKS</td><td className="px-3 py-1.5 text-gray-400">EKS</td><td className="px-3 py-1.5 text-gray-400">GKE</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
 
         {/* Start Challenge */}
         <div className="bg-gray-800 border border-gray-700 p-6">
