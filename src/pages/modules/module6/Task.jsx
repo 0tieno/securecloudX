@@ -5,7 +5,7 @@ import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
 import PhaseStepItem from "../../../components/PhaseStepItem";
 import { useStepProgress } from "../../../hooks/useStepProgress";
 
-const TOTAL = 7;
+const TOTAL = 10;
 const OBJECTIVES = [
   "Deploy Microsoft Sentinel with a Log Analytics workspace and connect data sources",
   "Enable and understand built-in analytics rules — scheduled, fusion, and NRT types",
@@ -35,6 +35,7 @@ const Task6 = () => {
           <p className="text-gray-500 text-sm sm:text-base leading-relaxed">
             Think like a SOC analyst. Deploy Sentinel, build detections, investigate a simulated incident, automate response, and document the full lifecycle.
           </p>
+          <p className="text-xs text-gray-600 mt-2 font-mono">~50 min read &nbsp;·&nbsp; Lab: ~90 min &nbsp;·&nbsp; Est. cost: ~$2–5 (Sentinel per-GB ingestion)</p>
         </div>
         <div className="mb-8">
           <div className="flex items-center justify-between text-xs mb-2">
@@ -56,7 +57,7 @@ const Task6 = () => {
           </ul>
         </div>
         <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
-          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7,8,9]))} className="hover:text-gray-400 transition-colors">expand all</button>
           <span>|</span>
           <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
         </div>
@@ -257,6 +258,53 @@ const Task6 = () => {
             </div>
           </PhaseStepItem>
         </div>
+
+        <div className="space-y-2 mb-6">
+          <PhaseStepItem number={8} type="ATTACKER" title="What the attacker sees if this lab is misconfigured"
+            isOpen={open.has(7)} onToggleOpen={() => toggleOpen(7)}
+            isChecked={checked.has(7)} onToggleChecked={() => toggleChecked(7)}>
+            <p>If your Sentinel Analytics Rules are not tuned, alert fatigue sets in. Real incidents are buried in hundreds of false positives. The average dwell time before detection in cloud environments is <span className="text-yellow-400">over 100 days</span> — most of that time is spent by attackers in environments with detection rules that nobody is acting on.</p>
+            <div className="mt-3 p-3 border border-red-800/40 bg-red-900/10">
+              <p className="text-red-400 text-xs font-bold mb-2">Attack path: living-off-the-land in Azure</p>
+              <p className="text-gray-400 text-xs">An attacker with a valid Azure token uses only built-in Azure CLI commands (az vm list, az storage blob list, az keyvault secret show) — no malware, no exploits. Standard signature-based AV and basic alert rules won't fire. Detection requires behavioral analytics: unusual API call patterns, first-time resource access, off-hours activity. This is why KQL behavioral rules matter.</p>
+            </div>
+            <div className="mt-2 p-2 border border-red-800/40 bg-red-900/10">
+              <p className="text-gray-400 text-xs"><span className="text-red-400">SOAR playbook without testing:</span> An untested Logic App playbook that fails silently on execution means your automated response (disable account, isolate VM) never fires. Attackers who understand SOAR platforms probe for response time — a slow or broken playbook gives them more time to complete their objective.</p>
+            </div>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={9} type="WARN" title="Common mistakes in this lab"
+            isOpen={open.has(8)} onToggleOpen={() => toggleOpen(8)}
+            isChecked={checked.has(8)} onToggleChecked={() => toggleChecked(8)}>
+            <ul className="space-y-2 text-sm">
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Analytics Rules not set to Enabled:</span> Creating an Analytics Rule in Sentinel doesn't automatically enable it. You must switch the toggle to Enabled — otherwise it never runs and no incidents are created.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Wrong time range in KQL:</span> KQL queries in Analytics Rules run against data within the "Query period." If your logs are older than the configured window (e.g., last 5 minutes), the rule never fires even if the data exists. Start with a wider window during development.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Logic App missing API connection authentication:</span> Sentinel playbooks use Logic App API connections (to Teams, email, Entra ID). If the connection isn't authenticated correctly, the playbook runs but the action silently fails. Test each action step individually.</span></li>
+              <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Data connector not sending logs:</span> Even with the Sentinel connector enabled, logs may not appear for 15-30 minutes after a new workspace. Verify with: <code className="text-yellow-400">AzureActivity | take 10</code> in Log Analytics before writing detection rules.</span></li>
+            </ul>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={10} type="CLEANUP" title="Cleanup — prevent unexpected charges"
+            isOpen={open.has(9)} onToggleOpen={() => toggleOpen(9)}
+            isChecked={checked.has(9)} onToggleChecked={() => toggleChecked(9)}>
+            <p className="text-sm text-gray-400 mb-3">Sentinel charges per GB of data ingested. The Log Analytics workspace continues to ingest data and accrue costs until deleted.</p>
+            <div className="space-y-2 text-xs font-mono">
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># 1. Delete the Sentinel workspace (removes Sentinel + all ingested data)</p>
+                <p className="text-gray-400">az monitor log-analytics workspace delete --resource-group &lt;rg&gt; --workspace-name &lt;name&gt; --yes</p>
+              </div>
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># 2. Delete Logic App playbook</p>
+                <p className="text-gray-400">az logic workflow delete --resource-group &lt;rg&gt; --name &lt;playbook-name&gt;</p>
+              </div>
+              <div className="p-2 border border-gray-700 bg-gray-800">
+                <p className="text-green-400 mb-1"># 3. Delete the resource group</p>
+                <p className="text-gray-400">az group delete --name rg-sentinel-lab --yes --no-wait</p>
+              </div>
+            </div>
+          </PhaseStepItem>
+        </div>
+
         <MarkPhaseComplete phaseId={6} checkedCount={checked.size} total={TOTAL} />
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6 mt-8">
           <Link to="/module6" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
