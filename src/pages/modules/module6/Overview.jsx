@@ -4,6 +4,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import PhaseStepItem from "../../../components/PhaseStepItem";
 import ArchitectNote from "../../../components/ArchitectNote";
+import QuizCard from "../../../components/QuizCard";
 
 const TOTAL = 7;
 const OBJECTIVES = [
@@ -305,6 +306,47 @@ const Day6 = () => {
 
           </PhaseStepItem>
         </div>
+
+        {/* Knowledge Check */}
+        <div className="mb-8 p-4 border border-pink-800/30 bg-pink-950/10">
+          <div className="text-pink-400 text-xs mb-4">$ ./knowledge_check.sh --module 6</div>
+          <div className="space-y-4">
+            <QuizCard
+              question="A Sentinel incident fires: 'Successful sign-in from Tor exit node.' The user is a contractor who just started last week. What is the first step in the NIST IR process?"
+              options={[
+                "Eradication — delete the account immediately",
+                "Containment — disable the user account and revoke all active sessions pending investigation",
+                "Recovery — restore from the last known-good backup",
+                "Lessons Learned — document the incident for future reference"
+              ]}
+              answer={1}
+              explanation="NIST IR phases: Preparation → Detection & Analysis → Containment → Eradication → Recovery → Post-Incident. Containment limits damage without destroying evidence. Disabling the account and revoking sessions stops the attacker's access while preserving logs for forensics."
+            />
+            <QuizCard
+              question="Write a KQL query to find all Azure activity log events where the operation is 'Delete' and the caller is not a known admin service principal. Which table should you query?"
+              options={[
+                "SecurityEvent",
+                "AzureActivity",
+                "SigninLogs",
+                "CommonSecurityLog"
+              ]}
+              answer={1}
+              explanation="AzureActivity contains the Azure Resource Manager audit log — all create/update/delete operations on Azure resources with the caller identity, timestamp, and result. SecurityEvent is Windows event logs. SigninLogs is Entra ID authentication events."
+            />
+            <QuizCard
+              question="MITRE ATT&CK technique T1078 (Valid Accounts) is detected. What does this indicate?"
+              options={[
+                "An attacker is exploiting a software vulnerability to escalate privileges",
+                "An attacker is using legitimate stolen credentials to authenticate — bypassing detection that looks for exploit signatures",
+                "A new user account was created without authorisation",
+                "A service account password expired and the service is failing"
+              ]}
+              answer={1}
+              explanation="T1078 covers attackers using valid credentials obtained via phishing, credential dumps, or brute force. They look like legitimate users — no exploit signatures to detect. Detection requires behavioral analytics: unusual hours, geolocation anomalies, impossible travel, resource access patterns outside baseline."
+            />
+          </div>
+        </div>
+
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">
           <Link to="/module5" className="flex items-center gap-1 text-gray-500 hover:text-gray-300 transition-colors">
             <ChevronLeft size={14} /> Module 5
