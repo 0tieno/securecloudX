@@ -13,6 +13,7 @@ const topics = [
   { day: 6, title: "Detection Engineering & IR" },
   { day: 7, title: "Security Architecture Review" },
   { day: 8, title: "DevSecOps Fundamentals" },
+  { day: 9, title: "Kubernetes & AKS Security" },
 ];
 
 const Sidebar = () => {
@@ -187,7 +188,7 @@ const Sidebar = () => {
                         </Link>
                       </li>
 
-                      {/* ✅ Lab 3 Phases Submenu */}
+                      {/*  Lab 3 Phases Submenu */}
                       {day === 3 && (
                         <ul className="ml-4 border-l-2 border-gray-600">
                           <li>
@@ -289,7 +290,52 @@ const Sidebar = () => {
                 </ul>
               )}
 
-              
+            </li>
+
+            {/* Reference Tools */}
+            <li className="mt-2">
+              <div className="px-4 py-1 text-xs text-gray-500 uppercase tracking-widest">Reference</div>
+              <ul>
+                <li>
+                  <Link
+                    to="/glossary"
+                    className={`block px-4 py-1.5 hover:bg-gray-600 text-sm ${
+                      location.pathname === "/glossary" ? "bg-gray-700 text-white" : ""
+                    }`}
+                    onClick={closeSidebar}
+                    title="Cloud Security Glossary"
+                  >
+                    Glossary
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/cert-map"
+                    className={`block px-4 py-1.5 hover:bg-gray-600 text-sm ${
+                      location.pathname === "/cert-map" ? "bg-gray-700 text-white" : ""
+                    }`}
+                    onClick={closeSidebar}
+                    title="AZ-500 / CCSP / CIS Cert Map"
+                  >
+                    Cert Map
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/plan"
+                    className={`block px-4 py-1.5 hover:bg-gray-600 text-sm ${
+                      location.pathname === "/plan" ? "bg-gray-700 text-white" : ""
+                    }`}
+                    onClick={closeSidebar}
+                    title="Platform Roadmap"
+                  >
+                    Roadmap
+                  </Link>
+                </li>
+              </ul>
+            </li>
+
+            
             {/* Forgotten Secret Lab - Mini Hack */}
             <li>
               <Link
@@ -306,7 +352,22 @@ const Sidebar = () => {
               </Link>
             </li>
 
+            {/* Broken By Design Lab */}
+            <li>
+              <Link
+                to="/lab/broken-by-design"
+                className={`block px-3 py-2 mx-2 my-1 rounded-lg border transition-colors font-medium text-sm ${
+                  location.pathname === "/lab/broken-by-design"
+                    ? "bg-orange-500/20 border-orange-400/50 text-orange-300"
+                    : "text-orange-400 hover:text-orange-300 border-orange-500/30 hover:border-orange-400/50 bg-orange-500/10 hover:bg-orange-500/20"
+                }`}
+                onClick={closeSidebar}
+                title="Find the Misconfigurations"
+              >
+                Lab: Broken By Design
+              </Link>
             </li>
+
           </ul>
         </nav>
         </div>
