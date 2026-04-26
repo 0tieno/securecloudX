@@ -261,15 +261,15 @@ const Day3 = () => {
             <ArchitectNote title="Real-World Incidents — What Happens When This Fails">
               <div className="space-y-3">
                 <div className="p-3 border border-gray-700/50 bg-gray-800/40">
-                  <p className="text-red-400 text-xs font-bold mb-1">Microsoft Power Apps — 38 Million Records Exposed (2021)</p>
+                  <p className="text-red-400 text-xs font-bold mb-1">Microsoft Power Apps — 38 Million Records Exposed (2021) <a href="https://www.upguard.com/breaches/power-apps" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
                   <p className="text-gray-400 text-xs">Multiple organisations (American Airlines, Ford, NY MTA, Indiana state government) used Power Apps portals with table permissions set to public by default. 38 million rows of sensitive data — COVID vaccination status, Social Security Numbers, employee records — were accessible without authentication. <span className="text-gray-300">Lesson: platform defaults are rarely secure defaults. Architect must explicitly define access controls — deny-by-default, not allow-by-default.</span></p>
                 </div>
                 <div className="p-3 border border-gray-700/50 bg-gray-800/40">
-                  <p className="text-red-400 text-xs font-bold mb-1">Toyota Connected Car Data — 2.15 Million Records for 10 Years (2023)</p>
+                  <p className="text-red-400 text-xs font-bold mb-1">Toyota Connected Car Data — 2.15 Million Records for 10 Years (2023) <a href="https://global.toyota/en/newsroom/corporate/40009209.html" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
                   <p className="text-gray-400 text-xs">Toyota's cloud environment exposed vehicle location data for ~2.15 million customers for a decade (2013–2023) due to a misconfigured cloud database with public access. No monitoring was in place to detect the exposure. <span className="text-gray-300">Lesson: Defender for Storage + Azure Policy (deny public blob access) would have flagged this on day one. Security posture monitoring is not optional.</span></p>
                 </div>
                 <div className="p-3 border border-gray-700/50 bg-gray-800/40">
-                  <p className="text-red-400 text-xs font-bold mb-1">Cognyte — 5 Billion Records (2021)</p>
+                  <p className="text-red-400 text-xs font-bold mb-1">Cognyte — 5 Billion Records (2021) <a href="https://www.wizcase.com/blog/cognyte-breach-report/" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
                   <p className="text-gray-400 text-xs">Cybersecurity intelligence firm Cognyte left an Elasticsearch database containing 5 billion user records (from previous breaches they were analysing) openly accessible with no authentication for at least 4 days before it was discovered by a security researcher. <span className="text-gray-300">Lesson: data you hold about breaches is itself a high-value target. Every data store must be private-network-only with access logging enabled from day one.</span></p>
                 </div>
               </div>
