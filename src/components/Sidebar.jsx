@@ -4,7 +4,7 @@ import { ChevronRight, ChevronDown, ChevronLeft, Menu, X, CheckCircle2, PanelLef
 import { useAuth } from "../contexts/AuthContext";
 import { useProgress } from "../hooks/useProgress";
 
-const topics = [
+const coreTopics = [
   { day: 1, title: "Identity & Access Management" },
   { day: 2, title: "Network Security & Perimeter Defense" },
   { day: 3, title: "Data Security & Encryption" },
@@ -12,6 +12,9 @@ const topics = [
   { day: 5, title: "Cloud Security Posture Management" },
   { day: 6, title: "Detection Engineering & IR" },
   { day: 7, title: "Security Architecture Review" },
+];
+
+const advancedTopics = [
   { day: 8, title: "DevSecOps Fundamentals" },
   { day: 9, title: "Kubernetes & AKS Security" },
 ];
@@ -130,7 +133,7 @@ const Sidebar = () => {
               </Link>
             </li>
 
-            {topics.map(({ day, title }) => {
+            {coreTopics.map(({ day, title }) => {
               return (
                 <li key={day}>
                   <button
@@ -246,6 +249,80 @@ const Sidebar = () => {
                           }`}
                           onClick={closeSidebar}
                           title={`Resources for Module ${day}`}
+                        >
+                          Resources
+                        </Link>
+                      </li>
+                    </ul>
+                  )}
+                </li>
+              );            })}
+
+            {/* Advanced Topics section */}
+            <li className="mt-3">
+              <div className="px-4 py-1 text-xs text-yellow-600 uppercase tracking-widest flex items-center gap-2">
+                Advanced Topics
+                <span className="border border-yellow-700/50 text-yellow-700 px-1 text-[10px]">optional</span>
+              </div>
+            </li>
+
+            {advancedTopics.map(({ day, title }) => {
+              return (
+                <li key={day}>
+                  <button
+                    onClick={() => toggleDropdown(Number(day))}
+                    className={`w-full text-left px-4 py-2 flex justify-between items-center hover:bg-gray-700 ${
+                      location.pathname.includes(`/module${day}`)
+                        ? "bg-gray-700 text-white"
+                        : ""
+                    }`}
+                    title={`Open Module ${day}`}
+                  >
+                    <span className="flex items-center gap-2">
+                      {user && isComplete(day, "overview") && isComplete(day, "task") ? (
+                        <CheckCircle2 size={13} className="text-green-400 shrink-0" />
+                      ) : (
+                        <span className="w-3.5 h-3.5 shrink-0 inline-block" />
+                      )}
+                      <span><strong>Module {day}:</strong> {title}</span>
+                    </span>
+                    {openDay[day] ? (
+                      <ChevronDown size={18} />
+                    ) : (
+                      <ChevronRight size={18} />
+                    )}
+                  </button>
+                  {openDay[day] && (
+                    <ul className="ml-4 border-l-2 border-gray-600">
+                      <li>
+                        <Link
+                          to={`/module${day}`}
+                          className={`block px-4 py-1 hover:bg-gray-600 ${
+                            location.pathname === `/module${day}` ? "bg-gray-700 text-white" : ""
+                          }`}
+                          onClick={closeSidebar}
+                        >
+                          Overview
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to={`/module${day}/task`}
+                          className={`block px-4 py-1 hover:bg-gray-600 ${
+                            location.pathname === `/module${day}/task` ? "bg-gray-700 text-white" : ""
+                          }`}
+                          onClick={closeSidebar}
+                        >
+                          Labs
+                        </Link>
+                      </li>
+                      <li>
+                        <Link
+                          to={`/module/${day}/resources`}
+                          className={`block px-4 py-1 hover:bg-gray-600 ${
+                            location.pathname === `/module/${day}/resources` ? "bg-gray-700 text-white" : ""
+                          }`}
+                          onClick={closeSidebar}
                         >
                           Resources
                         </Link>
