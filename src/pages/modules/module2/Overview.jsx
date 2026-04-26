@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import PhaseStepItem from "../../../components/PhaseStepItem";
+import ArchitectNote from "../../../components/ArchitectNote";
 
 const TOTAL = 7;
 const OBJECTIVES = [
@@ -15,7 +16,7 @@ const OBJECTIVES = [
 ];
 
 const Day2 = () => {
-  const [open, setOpen] = useState(() => new Set([0,1,2,3,4,5,6]));
+  const [open, setOpen] = useState(() => new Set([0,1,2,3,4,5,6,7]));
   const [checked, setChecked] = useState(new Set());
   const toggleOpen = (i) => setOpen(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
   const toggleChecked = (i) => setChecked(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
@@ -56,7 +57,7 @@ const Day2 = () => {
           </ul>
         </div>
         <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
-          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7]))} className="hover:text-gray-400 transition-colors">expand all</button>
           <span>|</span>
           <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
         </div>
@@ -200,6 +201,101 @@ const Day2 = () => {
               <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Use Network Watcher to diagnose and validate traffic flow</span></li>
             </ul>
             <div className="mt-3"><Link to="/module2/task" className="text-red-400 hover:text-red-300 transition-colors">→ ./start_lab.sh</Link></div>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={8} type="ARCHITECT" title="Cloud Architect's Perspective — Network Security"
+            isOpen={open.has(7)} onToggleOpen={() => toggleOpen(7)}
+            isChecked={checked.has(7)} onToggleChecked={() => toggleChecked(7)}>
+
+            <ArchitectNote title="Core Design Principles">
+              <ul className="space-y-1.5">
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">NSGs are stateful packet filters — not firewalls.</span> An NSG cannot do deep packet inspection, TLS termination, or IDPS. For east-west traffic inspection between workloads, you need Azure Firewall Premium or a third-party NVA.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Segment by workload risk level, not org chart.</span> A finance workload and a dev sandbox in the same VNet is a lateral movement risk. Segment based on data sensitivity and blast radius.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Private Endpoints = zero public attack surface for PaaS.</span> Every Azure PaaS service (Storage, Key Vault, SQL, etc.) with a public endpoint is potentially reachable from the internet. Private Endpoints bind the service to your VNet via a private IP — no public route exists.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Hub-Spoke = centralised security control plane.</span> All traffic routes through the hub (Azure Firewall, NVA, Bastion). Spokes are workload VNets. This topology gives you one place to enforce policy, inspect traffic, and log everything.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Never SSH/RDP to a VM with a public IP.</span> Azure Bastion provides browser-based SSH/RDP over HTTPS with no public IP on the VM. JIT VM Access (Defender for Cloud) goes further — port 22/3389 is closed by default and opened only on-demand.</span></li>
+              </ul>
+            </ArchitectNote>
+
+            <ArchitectNote title="STRIDE Threat Model — Network Layer">
+              <div className="overflow-x-auto">
+                <table className="w-full text-xs font-mono border-collapse">
+                  <thead>
+                    <tr className="border-b border-indigo-800/50">
+                      <th className="text-left text-indigo-300 py-1 pr-4 font-semibold">Threat</th>
+                      <th className="text-left text-indigo-300 py-1 pr-4 font-semibold">Attack Vector</th>
+                      <th className="text-left text-indigo-300 py-1 font-semibold">Mitigation</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-gray-400">
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-yellow-400 font-bold">Spoofing</td>
+                      <td className="py-1.5 pr-4">IP spoofing across subnets, ARP poisoning on shared segments</td>
+                      <td className="py-1.5">Azure SDN prevents ARP/IP spoofing by default; NSG source IP filtering</td>
+                    </tr>
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-orange-400 font-bold">Tampering</td>
+                      <td className="py-1.5 pr-4">MITM on unencrypted east-west traffic, DNS hijacking</td>
+                      <td className="py-1.5">TLS everywhere (service-to-service), Azure Private DNS zones, DNSSEC</td>
+                    </tr>
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-blue-400 font-bold">Info Disclosure</td>
+                      <td className="py-1.5 pr-4">Flat network = attacker pivots freely once inside any VM</td>
+                      <td className="py-1.5">Micro-segmentation, Application Security Groups (ASGs), workload isolation</td>
+                    </tr>
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-red-400 font-bold">Denial of Service</td>
+                      <td className="py-1.5 pr-4">Volume attack on public endpoints, TCP SYN flood</td>
+                      <td className="py-1.5">Azure DDoS Protection Standard, WAF rate limiting, Anycast scrubbing</td>
+                    </tr>
+                    <tr>
+                      <td className="py-1.5 pr-4 text-purple-400 font-bold">Elev. of Privilege</td>
+                      <td className="py-1.5 pr-4">SSRF to IMDS endpoint (169.254.169.254) — steal VM identity token</td>
+                      <td className="py-1.5">IMDSv2 required (PUT token header), block IMDS from app tier via NSG</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ArchitectNote>
+
+            <ArchitectNote title="Compliance Mapping">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">CIS Azure Benchmark v2.0</p>
+                  <p className="text-gray-400">Section 6 — Networking (Controls 6.1–6.6). Covers NSG flow logs, Network Watcher, RDP/SSH restrictions, and public IP exposure limits.</p>
+                </div>
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">NIST SP 800-41 Rev 1</p>
+                  <p className="text-gray-400">Guidelines on Firewalls and Firewall Policy. Defines the principle that firewalls must be the sole path between network segments — directly maps to Azure Firewall in hub-spoke topology.</p>
+                </div>
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">CSA CCM v4 — IVS Domain</p>
+                  <p className="text-gray-400">Infrastructure &amp; Virtualisation Security (IVS-06 through IVS-13). Network segmentation, hypervisor security, and virtualised network controls.</p>
+                </div>
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">NIST SP 800-125B</p>
+                  <p className="text-gray-400">Secure Virtual Network Configuration for Virtual Machine (VM) Protection. Directly applicable to Azure VNet design and subnet segmentation patterns.</p>
+                </div>
+              </div>
+            </ArchitectNote>
+
+            <ArchitectNote title="Real-World Incidents — What Happens When This Fails">
+              <div className="space-y-3">
+                <div className="p-3 border border-gray-700/50 bg-gray-800/40">
+                  <p className="text-red-400 text-xs font-bold mb-1">Capital One Data Breach (2019) — 106 Million Records <a href="https://krebsonsecurity.com/2019/07/what-we-can-learn-from-the-capital-one-hack/" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
+                  <p className="text-gray-400 text-xs">A misconfigured WAF (AWS) allowed a Server-Side Request Forgery (SSRF) attack. The attacker used the WAF's IAM role to query the EC2 Instance Metadata Service (IMDS) and steal credentials. No network segmentation meant the WAF had direct access to S3 buckets containing customer data. <span className="text-gray-300">Lesson: block IMDS access from web-facing tiers via network controls; never give WAF roles access to data storage directly.</span></p>
+                </div>
+                <div className="p-3 border border-gray-700/50 bg-gray-800/40">
+                  <p className="text-red-400 text-xs font-bold mb-1">Microsoft Exchange ProxyLogon (2021) <a href="https://msrc.microsoft.com/blog/2021/03/multiple-security-updates-released-for-exchange-server/" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
+                  <p className="text-gray-400 text-xs">Four zero-day vulnerabilities in on-premises Exchange Server were exploited via ports 443 and 80 exposed directly to the internet. 250,000+ servers compromised globally within days of disclosure. <span className="text-gray-300">Lesson: management interfaces must never be internet-reachable. Azure Bastion and JIT VM Access solve this for cloud VMs — no management port should have a public inbound NSG rule.</span></p>
+                </div>
+                <div className="p-3 border border-gray-700/50 bg-gray-800/40">
+                  <p className="text-red-400 text-xs font-bold mb-1">Misconfigured Kubernetes Dashboard — Tesla (2018) <a href="https://www.wired.com/story/cryptojacking-tesla-amazon-cloud/" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
+                  <p className="text-gray-400 text-xs">Tesla's Kubernetes dashboard was exposed on the public internet with no authentication. Within minutes of discovery, attackers deployed a cryptominer, exfiltrated AWS credentials from environment variables, and accessed S3 buckets containing telemetry data. <span className="text-gray-300">Lesson: every management UI must be behind private networking + authenticated access. No public-facing admin panel is acceptable.</span></p>
+                </div>
+              </div>
+            </ArchitectNote>
+
           </PhaseStepItem>
         </div>
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">

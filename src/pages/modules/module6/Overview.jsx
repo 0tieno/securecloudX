@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import PhaseStepItem from "../../../components/PhaseStepItem";
+import ArchitectNote from "../../../components/ArchitectNote";
 
 const TOTAL = 7;
 const OBJECTIVES = [
@@ -15,7 +16,7 @@ const OBJECTIVES = [
 ];
 
 const Day6 = () => {
-  const [open, setOpen] = useState(() => new Set([0,1,2,3,4,5,6]));
+  const [open, setOpen] = useState(() => new Set([0,1,2,3,4,5,6,7]));
   const [checked, setChecked] = useState(new Set());
   const toggleOpen = (i) => setOpen(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
   const toggleChecked = (i) => setChecked(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
@@ -56,7 +57,7 @@ const Day6 = () => {
           </ul>
         </div>
         <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
-          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7]))} className="hover:text-gray-400 transition-colors">expand all</button>
           <span>|</span>
           <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
         </div>
@@ -201,6 +202,107 @@ const Day6 = () => {
               <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Document the incident following the NIST IR template</span></li>
             </ul>
             <div className="mt-3"><Link to="/module6/task" className="text-red-400 hover:text-red-300 transition-colors">→ ./start_lab.sh</Link></div>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={8} type="ARCHITECT" title="Cloud Architect's Perspective — Detection & Incident Response"
+            isOpen={open.has(7)} onToggleOpen={() => toggleOpen(7)}
+            isChecked={checked.has(7)} onToggleChecked={() => toggleChecked(7)}>
+
+            <ArchitectNote title="Core Design Principles">
+              <ul className="space-y-1.5">
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Assume breach — design for detection, not just prevention.</span> Every preventive control will eventually fail. Your architecture must answer: “When we are breached, how quickly will we know, and how will we respond?” If you can't answer that, your security posture is incomplete.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Every security control must generate a detection signal.</span> A Conditional Access policy that blocks legacy auth is useless if you don't know when it fires. Every control layer (IAM, network, data, app) must produce logs that feed into your SIEM with corresponding alert rules.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">SOAR playbooks reduce MTTR from hours to minutes.</span> Mean Time to Respond (MTTR) is the metric that determines breach impact. A Logic App playbook that automatically disables a compromised account, isolates a VM, and notifies the team takes 30 seconds. Manual response takes 4+ hours.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">MITRE ATT&amp;CK is the lingua franca between red and blue teams.</span> Map every detection rule to a MITRE technique. This makes threat hunting systematic, enables gap analysis (“which techniques do we have no coverage for?”), and makes purple team exercises meaningful.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Log retention must meet compliance and forensics requirements.</span> NIST recommends 1-year minimum log retention. PCI-DSS and HIPAA require 1 year active, 1 year archive. Azure Activity Logs default to 90 days — you must explicitly configure Log Analytics with longer retention.</span></li>
+              </ul>
+            </ArchitectNote>
+
+            <ArchitectNote title="STRIDE → Detection Use Case Mapping">
+              <p className="text-gray-400 text-xs mb-2">Every STRIDE threat category maps directly to a detection use case in Microsoft Sentinel:</p>
+              <div className="overflow-x-auto">
+                <table className="w-full text-xs font-mono border-collapse">
+                  <thead>
+                    <tr className="border-b border-indigo-800/50">
+                      <th className="text-left text-indigo-300 py-1 pr-4 font-semibold">STRIDE</th>
+                      <th className="text-left text-indigo-300 py-1 pr-4 font-semibold">Detection Pattern</th>
+                      <th className="text-left text-indigo-300 py-1 font-semibold">MITRE ATT&amp;CK Tactic</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-gray-400">
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-yellow-400 font-bold">Spoofing</td>
+                      <td className="py-1.5 pr-4">Sign-in from impossible travel, unknown device, brute-force pattern</td>
+                      <td className="py-1.5">TA0001 Initial Access, T1110 Brute Force</td>
+                    </tr>
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-orange-400 font-bold">Tampering</td>
+                      <td className="py-1.5 pr-4">File integrity changes, policy modification, resource configuration delta</td>
+                      <td className="py-1.5">TA0040 Impact, T1490 Inhibit System Recovery</td>
+                    </tr>
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-gray-400 font-bold">Repudiation</td>
+                      <td className="py-1.5 pr-4">Audit log deletion, diagnostic setting removal, log gap detection</td>
+                      <td className="py-1.5">TA0005 Defense Evasion, T1562 Impair Defenses</td>
+                    </tr>
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-blue-400 font-bold">Info Disclosure</td>
+                      <td className="py-1.5 pr-4">Large data download from storage, unusual graph API queries, data exfil volume spike</td>
+                      <td className="py-1.5">TA0010 Exfiltration, T1530 Data from Cloud Storage</td>
+                    </tr>
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-red-400 font-bold">Denial of Service</td>
+                      <td className="py-1.5 pr-4">Rate throttling triggered, DDoS Protection alerts, resource CPU/cost spikes</td>
+                      <td className="py-1.5">TA0040 Impact, T1499 Endpoint DoS</td>
+                    </tr>
+                    <tr>
+                      <td className="py-1.5 pr-4 text-red-400 font-bold">Elev. of Privilege</td>
+                      <td className="py-1.5 pr-4">New role assignment, PIM activation outside business hours, new GA account</td>
+                      <td className="py-1.5">TA0004 Privilege Escalation, T1078 Valid Accounts</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ArchitectNote>
+
+            <ArchitectNote title="Compliance Mapping">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">NIST SP 800-61 Rev 3</p>
+                  <p className="text-gray-400">Computer Security Incident Handling Guide. The four-phase IR lifecycle: Preparation → Detection &amp; Analysis → Containment/Eradication/Recovery → Post-Incident Activity. Sentinel's incident workflow directly maps to these phases.</p>
+                </div>
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">CSA CCM v4 — SEF Domain</p>
+                  <p className="text-gray-400">Security Incident Management, E-Discovery &amp; Cloud Forensics (SEF-01 through SEF-08). Incident classification, SLA for response, forensic readiness, and evidence preservation requirements.</p>
+                </div>
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">CIS Azure Benchmark v2.0</p>
+                  <p className="text-gray-400">Section 5 — Logging &amp; Monitoring (Controls 5.1–5.6). Diagnostic logging enabled, Activity Log alerts configured, log retention, and Microsoft Defender for Cloud alerting.</p>
+                </div>
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">ISO/IEC 27035</p>
+                  <p className="text-gray-400">Information Security Incident Management. Part 1 (principles), Part 2 (guidelines). Defines the organisational and process requirements for security incident management that Sentinel operationalises.</p>
+                </div>
+              </div>
+            </ArchitectNote>
+
+            <ArchitectNote title="Real-World Incidents — What Happens When This Fails">
+              <div className="space-y-3">
+                <div className="p-3 border border-gray-700/50 bg-gray-800/40">
+                  <p className="text-red-400 text-xs font-bold mb-1">Target Corporation — 40 Million Cards Stolen (2013) <a href="https://krebsonsecurity.com/2014/05/the-target-breach-by-the-numbers/" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
+                  <p className="text-gray-400 text-xs">Target's security tools (FireEye) detected the Citadel malware on Nov 30, 2013 and sent six high-priority alerts. The security operations team in Bangalore reviewed and dismissed every alert. The breach wasn't stopped until the US DOJ notified Target on December 12. 40 million credit/debit card numbers were exfiltrated. <span className="text-gray-300">Lesson: technology alone doesn't stop breaches — process does. An alert without a response SLA and an on-call escalation path is noise, not defence. Automated SOAR playbooks would have contained this without human hesitation.</span></p>
+                </div>
+                <div className="p-3 border border-gray-700/50 bg-gray-800/40">
+                  <p className="text-red-400 text-xs font-bold mb-1">Equifax — 147 Million Records, 78 Days Undetected (2017) <a href="https://www.ftc.gov/enforcement/refunds/equifax-data-breach-settlement" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
+                  <p className="text-gray-400 text-xs">Attackers exploited Apache Struts CVE-2017-5638 on May 12, 2017. The breach wasn't discovered until July 29 — 78 days later. The primary reason for late detection: an expired SSL certificate on a network inspection device had disabled traffic inspection for 19 months. <span className="text-gray-300">Lesson: your detection tooling must itself be monitored. Certificate expiry on security appliances is a known blind spot. Automated certificate monitoring and health checks on SIEM connectors are mandatory.</span></p>
+                </div>
+                <div className="p-3 border border-gray-700/50 bg-gray-800/40">
+                  <p className="text-red-400 text-xs font-bold mb-1">SolarWinds Orion — 9 Months Undetected (2020) <a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa20-352a" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
+                  <p className="text-gray-400 text-xs">The SUNBURST backdoor was active from approximately March 2020. FireEye discovered anomalous activity in their own environment on December 8, 2020 — nine months after initial compromise. The attackers used living-off-the-land techniques and blended with legitimate traffic to evade detection. <span className="text-gray-300">Lesson: signature-based detection misses novel techniques. Behavioural analytics (UEBA in Sentinel) detects anomalies in user and entity behaviour patterns, catching attackers who blend with normal traffic.</span></p>
+                </div>
+              </div>
+            </ArchitectNote>
+
           </PhaseStepItem>
         </div>
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">

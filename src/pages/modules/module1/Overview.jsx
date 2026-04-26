@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import AutoMarkOverview from "../../../components/AutoMarkOverview";
 import PhaseStepItem from "../../../components/PhaseStepItem";
+import ArchitectNote from "../../../components/ArchitectNote";
 
 const TOTAL = 7;
 const OBJECTIVES = [
@@ -15,7 +16,7 @@ const OBJECTIVES = [
 ];
 
 const Day1 = () => {
-  const [open, setOpen] = useState(() => new Set([0,1,2,3,4,5,6]));
+  const [open, setOpen] = useState(() => new Set([0,1,2,3,4,5,6,7]));
   const [checked, setChecked] = useState(new Set());
   const toggleOpen = (i) => setOpen(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
   const toggleChecked = (i) => setChecked(p => { const s = new Set(p); s.has(i) ? s.delete(i) : s.add(i); return s; });
@@ -56,7 +57,7 @@ const Day1 = () => {
           </ul>
         </div>
         <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
-          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7]))} className="hover:text-gray-400 transition-colors">expand all</button>
           <span>|</span>
           <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
         </div>
@@ -219,6 +220,96 @@ const Day1 = () => {
               <li className="flex items-start gap-2"><span className="text-red-400 flex-shrink-0">$</span><span>Review sign-in logs to verify your controls are working</span></li>
             </ul>
             <div className="mt-3"><Link to="/module1/task" className="text-red-400 hover:text-red-300 transition-colors">→ ./start_lab.sh</Link></div>
+          </PhaseStepItem>
+
+          <PhaseStepItem number={8} type="ARCHITECT" title="Cloud Architect's Perspective — IAM & Zero Trust"
+            isOpen={open.has(7)} onToggleOpen={() => toggleOpen(7)}
+            isChecked={checked.has(7)} onToggleChecked={() => toggleChecked(7)}>
+
+            <ArchitectNote title="Core Design Principles">
+              <ul className="space-y-1.5">
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Identity IS the perimeter.</span> In cloud, there is no network boundary you can trust. Every access decision flows through identity — design IAM as your first and last line of defence.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Managed Identities &gt; Service Principals with secrets.</span> A managed identity has no credential to steal. A service principal with a client secret stored in a config file is a breach waiting to happen.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">No permanent Global Administrator.</span> Standing privileged access is the highest-value target in any Azure tenant. PIM + Conditional Access enforces just-in-time (JIT) admin access — the role only exists when activated.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Break-glass accounts are non-negotiable.</span> Two emergency access accounts, excluded from all Conditional Access, with credentials stored offline. Without these, a misconfigured MFA policy locks you out of your own tenant.</span></li>
+                <li className="flex items-start gap-2"><span className="text-indigo-400 flex-shrink-0">▸</span><span><span className="text-gray-200">Assign RBAC at the narrowest scope.</span> Subscription-level Owner is almost never the right answer. Resource group or resource scope limits blast radius when credentials are compromised.</span></li>
+              </ul>
+            </ArchitectNote>
+
+            <ArchitectNote title="STRIDE Threat Model — Identity Layer">
+              <div className="overflow-x-auto">
+                <table className="w-full text-xs font-mono border-collapse">
+                  <thead>
+                    <tr className="border-b border-indigo-800/50">
+                      <th className="text-left text-indigo-300 py-1 pr-4 font-semibold">Threat</th>
+                      <th className="text-left text-indigo-300 py-1 pr-4 font-semibold">Attack Vector</th>
+                      <th className="text-left text-indigo-300 py-1 font-semibold">Mitigation</th>
+                    </tr>
+                  </thead>
+                  <tbody className="text-gray-400 space-y-1">
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-yellow-400 font-bold">Spoofing</td>
+                      <td className="py-1.5 pr-4">Token theft, pass-the-hash, OAuth token replay</td>
+                      <td className="py-1.5">CAE (Continuous Access Evaluation), short token lifetimes, device compliance</td>
+                    </tr>
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-red-400 font-bold">Elevation of Privilege</td>
+                      <td className="py-1.5 pr-4">RBAC scope too broad, permanent GA assignment, role assignment abuse</td>
+                      <td className="py-1.5">PIM, least-privilege scoping, RBAC access reviews</td>
+                    </tr>
+                    <tr className="border-b border-gray-700/30">
+                      <td className="py-1.5 pr-4 text-blue-400 font-bold">Information Disclosure</td>
+                      <td className="py-1.5 pr-4">Over-permissioned service principal reading Key Vault secrets it shouldn't</td>
+                      <td className="py-1.5">Managed identities, Key Vault access policies scoped per workload</td>
+                    </tr>
+                    <tr>
+                      <td className="py-1.5 pr-4 text-orange-400 font-bold">Repudiation</td>
+                      <td className="py-1.5 pr-4">Admin actions with no audit trail, sign-in logs disabled</td>
+                      <td className="py-1.5">Entra ID audit logs → Log Analytics, 90-day minimum retention</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </ArchitectNote>
+
+            <ArchitectNote title="Compliance Mapping">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">CIS Azure Benchmark v2.0</p>
+                  <p className="text-gray-400">Section 1 — Identity & Access Management (Controls 1.1–1.22). Covers MFA enforcement, guest user limits, custom roles, key rotation, and privileged account restrictions.</p>
+                </div>
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">NIST SP 800-63 Rev 4</p>
+                  <p className="text-gray-400">Digital Identity Guidelines. AAL2 (Authenticator Assurance Level 2) requires MFA for federal systems — the same standard enterprise Zero Trust is modelled on.</p>
+                </div>
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">CSA CCM v4 — IAM Domain</p>
+                  <p className="text-gray-400">IAM-01 through IAM-13. Covers credential management, access reviews, privileged access, and identity lifecycle (joiner/mover/leaver).</p>
+                </div>
+                <div className="p-2 border border-indigo-800/40 bg-indigo-900/20">
+                  <p className="text-indigo-300 font-semibold mb-1">AZ-500 / MS-500</p>
+                  <p className="text-gray-400">Manage Identity &amp; Access = 25–30% of the AZ-500 exam. Conditional Access, PIM, Identity Protection, and RBAC are all exam-critical and directly map to this module.</p>
+                </div>
+              </div>
+            </ArchitectNote>
+
+            <ArchitectNote title="Real-World Incidents — What Happens When This Fails">
+              <div className="space-y-3">
+                <div className="p-3 border border-gray-700/50 bg-gray-800/40">
+                  <p className="text-red-400 text-xs font-bold mb-1">Storm-0558 — Microsoft (2023) <a href="https://msrc.microsoft.com/blog/2023/07/microsoft-mitigates-china-based-threat-actor-storm-0558-targeting-of-customer-email/" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
+                  <p className="text-gray-400 text-xs">Chinese threat actor forged Azure AD authentication tokens using a stolen MSA signing key. Result: full mailbox read access to ~25 organisations including US government agencies. Root cause: signing key material accessible outside its security boundary, no anomaly detection on token claims. <span className="text-gray-300">Lesson: token validation must verify issuer, audience, and key provenance — not just signature.</span></p>
+                </div>
+                <div className="p-3 border border-gray-700/50 bg-gray-800/40">
+                  <p className="text-red-400 text-xs font-bold mb-1">Uber MFA Fatigue Attack (2022) <a href="https://www.uber.com/newsroom/security-update/" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
+                  <p className="text-gray-400 text-xs">Attacker purchased Uber employee credentials from the dark web, then bombarded them with MFA push notifications until the employee accepted to stop the noise. Attacker then reached Okta admin panel and AWS console. <span className="text-gray-300">Lesson: number-matching MFA (FIDO2/passkeys) eliminates push-fatigue attacks entirely — this is now mandatory in the Microsoft Entra ID Conditional Access template library.</span></p>
+                </div>
+                <div className="p-3 border border-gray-700/50 bg-gray-800/40">
+                  <p className="text-red-400 text-xs font-bold mb-1">SolarWinds — OAuth Lateral Movement (2020) <a href="https://www.cisa.gov/news-events/cybersecurity-advisories/aa21-008a" target="_blank" rel="noopener noreferrer" className="ml-1 text-indigo-400 hover:text-indigo-300 font-normal">↗ source</a></p>
+                  <p className="text-gray-400 text-xs">After initial access via the Orion backdoor, attackers pivoted to Azure AD by forging SAML tokens (Golden SAML attack) and using OAuth tokens to access cloud resources without triggering MFA. Persisted for 9 months undetected. <span className="text-gray-300">Lesson: privileged service accounts in hybrid environments are a critical attack path — on-prem identity compromise should trigger cloud credential revocation.</span></p>
+                </div>
+              </div>
+            </ArchitectNote>
+
           </PhaseStepItem>
         </div>
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">
