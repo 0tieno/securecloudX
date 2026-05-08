@@ -45,17 +45,11 @@ export default function LandingHeader() {
   return (
     <div className="flex flex-col items-center mb-16 text-center font-mono">
       {/* Terminal-style logo section */}
-      <div className="mb-8 relative">
-        <div className=" p-6">
-          <div className="flex items-center justify-center mb-4">
-            <div className="flex items-center space-x-2 text-gray-400 text-sm mb-2">
-              <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-              <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-              <span className="ml-4">root@securecloudX:~$</span>
-            </div>
-          </div>
-        </div>
+      <div className="flex items-center space-x-2 text-gray-400 text-sm mb-8">
+        <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+        <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+        <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+        <span className="ml-4">root@securecloudX:~$</span>
       </div>
 
       {/* Main heading with security styling */}
