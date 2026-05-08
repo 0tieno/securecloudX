@@ -119,7 +119,7 @@ export default function LandingHeader() {
       </div>
 
       {/* Social Links */}
-      <div className="flex items-center gap-6 mt-4">
+      {/* <div className="flex items-center gap-6 mt-4">
         <a
           href="http://github.com/securecloudx"
           target="_blank"
@@ -152,7 +152,7 @@ export default function LandingHeader() {
           </svg>
           <span className="group-hover:underline">@securecloudX</span>
         </a>
-      </div>
+      </div> */}
     </div>
   );
 }
