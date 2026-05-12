@@ -1,5 +1,9 @@
 export const changelog = [
     {
+        date: "12 May, 2026",
+        desc: "Launched automated weekly email digest — every Tuesday at 3pm EAT, subscribed users receive a personalised progress summary, their next module CTA, a featured blog post, and a statement of the week. Includes one-click unsubscribe and Gmail/Yahoo bulk-sender compliance headers.",
+    },
+    {
         date: "26 Apr, 2026",
         desc: "Launched Module 9: Kubernetes & AKS Security — 9-step overview covering K8s primer, AKS security planes, RBAC, Network Policies, Pod Security Admission, Runtime Security (Falco), Image Supply Chain, and a cryptominer scenario. Full AKS hardening lab included.",
     },
