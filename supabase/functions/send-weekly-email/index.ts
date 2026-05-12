@@ -230,6 +230,15 @@ Deno.serve(async (req) => {
     const serviceRoleKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY")!;
     const resendApiKey = Deno.env.get("RESEND_API_KEY")!;
 
+    // ── Test mode — send a preview to a single address, skip all subscribers ─
+    let testEmail: string | null = null;
+    try {
+        const body = await req.json();
+        if (typeof body?.test_email === "string" && body.test_email.includes("@")) {
+            testEmail = body.test_email;
+        }
+    } catch { /* no body is fine */ }
+
     const supabase = createClient(supabaseUrl, serviceRoleKey);
 
     // ── 1. Load this week's curated content ─────────────────────────────────
@@ -262,7 +271,55 @@ Deno.serve(async (req) => {
         // Non-fatal — email still sends without blog section
     }
 
-    // ── 3. Load all subscribed users with their email ────────────────────────
+    // ── 3. Test mode — send preview to a single address and return early ─────
+    if (testEmail) {
+        const html = buildEmailHtml({
+            name: "Test User",
+            completedCount: 3,
+            totalCount: CORE_MODULES.length,
+            nextModule: CORE_MODULES[3],
+            blog: featuredBlog,
+            quote,
+            quoteAuthor,
+            unsubscribeUrl: `${SITE_URL}/unsubscribe?token=test-token`,
+            showCertReminder: false,
+        });
+
+        try {
+            const res = await fetch(RESEND_API_URL, {
+                method: "POST",
+                headers: {
+                    "Authorization": `Bearer ${resendApiKey}`,
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    from: FROM_EMAIL,
+                    to: [testEmail],
+                    subject: `[TEST] Your week in cloud security — 3/${CORE_MODULES.length} modules done`,
+                    html,
+                }),
+            });
+            if (!res.ok) {
+                const text = await res.text();
+                return new Response(JSON.stringify({ test: true, status: "failed", error: text }), {
+                    status: 500,
+                    headers: { "Content-Type": "application/json" },
+                });
+            }
+        } catch (err) {
+            return new Response(JSON.stringify({ test: true, status: "failed", error: String(err) }), {
+                status: 500,
+                headers: { "Content-Type": "application/json" },
+            });
+        }
+
+        return new Response(JSON.stringify({ test: true, status: "sent", to: testEmail }), {
+            status: 200,
+            headers: { "Content-Type": "application/json" },
+        });
+    }
+
+    // ── 5. Load all subscribed users with their email ────────────────────────
     const { data: prefs, error: prefsErr } = await supabase
         .from("email_preferences")
         .select("user_id, unsubscribe_token")
@@ -293,7 +350,7 @@ Deno.serve(async (req) => {
             continue;
         }
 
-        // ── 4. Compute progress for this user ───────────────────────────────
+        // ── 6. Compute progress for this user ───────────────────────────────
         const { data: progressRows } = await supabase
             .from("user_progress")
             .select("phase_id, completed")
@@ -305,7 +362,7 @@ Deno.serve(async (req) => {
         const nextModule = CORE_MODULES.find((m) => !completedPhaseIds.has(m.id)) ?? null;
         const showCertReminder = completedCount >= 5 && completedCount < CORE_MODULES.length;
 
-        // ── 5. Build & send email ────────────────────────────────────────────
+        // ── 7. Build & send email ────────────────────────────────────────────
         const unsubscribeUrl = `${SITE_URL}/unsubscribe?token=${unsubscribe_token}`;
         const html = buildEmailHtml({
             name,
