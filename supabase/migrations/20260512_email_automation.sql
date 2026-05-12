@@ -79,7 +79,7 @@ create policy "Users can read own email log"
 -- Schedule (uncomment after enabling extensions):
 -- select cron.schedule(
 --   'weekly-email-digest',
---   '0 8 * * 1',   -- every Monday 08:00 UTC
+--   '0 12 * * 2',  -- every Tuesday 12:00 UTC (3:00 PM EAT)
 --   $$
 --     select net.http_post(
 --       url     => 'https://<PROJECT_REF>.supabase.co/functions/v1/send-weekly-email',
