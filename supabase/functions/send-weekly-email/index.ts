@@ -433,6 +433,10 @@ Deno.serve(async (req) => {
         });
 
         results.push({ userId: user_id, status });
+
+        // Throttle — 500ms between sends to avoid triggering spam filters
+        // on burst sending from a new domain
+        await new Promise((resolve) => setTimeout(resolve, 500));
     }
 
     const sent = results.filter((r) => r.status === "sent").length;
