@@ -1,7 +1,7 @@
 export const changelog = [
     {
         date: "12 May, 2026",
-        desc: "- Automated weekly email digest sent every Tuesday at 3pm EAT (12:00 UTC) to all subscribed users\n - Emails include personalised progress summary, next module CTA, featured blog post, and a statement of the week",
+        desc: "Launched automated weekly email digest — every Tuesday at 3pm EAT, subscribed users receive a personalised progress summary, their next module CTA, a featured blog post, and a statement of the week. Includes one-click unsubscribe and Gmail/Yahoo bulk-sender compliance headers.",
     },
     {
         date: "26 Apr, 2026",
