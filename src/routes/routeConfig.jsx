@@ -46,6 +46,7 @@ import ModuleTask6 from "../pages/modules/module6/Task";
 import ModuleTask7 from "../pages/modules/module7/Task";
 import ModuleTask8 from "../pages/modules/module8/Task";
 import TermsOfService from "../pages/TermsOfService";
+import UnsubscribePage from "../pages/UnsubscribePage";
 import VerifyCertificate from "../pages/VerifyCertificate";
 import Work from "../pages/Work";
 
@@ -68,6 +69,7 @@ export const standaloneRoutes = [
   { path: "/pentesting-labs", Component: PentestingLabs },
   { path: "/auth/callback", Component: AuthCallback },
   { path: "/verify/:certId", Component: VerifyCertificate },
+  { path: "/unsubscribe", Component: UnsubscribePage },
 ];
 
 export const shellRoutes = [
