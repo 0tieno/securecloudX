@@ -104,7 +104,7 @@ select cron.schedule(
   '0 12 * * 2',   -- every Tuesday 12:00 UTC = 3pm EAT
   $$
     select net.http_post(
-      url     => 'https://fudtismhzeqyisalxsga.supabase.co/functions/v1/send-weekly-email',
+      url     => 'https://<PROJECT_REF>.supabase.co/functions/v1/send-weekly-email',
       headers => '{"Authorization": "Bearer <SERVICE_ROLE_KEY>", "Content-Type": "application/json"}'::jsonb,
       body    => '{}'::jsonb
     );
@@ -151,8 +151,8 @@ If you forget, the fallback quote + blog fires automatically — no emails are s
 ## Deploying changes
 
 ```bash
-npx supabase functions deploy send-weekly-email --project-ref fudtismhzeqyisalxsga
-npx supabase functions deploy unsubscribe --project-ref fudtismhzeqyisalxsga
+npx supabase functions deploy send-weekly-email
+npx supabase functions deploy unsubscribe
 ```
 
 ## Backfilling existing users
