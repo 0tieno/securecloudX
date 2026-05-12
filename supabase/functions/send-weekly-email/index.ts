@@ -129,7 +129,7 @@ function buildEmailHtml(opts: {
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>We've missed you — SecureCloudX</title>
+  <title>Your weekly update — SecureCloudX</title>
 </head>
 <body style="margin:0;padding:0;background:#f3f4f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;">
 <table width="100%" cellpadding="0" cellspacing="0" style="background:#f3f4f6;padding:48px 0 64px;">
@@ -163,10 +163,10 @@ function buildEmailHtml(opts: {
               <tr>
                 <td style="padding:40px 48px 32px;">
                   <p style="margin:0 0 10px;font-size:22px;font-weight:800;color:#111827;line-height:1.3;">
-                    We've missed you, ${firstName}.
+                    Your cloud security update, ${firstName}.
                   </p>
                   <p style="margin:0;font-size:15px;color:#6b7280;line-height:1.7;">
-                    It's been a minute. Here's where you stand on your cloud security journey — and what's waiting for you next.
+                    Here's where you stand on your learning path — and what's waiting for you next.
                   </p>
                 </td>
               </tr>
@@ -310,8 +310,12 @@ Deno.serve(async (req) => {
                 body: JSON.stringify({
                     from: FROM_EMAIL,
                     to: [testEmail],
-                    subject: `[TEST] We've missed you — your cloud security update`,
+                    subject: `[TEST] Your weekly cloud security update`,
                     html,
+                    headers: {
+                        "List-Unsubscribe": `<${SITE_URL}/unsubscribe?token=test-token>`,
+                        "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
+                    },
                 }),
             });
             if (!res.ok) {
@@ -404,8 +408,12 @@ Deno.serve(async (req) => {
                 body: JSON.stringify({
                     from: FROM_EMAIL,
                     to: [email],
-                    subject: `We've missed you, ${name.split(" ")[0]} — your cloud security update`,
+                    subject: `Your weekly cloud security update, ${name.split(" ")[0]}`,
                     html,
+                    headers: {
+                        "List-Unsubscribe": `<${SITE_URL}/unsubscribe?token=${unsubscribe_token}>`,
+                        "List-Unsubscribe-Post": "List-Unsubscribe=One-Click",
+                    },
                 }),
             });
 
