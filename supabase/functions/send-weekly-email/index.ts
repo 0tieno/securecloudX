@@ -59,163 +59,178 @@ function buildEmailHtml(opts: {
     } = opts;
 
     const progressPct = Math.round((completedCount / totalCount) * 100);
-    const safeName = escapeHtml(name);
+    const firstName = escapeHtml(name.split(" ")[0]);
+    const remaining = totalCount - completedCount;
 
+    // Progress bar (table-based for broad email client compatibility)
     const progressBar = `
-    <div style="background:#1e293b;border-radius:8px;overflow:hidden;height:10px;margin:8px 0 4px;">
-      <div style="background:#38bdf8;width:${progressPct}%;height:100%;border-radius:8px;"></div>
-    </div>
-    <p style="margin:0;font-size:13px;color:#94a3b8;">${completedCount} of ${totalCount} core modules complete (${progressPct}%)</p>
-  `;
+      <p style="margin:0 0 10px;font-size:28px;line-height:1.2;font-weight:700;color:#111827;">${completedCount}<span style="font-size:16px;font-weight:500;color:#6b7280;">/${totalCount}</span></p>
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" style="border-collapse:collapse;margin:0 0 8px;">
+        <tr>
+          <td width="${progressPct}%" style="height:4px;background:#111827;font-size:0;line-height:0;">&nbsp;</td>
+          <td width="${100 - progressPct}%" style="height:4px;background:#e5e7eb;font-size:0;line-height:0;">&nbsp;</td>
+        </tr>
+      </table>
+      <p style="margin:0;font-size:13px;color:#9ca3af;">${progressPct}% complete</p>`;
 
-    const nextStepSection = nextModule
+    // Next step block
+    const nextStepBlock = nextModule
         ? `
-    <tr>
-      <td style="padding:24px 32px;">
-        <h2 style="margin:0 0 8px;font-size:16px;font-weight:600;color:#38bdf8;text-transform:uppercase;letter-spacing:0.05em;">
-          ▶ Next Up
-        </h2>
-        <p style="margin:0 0 16px;font-size:15px;color:#e2e8f0;"><strong>${escapeHtml(nextModule.title)}</strong></p>
-        <a href="${SITE_URL}${nextModule.path}"
-           style="display:inline-block;background:#38bdf8;color:#0f172a;padding:10px 24px;border-radius:6px;text-decoration:none;font-weight:700;font-size:14px;">
-          Continue Learning →
-        </a>
-      </td>
-    </tr>`
+      <p style="margin:0 0 4px;font-size:13px;font-weight:600;color:#6b7280;letter-spacing:0.05em;text-transform:uppercase;">Up next</p>
+      <p style="margin:0 0 18px;font-size:17px;font-weight:700;color:#111827;">${escapeHtml(nextModule.title)}</p>
+      <a href="${SITE_URL}${nextModule.path}"
+         style="display:inline-block;background:#111827;color:#ffffff;padding:11px 26px;border-radius:6px;text-decoration:none;font-size:14px;font-weight:600;letter-spacing:0.01em;">
+        Continue learning →
+      </a>`
         : `
-    <tr>
-      <td style="padding:24px 32px;">
-        <h2 style="margin:0 0 8px;font-size:16px;font-weight:600;color:#38bdf8;text-transform:uppercase;letter-spacing:0.05em;">
-          ✓ Core Path Complete
-        </h2>
-        <p style="margin:0;font-size:15px;color:#e2e8f0;">
-          You've completed all 7 core modules. Explore the Advanced path or claim your certificate!
-        </p>
-      </td>
-    </tr>`;
+      <p style="margin:0 0 4px;font-size:13px;font-weight:600;color:#6b7280;letter-spacing:0.05em;text-transform:uppercase;">Core path</p>
+      <p style="margin:0 0 18px;font-size:17px;font-weight:700;color:#111827;">You've finished all 7 modules.</p>
+      <a href="${SITE_URL}/certificate"
+         style="display:inline-block;background:#111827;color:#ffffff;padding:11px 26px;border-radius:6px;text-decoration:none;font-size:14px;font-weight:600;">
+        Claim your certificate →
+      </a>`;
 
-    const blogSection = blog
-        ? `
-    <tr>
-      <td style="padding:0 32px 24px;">
-        <div style="border-top:1px solid #1e293b;padding-top:24px;">
-          <h2 style="margin:0 0 8px;font-size:16px;font-weight:600;color:#38bdf8;text-transform:uppercase;letter-spacing:0.05em;">
-            📖 Featured Post This Week
-          </h2>
-          <p style="margin:0 0 4px;font-size:15px;font-weight:700;color:#f1f5f9;">${escapeHtml(blog.title)}</p>
-          <p style="margin:0 0 12px;font-size:14px;color:#94a3b8;">${escapeHtml(blog.excerpt)}</p>
-          <a href="${SITE_URL}/posts/${escapeHtml(blog.slug)}"
-             style="font-size:14px;color:#38bdf8;text-decoration:none;">
-            Read the post →
-          </a>
-        </div>
-      </td>
-    </tr>`
-        : "";
+    // Blog block (optional)
+    const blogBlock = blog ? `
+        <!-- Divider -->
+        <tr><td style="padding:0 48px;"><div style="border-top:1px solid #f3f4f6;"></div></td></tr>
 
-    const certReminderSection = showCertReminder
-        ? `
-    <tr>
-      <td style="padding:0 32px 24px;">
-        <div style="border-top:1px solid #1e293b;padding-top:24px;background:#0c2240;border-radius:8px;padding:20px 24px;">
-          <h2 style="margin:0 0 6px;font-size:16px;font-weight:600;color:#facc15;">
-            🏆 You're Almost There!
-          </h2>
-          <p style="margin:0 0 12px;font-size:14px;color:#cbd5e1;">
-            You've completed ${completedCount} of 7 core modules. Finish the remaining ${totalCount - completedCount} and claim your SecureCloudX Cloud Security Engineering Certificate.
-          </p>
-          <a href="${SITE_URL}/certificate"
-             style="display:inline-block;background:#facc15;color:#0f172a;padding:10px 24px;border-radius:6px;text-decoration:none;font-weight:700;font-size:14px;">
-            View Certificate →
-          </a>
-        </div>
-      </td>
-    </tr>`
-        : "";
+        <!-- This week's read -->
+        <tr>
+          <td style="padding:32px 48px;">
+            <p style="margin:0 0 4px;font-size:13px;font-weight:600;color:#6b7280;letter-spacing:0.05em;text-transform:uppercase;">Worth reading this week</p>
+            <p style="margin:0 0 6px;font-size:16px;font-weight:700;color:#111827;">${escapeHtml(blog.title)}</p>
+            <p style="margin:0 0 14px;font-size:14px;color:#6b7280;line-height:1.65;">${escapeHtml(blog.excerpt)}</p>
+            <a href="${SITE_URL}/posts/${escapeHtml(blog.slug)}"
+               style="font-size:14px;color:#111827;text-decoration:underline;font-weight:600;">Read article →</a>
+          </td>
+        </tr>` : "";
+
+    // Certificate reminder (subtle, warm amber)
+    const certBlock = showCertReminder ? `
+        <!-- Divider -->
+        <tr><td style="padding:0 48px;"><div style="border-top:1px solid #f3f4f6;"></div></td></tr>
+
+        <tr>
+          <td style="padding:28px 48px;">
+            <div style="background:#fffbeb;border-radius:8px;padding:20px 24px;">
+              <p style="margin:0 0 6px;font-size:14px;font-weight:700;color:#92400e;">You're ${remaining} module${remaining === 1 ? "" : "s"} away from your certificate.</p>
+              <p style="margin:0 0 14px;font-size:14px;color:#78350f;line-height:1.6;">
+                Keep going. The Cloud Security Engineering Certificate is yours to earn.
+              </p>
+              <a href="${SITE_URL}/certificate"
+                 style="font-size:14px;color:#b45309;text-decoration:none;font-weight:600;">See certificate →</a>
+            </div>
+          </td>
+        </tr>` : "";
 
     return `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Your Weekly Progress — SecureCloudX</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>We've missed you — SecureCloudX</title>
 </head>
-<body style="margin:0;padding:0;background:#0a0a0f;font-family:'Segoe UI',Helvetica,Arial,sans-serif;">
-  <table width="100%" cellpadding="0" cellspacing="0" style="background:#0a0a0f;padding:32px 0;">
-    <tr>
-      <td align="center">
-        <table width="600" cellpadding="0" cellspacing="0" style="max-width:600px;width:100%;background:#0f172a;border-radius:12px;overflow:hidden;border:1px solid #1e293b;">
+<body style="margin:0;padding:0;background:#f3f4f6;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased;">
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#f3f4f6;padding:48px 0 64px;">
+  <tr>
+    <td align="center">
+      <table width="560" cellpadding="0" cellspacing="0" style="max-width:560px;width:100%;">
 
-          <!-- Header -->
-          <tr>
-            <td style="background:linear-gradient(135deg,#0f172a 0%,#0c2240 100%);padding:32px 32px 24px;border-bottom:2px solid #38bdf8;">
-              <p style="margin:0 0 4px;font-size:12px;font-weight:700;color:#38bdf8;letter-spacing:0.12em;text-transform:uppercase;">SecureCloudX</p>
-              <h1 style="margin:0;font-size:22px;font-weight:700;color:#f1f5f9;">Your Weekly Progress Update</h1>
-              <p style="margin:6px 0 0;font-size:14px;color:#94a3b8;">Hey ${safeName}, here's where you stand this week.</p>
-            </td>
-          </tr>
+        <!-- Brand bar -->
+        <tr>
+          <td style="padding:0 0 20px;">
+            <table cellpadding="0" cellspacing="0">
+              <tr>
+                <td>
+                  <p style="margin:0;font-size:15px;font-weight:800;color:#111827;letter-spacing:-0.01em;">SecureCloudX</p>
+                  <p style="margin:2px 0 0;font-size:11px;color:#9ca3af;letter-spacing:0.04em;text-transform:uppercase;font-weight:500;">Master cloud security. Build secure systems.</p>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
 
-          <!-- Progress -->
-          <tr>
-            <td style="padding:24px 32px 8px;">
-              <h2 style="margin:0 0 12px;font-size:16px;font-weight:600;color:#38bdf8;text-transform:uppercase;letter-spacing:0.05em;">
-                📊 Your Progress
-              </h2>
-              ${progressBar}
-            </td>
-          </tr>
+        <!-- Main card -->
+        <tr>
+          <td style="background:#ffffff;border-radius:10px;border:1px solid #e5e7eb;overflow:hidden;">
+            <table width="100%" cellpadding="0" cellspacing="0">
 
-          <!-- Next Step -->
-          ${nextStepSection}
+              <!-- Top accent line -->
+              <tr><td style="background:#111827;height:3px;font-size:0;line-height:0;">&nbsp;</td></tr>
 
-          <!-- Featured Blog -->
-          ${blogSection}
+              <!-- Greeting -->
+              <tr>
+                <td style="padding:40px 48px 32px;">
+                  <p style="margin:0 0 10px;font-size:22px;font-weight:800;color:#111827;line-height:1.3;">
+                    We've missed you, ${firstName}.
+                  </p>
+                  <p style="margin:0;font-size:15px;color:#6b7280;line-height:1.7;">
+                    It's been a minute. Here's where you stand on your cloud security journey — and what's waiting for you next.
+                  </p>
+                </td>
+              </tr>
 
-          <!-- Certificate Reminder -->
-          ${certReminderSection}
+              <!-- Divider -->
+              <tr><td style="padding:0 48px;"><div style="border-top:1px solid #f3f4f6;"></div></td></tr>
 
-          <!-- Quote of the Week -->
-          <tr>
-            <td style="padding:0 32px 24px;">
-              <div style="border-top:1px solid #1e293b;padding-top:24px;">
-                <h2 style="margin:0 0 12px;font-size:16px;font-weight:600;color:#38bdf8;text-transform:uppercase;letter-spacing:0.05em;">
-                  💡 Statement of the Week
-                </h2>
-                <blockquote style="margin:0;border-left:3px solid #38bdf8;padding:12px 16px;background:#0f2035;border-radius:0 6px 6px 0;">
-                  <p style="margin:0 0 8px;font-size:16px;color:#f1f5f9;font-style:italic;line-height:1.6;">"${escapeHtml(quote)}"</p>
-                  <cite style="font-size:13px;color:#64748b;font-style:normal;">— ${escapeHtml(quoteAuthor)}</cite>
-                </blockquote>
-              </div>
-            </td>
-          </tr>
+              <!-- Progress -->
+              <tr>
+                <td style="padding:32px 48px;">
+                  <p style="margin:0 0 4px;font-size:13px;font-weight:600;color:#6b7280;letter-spacing:0.05em;text-transform:uppercase;">Your progress</p>
+                  ${progressBar}
+                </td>
+              </tr>
 
-          <!-- CTA row -->
-          <tr>
-            <td style="padding:0 32px 32px;">
-              <a href="${SITE_URL}/home"
-                 style="display:inline-block;background:#0f172a;color:#38bdf8;border:1px solid #38bdf8;padding:10px 24px;border-radius:6px;text-decoration:none;font-size:14px;font-weight:600;">
-                Go to Dashboard →
-              </a>
-            </td>
-          </tr>
+              <!-- Divider -->
+              <tr><td style="padding:0 48px;"><div style="border-top:1px solid #f3f4f6;"></div></td></tr>
 
-          <!-- Footer -->
-          <tr>
-            <td style="background:#070b14;padding:20px 32px;border-top:1px solid #1e293b;">
-              <p style="margin:0 0 6px;font-size:12px;color:#475569;">
-                You're receiving this because you signed up at
-                <a href="${SITE_URL}" style="color:#38bdf8;text-decoration:none;">securecloudx.xyz</a>.
-              </p>
-              <p style="margin:0;font-size:12px;color:#475569;">
-                <a href="${unsubscribeUrl}" style="color:#64748b;text-decoration:underline;">Unsubscribe from weekly emails</a>
-              </p>
-            </td>
-          </tr>
+              <!-- Next step -->
+              <tr>
+                <td style="padding:32px 48px;">
+                  ${nextStepBlock}
+                </td>
+              </tr>
 
-        </table>
-      </td>
-    </tr>
-  </table>
+              ${blogBlock}
+
+              ${certBlock}
+
+              <!-- Divider -->
+              <tr><td style="padding:0 48px;"><div style="border-top:1px solid #f3f4f6;"></div></td></tr>
+
+              <!-- Statement of the week -->
+              <tr>
+                <td style="padding:32px 48px 40px;">
+                  <p style="margin:0 0 16px;font-size:13px;font-weight:600;color:#6b7280;letter-spacing:0.05em;text-transform:uppercase;">Statement of the week</p>
+                  <blockquote style="margin:0;padding-left:18px;border-left:3px solid #111827;">
+                    <p style="margin:0 0 10px;font-size:16px;color:#1f2937;font-style:italic;line-height:1.75;font-weight:500;">"${escapeHtml(quote)}"</p>
+                    <cite style="font-size:13px;color:#9ca3af;font-style:normal;font-weight:500;">— ${escapeHtml(quoteAuthor)}</cite>
+                  </blockquote>
+                </td>
+              </tr>
+
+            </table>
+          </td>
+        </tr>
+
+        <!-- Footer -->
+        <tr>
+          <td style="padding:28px 0 0;text-align:center;">
+            <p style="margin:0 0 6px;font-size:12px;color:#9ca3af;line-height:1.6;">
+              You're receiving this because you're a SecureCloudX member.<br />
+              <a href="${SITE_URL}" style="color:#9ca3af;text-decoration:underline;">securecloudx.xyz</a>
+            </p>
+            <p style="margin:0;font-size:12px;">
+              <a href="${unsubscribeUrl}" style="color:#d1d5db;text-decoration:underline;">Unsubscribe</a>
+            </p>
+          </td>
+        </tr>
+
+      </table>
+    </td>
+  </tr>
+</table>
 </body>
 </html>`;
 }
@@ -295,7 +310,7 @@ Deno.serve(async (req) => {
                 body: JSON.stringify({
                     from: FROM_EMAIL,
                     to: [testEmail],
-                    subject: `[TEST] Your week in cloud security — 3/${CORE_MODULES.length} modules done`,
+                    subject: `[TEST] We've missed you — your cloud security update`,
                     html,
                 }),
             });
@@ -389,7 +404,7 @@ Deno.serve(async (req) => {
                 body: JSON.stringify({
                     from: FROM_EMAIL,
                     to: [email],
-                    subject: `Your week in cloud security — ${completedCount}/${CORE_MODULES.length} modules done`,
+                    subject: `We've missed you, ${name.split(" ")[0]} — your cloud security update`,
                     html,
                 }),
             });
