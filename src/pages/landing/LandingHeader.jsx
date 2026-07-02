@@ -41,7 +41,25 @@ export default function LandingHeader() {
   }, [charIndex, typing, phraseIndex]);
 
   return (
-    <div className="flex flex-col items-center mb-16 text-center font-mono">
+    <div className="flex flex-col items-center mb-16 text-center font-mono relative">
+
+      {/* Artsy annotation - left of heading */}
+      <div
+        className="absolute hidden sm:flex flex-col items-end select-none pointer-events-none"
+        style={{ right: "calc(50% + 165px)", top: "42px" }}
+      >
+        <p
+          className="text-yellow-400 text-[11px] whitespace-nowrap"
+          style={{ fontFamily: "Georgia, serif", fontStyle: "italic", transform: "rotate(-4deg)", transformOrigin: "right center" }}
+        >
+          free &amp; open sourced.
+        </p>
+        <svg width="90" height="38" viewBox="0 0 90 38" fill="none" className="mt-0.5">
+          <path d="M3 5 C25 3 62 22 84 28" stroke="#facc15" strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M79 22 L85 29 L78 31" stroke="#facc15" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </div>
+
       {/* Terminal-style logo section */}
       <div className="flex items-center space-x-2 text-gray-400 text-sm mb-8">
         <div className="w-3 h-3 bg-red-500 rounded-full"></div>
@@ -55,6 +73,7 @@ export default function LandingHeader() {
         <h1 className="text-5xl font-bold mb-4 text-gray-300">
           secure<span className="text-red-400">cloud</span>X
         </h1>
+
         <div className="flex items-center justify-center space-x-2 text-gray-500 mb-4">
           <Shield className="w-5 h-5" />
           <span className="text-sm">// Learn cloud security by doing!</span>
