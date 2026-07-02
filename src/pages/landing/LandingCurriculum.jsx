@@ -56,11 +56,11 @@ export default function LandingCurriculum() {
         </div>
       )}
 
-      {/* Phase 0 */}
+      {/* Phase 0 — full width */}
       <Link
         to="/start"
         onClick={handleModuleClick}
-        className="flex items-start gap-4 bg-gray-800 border border-gray-700 hover:border-gray-500 p-5 transition-colors group mb-4"
+        className="flex items-start gap-4 bg-gray-800 border border-gray-700 hover:border-gray-500 p-5 transition-colors group mb-3"
       >
         <span className="text-gray-500 font-bold text-xl w-8 shrink-0">0</span>
         <div className="flex-1">
@@ -74,14 +74,18 @@ export default function LandingCurriculum() {
         <ChevronRight className="w-5 h-5 text-gray-600 group-hover:text-gray-400 shrink-0 mt-1" />
       </Link>
 
-      {/* Core phases */}
-      <div className="space-y-3 mb-10">
-        {PHASES.map((phase) => (
+      {/* Core phases — 2-column grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
+        {PHASES.map((phase, index) => (
           <Link
             key={phase.id}
             to={phase.path}
             onClick={handleModuleClick}
-            className="flex items-start gap-4 bg-gray-800 border border-gray-700 hover:border-gray-500 p-5 transition-colors group"
+            className={`flex items-start gap-4 bg-gray-800 border border-gray-700 hover:border-gray-500 p-5 transition-colors group${
+              PHASES.length % 2 !== 0 && index === PHASES.length - 1
+                ? " sm:col-span-2"
+                : ""
+            }`}
           >
             <span className="text-gray-500 font-bold text-xl w-8 shrink-0">
               {phase.id}
@@ -99,7 +103,7 @@ export default function LandingCurriculum() {
         ))}
       </div>
 
-      {/* Advanced topics */}
+      {/* Advanced topics — 2-column grid */}
       <div className="mb-10">
         <div className="flex items-center gap-3 mb-4">
           <h3 className="text-lg font-bold text-gray-300">// Advanced Topics</h3>
@@ -110,7 +114,7 @@ export default function LandingCurriculum() {
         <p className="text-gray-500 text-sm mb-4 leading-relaxed">
           Complete the core path first. These modules extend your skills into specialist domains.
         </p>
-        <div className="space-y-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
           {ADVANCED.map((adv) => (
             <Link
               key={adv.id}
@@ -138,25 +142,15 @@ export default function LandingCurriculum() {
             </Link>
           ))}
         </div>
-      </div>
-
-      {/* Lock / CTA */}
-      <div className="border border-gray-700 bg-gray-800/50 p-6 flex flex-col sm:flex-row items-center gap-4 text-center sm:text-left">
-        <Lock className="w-8 h-8 text-red-400 shrink-0" />
-        <div className="flex-1">
-          <p className="text-gray-300 font-semibold mb-1">
-            Labs &amp; progress tracking require a free account
-          </p>
-          <p className="text-gray-500 text-sm">
-            Sign in with GitHub to unlock all modules, track progress, and earn your certificate.
-          </p>
+        <div className="mt-8 text-center">
+          <Link
+            to="/get-started"
+            className="inline-flex items-center gap-1.5 text-sm font-mono text-gray-500 hover:text-gray-300 transition-colors group"
+          >
+            view all Curriculum sections
+            <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+          </Link>
         </div>
-        <Link
-          to="/get-started"
-          className="bg-red-600 hover:bg-red-700 border border-red-500 text-white font-mono font-semibold px-6 py-2.5 transition-colors shrink-0 text-sm"
-        >
-          GET STARTED →
-        </Link>
       </div>
     </div>
   );

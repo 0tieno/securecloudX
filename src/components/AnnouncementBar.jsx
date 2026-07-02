@@ -3,8 +3,8 @@ import { PartyPopper } from "lucide-react";
 export default function AnnouncementBar() {
   return (
     <div
-      className="fixed top-2 left-2 right-2 text-gray-300 text-center font-mono text-xs sm:text-sm py-2 sm:py-3 px-2 sm:px-4 z-50 shadow-lg"
-      style={{ letterSpacing: "0.02em" }}
+      className="fixed top-0 left-0 right-0 bg-gray-950/95 backdrop-blur border-b border-gray-800/70 text-gray-300 text-center font-mono text-xs sm:text-sm py-2 sm:py-2.5 px-2 sm:px-4 z-50"
+      style={{ letterSpacing: "0.04em" }}
     >
       {/* Desktop version */}
       <div className="hidden sm:flex items-center justify-center space-x-2">
