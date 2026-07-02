@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Terminal, Shield, Lock, CalendarDays, LogIn } from "lucide-react";
+import { Terminal, Shield, Lock, CalendarDays, LogIn, Users, Globe, Clock } from "lucide-react";
 import { useAuth } from "../../contexts/AuthContext";
 
 const PHRASES = [
@@ -113,6 +113,27 @@ export default function LandingHeader() {
             <span className="text-yellow-400"></span>
           </>
         )}
+      </div>
+
+      {/* Stats strip */}
+      <div className="flex items-center gap-5 font-mono text-xs text-gray-500">
+        <div className="flex items-center gap-1.5">
+          <Users className="w-3.5 h-3.5 text-gray-600" />
+          <span className="text-gray-300 font-semibold">400+/m</span>
+          <span>learners</span>
+        </div>
+        <span className="text-gray-700">|</span>
+        <div className="flex items-center gap-1.5">
+          <Globe className="w-3.5 h-3.5 text-gray-600" />
+          <span className="text-gray-300 font-semibold">30+</span>
+          <span>countries</span>
+        </div>
+        <span className="text-gray-700">|</span>
+        <div className="flex items-center gap-1.5">
+          <Clock className="w-3.5 h-3.5 text-gray-600" />
+          <span className="text-gray-300 font-semibold">1 yr</span>
+          <span>& growing</span>
+        </div>
       </div>
     </div>
   );
