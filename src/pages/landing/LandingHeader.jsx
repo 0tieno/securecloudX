@@ -27,9 +27,7 @@ export default function LandingHeader() {
           setCharIndex((prev) => prev + 1);
         }, 80);
       } else {
-        timeout = setTimeout(() => {
-          setTyping(false);
-        }, 1500);
+        timeout = setTimeout(() => setTyping(false), 1500);
       }
     } else {
       timeout = setTimeout(() => {
@@ -52,21 +50,19 @@ export default function LandingHeader() {
         <span className="ml-4">root@securecloudX:~$</span>
       </div>
 
-      {/* Main heading with security styling */}
+      {/* Main heading */}
       <div className="mb-6">
         <h1 className="text-5xl font-bold mb-4 text-gray-300">
           secure<span className="text-red-400">cloud</span>X
         </h1>
         <div className="flex items-center justify-center space-x-2 text-gray-500 mb-4">
           <Shield className="w-5 h-5" />
-          <span className="text-sm">
-            // Learn cloud security by doing!
-          </span>
+          <span className="text-sm">// Learn cloud security by doing!</span>
           <Lock className="w-5 h-5" />
         </div>
       </div>
 
-      {/* Terminal-style typing animation */}
+      {/* Terminal typing animation */}
       <div className="bg-gray-900 border border-gray-700 p-4 mb-8 min-h-[60px] flex items-center justify-center w-full max-w-md">
         <div className="flex items-center space-x-2">
           <span className="text-green-400">$</span>
@@ -98,10 +94,11 @@ export default function LandingHeader() {
           className="bg-gray-800 hover:bg-gray-700 border border-yellow-500 text-yellow-400 font-mono font-semibold px-8 py-3 transition-all duration-200 group flex items-center space-x-2"
         >
           <CalendarDays className="w-5 h-5 group-hover:scale-110 transition-transform" />
-          <span>BOOK A SESSION</span>
+          <span>BOOK A CALL</span>
         </a>
       </div>
 
+      {/* Session status */}
       <div className="flex items-center space-x-2 text-gray-500 text-sm mb-6">
         <span>└─$</span>
         {user ? (
@@ -117,42 +114,6 @@ export default function LandingHeader() {
           </>
         )}
       </div>
-
-      {/* Social Links */}
-      {/* <div className="flex items-center gap-6 mt-4">
-        <a
-          href="http://github.com/securecloudx"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 text-gray-400 hover:text-red-400 transition-colors text-sm group"
-        >
-          <svg
-            width="20"
-            height="20"
-            fill="currentColor"
-            className="inline-block"
-          >
-            <path d="M10 0C4.477 0 0 4.477 0 10c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.483 0-.237-.009-.868-.013-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.004.07 1.532 1.032 1.532 1.032.892 1.529 2.341 1.088 2.91.833.091-.646.349-1.088.635-1.34-2.221-.253-4.555-1.112-4.555-4.945 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.272.098-2.65 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0110 4.844c.85.004 1.705.115 2.504.338 1.909-1.294 2.748-1.025 2.748-1.025.546 1.378.202 2.397.1 2.65.64.699 1.028 1.592 1.028 2.683 0 3.842-2.337 4.688-4.566 4.937.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.744 0 .268.18.579.688.481C17.138 18.162 20 14.418 20 10c0-5.523-4.477-10-10-10z" />
-          </svg>
-          <span className="group-hover:underline">github.com/securecloudx</span>
-        </a>
-        <a
-          href="https://x.com/securecloudX"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center gap-2 text-gray-400 hover:text-red-400 transition-colors text-sm group"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            className="w-5 h-5"
-          >
-            <path d="M18.3 2H22L14.8 10.6 23 22h-5l-5.7-7.9L6.3 22H2l8.7-9.6L2.3 2h5.2l5.2 7.5L18.3 2ZM17.2 20h1.6l-9.7-14h-1.7l9.8 14Z" />
-          </svg>
-          <span className="group-hover:underline">@securecloudX</span>
-        </a>
-      </div> */}
     </div>
   );
 }
