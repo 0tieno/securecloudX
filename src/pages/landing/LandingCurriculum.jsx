@@ -142,6 +142,15 @@ export default function LandingCurriculum() {
             </Link>
           ))}
         </div>
+        <div className="mt-8 text-center">
+          <Link
+            to="/get-started"
+            className="inline-flex items-center gap-1.5 text-sm font-mono text-gray-500 hover:text-gray-300 transition-colors group"
+          >
+            view all Curriculum sections
+            <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+          </Link>
+        </div>
       </div>
     </div>
   );
