@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-d
 
 import AppShell from "./components/AppShell";
 import ProtectedRoute from "./components/ProtectedRoute";
+import RouterProgress from "./components/RouterProgress";
 import { AuthProvider } from "./contexts/AuthContext";
 import { shellRoutes, standaloneRoutes } from "./routes/routeConfig";
 
@@ -9,6 +10,7 @@ const App = () => {
   return (
     <AuthProvider>
     <Router>
+      <RouterProgress />
       <Routes>
         {standaloneRoutes.map((route) => (
           <Route
