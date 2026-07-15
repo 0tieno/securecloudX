@@ -1,60 +1,40 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ChevronRight, Lock, LogIn } from "lucide-react";
+import { ChevronRight } from "lucide-react";
 import { PHASES, ADVANCED } from "../../data/phases";
 import { useAuth } from "../../contexts/AuthContext";
+import AuthToast from "../../components/AuthToast";
 
 export default function LandingCurriculum() {
   const { user, signIn } = useAuth();
-  const [gateVisible, setGateVisible] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   function handleModuleClick(e) {
     if (!user) {
       e.preventDefault();
-      setGateVisible(true);
+      setShowToast(true);
     }
   }
 
   return (
     <div className="w-full mt-16">
-      {/* Section header */}
-      <div className="mb-8 text-center">
-        <p className="text-green-400 text-sm mb-1">
-          <span>$</span> cat curriculum.md
-        </p>
+      {/* Divider — clear visual break between hero and curriculum */}
+      <div className="flex items-center gap-4 mb-10">
+        <div className="flex-1 h-px bg-gray-800" />
+        <span className="text-gray-700 text-xs font-mono tracking-widest uppercase">curriculum</span>
+        <div className="flex-1 h-px bg-gray-800" />
+      </div>
+
+      {/* Section header — left-aligned to match the hero reading axis */}
+      <div className="mb-8">
         <h2 className="text-3xl font-bold text-gray-300">
-          // What You&apos;ll Learn
+          What You&apos;ll Learn
         </h2>
-        <p className="text-gray-500 text-sm mt-3 max-w-xl mx-auto leading-relaxed">
+        <p className="text-gray-500 text-sm mt-3 max-w-xl leading-relaxed">
           7 core modules + 2 advanced topics. Hands-on labs for every phase.
           Complete the core path to earn your certificate.
         </p>
       </div>
-
-      {/* Login gate banner */}
-      {gateVisible && (
-        <div className="mb-6 border border-red-500/50 bg-red-500/10 p-4 flex flex-col sm:flex-row items-start sm:items-center gap-3">
-          <LogIn className="w-5 h-5 text-red-400 shrink-0 mt-0.5 sm:mt-0" />
-          <div className="flex-1 text-sm">
-            <span className="text-red-300 font-semibold">auth required — </span>
-            <span className="text-gray-400">you need to sign in before accessing a module.</span>
-          </div>
-          <div className="flex items-center gap-3 text-sm">
-            <button
-              onClick={signIn}
-              className="bg-red-600 hover:bg-red-700 border border-red-500 text-white font-mono font-semibold px-4 py-1.5 transition-colors"
-            >
-              SIGN IN
-            </button>
-            <button
-              onClick={() => setGateVisible(false)}
-              className="text-gray-500 hover:text-gray-300 transition-colors font-mono"
-            >
-              dismiss
-            </button>
-          </div>
-        </div>
-      )}
 
       {/* Phase 0 — full width */}
       <Link
@@ -152,6 +132,14 @@ export default function LandingCurriculum() {
           </Link>
         </div>
       </div>
+
+      {/* Auth toast — consistent with LatestBlogsPanel */}
+      {showToast && (
+        <AuthToast
+          onClose={() => setShowToast(false)}
+          onSignIn={() => { setShowToast(false); signIn(); }}
+        />
+      )}
     </div>
   );
 }
