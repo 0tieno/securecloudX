@@ -1,6 +1,21 @@
 {
-  "generatedAt": "2026-07-02T09:22:56.814Z",
+  "generatedAt": "2026-07-15T20:26:30.697Z",
   "posts": [
+    {
+      "filename": "what-is-cloud-security.md",
+      "slug": "what-is-cloud-security",
+      "layout": "post",
+      "title": "What Is Cloud Security?",
+      "date": "2026-07-15 09:00:00 +0300",
+      "categories": [
+        "cloud-security",
+        "beginner",
+        "fundamentals"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "Cloud security is the discipline of protecting the systems, data, identities, and workloads that run in cloud environments. It is not a single product and it is not a che...",
+      "readingTime": 7
+    },
     {
       "filename": "monitor-compliance.md",
       "slug": "monitor-compliance",
