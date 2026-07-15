@@ -253,7 +253,7 @@ const BeginnerIntro = () => {
         {/* 5. What is Cloud Security */}
         <Section command="$ cat 05_what_is_cloud_security.sh">
           <p className="text-gray-300 text-base leading-relaxed mb-4">
-            Cloud security is the practice of protecting cloud-based systems, data, and infrastructure. In the real world, cloud security engineers work on identity and access management, network segmentation, data protection, threat detection, and compliance — exactly what this challenge covers.
+            Cloud security is the practice of protecting cloud-based systems, data, and infrastructure. In the real world, cloud security engineers work on identity and access management, network segmentation, data protection, threat detection, and compliance — exactly what this courseware covers.
           </p>
           <div className="space-y-2">
             <ExtLink href="https://cloud.google.com/learn/what-is-cloud-security">
