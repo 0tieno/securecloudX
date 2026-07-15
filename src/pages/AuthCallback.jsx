@@ -19,6 +19,8 @@ export default function AuthCallback() {
       (event) => {
         if (event === "SIGNED_IN") {
           subscription.unsubscribe();
+          // Signal AppShell that this is a fresh sign-in (not a page refresh)
+          sessionStorage.setItem("scx_fresh_signin", "1");
           navigate("/get-started", { replace: true });
         }
       }
