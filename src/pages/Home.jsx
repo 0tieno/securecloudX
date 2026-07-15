@@ -326,15 +326,6 @@ const Home = () => {
               <ExternalLink size={14} />
               → whatsapp_community.join()
             </a>
-            {/* <a
-              href="https://forms.office.com/r/5yqb8Xw5GK"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-cyan-400 hover:text-cyan-300 transition-colors text-sm inline-flex items-center gap-2"
-            >
-              <ExternalLink size={14} />
-              → subscribe_to_updates()
-            </a> */}
           </div>
         </div>
       </div>
