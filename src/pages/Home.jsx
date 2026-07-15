@@ -116,7 +116,7 @@ const Home = () => {
         {/* Phase 0 — Starting from zero */}
         <div className="mb-8">
           <h2 className="text-2xl font-bold text-gray-300 mb-4">
-            // Your Journey - The curriculum
+            Your Journey - The curriculum
           </h2>
 
           <Link
