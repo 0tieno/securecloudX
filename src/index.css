@@ -7,3 +7,8 @@ html {
   color: white;
   min-height: 100vh;
 }
+
+@keyframes shrink {
+  from { width: 100%; }
+  to   { width: 0%; }
+}
