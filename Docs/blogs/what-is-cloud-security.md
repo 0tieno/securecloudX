@@ -163,6 +163,4 @@ That is what makes cloud security valuable. It lets organizations use the cloud 
 
 If you want the shortest possible answer, cloud security is the practice of protecting cloud-based systems by securing identities, data, configurations, and network access under a shared responsibility model.
 
-If you want the more useful answer, cloud security is the discipline of building guardrails so speed does not turn into exposure.
-
 That is the mindset this blog will keep returning to: not just what the cloud can do, but what you must do to keep it safe.
