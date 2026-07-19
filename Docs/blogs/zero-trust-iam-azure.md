@@ -12,9 +12,9 @@ categories:
 
 # 7 IAM Risks That Cause Cloud Breaches (and the Controls That Stop Them)
 
-Most cloud breaches do not start with malware. They start with identity mistakes: weak authentication, standing privilege, exposed machine credentials, and missing audit visibility.
+Design Identity and Access Management (IAM) as your first and last line of defence.
 
-If you can fix IAM, you can prevent most high-impact cloud incidents before they escalate. This guide is direct and practical: each risk maps to the best control and a concrete Azure implementation example.
+This guide is direct and practical: each risk maps to the best control and a concrete Azure implementation example.
 
 ## At-a-Glance: Risk, Impact, and Best Control
 
