@@ -20,7 +20,7 @@ export default function ProtectedRoute({ children }) {
   }
 
   if (!user) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/" replace state={{ authRedirect: true }} />;
   }
 
   return children;
