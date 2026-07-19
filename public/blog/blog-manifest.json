@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-07-19T08:38:31.850Z",
+  "generatedAt": "2026-07-19T08:41:46.250Z",
   "posts": [
     {
       "filename": "zero-trust-iam-azure.md",
       "slug": "zero-trust-iam-azure",
       "layout": "post",
-      "title": "Cloud IAM Risk Playbook: Security Risks and Controls That Prevent Real Breaches",
+      "title": "7 IAM Risks That Cause Cloud Breaches (and the Controls That Stop Them)",
       "date": "2026-07-19 09:00:00 +0300",
       "categories": [
         "azure",
@@ -14,8 +14,8 @@
         "zero-trust"
       ],
       "author": "s!rr0nn3y",
-      "excerpt": "Cloud security incidents rarely start with malware. They usually start with identity mistakes: weak authentication, excessive privilege, exposed non-human credentials, an...",
-      "readingTime": 5
+      "excerpt": "Most cloud breaches do not start with malware. They start with identity mistakes: weak authentication, standing privilege, exposed machine credentials, and missing audit...",
+      "readingTime": 6
     },
     {
       "filename": "what-is-cloud-security.md",
