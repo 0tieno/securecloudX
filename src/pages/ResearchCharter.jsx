@@ -191,16 +191,15 @@ export default function ResearchCharter() {
         variant="site"
         subtitle="Research Institute"
         command="// Foundational Governance Document"
-        maxWidth="6xl"
+        maxWidth="4xl"
         links={[
-          { label: "./blog",     path: "/opensource-blog" },
-          { label: "./labs",     path: "/pentesting-labs" },
-          { label: "./research", active: true },
+          { label: "./research", path: "/research" },
+          { label: "./charter", active: true },
         ]}
       />
 
       <div className="flex-1 px-4 sm:px-6 py-14">
-        <div className="max-w-6xl mx-auto">
+        <div className="max-w-4xl mx-auto">
 
           {/* ── Cover ─────────────────────────────────────────────────────── */}
           <div className="mb-16 pb-12 border-b border-gray-700">
@@ -226,7 +225,7 @@ export default function ResearchCharter() {
               />
               <div className="flex flex-col gap-1">
                 <span className="text-base text-gray-100 font-semibold">Ronney Otieno</span>
-                <span className="text-sm text-gray-500">Founder, SecureCloudX Research</span>
+                <span className="text-sm text-gray-500">Founder, Security Researcher</span>
                 <div className="flex items-center gap-4 mt-0.5">
                   <a
                     href="https://linkedin.com/in/ronney-otieno"
