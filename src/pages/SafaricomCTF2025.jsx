@@ -16,7 +16,7 @@ export default function SafaricomCTF2025() {
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
       <PageNav
-        subtitle="// Safaricom CTF 2025 - Challenge Writeups"
+        subtitle="Safaricom CTF 2025 - Challenge Writeups"
         command="root@securecloudx:~# cd /ctf/safaricom2025/"
         links={[
           { label: "../get_started", path: "/get-started" },

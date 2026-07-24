@@ -46,7 +46,7 @@ export default function RealIPHeistWriteup() {
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
       <PageNav
-        subtitle="// Real IP Heist - Safaricom CTF 2025 Writeup"
+        subtitle="Real IP Heist - Safaricom CTF 2025 Writeup"
         command="root@securecloudx:~# cat /ctf/safaricom2025/real-ip-heist.md"
         links={[
           { label: "../safaricom_ctf", path: "/ctf/safaricom-2025" },
