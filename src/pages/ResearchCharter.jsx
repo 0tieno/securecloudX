@@ -190,7 +190,7 @@ export default function ResearchCharter() {
       <PageNav
         variant="site"
         subtitle="Research Hub"
-        command="// Foundational Governance Document"
+        command="Foundational Governance Document"
         maxWidth="4xl"
         links={[
           { label: "./research", path: "/research" },

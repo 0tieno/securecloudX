@@ -36,7 +36,7 @@ export default function ResearchIndex() {
       <PageNav
         variant="site"
         subtitle="Research Hub"
-        command="// Evidence-based cybersecurity intelligence"
+        command="Evidence-based cybersecurity intelligence"
         maxWidth="4xl"
         links={[
           { label: "./blog",     path: "/opensource-blog" },
