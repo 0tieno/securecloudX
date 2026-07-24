@@ -217,11 +217,11 @@ export default function ResearchCharter() {
             </h1>
 
             {/* Author */}
-            <div className="flex items-center gap-4 mb-10 py-4 border-y border-gray-800">
+            <div className="flex items-center gap-4 mb-10 py-4">
               <img
-                src="/images/ron.jpg"
+                src="/images/profile-pic.jpeg"
                 alt="Ronney Otieno"
-                className="w-14 h-14 rounded-full object-cover border-2 border-gray-700 flex-shrink-0"
+                className="w-24 h-24 rounded-full object-cover flex-shrink-0"
               />
               <div className="flex flex-col gap-1">
                 <span className="text-base text-gray-100 font-semibold">Ronney Otieno</span>
