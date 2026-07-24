@@ -8,6 +8,34 @@ html {
   min-height: 100vh;
 }
 
+/* ── Light theme ──────────────────────────────────────────────────────────
+   Tailwind v4 exposes every color as a CSS custom property at :root.
+   Overriding them here flips the gray scale site-wide without touching
+   any component classes.
+────────────────────────────────────────────────────────────────────────── */
+html.light,
+html.light body {
+  background-color: #f8fafc;
+  color: #1e293b;
+}
+
+html.light {
+  color-scheme: light;
+
+  /* Flip the gray scale: dark values → light equivalents */
+  --color-gray-950: #f1f5f9;
+  --color-gray-900: #f8fafc;   /* main page background  */
+  --color-gray-800: #f1f5f9;   /* card / secondary bg   */
+  --color-gray-700: #e2e8f0;   /* borders               */
+  --color-gray-600: #cbd5e1;   /* subtle borders        */
+  --color-gray-500: #64748b;   /* muted / placeholder   */
+  --color-gray-400: #475569;   /* body text             */
+  --color-gray-300: #334155;   /* default text          */
+  --color-gray-200: #1e293b;   /* emphasis text         */
+  --color-gray-100: #0f172a;   /* headings              */
+  --color-gray-50:  #020617;
+}
+
 @keyframes shrink {
   from { width: 100%; }
   to   { width: 0%; }
