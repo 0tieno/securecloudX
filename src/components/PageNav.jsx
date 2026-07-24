@@ -3,7 +3,7 @@ import { Terminal } from "lucide-react";
 
 const maxWidthClasses = {
   "4xl": "max-w-4xl",
-  "6xl": "max-w-6xl",
+  "6xl": "max-w-4xl",
 };
 
 /**
@@ -23,7 +23,7 @@ export default function PageNav({
   links = [],
 }) {
   const navigate = useNavigate();
-  const widthClass = maxWidthClasses[maxWidth] ?? "max-w-6xl";
+  const widthClass = maxWidthClasses[maxWidth] ?? "max-w-4xl";
 
   return (
     <nav className="bg-gray-900 border-b border-gray-700 px-4 sm:px-6 py-4">
