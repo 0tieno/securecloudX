@@ -189,7 +189,7 @@ export default function ResearchCharter() {
 
       <PageNav
         variant="site"
-        subtitle="Research Institute"
+        subtitle="Research Hub"
         command="// Foundational Governance Document"
         maxWidth="4xl"
         links={[
@@ -208,7 +208,7 @@ export default function ResearchCharter() {
             <div className="flex items-center gap-3 mb-8">
               <div className="w-8 h-0.5 bg-red-600" />
               <span className="font-mono text-[10px] text-red-400/70 tracking-[0.22em] uppercase">
-                SecureCloudX Research Institute
+                SecureCloudX Research Hub
               </span>
             </div>
 
@@ -224,7 +224,7 @@ export default function ResearchCharter() {
                 className="w-24 h-24 rounded-full object-cover flex-shrink-0"
               />
               <div className="flex flex-col gap-1">
-                <span className="text-base text-gray-100 font-semibold">Ronney Otieno</span>
+                <span className="text-base text-gray-400 font-semibold">Ronney Otieno</span>
                 <span className="text-sm text-gray-500">Founder, Security Researcher</span>
                 <div className="flex items-center gap-4 mt-0.5">
                   <a
@@ -872,7 +872,7 @@ export default function ResearchCharter() {
               <div className="mt-16 pt-8 border-t border-gray-800">
                 <div className="flex flex-wrap items-center justify-between gap-4">
                   <div className="font-mono text-xs text-gray-600 flex flex-wrap gap-x-6 gap-y-1">
-                    <span>SecureCloudX Research Institute</span>
+                    <span>SecureCloudX Research Hub</span>
                     <span>Charter v1.0</span>
                     <span>Published July 2026</span>
                     <span>Foundational Governance Document</span>
