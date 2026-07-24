@@ -20,7 +20,7 @@ export default function LandingPage() {
 
   return (
     <div className="min-h-screen flex flex-col text-gray-300 relative bg-gray-900 font-mono">
-      {/* <AnnouncementBar /> */}
+      <AnnouncementBar />
 
       <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 relative z-10 flex-1 py-12 pt-20">
         <LandingHeader />
