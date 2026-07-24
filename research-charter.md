@@ -1,4 +1,4 @@
-SecureCloudX Research Institute
+SecureCloudX Research Hub
 Research Charter
 
 Version: 1.0
