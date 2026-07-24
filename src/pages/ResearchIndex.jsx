@@ -48,7 +48,7 @@ export default function ResearchIndex() {
       <div className="flex-1 w-full max-w-4xl mx-auto px-4 sm:px-6 py-12">
 
         {/* Header */}
-        <div className="mb-12 pb-10 border-b border-gray-800">
+        <div className="mb-12 pb-10">
           <div className="flex items-center gap-3 mb-5">
             <div className="w-6 h-0.5 bg-red-600" />
             <span className="font-mono text-[10px] text-red-400/70 tracking-[0.22em] uppercase">
