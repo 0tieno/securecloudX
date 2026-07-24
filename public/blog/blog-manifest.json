@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-19T08:41:46.250Z",
+  "generatedAt": "2026-07-24T06:48:27.835Z",
   "posts": [
     {
       "filename": "zero-trust-iam-azure.md",
@@ -14,8 +14,8 @@
         "zero-trust"
       ],
       "author": "s!rr0nn3y",
-      "excerpt": "Most cloud breaches do not start with malware. They start with identity mistakes: weak authentication, standing privilege, exposed machine credentials, and missing audit...",
-      "readingTime": 6
+      "excerpt": "Design Identity and Access Management (IAM) as your first and last line of defence.",
+      "readingTime": 5
     },
     {
       "filename": "what-is-cloud-security.md",
