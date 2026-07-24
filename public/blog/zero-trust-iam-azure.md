@@ -12,11 +12,9 @@ categories:
 
 # 7 IAM Risks That Cause Cloud Breaches (and the Controls That Stop Them)
 
-Most cloud breaches do not start with malware. They start with identity mistakes: weak authentication, standing privilege, exposed machine credentials, and missing audit visibility.
+Design Identity and Access Management (IAM) as your first and last line of defence.
 
-If IAM is weak, every other security control is easier to bypass. If IAM is strong, most attacker paths fail early. This guide is built for execution: each risk maps to the highest-impact control and a concrete Azure implementation example.
-
-Use it as a decision document with your security team, platform engineers, and leadership: what risk exists, what control closes it, and what evidence proves it is working.
+This guide is direct and practical: each risk maps to the best control and a concrete Azure implementation example.
 
 ## At-a-Glance: Risk, Impact, and Best Control
 
@@ -133,25 +131,6 @@ Use it as a decision document with your security team, platform engineers, and l
 6. Retain and monitor sign-in/audit logs.
 7. Document, secure, and test break-glass access.
 
-## 30-Day Execution Plan
-
-**Week 1: Close authentication gaps**
-- Enforce MFA through Conditional Access for all interactive users.
-- Block legacy authentication protocols.
-
-**Week 2: Reduce privilege risk**
-- Remove standing privileged assignments.
-- Move privileged roles to PIM with approval and time-bound activation.
-
-**Week 3: Eliminate non-human credential exposure**
-- Replace static secrets with Managed Identities where supported.
-- Re-scope broad RBAC assignments to resource-group or resource level.
-
-**Week 4: Prove control effectiveness**
-- Validate log coverage for sign-ins and privileged actions.
-- Run break-glass recovery test and record evidence.
-- Publish IAM KPI baseline for leadership review.
-
 ## Metrics That Prove Your IAM Posture Is Improving
 
 - 100% privileged roles are JIT or eligible, not standing.
@@ -165,5 +144,3 @@ Use it as a decision document with your security team, platform engineers, and l
 If IAM is weak, every other cloud control inherits risk. If IAM is engineered correctly, most common attack chains fail early: stolen credentials do not become access, access does not become privilege, and privilege does not become persistence.
 
 That is the real value of strong cloud IAM: lower breach probability, smaller blast radius, and faster, verifiable recovery.
-
-If you adopt only one principle, adopt this one: treat identity controls as production reliability controls, not compliance paperwork. When IAM is engineered with that mindset, cloud security stops being reactive and becomes predictable.
