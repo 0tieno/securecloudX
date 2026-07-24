@@ -35,7 +35,7 @@ export default function ResearchIndex() {
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono flex flex-col">
       <PageNav
         variant="site"
-        subtitle="Research Institute"
+        subtitle="Research Hub"
         command="// Evidence-based cybersecurity intelligence"
         maxWidth="4xl"
         links={[
@@ -52,7 +52,7 @@ export default function ResearchIndex() {
           <div className="flex items-center gap-3 mb-5">
             <div className="w-6 h-0.5 bg-red-600" />
             <span className="font-mono text-[10px] text-red-400/70 tracking-[0.22em] uppercase">
-              SecureCloudX Research Institute
+              SecureCloudX Research Hub
             </span>
           </div>
           <h1 className="text-3xl sm:text-4xl font-bold text-gray-100 tracking-tight mb-4">
@@ -137,12 +137,12 @@ export default function ResearchIndex() {
           </div>
         </div>
 
-        {/* About the institute */}
+        {/* About the Hub */}
         <div className="border-t border-gray-800 pt-10">
           <div className="flex items-center gap-2 mb-4">
             <FileText className="w-4 h-4 text-gray-600" />
             <p className="font-mono text-[10px] text-gray-600 tracking-[0.18em] uppercase">
-              About the Institute
+              About the Hub
             </p>
           </div>
           <p className="text-sm text-gray-500 leading-7 max-w-xl mb-4">
