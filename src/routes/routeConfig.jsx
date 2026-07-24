@@ -34,6 +34,7 @@ import Pricing from "../pages/Pricing";
 import RealIPHeistWriteup from "../pages/RealIPHeistWriteup";
 import RefundPolicyPage from "../pages/RefundPolicyPage";
 import ResearchCharter from "../pages/ResearchCharter";
+import ResearchIndex from "../pages/ResearchIndex";
 import Resources from "../pages/Resources";
 import SafaricomCTF2025 from "../pages/SafaricomCTF2025";
 import Search from "../pages/Search";
@@ -68,7 +69,8 @@ export const standaloneRoutes = [
   },
   { path: "/opensource-blog", Component: OpenSourceBlog },
   { path: "/pentesting-labs", Component: PentestingLabs },
-  { path: "/research", Component: ResearchCharter },
+  { path: "/research", Component: ResearchIndex },
+  { path: "/research/charter", Component: ResearchCharter },
   { path: "/auth/callback", Component: AuthCallback },
   { path: "/verify/:certId", Component: VerifyCertificate },
   { path: "/unsubscribe", Component: UnsubscribePage },
