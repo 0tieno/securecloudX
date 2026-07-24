@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { ArrowUp } from "lucide-react";
 import PageNav from "../components/PageNav";
 import Footer from "../components/Footer";
@@ -25,9 +25,9 @@ const sections = [
 
 /* ── Primitives ─────────────────────────────────────────────────────────── */
 
-function H2({ id, num, children }) {
+function H2({ num, children }) {
   return (
-    <div id={id} className="mb-7 pt-1 scroll-mt-8">
+    <div className="mb-7 pt-1">
       <p className="font-mono text-[11px] text-red-500/60 tracking-[0.18em] mb-2 uppercase">
         Section {num}
       </p>
@@ -163,22 +163,23 @@ function BackToTop() {
 /* ── Page ────────────────────────────────────────────────────────────────── */
 
 export default function ResearchCharter() {
-  const [activeId, setActiveId] = useState("");
-  const observerRef = useRef(null);
+  const [activeId, setActiveId] = useState(sections[0].id);
 
   useEffect(() => {
-    observerRef.current = new IntersectionObserver(
-      (entries) => {
-        const visible = entries.filter((e) => e.isIntersecting);
-        if (visible.length > 0) setActiveId(visible[0].target.id);
-      },
-      { rootMargin: "-15% 0px -75% 0px" }
-    );
-    sections.forEach(({ id }) => {
-      const el = document.getElementById(id);
-      if (el) observerRef.current.observe(el);
-    });
-    return () => observerRef.current?.disconnect();
+    const handleScroll = () => {
+      let current = sections[0].id;
+      for (const { id } of sections) {
+        const el = document.getElementById(id);
+        if (!el) continue;
+        if (el.getBoundingClientRect().top <= 140) {
+          current = id;
+        }
+      }
+      setActiveId(current);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    handleScroll();
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   return (
@@ -280,8 +281,8 @@ export default function ResearchCharter() {
             <article className="flex-1 min-w-0">
 
               {/* 01 */}
-              <section id="executive-statement">
-                <H2 id="executive-statement" num="01">Executive Statement</H2>
+              <section id="executive-statement" className="scroll-mt-20">
+                <H2 num="01">Executive Statement</H2>
                 <div className="space-y-5">
                   <Body>
                     Cybersecurity has become one of the defining risks of the digital age. Every
@@ -315,8 +316,8 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 02 */}
-              <section id="vision">
-                <H2 id="vision" num="02">Vision &amp; Mission</H2>
+              <section id="vision" className="scroll-mt-20">
+                <H2 num="02">Vision &amp; Mission</H2>
                 <div className="grid sm:grid-cols-2 gap-px bg-gray-800 border border-gray-800">
                   <div className="bg-gray-900 p-6">
                     <H3>Our Vision</H3>
@@ -341,8 +342,8 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 03 */}
-              <section id="why-we-exist">
-                <H2 id="why-we-exist" num="03">Why We Exist</H2>
+              <section id="why-we-exist" className="scroll-mt-20">
+                <H2 num="03">Why We Exist</H2>
                 <div className="space-y-5">
                   <Body>
                     Digital transformation has accelerated across every sector of the Kenyan
@@ -367,8 +368,8 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 04 */}
-              <section id="purpose">
-                <H2 id="purpose" num="04">Purpose of This Charter</H2>
+              <section id="purpose" className="scroll-mt-20">
+                <H2 num="04">Purpose of This Charter</H2>
                 <Body>
                   This charter establishes the governance principles, research standards, ethical
                   framework, and publication methodology that guide every SecureCloudX Research
@@ -380,8 +381,8 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 05 */}
-              <section id="philosophy">
-                <H2 id="philosophy" num="05">Research Philosophy</H2>
+              <section id="philosophy" className="scroll-mt-20">
+                <H2 num="05">Research Philosophy</H2>
                 <div className="space-y-6">
                   <Body>Our work is founded upon one central belief:</Body>
 
@@ -415,8 +416,8 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 06 */}
-              <section id="principles">
-                <H2 id="principles" num="06">Guiding Principles</H2>
+              <section id="principles" className="scroll-mt-20">
+                <H2 num="06">Guiding Principles</H2>
                 <div className="border border-gray-800">
                   <PrincipleBlock num="1" title="Independence">
                     SecureCloudX Research operates independently of commercial vendors, political
@@ -454,8 +455,8 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 07 */}
-              <section id="ethics">
-                <H2 id="ethics" num="07">Research Ethics</H2>
+              <section id="ethics" className="scroll-mt-20">
+                <H2 num="07">Research Ethics</H2>
                 <div className="space-y-5">
                   <Body>
                     SecureCloudX Research commits to the highest standards of research integrity.
@@ -477,8 +478,8 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 08 */}
-              <section id="scope">
-                <H2 id="scope" num="08">Research Scope</H2>
+              <section id="scope" className="scroll-mt-20">
+                <H2 num="08">Research Scope</H2>
                 <div className="space-y-5">
                   <Body>SecureCloudX Research produces studies across multiple domains, including:</Body>
                   <DocList items={[
@@ -500,8 +501,8 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 09 */}
-              <section id="methodology">
-                <H2 id="methodology" num="09">Research Methodology Framework</H2>
+              <section id="methodology" className="scroll-mt-20">
+                <H2 num="09">Research Methodology Framework</H2>
                 <Body className="mb-8">Every research project shall follow a standardized lifecycle.</Body>
                 <div className="border border-gray-800">
                   <PhaseBlock num="1" title="Research Design">
@@ -594,8 +595,8 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 10 */}
-              <section id="evidence">
-                <H2 id="evidence" num="10">Evidence Standards</H2>
+              <section id="evidence" className="scroll-mt-20">
+                <H2 num="10">Evidence Standards</H2>
                 <div className="space-y-5">
                   <Body>
                     Sources shall be evaluated according to reliability and relevance. Illustrative
@@ -631,8 +632,8 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 11 */}
-              <section id="incident-classification">
-                <H2 id="incident-classification" num="11">Incident Classification Framework</H2>
+              <section id="incident-classification" className="scroll-mt-20">
+                <H2 num="11">Incident Classification Framework</H2>
                 <div className="space-y-5">
                   <Body>
                     Each analyzed cybersecurity incident should be documented consistently. Typical
@@ -659,8 +660,8 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 12 */}
-              <section id="analytical">
-                <H2 id="analytical" num="12">Analytical Standards</H2>
+              <section id="analytical" className="scroll-mt-20">
+                <H2 num="12">Analytical Standards</H2>
                 <div className="space-y-5">
                   <Body>SecureCloudX Research seeks to answer:</Body>
                   <DocList ordered items={[
@@ -677,8 +678,8 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 13 */}
-              <section id="neutrality">
-                <H2 id="neutrality" num="13">Neutrality Policy</H2>
+              <section id="neutrality" className="scroll-mt-20">
+                <H2 num="13">Neutrality Policy</H2>
                 <div className="space-y-5">
                   <Body>
                     SecureCloudX Research does not rank organizations based on incomplete or
@@ -711,8 +712,8 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 14 */}
-              <section id="sensitive">
-                <H2 id="sensitive" num="14">Handling Sensitive Information</H2>
+              <section id="sensitive" className="scroll-mt-20">
+                <H2 num="14">Handling Sensitive Information</H2>
                 <div className="space-y-5">
                   <Body>SecureCloudX Research will not knowingly publish:</Body>
                   <DocList items={[
@@ -728,8 +729,8 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 15 */}
-              <section id="limitations">
-                <H2 id="limitations" num="15">Research Limitations</H2>
+              <section id="limitations" className="scroll-mt-20">
+                <H2 num="15">Research Limitations</H2>
                 <div className="space-y-5">
                   <Body>All reports shall clearly acknowledge their boundaries. For example:</Body>
                   <DocList items={[
@@ -745,8 +746,8 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 16 */}
-              <section id="publication">
-                <H2 id="publication" num="16">Publication Principles</H2>
+              <section id="publication" className="scroll-mt-20">
+                <H2 num="16">Publication Principles</H2>
                 <div className="space-y-5">
                   <Body>Every publication should aim to be:</Body>
                   <DocList items={[
@@ -798,8 +799,8 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 17 */}
-              <section id="commitment">
-                <H2 id="commitment" num="17">Our Commitment</H2>
+              <section id="commitment" className="scroll-mt-20">
+                <H2 num="17">Our Commitment</H2>
                 <div className="space-y-5">
                   <Body>
                     We believe cybersecurity research is a public good. We recognize that trust is
