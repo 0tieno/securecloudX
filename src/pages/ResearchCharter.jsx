@@ -213,9 +213,48 @@ export default function ResearchCharter() {
               </span>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl font-bold text-gray-100 tracking-tight mb-5 leading-none">
+            <h1 className="text-4xl sm:text-5xl font-bold text-gray-100 tracking-tight mb-6 leading-none">
               Research Charter
             </h1>
+
+            {/* Author */}
+            <div className="flex items-center gap-4 mb-10 py-4 border-y border-gray-800">
+              <img
+                src="/images/ron.jpg"
+                alt="Ronney Otieno"
+                className="w-14 h-14 rounded-full object-cover border-2 border-gray-700 flex-shrink-0"
+              />
+              <div className="flex flex-col gap-1">
+                <span className="text-base text-gray-100 font-semibold">Ronney Otieno</span>
+                <span className="text-sm text-gray-500">Founder, SecureCloudX Research</span>
+                <div className="flex items-center gap-4 mt-0.5">
+                  <a
+                    href="https://linkedin.com/in/ronney-otieno"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-[11px] text-gray-600 hover:text-gray-300 transition-colors tracking-wider"
+                  >
+                    LinkedIn
+                  </a>
+                  <a
+                    href="https://github.com/0tieno"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-[11px] text-gray-600 hover:text-gray-300 transition-colors tracking-wider"
+                  >
+                    GitHub
+                  </a>
+                  <a
+                    href="https://x.com/securecloudX"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="font-mono text-[11px] text-gray-600 hover:text-gray-300 transition-colors tracking-wider"
+                  >
+                    X / Twitter
+                  </a>
+                </div>
+              </div>
+            </div>
 
             <p className="text-sm text-gray-400 mb-10 max-w-2xl leading-[1.85]">
               Building Trusted Cybersecurity Intelligence for Better Decisions.
