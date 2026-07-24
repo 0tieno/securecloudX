@@ -12,7 +12,7 @@ export default function AnnouncementBar() {
         <FlaskConical className="w-4 h-4 text-red-400" />
         <span className="text-red-400">[NEW]</span>
         <span>
-          SecureCloudX Research Institute is live —{" "}
+          SecureCloudX Research Hub is live —{" "}
           <Link
             to="/research"
             className="text-red-400 font-bold underline hover:text-red-300 transition-colors"
