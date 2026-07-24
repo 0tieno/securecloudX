@@ -54,7 +54,7 @@ export default function RealIPHeistWriteup() {
         ]}
       />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
         {/* Back Navigation */}
         <div className="mb-6 sm:mb-8">
           <button
