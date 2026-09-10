@@ -60,7 +60,8 @@ html.light .landing-community {
 .community-members { position: relative; min-height: 440px; padding: 32px 0 105px; }
 .community-dot-map { position: absolute; inset: -55px 10% 0; opacity: .65; background-image: radial-gradient(circle, var(--community-dot-color) 1.7px, transparent 2px); background-size: 11px 11px; clip-path: polygon(0 43%, 7% 41%, 11% 47%, 19% 43%, 21% 48%, 30% 46%, 36% 35%, 47% 34%, 53% 40%, 60% 36%, 65% 27%, 74% 18%, 82% 15%, 83% 0, 89% 0, 89% 16%, 95% 19%, 91% 31%, 85% 37%, 82% 54%, 76% 63%, 78% 76%, 69% 88%, 57% 96%, 47% 91%, 40% 86%, 29% 87%, 15% 81%, 10% 70%, 2% 65%); pointer-events: none; }
 .community-featured { position: relative; z-index: 1; text-align: center; max-width: 430px; margin: 0 auto; }
-.community-portrait { position: relative; display: inline-grid; place-items: center; width: 48px; height: 48px; border: 2px solid var(--community-portrait-ring); border-radius: 50%; background: var(--community-portrait-bg); padding: 0; cursor: pointer; color: var(--community-portrait-icon); }
+/* contain: layout stops the hover-name tooltip (visible or not) from inflating the scrollable area of ancestors like the orbit wings */
+.community-portrait { position: relative; display: inline-grid; place-items: center; width: 48px; height: 48px; border: 2px solid var(--community-portrait-ring); border-radius: 50%; background: var(--community-portrait-bg); padding: 0; cursor: pointer; color: var(--community-portrait-icon); contain: layout; }
 .community-portrait img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
 .community-initials { font-size: 15px; font-weight: 600; }
 .community-name { position: absolute; z-index: 5; bottom: calc(100% + 8px); left: 50%; transform: translateX(-50%); width: max-content; max-width: 160px; border-radius: 5px; padding: 6px 10px; background: var(--community-tooltip-bg); color: var(--community-tooltip-ink); font-size: 12px; line-height: 1.4; overflow-wrap: anywhere; text-align: center; box-shadow: 0 3px 12px #0004; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .15s; }
@@ -71,11 +72,14 @@ html.light .landing-community {
 .community-member-name { margin: 0; font-size: 15px; line-height: 1.4; font-weight: 650; overflow-wrap: anywhere; }
 .community-member-caption { margin: 5px 0 0; color: var(--community-muted); font-size: 10px; }
 .community-orbit-field { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
-.community-orbit-side { position: absolute; top: 0; display: flex; flex-direction: column; flex-wrap: wrap; gap: 12px; max-height: 500px; max-width: 230px; overflow-x: auto; overflow-y: hidden; padding: 6px 2px; pointer-events: auto; scrollbar-width: thin; }
-.community-orbit-side::-webkit-scrollbar { height: 5px; }
+.community-orbit-side { position: absolute; top: 0; display: grid; grid-auto-flow: column; grid-template-rows: repeat(9, 44px); gap: 12px; max-width: 230px; overflow-x: auto; overflow-y: hidden; padding: 6px 2px; pointer-events: auto; scrollbar-width: thin; scrollbar-color: var(--community-arrow-border) transparent; }
+.community-orbit-side::-webkit-scrollbar { height: 4px; }
+.community-orbit-side::-webkit-scrollbar-track { background: transparent; }
 .community-orbit-side::-webkit-scrollbar-thumb { background: var(--community-arrow-border); border-radius: 3px; }
-.community-orbit-side--left { right: calc(50% + 215px); flex-wrap: wrap-reverse; align-content: flex-end; }
-.community-orbit-side--right { left: calc(50% + 215px); align-content: flex-start; }
+/* rtl flips grid-auto-flow so new columns grow away from the center, toward the outer edge */
+.community-orbit-side--left { right: calc(50% + 215px); direction: rtl; }
+.community-orbit-side--right { left: calc(50% + 215px); }
+.community-orbit-side--left .community-orbit { direction: ltr; }
 .community-orbit { width: 44px; height: 44px; flex-shrink: 0; }
 .community-navigation { position: relative; z-index: 2; display: flex; justify-content: center; gap: 15px; margin-top: 24px; }
 .community-arrow { display: grid; place-items: center; flex-shrink: 0; width: 43px; height: 43px; padding: 0; border: 1px solid var(--community-arrow-border); border-radius: 50%; background: var(--community-arrow-bg); color: var(--community-arrow-ink); box-shadow: 0 3px 12px #0000000a; cursor: pointer; transition: background .15s; }
@@ -108,8 +112,8 @@ html.light .landing-community {
   .community-featured { max-width: 265px; }
   .community-message { font-size: 13px; }
   .community-main-portrait, .community-placeholder { width: 66px; height: 66px; }
-  .community-orbit-field { position: static; margin-bottom: 24px; }
-  .community-orbit-side { position: static; flex-direction: row; flex-wrap: wrap; justify-content: center; max-height: none; max-width: none; overflow: visible; }
+  .community-orbit-field { position: static; margin-bottom: 24px; display: flex; justify-content: center; }
+  .community-orbit-side { position: static; display: flex; flex-wrap: wrap; justify-content: center; direction: ltr; max-width: none; overflow: visible; }
   .community-orbit-side--left, .community-orbit-side--right { right: auto; left: auto; }
   .community-orbit { width: 38px; height: 38px; }
   .community-stories { min-height: 550px; padding: 78px 40px 95px; }
