@@ -28,6 +28,8 @@ const STORIES = [
   },
 ];
 
+const FOUNDER_USERNAME = "0tieno";
+
 function MemberPortrait({ member, className = "", onClick }) {
   const [failed, setFailed] = useState(false);
   const initials = member.display_name.split(/\s+/).slice(0, 2).map((part) => part[0]).join("");
@@ -59,7 +61,15 @@ export default function LandingCommunity() {
         const { data, error } = await supabase.rpc("get_community_members");
         if (cancelled) return;
         if (error) throw error;
-        setMembers((data ?? []).filter((member) => member.display_name));
+        const loaded = (data ?? []).filter((member) => member.display_name);
+        const founderIndex = loaded.findIndex(
+          (member) => member.username?.toLowerCase() === FOUNDER_USERNAME
+        );
+        setMembers(
+          founderIndex > 0
+            ? [loaded[founderIndex], ...loaded.slice(0, founderIndex), ...loaded.slice(founderIndex + 1)]
+            : loaded
+        );
         setMemberStatus("ready");
       } catch {
         if (!cancelled) setMemberStatus("unavailable");
@@ -95,7 +105,17 @@ export default function LandingCommunity() {
             ) : <div className="community-placeholder"><Users size={28} strokeWidth={1.4} /></div>}
             <p className="community-message">A shared curiosity. A stronger community.<br /> Learning cloud security, together.</p>
             <p className="community-member-name">{selectedMember?.display_name ?? "The securecloudX community"}</p>
-            <p className="community-member-caption">{selectedMember ? "Cloud security learner" : memberStatus === "loading" ? "Meeting our members..." : memberStatus === "unavailable" ? "Member profiles are temporarily unavailable." : "Your journey belongs here."}</p>
+            <p className="community-member-caption">
+              {selectedMember
+                ? selectedMember.username?.toLowerCase() === FOUNDER_USERNAME
+                  ? "Founder, securecloudX"
+                  : "Cloud security learner"
+                : memberStatus === "loading"
+                ? "Meeting our members..."
+                : memberStatus === "unavailable"
+                ? "Member profiles are temporarily unavailable."
+                : "Your journey belongs here."}
+            </p>
           </div>
           <div className="community-navigation" aria-label="Community members">
             <button type="button" className="community-arrow" aria-label="Previous member" title="Previous member" disabled={members.length < 2} onClick={() => changeMember(-1)}><ArrowLeft size={18} /></button>

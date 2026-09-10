@@ -2,7 +2,8 @@ create or replace function public.get_community_members()
 returns table (
   member_id text,
   display_name text,
-  avatar_url text
+  avatar_url text,
+  username text
 )
 language sql
 stable
@@ -20,7 +21,8 @@ as $$
       when identity.identity_data ->> 'avatar_url' like 'https://avatars.githubusercontent.com/%'
       then identity.identity_data ->> 'avatar_url'
       else null
-    end as avatar_url
+    end as avatar_url,
+    nullif(trim(identity.identity_data ->> 'user_name'), '') as username
   from auth.identities as identity
   inner join auth.users as registered_user on registered_user.id = identity.user_id
   where identity.provider = 'github'
@@ -30,8 +32,7 @@ as $$
       nullif(trim(identity.identity_data ->> 'name'), ''),
       nullif(trim(identity.identity_data ->> 'user_name'), '')
     ) is not null
-  order by registered_user.created_at desc, identity.provider_id
-  limit 24;
+  order by registered_user.created_at desc, identity.provider_id;
 $$;
 
 revoke all on function public.get_community_members() from public;
