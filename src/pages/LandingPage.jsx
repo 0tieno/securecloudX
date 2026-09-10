@@ -3,6 +3,7 @@ import { useLocation } from "react-router-dom";
 import AnnouncementBar from "../components/AnnouncementBar";
 import LandingHeader from "./landing/LandingHeader";
 import LandingCurriculum from "./landing/LandingCurriculum";
+import LandingCommunity from "./landing/LandingCommunity";
 import Footer from "../components/Footer";
 import AuthToast from "../components/AuthToast";
 import { useAuth } from "../contexts/AuthContext";
@@ -26,6 +27,8 @@ export default function LandingPage() {
         <LandingHeader />
         <LandingCurriculum />
       </div>
+
+      <LandingCommunity />
 
       <Footer />
 

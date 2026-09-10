@@ -21,6 +21,14 @@ npm run dev
 
 Open [http://localhost:5173](http://localhost:5173).
 
+### Landing page community
+
+Apply [the community members migration](supabase/migrations/20260910_community_members.sql) in the Supabase SQL editor before deploying the community section. The public `get_community_members` function returns up to 24 registered GitHub members, newest first, with only their public GitHub identifier, display name, and avatar. It does not expose emails, sign-in activity, progress, or the admin dashboard. GitHub avatar URLs are restricted to `avatars.githubusercontent.com`.
+
+The section handles loading, empty results, unavailable profiles, and failed avatar images. Names appear on portrait hover or keyboard focus. Confirm that publishing these GitHub profiles is consistent with your community's privacy notice before enabling the endpoint.
+
+The story carousel currently features the curriculum and community blog, not member testimonials. Replace the `STORIES` entries in [LandingCommunity.jsx](src/pages/landing/LandingCommunity.jsx) with approved success stories when available. Background photos are hosted on Unsplash.
+
 ## Tech stack
 
 - **React 19 + Vite 6** — frontend
