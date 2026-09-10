@@ -86,7 +86,7 @@ export default function LandingCurriculum() {
       {/* Advanced topics — 2-column grid */}
       <div className="mb-10">
         <div className="flex items-center gap-3 mb-4">
-          <h3 className="text-lg font-bold text-gray-300">// Advanced Topics</h3>
+          <h3 className="text-lg font-bold text-gray-300">Advanced Topics</h3>
           <span className="text-xs font-mono text-yellow-400 border border-yellow-500/40 bg-yellow-500/10 px-2 py-0.5">
             OPTIONAL
           </span>

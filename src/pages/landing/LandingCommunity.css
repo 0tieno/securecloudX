@@ -70,13 +70,13 @@ html.light .landing-community {
 .community-message { margin: 23px auto 21px; font-size: 16px; line-height: 1.5; font-weight: 500; }
 .community-member-name { margin: 0; font-size: 15px; line-height: 1.4; font-weight: 650; overflow-wrap: anywhere; }
 .community-member-caption { margin: 5px 0 0; color: var(--community-muted); font-size: 10px; }
-.community-orbit { position: absolute; z-index: 3; }
-.community-orbit-1 { top: 8px; left: 20%; width: 35px; height: 35px; }
-.community-orbit-2 { top: 24px; right: 17%; }
-.community-orbit-3 { top: 125px; left: 8%; width: 36px; height: 36px; }
-.community-orbit-4 { top: 125px; right: 4%; width: 39px; height: 39px; }
-.community-orbit-5 { top: 248px; left: 11%; width: 65px; height: 65px; }
-.community-orbit-6 { top: 223px; right: 12%; width: 45px; height: 45px; }
+.community-orbit-field { position: absolute; inset: 0; z-index: 3; pointer-events: none; }
+.community-orbit-side { position: absolute; top: 0; display: flex; flex-direction: column; flex-wrap: wrap; gap: 12px; max-height: 500px; max-width: 230px; overflow-x: auto; overflow-y: hidden; padding: 6px 2px; pointer-events: auto; scrollbar-width: thin; }
+.community-orbit-side::-webkit-scrollbar { height: 5px; }
+.community-orbit-side::-webkit-scrollbar-thumb { background: var(--community-arrow-border); border-radius: 3px; }
+.community-orbit-side--left { right: calc(50% + 215px); flex-wrap: wrap-reverse; align-content: flex-end; }
+.community-orbit-side--right { left: calc(50% + 215px); align-content: flex-start; }
+.community-orbit { width: 44px; height: 44px; flex-shrink: 0; }
 .community-navigation { position: relative; z-index: 2; display: flex; justify-content: center; gap: 15px; margin-top: 24px; }
 .community-arrow { display: grid; place-items: center; flex-shrink: 0; width: 43px; height: 43px; padding: 0; border: 1px solid var(--community-arrow-border); border-radius: 50%; background: var(--community-arrow-bg); color: var(--community-arrow-ink); box-shadow: 0 3px 12px #0000000a; cursor: pointer; transition: background .15s; }
 .community-arrow:hover:not(:disabled) { background: var(--community-arrow-hover-bg); }
@@ -103,19 +103,15 @@ html.light .landing-community {
   .community-intro h2 { font-size: 27px; max-width: 370px; }
   .community-desktop-break { display: none; }
   .community-description { max-width: 320px; }
-  .community-members { padding-top: 76px; padding-bottom: 72px; min-height: 420px; }
+  .community-members { padding-top: 24px; padding-bottom: 40px; min-height: 0; }
   .community-dot-map { inset: 0 -10px; background-size: 9px 9px; }
   .community-featured { max-width: 265px; }
   .community-message { font-size: 13px; }
   .community-main-portrait, .community-placeholder { width: 66px; height: 66px; }
-  .community-orbit-1 { top: 32px; left: 12%; }
-  .community-orbit-2 { top: 25px; right: 13%; width: 42px; height: 42px; }
-  .community-orbit-3 { top: 128px; left: 0; width: 30px; height: 30px; }
-  .community-orbit-4 { top: 129px; right: 0; width: 30px; height: 30px; }
-  .community-orbit-5 { top: 282px; left: 5%; width: 48px; height: 48px; }
-  .community-orbit-6 { top: 275px; right: 5%; width: 36px; height: 36px; }
-  .community-orbit-3 .community-name { left: 0; transform: none; }
-  .community-orbit-4 .community-name { left: auto; right: 0; transform: none; }
+  .community-orbit-field { position: static; margin-bottom: 24px; }
+  .community-orbit-side { position: static; flex-direction: row; flex-wrap: wrap; justify-content: center; max-height: none; max-width: none; overflow: visible; }
+  .community-orbit-side--left, .community-orbit-side--right { right: auto; left: auto; }
+  .community-orbit { width: 38px; height: 38px; }
   .community-stories { min-height: 550px; padding: 78px 40px 95px; }
   .community-story { padding: 66px 24px 42px; min-height: 340px; border-radius: 19px; }
   .community-story h2 { font-size: 25px; }

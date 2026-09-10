@@ -82,6 +82,11 @@ export default function LandingCommunity() {
   const changeMember = (direction) => setMemberIndex((current) => (current + direction + members.length) % members.length);
   const changeStory = (direction) => setStoryIndex((current) => (current + direction + STORIES.length) % STORIES.length);
 
+  // Split into two wings so every registered member is visible at once,
+  // instead of a fixed 6-slot layout that hides the rest.
+  const leftMembers = members.filter((_, index) => index % 2 === 0);
+  const rightMembers = members.filter((_, index) => index % 2 === 1);
+
   return (
     <div className="landing-community">
       <section className="community-section" aria-labelledby="community-heading">
@@ -96,9 +101,28 @@ export default function LandingCommunity() {
 
         <div className="community-members">
           <div className="community-dot-map" aria-hidden="true" />
-          {members.slice(0, 6).map((member, index) => (
-            <MemberPortrait key={member.member_id} member={member} className={`community-orbit community-orbit-${index + 1}`} onClick={() => setMemberIndex(index)} />
-          ))}
+          <div className="community-orbit-field">
+            <div className="community-orbit-side community-orbit-side--left">
+              {leftMembers.map((member) => (
+                <MemberPortrait
+                  key={member.member_id}
+                  member={member}
+                  className="community-orbit"
+                  onClick={() => setMemberIndex(members.indexOf(member))}
+                />
+              ))}
+            </div>
+            <div className="community-orbit-side community-orbit-side--right">
+              {rightMembers.map((member) => (
+                <MemberPortrait
+                  key={member.member_id}
+                  member={member}
+                  className="community-orbit"
+                  onClick={() => setMemberIndex(members.indexOf(member))}
+                />
+              ))}
+            </div>
+          </div>
           <div className="community-featured" aria-live="polite" aria-busy={memberStatus === "loading"}>
             {selectedMember ? (
               <MemberPortrait key={selectedMember.member_id} member={selectedMember} className="community-main-portrait" />
