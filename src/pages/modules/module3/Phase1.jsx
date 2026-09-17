@@ -5,7 +5,7 @@ import PhaseStepItem from "../../../components/PhaseStepItem";
 import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
 import { useStepProgress } from "../../../hooks/useStepProgress";
 
-const TOTAL = 9;
+const TOTAL = 10;
 
 const Phase1 = () => {
   const [open, setOpen] = useState(() => new Set([0]));
@@ -39,7 +39,7 @@ const Phase1 = () => {
           </div>
         </div>
         <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
-          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7,8]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7,8,9]))} className="hover:text-gray-400 transition-colors">expand all</button>
           <span>|</span>
           <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
         </div>
@@ -118,22 +118,65 @@ const Phase1 = () => {
               </div>
             </div>
           </PhaseStepItem>
-          <PhaseStepItem number={6} type="NOTE" title="Key Takeaways"
+          <PhaseStepItem number={6} type="PRACTICE" title="Step 4: Grant Entra ID Access & Test with a Private Container"
             isOpen={open.has(5)} onToggleOpen={() => toggleOpen(5)}
             isChecked={checked.has(5)} onToggleChecked={() => toggleChecked(5)}>
+            <p className="text-xs text-gray-500 mb-2">With storage account key access disabled, Entra ID (Azure AD) authentication is now the only way in — grant yourself access, create a container, and confirm the setup works end to end.</p>
+            <div className="space-y-3">
+              <div>
+                <p className="text-gray-400 text-xs mb-1 font-semibold">// grant Entra ID access for blob operations</p>
+                <ul className="space-y-1">
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Go to <strong className="text-gray-300">Access control (IAM)</strong></span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Select <strong className="text-gray-300">Add → Add role assignment</strong></span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Select <strong className="text-gray-300">Storage Blob Data Contributor</strong></span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Assign access to <strong className="text-gray-300">User, group, or service principal</strong></span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Select the learner's Microsoft Entra account</span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Select <strong className="text-gray-300">Review + assign</strong></span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Wait for RBAC propagation</span></li>
+                </ul>
+              </div>
+              <div>
+                <p className="text-gray-400 text-xs mb-1 font-semibold">// create a private container</p>
+                <ul className="space-y-1">
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Go to <strong className="text-gray-300">Data storage → Containers</strong></span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Select <strong className="text-gray-300">+ Container</strong></span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Name it <code className="text-yellow-400">training-files</code></span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Confirm <strong className="text-gray-300">Anonymous access level</strong> is <code className="text-red-400">Private</code></span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Create</span></li>
+                </ul>
+              </div>
+              <div>
+                <p className="text-gray-400 text-xs mb-1 font-semibold">// test authorized access</p>
+                <ul className="space-y-1">
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Open the container</span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Select <strong className="text-gray-300">Upload</strong></span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Upload a test file</span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Verify that the upload succeeds</span></li>
+                  <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Copy the blob url and test on your browser. Confirm that anonymous access is blocked</span></li>
+                </ul>
+                <div className="mt-2 p-2 border border-green-800/50 bg-green-900/10">
+                  <p className="text-green-400 text-xs">Success: this is the typical setup for this scenario — key access disabled, Entra ID + RBAC controlling access, and a private container reachable only by authorized identities.</p>
+                </div>
+              </div>
+            </div>
+          </PhaseStepItem>
+          <PhaseStepItem number={7} type="NOTE" title="Key Takeaways"
+            isOpen={open.has(6)} onToggleOpen={() => toggleOpen(6)}
+            isChecked={checked.has(6)} onToggleChecked={() => toggleChecked(6)}>
             <ul className="space-y-1.5">
               <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span>An Azure storage account is a container for all Azure Storage data objects: blobs, files, queues, and tables.</span></li>
               <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span>Azure Storage offers <strong className="text-gray-300">Standard</strong> and <strong className="text-gray-300">Premium</strong> tiers with different pricing and feature models.</span></li>
               <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span>Azure always stores multiple copies of your data to protect from planned and unplanned events.</span></li>
               <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span><strong className="text-gray-300">LRS</strong> replicates data 3× within a single datacenter — lowest cost, lowest durability.</span></li>
+              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span>With key access disabled, <strong className="text-gray-300">Entra ID + RBAC</strong> (e.g. Storage Blob Data Contributor) is what authorizes every blob operation.</span></li>
             </ul>
           </PhaseStepItem>
         </div>
 
         <div className="space-y-2 mb-6">
-          <PhaseStepItem number={7} type="ATTACKER" title="What an attacker does with a leaked storage account key"
-            isOpen={open.has(6)} onToggleOpen={() => toggleOpen(6)}
-            isChecked={checked.has(6)} onToggleChecked={() => toggleChecked(6)}>
+          <PhaseStepItem number={8} type="ATTACKER" title="What an attacker does with a leaked storage account key"
+            isOpen={open.has(7)} onToggleOpen={() => toggleOpen(7)}
+            isChecked={checked.has(7)} onToggleChecked={() => toggleChecked(7)}>
             <p>Storage account keys grant <span className="text-red-400">full, unconditional access</span> — read, write, delete, manage containers, and generate SAS tokens — with no expiry and no audit attribution. If a key is found in a <code className="text-yellow-400">.env</code> file, GitHub repo, or application log, an attacker can immediately exfiltrate every blob in the account silently.</p>
             <div className="mt-3 p-3 border border-red-800/40 bg-red-900/10">
               <p className="text-red-400 text-xs font-bold mb-2">Attack steps with a leaked key</p>
@@ -146,9 +189,9 @@ const Phase1 = () => {
             <p className="text-gray-500 text-xs mt-2">Key rotation revokes access but disrupts every app using the old key — so teams delay rotation, prolonging exposure. The fix is to never use keys: use Managed Identity + Azure AD auth instead.</p>
           </PhaseStepItem>
 
-          <PhaseStepItem number={8} type="WARN" title="Common mistakes in Lab 01"
-            isOpen={open.has(7)} onToggleOpen={() => toggleOpen(7)}
-            isChecked={checked.has(7)} onToggleChecked={() => toggleChecked(7)}>
+          <PhaseStepItem number={9} type="WARN" title="Common mistakes in Lab 01"
+            isOpen={open.has(8)} onToggleOpen={() => toggleOpen(8)}
+            isChecked={checked.has(8)} onToggleChecked={() => toggleChecked(8)}>
             <ul className="space-y-2 text-sm">
               <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Leaving &quot;Allow blob public access&quot; enabled:</span> Older storage accounts have this on by default. Any developer can then make a container public — disable it at the account level so no container can ever be public.</span></li>
               <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">Using storage account keys in application code:</span> Keys should be treated as break-glass credentials only. Use Managed Identity + RBAC for application access — no secrets to manage, no keys to leak.</span></li>
@@ -157,9 +200,9 @@ const Phase1 = () => {
             </ul>
           </PhaseStepItem>
 
-          <PhaseStepItem number={9} type="CLEANUP" title="Cleanup — delete the Lab 01 storage account"
-            isOpen={open.has(8)} onToggleOpen={() => toggleOpen(8)}
-            isChecked={checked.has(8)} onToggleChecked={() => toggleChecked(8)}>
+          <PhaseStepItem number={10} type="CLEANUP" title="Cleanup — delete the Lab 01 storage account"
+            isOpen={open.has(9)} onToggleOpen={() => toggleOpen(9)}
+            isChecked={checked.has(9)} onToggleChecked={() => toggleChecked(9)}>
             <p className="text-sm text-gray-400 mb-3">LRS storage in East US costs ~$0.018/GB/month — minimal, but clean up anyway to keep your subscription tidy.</p>
             <div className="space-y-2 text-xs font-mono">
               <div className="p-2 border border-gray-700 bg-gray-800">
