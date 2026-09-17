@@ -106,7 +106,7 @@ const Resources = () => {
           ))}
         </div>
         <div className="mb-8 border border-yellow-800/40 bg-yellow-900/10 p-4">
-          <p className="text-yellow-400 text-xs font-semibold mb-1">// remember</p>
+          <p className="text-yellow-400 text-xs font-semibold mb-1"> remember:</p>
           <p className="text-gray-400 text-sm">You cannot secure what you do not understand. Make sure to grasp the core components before moving on.</p>
         </div>
         <div className="flex justify-between items-center text-sm border-t border-gray-700 pt-6">
