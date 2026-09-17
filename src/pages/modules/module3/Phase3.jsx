@@ -5,7 +5,7 @@ import PhaseStepItem from "../../../components/PhaseStepItem";
 import MarkPhaseComplete from "../../../components/MarkPhaseComplete";
 import { useStepProgress } from "../../../hooks/useStepProgress";
 
-const TOTAL = 9;
+const TOTAL = 10;
 
 const Phase3 = () => {
   const [open, setOpen] = useState(() => new Set([0]));
@@ -42,7 +42,7 @@ const Phase3 = () => {
           </div>
         </div>
         <div className="flex items-center justify-end gap-4 text-xs text-gray-600 mb-3">
-          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7,8]))} className="hover:text-gray-400 transition-colors">expand all</button>
+          <button onClick={() => setOpen(new Set([0,1,2,3,4,5,6,7,8,9]))} className="hover:text-gray-400 transition-colors">expand all</button>
           <span>|</span>
           <button onClick={() => setOpen(new Set())} className="hover:text-gray-400 transition-colors">collapse all</button>
         </div>
@@ -127,22 +127,111 @@ const Phase3 = () => {
               </div>
             </div>
           </PhaseStepItem>
-          <PhaseStepItem number={6} type="NOTE" title="Key Takeaways"
+          <PhaseStepItem number={6} type="NOTE" title="For Software Engineers — Implementing Lab 03 as Code"
             isOpen={open.has(5)} onToggleOpen={() => toggleOpen(5)}
             isChecked={checked.has(5)} onToggleChecked={() => toggleChecked(5)}>
+            <p className="text-xs text-gray-500 mb-2">Everything you clicked through in the portal maps directly to Infrastructure as Code and SDK calls — this is how the same setup gets deployed and consumed in a real engineering workflow.</p>
+            <div className="space-y-3">
+              <div>
+                <p className="text-gray-400 text-xs mb-1 font-semibold">// Bicep: GRS storage account, private container, lifecycle rule</p>
+                <div className="p-2 border border-gray-700 bg-gray-800 overflow-x-auto">
+                  <pre className="text-xs text-gray-400 font-mono whitespace-pre">{`resource privateStorage 'Microsoft.Storage/storageAccounts@2023-01-01' = {
+  name: 'stprivate\${uniqueString(resourceGroup().id)}'
+  location: location
+  sku: { name: 'Standard_GRS' }
+  kind: 'StorageV2'
+  properties: {
+    minimumTlsVersion: 'TLS1_2'
+    allowBlobPublicAccess: false
+    isVersioningEnabled: true
+  }
+}
+
+resource privateContainer 'Microsoft.Storage/storageAccounts/blobServices/containers@2023-01-01' = {
+  name: '\${privateStorage.name}/default/private'
+  properties: { publicAccess: 'None' }
+}
+
+resource lifecyclePolicy 'Microsoft.Storage/storageAccounts/managementPolicies@2023-01-01' = {
+  name: '\${privateStorage.name}/default'
+  properties: {
+    policy: {
+      rules: [{
+        name: 'movetocool'
+        enabled: true
+        type: 'Lifecycle'
+        definition: {
+          filters: { blobTypes: ['blockBlob'] }
+          actions: { baseBlob: { tierToCool: { daysAfterModificationGreaterThan: 30 } } }
+        }
+      }]
+    }
+  }
+}`}</pre>
+                </div>
+              </div>
+              <div>
+                <p className="text-gray-400 text-xs mb-1 font-semibold">// Terraform: object replication (manages both source & destination in one resource)</p>
+                <div className="p-2 border border-gray-700 bg-gray-800 overflow-x-auto">
+                  <pre className="text-xs text-gray-400 font-mono whitespace-pre">{`resource "azurerm_storage_object_replication" "backup" {
+  source_storage_account_id      = azurerm_storage_account.publicwebsite.id
+  destination_storage_account_id = azurerm_storage_account.private.id
+
+  rules {
+    source_container_name      = "public"
+    destination_container_name = "backup"
+  }
+}
+# Terraform provider creates the policy on the destination, reads back the
+# generated policy ID, and applies it to the source automatically \u2014
+# the two-step "create on destination, copy ID to source" dance from the
+# portal/CLI is handled for you.`}</pre>
+                </div>
+              </div>
+              <div>
+                <p className="text-gray-400 text-xs mb-1 font-semibold">// application code: generate a short-lived, revocable SAS (Python)</p>
+                <div className="p-2 border border-gray-700 bg-gray-800 overflow-x-auto">
+                  <pre className="text-xs text-gray-400 font-mono whitespace-pre">{`from azure.identity import DefaultAzureCredential
+from azure.storage.blob import BlobServiceClient, BlobSasPermissions, generate_blob_sas
+from datetime import datetime, timedelta, timezone
+
+credential = DefaultAzureCredential()  # managed identity in prod, no keys
+client = BlobServiceClient("https://<account>.blob.core.windows.net", credential=credential)
+
+start = datetime.now(timezone.utc)
+expiry = start + timedelta(hours=1)
+delegation_key = client.get_user_delegation_key(start, expiry)  # Entra-signed, not account-key signed
+
+sas_token = generate_blob_sas(
+    account_name="<account>", container_name="private", blob_name="report.pdf",
+    user_delegation_key=delegation_key,
+    permission=BlobSasPermissions(read=True),
+    expiry=expiry,
+)`}</pre>
+                </div>
+              </div>
+            </div>
+            <div className="mt-2 p-2 border border-blue-800/50 bg-blue-900/10">
+              <p className="text-blue-400 text-xs">This is why the portal's "Generate SAS" tab is fine for learning but wrong for production: it signs with the storage account key. A <strong className="text-gray-300">user delegation SAS</strong> (as above) is signed with Entra ID credentials via <code className="text-yellow-400">get_user_delegation_key</code>, is scoped to the identity's own RBAC permissions, and can be revoked without rotating the storage account key.</p>
+            </div>
+          </PhaseStepItem>
+          <PhaseStepItem number={7} type="NOTE" title="Key Takeaways"
+            isOpen={open.has(6)} onToggleOpen={() => toggleOpen(6)}
+            isChecked={checked.has(6)} onToggleChecked={() => toggleChecked(6)}>
             <ul className="space-y-1.5">
               <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span>Azure storage has many data protection features: encryption, access control, network security, monitoring, and alerts.</span></li>
               <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span>A <strong className="text-gray-300">Shared Access Signature (SAS)</strong> provides secure delegated access with granular control over permissions and expiry.</span></li>
               <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span><strong className="text-gray-300">Lifecycle rules</strong> automate data tiering to optimize storage costs over time.</span></li>
               <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span><strong className="text-gray-300">Object replication</strong> asynchronously copies block blobs between a source and destination storage account.</span></li>
+              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span>Everything here is expressible as <strong className="text-gray-300">Bicep/Terraform</strong> plus SDK calls — production apps should use <strong className="text-gray-300">user delegation SAS</strong> over managed identity, never portal-generated key SAS.</span></li>
             </ul>
           </PhaseStepItem>
         </div>
 
         <div className="space-y-2 mb-6">
-          <PhaseStepItem number={7} type="ATTACKER" title="How attackers abuse SAS tokens found in logs or code"
-            isOpen={open.has(6)} onToggleOpen={() => toggleOpen(6)}
-            isChecked={checked.has(6)} onToggleChecked={() => toggleChecked(6)}>
+          <PhaseStepItem number={8} type="ATTACKER" title="How attackers abuse SAS tokens found in logs or code"
+            isOpen={open.has(7)} onToggleOpen={() => toggleOpen(7)}
+            isChecked={checked.has(7)} onToggleChecked={() => toggleChecked(7)}>
             <p>SAS tokens are credentials. When they appear in browser URL bars, application logs, CDN access logs, error messages, or Referer headers — anywhere they transit as plaintext — an attacker who captures one can replay it until it expires.</p>
             <div className="mt-3 p-3 border border-red-800/40 bg-red-900/10">
               <p className="text-red-400 text-xs font-bold mb-2">Attack: replay a SAS token found in a log</p>
@@ -158,9 +247,9 @@ const Phase3 = () => {
             </div>
           </PhaseStepItem>
 
-          <PhaseStepItem number={8} type="WARN" title="Common mistakes in Lab 03"
-            isOpen={open.has(7)} onToggleOpen={() => toggleOpen(7)}
-            isChecked={checked.has(7)} onToggleChecked={() => toggleChecked(7)}>
+          <PhaseStepItem number={9} type="WARN" title="Common mistakes in Lab 03"
+            isOpen={open.has(8)} onToggleOpen={() => toggleOpen(8)}
+            isChecked={checked.has(8)} onToggleChecked={() => toggleChecked(8)}>
             <ul className="space-y-2 text-sm">
               <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">SAS expiry set to 1 year &quot;for convenience&quot;:</span> A long-lived SAS is an effectively permanent credential. If leaked, attackers have months or years to exploit it. Design SAS generation into your application with the shortest expiry the use case allows — minutes to hours for user operations.</span></li>
               <li className="flex items-start gap-2"><span className="text-orange-400 flex-shrink-0">!</span><span><span className="text-gray-300">SAS scope too broad:</span> A SAS with write + delete on the entire storage account (service SAS at account level) is nearly equivalent to a storage key. Scope to the specific container and the minimum permissions: read-only if the use case only needs reads.</span></li>
@@ -169,9 +258,9 @@ const Phase3 = () => {
             </ul>
           </PhaseStepItem>
 
-          <PhaseStepItem number={9} type="CLEANUP" title="Cleanup — delete Lab 03 storage accounts and replication"
-            isOpen={open.has(8)} onToggleOpen={() => toggleOpen(8)}
-            isChecked={checked.has(8)} onToggleChecked={() => toggleChecked(8)}>
+          <PhaseStepItem number={10} type="CLEANUP" title="Cleanup — delete Lab 03 storage accounts and replication"
+            isOpen={open.has(9)} onToggleOpen={() => toggleOpen(9)}
+            isChecked={checked.has(9)} onToggleChecked={() => toggleChecked(9)}>
             <p className="text-sm text-gray-400 mb-3">Delete the object replication policy before deleting accounts, otherwise deletion may fail.</p>
             <div className="space-y-2 text-xs font-mono">
               <div className="p-2 border border-gray-700 bg-gray-800">
