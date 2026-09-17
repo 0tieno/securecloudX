@@ -1,0 +1,82 @@
+<svg width="960" height="620" viewBox="0 0 960 620" xmlns="http://www.w3.org/2000/svg" font-family="Segoe UI, Arial, sans-serif">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#94a3b8"/>
+    </marker>
+    <marker id="arrowRed" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#f87171"/>
+    </marker>
+    <marker id="arrowGreen" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#4ade80"/>
+    </marker>
+  </defs>
+
+  <rect width="960" height="620" fill="#111827"/>
+  <text x="480" y="38" fill="#e5e7eb" text-anchor="middle" font-size="22" font-weight="700">Lab 02 — Secure Public Website Storage</text>
+  <text x="480" y="60" fill="#6b7280" text-anchor="middle" font-size="13">CDN/Front Door in front of Azure Blob Storage, with detection covering the residual gap</text>
+
+  <!-- Users -->
+  <rect x="40" y="140" width="150" height="70" rx="10" fill="#1f2937" stroke="#60a5fa" stroke-width="2"/>
+  <text x="115" y="170" fill="#e5e7eb" text-anchor="middle" font-size="14" font-weight="600">Users</text>
+  <text x="115" y="188" fill="#9ca3af" text-anchor="middle" font-size="11">worldwide, browsers</text>
+
+  <!-- Front Door / CDN -->
+  <rect x="290" y="140" width="190" height="80" rx="10" fill="#1f2937" stroke="#38bdf8" stroke-width="2"/>
+  <text x="385" y="168" fill="#e5e7eb" text-anchor="middle" font-size="14" font-weight="600">Azure Front Door / CDN</text>
+  <text x="385" y="186" fill="#9ca3af" text-anchor="middle" font-size="11">edge caching, custom domain</text>
+  <text x="385" y="202" fill="#9ca3af" text-anchor="middle" font-size="11">DDoS absorption at the edge</text>
+
+  <!-- Storage account outer -->
+  <rect x="600" y="100" width="320" height="200" rx="12" fill="#111827" stroke="#4ade80" stroke-width="2" stroke-dasharray="0"/>
+  <text x="760" y="122" fill="#4ade80" text-anchor="middle" font-size="13" font-weight="700">Storage Account (RA-GRS)</text>
+
+  <rect x="620" y="140" width="130" height="60" rx="8" fill="#1f2937" stroke="#facc15" stroke-width="2"/>
+  <text x="685" y="164" fill="#e5e7eb" text-anchor="middle" font-size="12" font-weight="600">"public"</text>
+  <text x="685" y="180" fill="#9ca3af" text-anchor="middle" font-size="10">anonymous blob read</text>
+
+  <rect x="770" y="140" width="130" height="60" rx="8" fill="#1f2937" stroke="#a78bfa" stroke-width="2"/>
+  <text x="835" y="160" fill="#e5e7eb" text-anchor="middle" font-size="11" font-weight="600">versioning +</text>
+  <text x="835" y="174" fill="#e5e7eb" text-anchor="middle" font-size="11" font-weight="600">soft delete (21d)</text>
+
+  <rect x="620" y="220" width="280" height="55" rx="8" fill="#0f172a" stroke="#4ade80" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="760" y="242" fill="#9ca3af" text-anchor="middle" font-size="11">RA-GRS secondary region</text>
+  <text x="760" y="258" fill="#9ca3af" text-anchor="middle" font-size="10">read-only failover copy</text>
+
+  <!-- Defender for Storage -->
+  <rect x="620" y="360" width="300" height="70" rx="10" fill="#1f2937" stroke="#f97316" stroke-width="2"/>
+  <text x="770" y="388" fill="#e5e7eb" text-anchor="middle" font-size="13" font-weight="600">Microsoft Defender for Storage</text>
+  <text x="770" y="406" fill="#9ca3af" text-anchor="middle" font-size="11">malware scan · anomaly detection</text>
+
+  <!-- Security alerts / SOC -->
+  <rect x="660" y="470" width="220" height="60" rx="10" fill="#1f2937" stroke="#f97316" stroke-width="2"/>
+  <text x="770" y="495" fill="#e5e7eb" text-anchor="middle" font-size="12" font-weight="600">Security alerts</text>
+  <text x="770" y="512" fill="#9ca3af" text-anchor="middle" font-size="10">reviewed by the ops/SOC team</text>
+
+  <!-- Arrows: main path -->
+  <line x1="190" y1="175" x2="285" y2="175" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="480" y1="175" x2="615" y2="170" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="545" y="160" fill="#6b7280" text-anchor="middle" font-size="10">origin fetch</text>
+
+  <!-- Defender monitors storage -->
+  <line x1="760" y1="300" x2="760" y2="355" stroke="#f97316" stroke-width="2" marker-end="url(#arrow)"/>
+  <line x1="770" y1="430" x2="770" y2="465" stroke="#f97316" stroke-width="2" marker-end="url(#arrow)"/>
+
+  <!-- Residual risk: direct path -->
+  <path d="M115,210 C 115,340 700,420 615,175" fill="none" stroke="#f87171" stroke-width="2" stroke-dasharray="6 4" marker-end="url(#arrowRed)"/>
+  <rect x="40" y="330" width="230" height="60" rx="8" fill="#1f2937" stroke="#f87171" stroke-width="1.5"/>
+  <text x="155" y="352" fill="#f87171" text-anchor="middle" font-size="11" font-weight="600">Residual risk (Standard tier)</text>
+  <text x="155" y="368" fill="#9ca3af" text-anchor="middle" font-size="10">direct blob.core.windows.net URL</text>
+  <text x="155" y="382" fill="#9ca3af" text-anchor="middle" font-size="10">still reachable — can't be firewalled</text>
+
+  <!-- Enterprise upgrade path -->
+  <rect x="330" y="470" width="260" height="90" rx="10" fill="#0f172a" stroke="#4ade80" stroke-width="1.5" stroke-dasharray="5 3"/>
+  <text x="460" y="494" fill="#4ade80" text-anchor="middle" font-size="12" font-weight="700">Enterprise upgrade path</text>
+  <text x="460" y="514" fill="#9ca3af" text-anchor="middle" font-size="10">Front Door PREMIUM + Private Link</text>
+  <text x="460" y="530" fill="#9ca3af" text-anchor="middle" font-size="10">storage set to "no public access" —</text>
+  <text x="460" y="546" fill="#9ca3af" text-anchor="middle" font-size="10">origin fully closed, reachable only via Front Door</text>
+
+  <line x1="460" y1="465" x2="460" y2="435" stroke="#4ade80" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrowGreen)"/>
+  <line x1="590" y1="500" x2="618" y2="230" stroke="#4ade80" stroke-width="1.5" stroke-dasharray="4 3" marker-end="url(#arrowGreen)"/>
+
+  <text x="480" y="600" fill="#6b7280" text-anchor="middle" font-size="11">SecureCloudX — Module 3, Lab 02: Secure Public Website Storage</text>
+</svg>
