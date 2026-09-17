@@ -121,6 +121,9 @@ const Phase3 = () => {
                   <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Set source container to <code className="text-yellow-400">public</code> and destination to <code className="text-yellow-400">backup</code> → Create</span></li>
                   <li className="flex items-start gap-2"><span className="text-cyan-400 flex-shrink-0">$</span><span>Upload a file to the <code className="text-yellow-400">public</code> container and check the <code className="text-yellow-400">backup</code> container after a few minutes</span></li>
                 </ul>
+                <div className="mt-2 p-2 border border-yellow-800/50 bg-yellow-900/10">
+                  <p className="text-yellow-400 text-xs">Replication is asynchronous with <strong className="text-gray-300">no fixed completion time</strong> — Microsoft's own guidance is only a rule of thumb, not a guarantee. Without <strong className="text-gray-300">priority replication</strong> enabled, a new rule can take anywhere from a couple of minutes up to ~10-15 minutes before the first object appears in the destination container (larger blobs and cross-region policies take longer). If nothing has shown up after 15 minutes, refresh the container rather than re-uploading, and double check the rule's status on <strong className="text-gray-300">Object replication</strong> shows <code className="text-green-400">Complete</code>, not <code className="text-yellow-400">In progress</code>. With priority replication enabled (extra cost), Microsoft's SLA is 99% of objects replicated within 15 minutes for same-continent policies.</p>
+                </div>
               </div>
             </div>
           </PhaseStepItem>
