@@ -215,6 +215,7 @@ const Phase2 = () => {
               <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span>When a container is configured for anonymous access, any client can read data in that container.</span></li>
               <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span>A <strong className="text-gray-300">CDN or Front Door in front of storage</strong> is the standard enterprise pattern for public content, but Standard-tier storage firewalls can't be scoped to "only accept CDN traffic" — full origin isolation needs <strong className="text-gray-300">Front Door Premium + Private Link</strong>.</span></li>
               <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span><strong className="text-gray-300">Microsoft Defender for Storage</strong> detects malware uploads and anomalous access patterns — the compensating control when the network layer can't fully lock down a public-facing origin.</span></li>
+              <li className="flex items-start gap-2"><span className="text-green-400 flex-shrink-0">—</span><span><strong className="text-gray-300">Conclusion:</strong> this is the recommended setup for securing public-facing storage while maintaining necessary access controls.</span></li>
             </ul>
           </PhaseStepItem>
         </div>
