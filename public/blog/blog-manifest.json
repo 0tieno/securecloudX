@@ -1,6 +1,26 @@
 {
-  "generatedAt": "2026-09-17T12:25:22.188Z",
+  "generatedAt": "2026-09-18T08:00:06.005Z",
   "posts": [
+    {
+      "filename": "secure-azure-storage-with-entra-id.md",
+      "slug": "secure-azure-storage-with-entra-id",
+      "layout": "post",
+      "title": "A Small Azure Storage Lab With Real Security Lessons",
+      "date": "2026-09-18",
+      "categories": [
+        "azure",
+        "storage",
+        "identity",
+        "cloudsecurity"
+      ],
+      "author": "s!rr0nn3y",
+      "excerpt": "A team needs a small Azure Storage account for IT training. They want to prototype storage scenarios, upload a few files, and let new engineers practise without paying fo...",
+      "readingTime": 8,
+      "associatedLab": {
+        "title": "Data Security",
+        "day": 3
+      }
+    },
     {
       "filename": "secure-public-website-storage-architecture.md",
       "slug": "secure-public-website-storage-architecture",

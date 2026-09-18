@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "The Cyber Resilience Architecture Behind Serving Public Facing Content from Azure Storage"
+title: "The Architecture Behind Serving Public Website Content from Azure Storage — Without Leaving It Wide Open"
 date: 2026-09-17
 author: s!rr0nn3y
 categories:
@@ -74,17 +74,3 @@ Most public-content scenarios stop at row 3. Row 4 is for when "public" content 
 This isn't an academic pattern — it's the same shape you'll find behind CDN-fronted static sites at any company serving global content: edge cache for performance, storage-layer resilience for recoverability, scoped anonymous access for blast-radius control, and detection for the gap the network layer can't close. If you're the engineer asked to "put some files somewhere the website can read them," this is the version of that answer that survives a security review.
 
 Try it hands-on in [Module 3, Lab 02: Secure Public Website Storage](/module3/task/phase2) — it walks through provisioning every piece of this diagram, including the CDN/Front Door step and the Defender for Storage step, step by step.
-
-## TLDR
-
-### TLDR
-
-- Don't just flip "public access" on a storage account that is public facing — it leaves you exposed.
-- Put a CDN or Front Door in front of it for caching, DDoS absorption, and custom domain/cert management.
-- Configure the storage account for recoverability (RA-GRS, soft delete, versioning).
-- Scope anonymous access to a single container, not the whole account.
-- Use Microsoft Defender for Storage to detect malware uploads and anomalous access patterns like data exfiltration.
-- Consider Private Link and disabling public access if the origin must be provably unreachable.
-
-
-Happy hacking!
