@@ -262,7 +262,7 @@ const Sidebar = () => {
             <li className="mt-3">
               <div className="px-4 py-1 text-xs text-yellow-600 uppercase tracking-widest flex items-center gap-2">
                 Advanced Topics
-                <span className="border border-yellow-700/50 text-yellow-700 px-1 text-[10px]">optional</span>
+                <span className="border border-yellow-700/50 text-yellow-400 px-1 text-xs font-medium">optional</span>
               </div>
             </li>
 
