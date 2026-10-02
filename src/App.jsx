@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Navigate, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter as Router, Navigate, Route, Routes, matchPath, useLocation } from "react-router-dom";
 
 import AppShell from "./components/AppShell";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -24,8 +24,7 @@ function FloatingThemeToggle() {
     "/terms-of-service",
     "/changelog",
     "/forgotten-secret-lab",
-    "/home",
-  ].includes(pathname)) return null;
+  ].some((path) => matchPath(path, pathname)) || shellRoutes.some(({ path }) => matchPath(path, pathname))) return null;
   return <ThemeToggle floating />;
 }
 
