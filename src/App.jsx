@@ -24,6 +24,7 @@ function FloatingThemeToggle() {
     "/terms-of-service",
     "/changelog",
     "/forgotten-secret-lab",
+    "/home",
   ].includes(pathname)) return null;
   return <ThemeToggle floating />;
 }
