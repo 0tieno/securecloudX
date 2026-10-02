@@ -14,6 +14,7 @@ function FloatingThemeToggle() {
   if ([
     "/",
     "/get-started",
+    "/hacktivities",
     "/community",
     "/research",
     "/research/charter",
