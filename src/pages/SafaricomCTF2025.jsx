@@ -15,16 +15,9 @@ export default function SafaricomCTF2025() {
 
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
-      <PageNav
-        subtitle="Safaricom CTF 2025 - Challenge Writeups"
-        command="root@securecloudx:~# cd /ctf/safaricom2025/"
-        links={[
-          { label: "../get_started", path: "/get-started" },
-          { label: "./blog", path: "/opensource-blog" },
-        ]}
-      />
+      <PageNav compact />
 
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
+      <main className="w-full max-w-4xl mx-auto px-5 sm:px-6 py-6 sm:py-8">
         {/* Back Navigation */}
         <div className="mb-6 sm:mb-8">
           <button
@@ -42,7 +35,7 @@ export default function SafaricomCTF2025() {
           <div className="flex flex-col sm:flex-row sm:items-center mb-4 gap-2 sm:gap-0">
             <div className="flex items-center">
               <Shield className="w-6 sm:w-8 h-6 sm:h-8 text-cyan-400 mr-2 sm:mr-3" />
-              <h1 className="text-2xl sm:text-3xl font-bold text-gray-300">
+              <h1 className="text-xl sm:text-3xl font-bold text-gray-300">
                 Safaricom CTF 2025
               </h1>
             </div>
@@ -137,7 +130,7 @@ export default function SafaricomCTF2025() {
             View More Writeups →
           </button>
         </div>
-      </div>
+      </main>
     </div>
   );
 }
