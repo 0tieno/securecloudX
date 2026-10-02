@@ -36,6 +36,47 @@ html.light {
   --color-gray-50:  #020617;
 }
 
+/* Text colors stay readable on light surfaces without darkening status backgrounds. */
+html.light :is(.text-gray-600, .text-gray-700, .text-gray-800, .text-gray-900) {
+  color: #475569;
+}
+
+html.light :is(.bg-gray-900, .bg-gray-800, .bg-gray-700).text-white,
+html.light .hover\:text-white:hover,
+html.light .group:hover .group-hover\:text-white {
+  color: #0f172a;
+}
+
+html.light :is(.text-red-300, .text-red-400) { color: #b91c1c; }
+html.light :is(.hover\:text-red-300, .hover\:text-red-400):hover,
+html.light .group:hover :is(.group-hover\:text-red-300, .group-hover\:text-red-400) { color: #991b1b; }
+
+html.light :is(.text-blue-300, .text-blue-400) { color: #1d4ed8; }
+html.light :is(.hover\:text-blue-300, .hover\:text-blue-400):hover,
+html.light .group:hover :is(.group-hover\:text-blue-300, .group-hover\:text-blue-400) { color: #1e40af; }
+
+html.light :is(.text-green-300, .text-green-400) { color: #15803d; }
+html.light :is(.hover\:text-green-300, .hover\:text-green-400):hover,
+html.light .group:hover :is(.group-hover\:text-green-300, .group-hover\:text-green-400) { color: #166534; }
+
+html.light :is(.text-yellow-300, .text-yellow-400, .text-amber-300, .text-amber-400) { color: #854d0e; }
+html.light :is(.hover\:text-yellow-300, .hover\:text-yellow-400, .hover\:text-amber-300, .hover\:text-amber-400):hover,
+html.light .group:hover :is(.group-hover\:text-yellow-300, .group-hover\:text-yellow-400, .group-hover\:text-amber-300, .group-hover\:text-amber-400) { color: #713f12; }
+
+html.light :is(.text-cyan-300, .text-cyan-400, .text-teal-300, .text-teal-400, .text-emerald-300, .text-emerald-400) { color: #0e7490; }
+html.light :is(.hover\:text-cyan-300, .hover\:text-cyan-400, .hover\:text-teal-300, .hover\:text-teal-400, .hover\:text-emerald-300, .hover\:text-emerald-400):hover,
+html.light .group:hover :is(.group-hover\:text-cyan-300, .group-hover\:text-cyan-400, .group-hover\:text-teal-300, .group-hover\:text-teal-400, .group-hover\:text-emerald-300, .group-hover\:text-emerald-400) { color: #155e75; }
+
+html.light :is(.text-purple-300, .text-purple-400, .text-violet-300, .text-violet-400) { color: #7e22ce; }
+html.light :is(.hover\:text-purple-300, .hover\:text-purple-400, .hover\:text-violet-300, .hover\:text-violet-400):hover,
+html.light .group:hover :is(.group-hover\:text-purple-300, .group-hover\:text-purple-400, .group-hover\:text-violet-300, .group-hover\:text-violet-400) { color: #6b21a8; }
+
+html.light :is(.text-orange-300, .text-orange-400) { color: #c2410c; }
+html.light :is(.hover\:text-orange-300, .hover\:text-orange-400):hover,
+html.light .group:hover :is(.group-hover\:text-orange-300, .group-hover\:text-orange-400) { color: #9a3412; }
+
+html.light .hover\:bg-red-500:hover { background-color: #b91c1c; }
+
 @keyframes shrink {
   from { width: 100%; }
   to   { width: 0%; }
