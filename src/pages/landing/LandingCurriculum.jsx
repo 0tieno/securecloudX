@@ -5,6 +5,29 @@ import { PHASES, ADVANCED } from "../../data/phases";
 import { useAuth } from "../../contexts/AuthContext";
 import AuthToast from "../../components/AuthToast";
 
+function ModuleLink({ module, onClick }) {
+  return (
+    <Link
+      to={module.path}
+      onClick={onClick}
+      className="flex h-full items-start gap-3 sm:gap-4 border-t border-gray-700 hover:border-gray-500 hover:bg-gray-800/30 py-6 transition-colors group focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-400"
+    >
+      <span className="text-red-400 text-sm font-semibold w-7 sm:w-8 shrink-0 pt-0.5">
+        {String(module.id).padStart(2, "0")}
+      </span>
+      <div className="flex-1 min-w-0">
+        <h3 className="text-base font-semibold text-gray-200 group-hover:text-red-400 mb-3 leading-relaxed">
+          {module.title}
+        </h3>
+        <p className="text-gray-300 text-sm font-medium leading-6">
+          {module.description}
+        </p>
+      </div>
+      <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-red-400 shrink-0 mt-1.5" aria-hidden="true" />
+    </Link>
+  );
+}
+
 export default function LandingCurriculum() {
   const { user, signIn } = useAuth();
   const [showToast, setShowToast] = useState(false);
@@ -17,129 +40,84 @@ export default function LandingCurriculum() {
   }
 
   return (
-    <div className="w-full mt-16">
-      {/* Divider — clear visual break between hero and curriculum */}
+    <section id="curriculum" className="w-full mt-12 sm:mt-16 scroll-mt-32 md:scroll-mt-24" aria-labelledby="curriculum-heading">
       <div className="flex items-center gap-4 mb-10">
-        <div className="flex-1 h-px bg-gray-800" />
-        <span className="text-gray-700 text-xs font-mono tracking-widest uppercase">curriculum</span>
-        <div className="flex-1 h-px bg-gray-800" />
+        <span className="text-gray-400 text-xs font-semibold tracking-wider uppercase">01 / curriculum</span>
+        <div className="flex-1 h-px bg-gray-700" />
       </div>
 
-      {/* Section header — left-aligned to match the hero reading axis */}
       <div className="mb-8">
-        <h2 className="text-3xl font-bold text-gray-300">
-          What You&apos;ll Learn
+        <h2 id="curriculum-heading" className="text-2xl sm:text-3xl font-bold text-gray-200 tracking-tight">
+          Build your core skills.
         </h2>
-        <p className="text-gray-500 text-sm mt-3 max-w-xl leading-relaxed">
-          7 core modules + 2 advanced topics. Hands-on labs for every phase.
-          Complete the core path to earn your certificate.
+        <p className="text-gray-300 text-sm font-medium mt-3 max-w-xl leading-6">
+          Follow {PHASES.length} core modules from identity to architecture, with hands-on labs at every step.
+          Complete the overviews and labs to earn your completion certificate.
         </p>
+        {!user && <p className="text-gray-400 text-xs font-medium mt-3 leading-6">Browse the curriculum freely. Sign in with GitHub to open the modules and labs.</p>}
       </div>
 
-      {/* Phase 0 — full width */}
       <Link
         to="/start"
         onClick={handleModuleClick}
-        className="flex items-start gap-4 bg-gray-800 border border-gray-700 hover:border-gray-500 p-5 transition-colors group mb-3"
+        className="flex items-start gap-3 sm:gap-4 border border-gray-700 border-l-2 border-l-red-400 bg-gray-800/40 px-4 sm:px-5 py-6 transition-colors group mb-8 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-400"
       >
-        <span className="text-gray-500 font-bold text-xl w-8 shrink-0">0</span>
-        <div className="flex-1">
-          <h3 className="text-base font-semibold text-gray-300 group-hover:text-blue-400 mb-1">
+        <span className="text-red-400 text-sm font-semibold w-7 sm:w-8 shrink-0 pt-0.5">00</span>
+        <div className="flex-1 min-w-0">
+          <p className="text-xs font-semibold text-gray-400 mb-2">Your starting point</p>
+          <h3 className="text-base font-semibold text-gray-200 group-hover:text-red-400 mb-2">
             New to Cloud? Start Here
           </h3>
-          <p className="text-gray-500 text-sm leading-relaxed">
+          <p className="text-gray-300 text-sm font-medium leading-6">
             Beginner-friendly resources to build your cloud and security foundation.
           </p>
         </div>
-        <ChevronRight className="w-5 h-5 text-gray-600 group-hover:text-gray-400 shrink-0 mt-1" />
+        <ChevronRight className="w-4 h-4 text-gray-400 group-hover:text-red-400 shrink-0 mt-1.5" aria-hidden="true" />
       </Link>
 
-      {/* Core phases — 2-column grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-10">
+      <ol aria-label="Core modules" className="grid grid-cols-1 sm:grid-cols-2 gap-x-10 mb-12">
         {PHASES.map((phase, index) => (
-          <Link
+          <li
             key={phase.id}
-            to={phase.path}
-            onClick={handleModuleClick}
-            className={`flex items-start gap-4 bg-gray-800 border border-gray-700 hover:border-gray-500 p-5 transition-colors group${
+            className={`min-w-0${
               PHASES.length % 2 !== 0 && index === PHASES.length - 1
                 ? " sm:col-span-2"
                 : ""
             }`}
           >
-            <span className="text-gray-500 font-bold text-xl w-8 shrink-0">
-              {phase.id}
-            </span>
-            <div className="flex-1">
-              <h3 className="text-base font-semibold text-gray-300 group-hover:text-blue-400 mb-1">
-                {phase.title}
-              </h3>
-              <p className="text-gray-500 text-sm leading-relaxed">
-                {phase.description}
-              </p>
-            </div>
-            <ChevronRight className="w-5 h-5 text-gray-600 group-hover:text-gray-400 shrink-0 mt-1" />
-          </Link>
+            <ModuleLink module={phase} onClick={handleModuleClick} />
+          </li>
         ))}
-      </div>
+      </ol>
 
-      {/* Advanced topics — 2-column grid */}
-      <div className="mb-10">
-        <div className="flex items-center gap-3 mb-4">
-          <h3 className="text-lg font-bold text-gray-300">Advanced Topics</h3>
-          <span className="text-xs font-mono text-yellow-400 border border-yellow-500/40 bg-yellow-500/10 px-2 py-0.5">
-            OPTIONAL
+      <section id="advanced-topics" aria-labelledby="advanced-heading" className="scroll-mt-32 md:scroll-mt-24">
+        <div className="flex flex-wrap items-center gap-3 mb-4">
+          <h2 id="advanced-heading" className="text-2xl font-bold text-gray-200 tracking-tight">Advanced topics</h2>
+          <span className="text-xs font-semibold text-gray-400 tracking-wider">
+            / OPTIONAL
           </span>
         </div>
-        <p className="text-gray-500 text-sm mb-4 leading-relaxed">
-          Complete the core path first. These modules extend your skills into specialist domains.
+        <p className="text-gray-300 text-sm font-medium mb-6 leading-6 max-w-xl">
+          Complete the core path first. These {ADVANCED.length} optional modules extend your skills into specialist domains and are not required for your certificate.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        <ol aria-label="Advanced modules" className="grid grid-cols-1 sm:grid-cols-2 gap-x-10">
           {ADVANCED.map((adv) => (
-            <Link
+            <li
               key={adv.id}
-              to={adv.path}
-              onClick={handleModuleClick}
-              className="flex items-start gap-4 bg-gray-800 border border-yellow-900/40 hover:border-yellow-700/50 p-5 transition-colors group"
+              className="min-w-0"
             >
-              <span className="text-yellow-700 font-bold text-xl w-8 shrink-0">
-                {adv.id}
-              </span>
-              <div className="flex-1">
-                <div className="flex items-center gap-2 mb-1">
-                  <h3 className="text-base font-semibold text-gray-300 group-hover:text-blue-400">
-                    {adv.title}
-                  </h3>
-                  <span className="text-xs font-mono text-yellow-600 border border-yellow-700/40 px-1.5 py-0.5">
-                    ADVANCED
-                  </span>
-                </div>
-                <p className="text-gray-500 text-sm leading-relaxed">
-                  {adv.description}
-                </p>
-              </div>
-              <ChevronRight className="w-5 h-5 text-gray-600 group-hover:text-gray-400 shrink-0 mt-1" />
-            </Link>
+              <ModuleLink module={adv} onClick={handleModuleClick} />
+            </li>
           ))}
-        </div>
-        <div className="mt-8 text-center">
-          <Link
-            to="/get-started"
-            className="inline-flex items-center gap-1.5 text-sm font-mono text-gray-500 hover:text-gray-300 transition-colors group"
-          >
-            view all Curriculum sections
-            <ChevronRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
-          </Link>
-        </div>
-      </div>
+        </ol>
+      </section>
 
-      {/* Auth toast — consistent with LatestBlogsPanel */}
       {showToast && (
         <AuthToast
           onClose={() => setShowToast(false)}
           onSignIn={() => { setShowToast(false); signIn(); }}
         />
       )}
-    </div>
+    </section>
   );
 }
