@@ -5,15 +5,7 @@ import { pricingTiers } from "../data/pricingData";
 export default function Pricing() {
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
-      <PageNav
-        subtitle="// pricing: consultation services and support"
-        command="root@securecloudx:~# ./pricing.sh"
-        links={[
-          { label: "./terms-of-use", path: "/terms-of-service" },
-          { label: "./pricing", active: true },
-          { label: "./changelog", path: "/changelog" },
-        ]}
-      />
+      <PageNav compact />
 
       <div className="flex-1 flex flex-col items-center px-4 py-12">
 
