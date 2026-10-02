@@ -7,15 +7,13 @@ const BLOG_MANIFEST_PATH = "/blog/blog-manifest.json";
 const POSTS_PER_PAGE = 3;
 
 function formatDate(dateStr) {
-  try {
-    return new Date(dateStr).toLocaleDateString("en-GB", {
+  const date = new Date(dateStr);
+  if (Number.isNaN(date.getTime())) return dateStr;
+  return date.toLocaleDateString("en-GB", {
       day: "numeric",
       month: "short",
       year: "numeric",
-    });
-  } catch {
-    return dateStr;
-  }
+  });
 }
 
 export default function LatestBlogsPanel() {
@@ -24,20 +22,36 @@ export default function LatestBlogsPanel() {
   const [posts, setPosts] = useState([]);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+  const [retry, setRetry] = useState(0);
   const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
-    fetch(BLOG_MANIFEST_PATH)
-      .then((r) => r.json())
-      .then((manifest) => {
-        const sorted = (manifest.posts ?? [])
-          .filter((p) => p.layout === "post")
+    const controller = new AbortController();
+    async function loadPosts() {
+      setLoading(true);
+      setError(false);
+      try {
+        const response = await fetch(BLOG_MANIFEST_PATH, { signal: controller.signal });
+        if (!response.ok) throw new Error(`Blog manifest request failed: ${response.status}`);
+        const manifest = await response.json();
+        if (!Array.isArray(manifest.posts)) throw new Error("Blog manifest is missing its posts list.");
+        const sorted = manifest.posts
+          .filter((post) => post.layout === "post")
           .sort((a, b) => new Date(b.date) - new Date(a.date));
-        setPosts(sorted);
-      })
-      .catch(() => {})
-      .finally(() => setLoading(false));
-  }, []);
+        if (!controller.signal.aborted) setPosts(sorted);
+      } catch (error) {
+        if (!controller.signal.aborted) {
+          console.error("Unable to load latest blogs:", error);
+          setError(true);
+        }
+      } finally {
+        if (!controller.signal.aborted) setLoading(false);
+      }
+    }
+    loadPosts();
+    return () => controller.abort();
+  }, [retry]);
 
   function handlePostClick(slug) {
     if (!user) {
@@ -52,45 +66,42 @@ export default function LatestBlogsPanel() {
 
   return (
     <>
-      <aside className="border border-gray-700 bg-gray-800/30 overflow-hidden font-mono">
-
-        {/* Red accent bar */}
-        <div className="h-0.5 bg-gradient-to-r from-red-500 via-red-400/60 to-transparent" />
+      <aside className="border-t lg:border-t-0 lg:border-l border-gray-700/60 pt-6 lg:pt-0 lg:pl-6 font-mono" aria-labelledby="latest-blogs-heading">
 
         {/* Panel heading */}
-        <div className="px-4 pt-3.5 pb-3 border-b border-gray-700/60">
-          <h2 className="text-[10px] font-bold uppercase tracking-[0.18em] text-gray-500">
+        <div className="pb-2">
+          <h2 id="latest-blogs-heading" className="text-[10px] uppercase tracking-[0.18em] text-gray-400">
             Latest Blogs
           </h2>
         </div>
 
         {/* Post list */}
-        <ul className="divide-y divide-gray-700/50">
+        <ul className="divide-y divide-gray-700/40" aria-busy={loading}>
 
           {/* Skeleton while loading */}
           {loading &&
             Array.from({ length: 3 }).map((_, i) => (
-              <li key={i} className="px-4 py-4 space-y-2 animate-pulse">
+              <li key={i} className="py-4 space-y-2 animate-pulse motion-reduce:animate-none">
                 <div className="h-2.5 bg-gray-700/60 rounded w-4/5" />
                 <div className="h-2 bg-gray-800 rounded w-2/5" />
               </li>
             ))}
 
-          {!loading &&
+          {!loading && !error &&
             visible.map((post) => (
               <li key={post.slug}>
                 <button
                   onClick={() => handlePostClick(post.slug)}
-                  className="w-full text-left px-4 py-4 group hover:bg-white/[0.03] transition-colors"
+                  className="w-full text-left py-4 group transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-400"
                 >
-                  <p className="text-green-400 text-sm font-medium leading-snug group-hover:text-green-300 transition-colors line-clamp-2">
+                  <p className="text-gray-300 text-sm font-medium leading-relaxed group-hover:text-red-400 transition-colors line-clamp-2">
                     {post.title}
                   </p>
                   <div className="flex items-center justify-between mt-2">
-                    <span className="text-gray-300 text-[10px]">
+                    <span className="text-gray-400 text-[10px]">
                       {formatDate(post.date)}
                     </span>
-                    <span className="text-[10px] text-gray-300 group-hover:text-green-500 transition-colors">
+                    <span className="text-[10px] text-gray-400 group-hover:text-red-400 transition-colors">
                       Read →
                     </span>
                   </div>
@@ -99,24 +110,36 @@ export default function LatestBlogsPanel() {
             ))}
 
         </ul>
+        {!loading && error && (
+          <div role="alert" className="py-4 text-xs text-gray-400 leading-relaxed">
+            <p>Latest articles are temporarily unavailable.</p>
+            <button type="button" className="py-3 text-red-400 underline underline-offset-4 cursor-pointer" onClick={() => setRetry((value) => value + 1)}>Try again</button>
+          </div>
+        )}
+        {!loading && !error && posts.length === 0 && (
+          <p className="py-4 text-xs text-gray-400">New articles are on the way.</p>
+        )}
 
         {/* Pagination */}
-        {!loading && totalPages > 1 && (
-          <div className="flex items-center gap-3 px-4 py-3 border-t border-gray-700/60">
+        {!loading && !error && totalPages > 1 && (
+          <nav className="flex flex-wrap items-center pt-2" aria-label="Blog pages">
             {Array.from({ length: totalPages }, (_, i) => i + 1).map((n) => (
               <button
                 key={n}
+                type="button"
                 onClick={() => setPage(n)}
-                className={`text-xs w-5 h-5 flex items-center justify-center transition-colors ${
+                aria-label={`Blog page ${n}`}
+                aria-current={n === page ? "page" : undefined}
+                className={`text-[10px] min-w-8 min-h-11 flex items-center justify-center transition-colors cursor-pointer focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-400 ${
                   n === page
-                    ? "text-gray-100 border-b border-gray-400"
-                    : "text-gray-600 hover:text-gray-300"
+                    ? "text-red-400 border-b border-red-400"
+                    : "text-gray-400 hover:text-gray-200"
                 }`}
               >
                 {n}
               </button>
             ))}
-          </div>
+          </nav>
         )}
 
       </aside>
