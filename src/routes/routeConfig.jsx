@@ -23,6 +23,7 @@ import ModuleTask9 from "../pages/modules/module9/Task";
 import Explore from "../pages/Explore";
 import ForgottenSecretLab from "../pages/ForgottenSecretLab";
 import GetStartedPage from "../pages/GetStartedPage";
+import HacktivitiesPage from "../pages/HacktivitiesPage";
 import Home from "../pages/Home";
 import LandingPage from "../pages/LandingPage";
 import OpenSourceBlog from "../pages/OpenSourceBlog";
@@ -58,6 +59,7 @@ export const standaloneRoutes = [
   { path: "/refund-policy", Component: RefundPolicyPage },
   { path: "/terms-of-service", Component: TermsOfService },
   { path: "/get-started", Component: GetStartedPage },
+  { path: "/hacktivities", Component: HacktivitiesPage },
   { path: "/community", Component: CommunityPage },
   { path: "/changelog", Component: Changelog },
   { path: "/pricing", Component: Pricing },
