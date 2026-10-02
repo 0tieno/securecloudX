@@ -22,7 +22,7 @@ export default function SafaricomCTF2025() {
         <div className="mb-6 sm:mb-8">
           <button
             className="inline-flex items-center px-3 sm:px-4 py-2 bg-gray-800 border border-gray-700 text-gray-300 font-mono hover:bg-gray-700 hover:border-gray-600 transition-colors group text-sm sm:text-base"
-            onClick={() => navigate("/get-started")}
+            onClick={() => navigate("/hacktivities#ctfs")}
           >
             <ArrowLeft className="w-4 h-4 mr-2 group-hover:-translate-x-1 transition-transform" />
             <span className="hidden sm:inline">cd ../</span>
@@ -118,7 +118,7 @@ export default function SafaricomCTF2025() {
         {/* Footer Navigation */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pt-6 sm:pt-8 border-t border-gray-700">
           <button
-            onClick={() => navigate("/get-started")}
+            onClick={() => navigate("/hacktivities#ctfs")}
             className="text-gray-400 hover:text-cyan-400 transition-colors text-sm"
           >
             ← Back to CTF List
