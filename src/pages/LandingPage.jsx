@@ -1,34 +1,36 @@
 import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
-import AnnouncementBar from "../components/AnnouncementBar";
+import { useLocation, useNavigate } from "react-router-dom";
 import LandingHeader from "./landing/LandingHeader";
-import LandingCurriculum from "./landing/LandingCurriculum";
-import LandingCommunity from "./landing/LandingCommunity";
 import Footer from "../components/Footer";
 import AuthToast from "../components/AuthToast";
 import { useAuth } from "../contexts/AuthContext";
+import PageNav from "../components/PageNav";
+import AvailablePaths from "./landing/AvailablePaths";
 
 export default function LandingPage() {
   const { signIn } = useAuth();
   const location = useLocation();
+  const navigate = useNavigate();
   const [showToast, setShowToast] = useState(false);
 
   useEffect(() => {
+    if (location.hash === "#community") {
+      navigate("/community", { replace: true });
+      return;
+    }
     if (location.state?.authRedirect) {
       setShowToast(true);
     }
-  }, [location.state]);
+  }, [location.hash, location.state, navigate]);
 
   return (
     <div className="min-h-screen flex flex-col text-gray-300 relative bg-gray-900 font-mono">
-      <AnnouncementBar />
+      <PageNav compact />
 
-      <div className="w-full max-w-4xl mx-auto px-4 sm:px-6 relative z-10 flex-1 py-12 pt-20">
+      <main className="w-full max-w-4xl mx-auto px-5 sm:px-6 relative z-10 flex-1 py-12 sm:py-16">
         <LandingHeader />
-        <LandingCurriculum />
-      </div>
-
-      <LandingCommunity />
+        <AvailablePaths />
+      </main>
 
       <Footer />
 
