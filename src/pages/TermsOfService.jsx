@@ -9,10 +9,12 @@ import {
 } from "lucide-react";
 import Content from "../components/Content";
 import QABlock from "../components/QABlock";
+import PageNav from "../components/PageNav";
 
 export default function TermsOfService() {
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
+      <PageNav compact />
       <Content>
         <div className="max-w-4xl mx-auto py-8 px-4">
           {/* Header */}
