@@ -1,0 +1,11 @@
+.research-status-published {
+  color: #86efac;
+  background-color: #052e16;
+  border-color: #166534;
+}
+
+html.light .research-status-published {
+  color: #166534;
+  background-color: #f0fdf4;
+  border-color: #86efac;
+}

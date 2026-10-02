@@ -33,6 +33,8 @@ Curriculum challenge and CTF cards share a minimal resource layout with topic ta
 
 Pricing, terms of service, and changelog pages also use the shared navbar. Forgotten Secret Lab uses the standalone site layout without the dashboard sidebar, but its route still uses `ProtectedRoute` and requires sign-in. Other dashboard and module routes retain their existing authenticated layout.
 
+The authenticated `/home` dashboard keeps its sidebar and progress tracking, with the shared site navbar replacing its top header. Dashboard search (including Ctrl/Cmd+K), the X link, and mobile sidebar access remain available. Only one inline theme toggle appears on `/home`; other dashboard routes keep their original header.
+
 Apply [the community members migration](supabase/migrations/20260910_community_members.sql) in the Supabase SQL editor before deploying the community section. The public `get_community_members` function returns every registered GitHub member, newest first, with only their public GitHub identifier, display name, and avatar. It does not expose emails, sign-in activity, progress, or the admin dashboard. GitHub avatar URLs are restricted to `avatars.githubusercontent.com`.
 
 The section handles loading, empty results, unavailable profiles, and failed avatar images. Names appear on portrait hover or keyboard focus. Confirm that publishing these GitHub profiles is consistent with your community's privacy notice before enabling the endpoint.
