@@ -1,10 +1,20 @@
 import { useEffect, useState } from "react";
 import { Calendar, Clock, ArrowLeft, Search, Terminal } from "lucide-react";
 import MarkdownContent from "../components/MarkdownContent";
+import PageNav from "../components/PageNav";
 import { stripFrontmatter } from "../utils/frontmatter";
 
 const BLOGS_PATH = "/blog/";
 const BLOG_MANIFEST_PATH = `${BLOGS_PATH}blog-manifest.json`;
+
+function BlogLayout({ children }) {
+  return (
+    <div className="min-h-screen bg-gray-900 pb-32 font-mono">
+      <PageNav compact />
+      {children}
+    </div>
+  );
+}
 
 const OpenSourceBlog = () => {
   const [posts, setPosts] = useState([]);
@@ -90,37 +100,41 @@ const OpenSourceBlog = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-900">
-        <div className="flex items-center space-x-2 text-green-400 font-mono">
-          <Terminal className="w-5 h-5 animate-pulse" />
-          <span>Loading intel...</span>
-        </div>
-      </div>
+      <BlogLayout>
+        <main className="min-h-[60vh] flex items-center justify-center">
+          <div className="flex items-center space-x-2 text-green-400 font-mono">
+            <Terminal className="w-5 h-5 animate-pulse" />
+            <span>Loading intel...</span>
+          </div>
+        </main>
+      </BlogLayout>
     );
   }
 
   if (error) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-900">
-        <div className="text-center font-mono">
-          <div className="text-red-400 text-xl mb-4">
-            [ERROR] Failed to load data
+      <BlogLayout>
+        <main className="min-h-[60vh] flex items-center justify-center">
+          <div className="text-center font-mono">
+            <div className="text-red-400 text-xl mb-4">
+              [ERROR] Failed to load data
+            </div>
+            <div className="text-gray-500 text-sm mb-4">{error}</div>
+            <button
+              onClick={() => window.location.reload()}
+              className="px-4 py-2 bg-gray-800 text-gray-300 rounded font-mono hover:bg-gray-700 transition-colors border border-gray-600"
+            >
+              [RETRY]
+            </button>
           </div>
-          <div className="text-gray-500 text-sm mb-4">{error}</div>
-          <button
-            onClick={() => window.location.reload()}
-            className="px-4 py-2 bg-gray-800 text-gray-300 rounded font-mono hover:bg-gray-700 transition-colors border border-gray-600"
-          >
-            [RETRY]
-          </button>
-        </div>
-      </div>
+        </main>
+      </BlogLayout>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-900 pb-32 font-mono">
-      <div className="w-full max-w-2xl mx-auto px-4 py-10">
+    <BlogLayout>
+      <main className="w-full max-w-2xl mx-auto px-4 py-10">
         {!selectedPost ? (
           <>
             {/* Header */}
@@ -139,9 +153,6 @@ const OpenSourceBlog = () => {
 
             {/* Pentesting Definition Note */}
             <div className="mb-8  p-4 sm:p-6 rounded">
-              <div className="text-green-400 text-xs sm:text-sm mb-2">
-                $ cat open_source_blogs.txt
-              </div>
               <div className="text-gray-300 text-sm sm:text-base leading-relaxed">
                 <span className="text-yellow-400">[INFO]</span>{" "}
                 <span className="text-cyan-400">Each blog post</span> assumes no
@@ -337,7 +348,7 @@ const OpenSourceBlog = () => {
             </article>
           </div>
         )}
-      </div>
+      </main>
 
       {/* Footer */}
       <footer className="fixed bottom-0 left-0 w-full bg-gray-900 border-t border-gray-700 z-50 font-mono">
@@ -403,7 +414,7 @@ const OpenSourceBlog = () => {
           </div>
         </div>
       </footer>
-    </div>
+    </BlogLayout>
   );
 };
 
