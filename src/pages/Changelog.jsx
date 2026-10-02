@@ -5,15 +5,7 @@ import PageNav from "../components/PageNav";
 export default function Changelog() {
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
-      <PageNav
-        subtitle="// changelog: track updates and improvements"
-        command="root@securecloudx:~# ./changelog.sh"
-        links={[
-          { label: "./terms-of-use", path: "/terms-of-service" },
-          { label: "./pricing", path: "/pricing" },
-          { label: "./changelog", active: true },
-        ]}
-      />
+      <PageNav compact />
 
       <div className="flex-1 flex flex-col items-center px-4 py-12">
 
