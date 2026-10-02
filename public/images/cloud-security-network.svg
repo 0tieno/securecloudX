@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" fill="none">
+  <defs>
+    <radialGradient id="light">
+      <stop stop-color="#173a3d"/>
+      <stop offset="1" stop-color="#080e1c"/>
+    </radialGradient>
+    <linearGradient id="panel" x2="1" y2="1">
+      <stop stop-color="#172b3b"/>
+      <stop offset="1" stop-color="#0c1526"/>
+    </linearGradient>
+    <pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" stroke="#5b8793" stroke-opacity=".12"/>
+    </pattern>
+    <symbol id="server" viewBox="0 0 200 56">
+      <rect x="1" y="1" width="198" height="54" rx="7" fill="url(#panel)" stroke="#416572"/>
+      <circle cx="25" cy="28" r="4" fill="#72ceb7"/>
+      <path d="M47 23H118M47 33H90" stroke="#557482" stroke-width="3"/>
+      <path d="M146 21V35M156 21V35M166 21V35M176 21V35" stroke="#567583"/>
+    </symbol>
+  </defs>
+  <path fill="#080e1c" d="M0 0H1440V900H0z"/>
+  <path fill="url(#light)" d="M0 0H1440V900H0z"/>
+  <path fill="url(#grid)" d="M0 0H1440V900H0z"/>
+  <g stroke="#70bcae" stroke-opacity=".45" stroke-width="2">
+    <path d="M295 425H480V335H620M1145 425H960V335H820"/>
+    <path d="M295 630H520V540H650M1145 630H920V540H790"/>
+    <path d="M720 220V145H1060V250M720 645V750H380V670"/>
+  </g>
+  <g fill="#82d9c1">
+    <circle cx="480" cy="425" r="5"/>
+    <circle cx="960" cy="425" r="5"/>
+    <circle cx="520" cy="630" r="5"/>
+    <circle cx="920" cy="630" r="5"/>
+    <circle cx="1060" cy="145" r="5"/>
+  </g>
+  <g opacity=".85">
+    <rect x="100" y="265" width="220" height="410" rx="12" fill="#0c1526" stroke="#416572"/>
+    <use href="#server" x="110" y="310" width="200" height="56"/>
+    <use href="#server" x="110" y="380" width="200" height="56"/>
+    <use href="#server" x="110" y="450" width="200" height="56"/>
+    <use href="#server" x="110" y="520" width="200" height="56"/>
+    <use href="#server" x="110" y="590" width="200" height="56"/>
+    <rect x="1120" y="265" width="220" height="410" rx="12" fill="#0c1526" stroke="#416572"/>
+    <use href="#server" x="1130" y="310" width="200" height="56"/>
+    <use href="#server" x="1130" y="380" width="200" height="56"/>
+    <use href="#server" x="1130" y="450" width="200" height="56"/>
+    <use href="#server" x="1130" y="520" width="200" height="56"/>
+    <use href="#server" x="1130" y="590" width="200" height="56"/>
+  </g>
+  <circle cx="720" cy="430" r="220" stroke="#6fa99f" stroke-opacity=".15"/>
+  <circle cx="720" cy="430" r="180" stroke="#6fa99f" stroke-opacity=".25" stroke-dasharray="3 12"/>
+  <path d="M720 265L845 318V425C845 516 790 573 720 612C650 573 595 516 595 425V318L720 265Z" fill="url(#panel)" stroke="#82d9c1" stroke-width="3"/>
+  <rect x="678" y="407" width="84" height="73" rx="10" fill="#203e43" stroke="#82d9c1" stroke-width="3"/>
+  <path d="M694 406V387C694 351 746 351 746 387V406" stroke="#82d9c1" stroke-width="6"/>
+  <circle cx="720" cy="438" r="7" fill="#82d9c1"/>
+  <path d="M720 445V457" stroke="#82d9c1" stroke-width="4"/>
+  <g font-family="monospace" font-size="13" letter-spacing="3" fill="#94b3bb">
+    <text x="100" y="220">CLOUD SECURITY / NETWORK</text>
+    <text x="110" y="292" font-size="10" letter-spacing="2">PRIVATE WORKLOADS</text>
+    <text x="1130" y="292" font-size="10" letter-spacing="2">SECURE STORAGE</text>
+    <text x="100" y="795" font-size="11">IDENTITY / ENCRYPTION / OBSERVABILITY</text>
+  </g>
+  <path d="M100 815H1340" stroke="#416572" stroke-opacity=".5"/>
+  <circle cx="1324" cy="792" r="5" fill="#f87171"/>
+</svg>
