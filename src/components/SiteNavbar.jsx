@@ -20,7 +20,7 @@ function Avatar({ url }) {
   );
 }
 
-export default function SiteNavbar() {
+export default function SiteNavbar({ actions }) {
   const { user, signIn, signOut } = useAuth();
   const { pathname, hash } = useLocation();
   const navigate = useNavigate();
@@ -87,6 +87,7 @@ export default function SiteNavbar() {
           })}
         </nav>
         <div className="order-2 md:order-3 ml-auto flex items-center gap-2">
+          {actions}
           <ThemeToggle />
           {user ? (
             <div ref={accountRef} className="relative">
