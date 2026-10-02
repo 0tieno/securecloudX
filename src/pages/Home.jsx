@@ -230,7 +230,7 @@ const Home = () => {
         {/* Advanced Topics */}
         <div className="mt-12 mb-2">
           <div className="flex items-center gap-3 mb-4">
-            <h2 className="text-xl font-bold text-gray-300">// Advanced Topics</h2>
+            <h2 className="text-xl font-bold text-gray-300">Advanced Topics</h2>
             <span className="text-xs font-mono text-yellow-400 border border-yellow-500/40 bg-yellow-500/10 px-2 py-0.5">OPTIONAL</span>
           </div>
           <p className="text-gray-500 text-sm mb-6 leading-relaxed">
