@@ -422,7 +422,7 @@ export default function RealIPHeistWriteup() {
             ← Back to Safaricom CTF 2025
           </button>
           <button
-            onClick={() => navigate("/get-started")}
+            onClick={() => navigate("/hacktivities#ctfs")}
             className="text-gray-400 hover:text-cyan-400 transition-colors text-sm"
           >
             View All CTFs →
