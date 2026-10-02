@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
-import { ArrowUp } from "lucide-react";
+import { Link } from "react-router-dom";
+import { ArrowLeft, ArrowUp } from "lucide-react";
 import PageNav from "../components/PageNav";
 import Footer from "../components/Footer";
 
@@ -187,30 +188,21 @@ export default function ResearchCharter() {
       <ReadingProgress />
       <BackToTop />
 
-      <PageNav
-        variant="site"
-        subtitle="Research Hub"
-        command="Foundational Governance Document"
-        maxWidth="4xl"
-        links={[
-          { label: "./research", path: "/research" },
-          { label: "./charter", active: true },
-        ]}
-      />
+      <PageNav compact />
 
-      <div className="flex-1 px-4 sm:px-6 py-14">
+      <main className="flex-1 w-full max-w-4xl mx-auto px-5 sm:px-6 py-14">
         <div className="max-w-4xl mx-auto">
 
           {/* ── Cover ─────────────────────────────────────────────────────── */}
           <div className="mb-16 pb-12 border-b border-gray-700">
 
-            {/* top accent */}
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-8 h-0.5 bg-red-600" />
-              <span className="font-mono text-[10px] text-red-400/70 tracking-[0.22em] uppercase">
-                SecureCloudX Research Hub
-              </span>
-            </div>
+            <Link
+              to="/research"
+              className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-gray-200 transition-colors mb-6 group focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-400"
+            >
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-0.5 transition-transform" aria-hidden="true" />
+              <span className="underline decoration-1 underline-offset-3">Back to Research Hub</span>
+            </Link>
 
             <h1 className="text-4xl sm:text-5xl font-bold text-gray-100 tracking-tight mb-6 leading-none">
               Research Charter
@@ -282,7 +274,7 @@ export default function ResearchCharter() {
 
             {/* ── Sticky TOC ─────────────────────────────────────────────── */}
             <aside className="lg:w-52 flex-shrink-0">
-              <div className="lg:sticky lg:top-8">
+              <div className="lg:sticky lg:top-24">
                 <p className="font-mono text-[10px] text-gray-600 tracking-[0.18em] uppercase mb-5">
                   Contents
                 </p>
@@ -319,7 +311,7 @@ export default function ResearchCharter() {
             <article className="flex-1 min-w-0">
 
               {/* 01 */}
-              <section id="executive-statement" className="scroll-mt-20">
+              <section id="executive-statement" className="scroll-mt-32 md:scroll-mt-24">
                 <H2 num="01">Executive Statement</H2>
                 <div className="space-y-5">
                   <Body>
@@ -354,7 +346,7 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 02 */}
-              <section id="vision" className="scroll-mt-20">
+              <section id="vision" className="scroll-mt-32 md:scroll-mt-24">
                 <H2 num="02">Vision &amp; Mission</H2>
                 <div className="grid sm:grid-cols-2 gap-px bg-gray-800 border border-gray-800">
                   <div className="bg-gray-900 p-6">
@@ -380,7 +372,7 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 03 */}
-              <section id="why-we-exist" className="scroll-mt-20">
+              <section id="why-we-exist" className="scroll-mt-32 md:scroll-mt-24">
                 <H2 num="03">Why We Exist</H2>
                 <div className="space-y-5">
                   <Body>
@@ -406,7 +398,7 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 04 */}
-              <section id="purpose" className="scroll-mt-20">
+              <section id="purpose" className="scroll-mt-32 md:scroll-mt-24">
                 <H2 num="04">Purpose of This Charter</H2>
                 <Body>
                   This charter establishes the governance principles, research standards, ethical
@@ -419,7 +411,7 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 05 */}
-              <section id="philosophy" className="scroll-mt-20">
+              <section id="philosophy" className="scroll-mt-32 md:scroll-mt-24">
                 <H2 num="05">Research Philosophy</H2>
                 <div className="space-y-6">
                   <Body>Our work is founded upon one central belief:</Body>
@@ -454,7 +446,7 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 06 */}
-              <section id="principles" className="scroll-mt-20">
+              <section id="principles" className="scroll-mt-32 md:scroll-mt-24">
                 <H2 num="06">Guiding Principles</H2>
                 <div className="border border-gray-800">
                   <PrincipleBlock num="1" title="Independence">
@@ -493,7 +485,7 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 07 */}
-              <section id="ethics" className="scroll-mt-20">
+              <section id="ethics" className="scroll-mt-32 md:scroll-mt-24">
                 <H2 num="07">Research Ethics</H2>
                 <div className="space-y-5">
                   <Body>
@@ -516,7 +508,7 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 08 */}
-              <section id="scope" className="scroll-mt-20">
+              <section id="scope" className="scroll-mt-32 md:scroll-mt-24">
                 <H2 num="08">Research Scope</H2>
                 <div className="space-y-5">
                   <Body>SecureCloudX Research produces studies across multiple domains, including:</Body>
@@ -539,7 +531,7 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 09 */}
-              <section id="methodology" className="scroll-mt-20">
+              <section id="methodology" className="scroll-mt-32 md:scroll-mt-24">
                 <H2 num="09">Research Methodology Framework</H2>
                 <Body className="mb-8">Every research project shall follow a standardized lifecycle.</Body>
                 <div className="border border-gray-800">
@@ -633,7 +625,7 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 10 */}
-              <section id="evidence" className="scroll-mt-20">
+              <section id="evidence" className="scroll-mt-32 md:scroll-mt-24">
                 <H2 num="10">Evidence Standards</H2>
                 <div className="space-y-5">
                   <Body>
@@ -670,7 +662,7 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 11 */}
-              <section id="incident-classification" className="scroll-mt-20">
+              <section id="incident-classification" className="scroll-mt-32 md:scroll-mt-24">
                 <H2 num="11">Incident Classification Framework</H2>
                 <div className="space-y-5">
                   <Body>
@@ -698,7 +690,7 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 12 */}
-              <section id="analytical" className="scroll-mt-20">
+              <section id="analytical" className="scroll-mt-32 md:scroll-mt-24">
                 <H2 num="12">Analytical Standards</H2>
                 <div className="space-y-5">
                   <Body>SecureCloudX Research seeks to answer:</Body>
@@ -716,7 +708,7 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 13 */}
-              <section id="neutrality" className="scroll-mt-20">
+              <section id="neutrality" className="scroll-mt-32 md:scroll-mt-24">
                 <H2 num="13">Neutrality Policy</H2>
                 <div className="space-y-5">
                   <Body>
@@ -750,7 +742,7 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 14 */}
-              <section id="sensitive" className="scroll-mt-20">
+              <section id="sensitive" className="scroll-mt-32 md:scroll-mt-24">
                 <H2 num="14">Handling Sensitive Information</H2>
                 <div className="space-y-5">
                   <Body>SecureCloudX Research will not knowingly publish:</Body>
@@ -767,7 +759,7 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 15 */}
-              <section id="limitations" className="scroll-mt-20">
+              <section id="limitations" className="scroll-mt-32 md:scroll-mt-24">
                 <H2 num="15">Research Limitations</H2>
                 <div className="space-y-5">
                   <Body>All reports shall clearly acknowledge their boundaries. For example:</Body>
@@ -784,7 +776,7 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 16 */}
-              <section id="publication" className="scroll-mt-20">
+              <section id="publication" className="scroll-mt-32 md:scroll-mt-24">
                 <H2 num="16">Publication Principles</H2>
                 <div className="space-y-5">
                   <Body>Every publication should aim to be:</Body>
@@ -837,7 +829,7 @@ export default function ResearchCharter() {
               <Divider />
 
               {/* 17 */}
-              <section id="commitment" className="scroll-mt-20">
+              <section id="commitment" className="scroll-mt-32 md:scroll-mt-24">
                 <H2 num="17">Our Commitment</H2>
                 <div className="space-y-5">
                   <Body>
@@ -877,19 +869,13 @@ export default function ResearchCharter() {
                     <span>Published July 2026</span>
                     <span>Foundational Governance Document</span>
                   </div>
-                  <div className="flex items-center gap-2">
-                    <div className="w-4 h-0.5 bg-red-700" />
-                    <span className="font-mono text-[10px] text-gray-700 tracking-widest uppercase">
-                      securecloudX
-                    </span>
-                  </div>
                 </div>
               </div>
 
             </article>
           </div>
         </div>
-      </div>
+      </main>
 
       <Footer />
     </div>
