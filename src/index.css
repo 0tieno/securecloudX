@@ -108,6 +108,15 @@ html.light .learning-shell :is(.text-indigo-300, .text-indigo-400) {
   color: #3730a3;
 }
 
+html.light .learning-shell :is(.text-pink-300, .text-pink-400) {
+  color: #9d174d;
+}
+
+html.light .learning-shell :is(.hover\:text-pink-300, .hover\:text-pink-400):hover,
+html.light .learning-shell .group:hover :is(.group-hover\:text-pink-300, .group-hover\:text-pink-400) {
+  color: #831843;
+}
+
 html.light .learning-shell :is(.hover\:text-indigo-300, .hover\:text-indigo-400):hover,
 html.light .learning-shell .group:hover :is(.group-hover\:text-indigo-300, .group-hover\:text-indigo-400) {
   color: #312e81;

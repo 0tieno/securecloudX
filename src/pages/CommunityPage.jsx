@@ -6,7 +6,7 @@ export default function CommunityPage() {
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 flex flex-col">
       <PageNav compact />
-      <main className="flex-1 w-full max-w-4xl mx-auto">
+      <main className="flex-1 w-full max-w-4xl mx-auto px-5 sm:px-6 py-12 sm:py-16">
         <LandingCommunity />
       </main>
       <Footer />
