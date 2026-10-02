@@ -5,7 +5,7 @@ export default function PastHackathons() {
   return (
     <section id="hackathons" className="mt-12 sm:mt-16 scroll-mt-32 md:scroll-mt-24" aria-labelledby="hackathons-heading">
       <div className="flex items-center gap-4 mb-8">
-        <span className="text-gray-400 text-xs font-semibold tracking-wider uppercase">02 / hands-on challenges</span>
+        <span className="text-gray-400 text-xs font-semibold tracking-wider uppercase">01 / hands-on challenges</span>
         <div className="flex-1 h-px bg-gray-700" />
       </div>
       <h2 id="hackathons-heading" className="text-2xl font-bold text-gray-200 tracking-tight">Past hackathons</h2>
