@@ -5,7 +5,7 @@ export default function CTFWriteups() {
   return (
     <section id="ctfs" className="mt-12 sm:mt-16 scroll-mt-32 md:scroll-mt-24" aria-labelledby="ctf-heading">
       <div className="flex items-center gap-4 mb-8">
-        <span className="text-gray-400 text-xs font-semibold tracking-wider uppercase">03 / competition writeups</span>
+        <span className="text-gray-400 text-xs font-semibold tracking-wider uppercase">02 / competition writeups</span>
         <div className="flex-1 h-px bg-gray-700" />
       </div>
       <h2 id="ctf-heading" className="text-2xl font-bold text-gray-200 tracking-tight">CTF writeups</h2>
