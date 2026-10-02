@@ -1,12 +1,16 @@
-import { Link } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import PageNav from "../components/PageNav";
 import Footer from "../components/Footer";
 import LandingCurriculum from "./landing/LandingCurriculum";
-import PastHackathons from "./landing/PastHackathons";
-import CTFWriteups from "./landing/CTFWriteups";
 
 export default function GetStartedPage() {
+  const { hash } = useLocation();
+
+  if (hash === "#hackathons" || hash === "#ctfs") {
+    return <Navigate to={`/hacktivities${hash}`} replace />;
+  }
+
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono flex flex-col">
       <PageNav compact />
@@ -23,8 +27,6 @@ export default function GetStartedPage() {
           </div>
         </section>
         <LandingCurriculum />
-        <PastHackathons />
-        <CTFWriteups />
       </main>
       <Footer />
     </div>
