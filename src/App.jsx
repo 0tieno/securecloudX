@@ -1,24 +1,31 @@
-import { BrowserRouter as Router, Navigate, Route, Routes } from "react-router-dom";
-import { Sun, Moon } from "lucide-react";
+import { BrowserRouter as Router, Navigate, Route, Routes, useLocation } from "react-router-dom";
 
 import AppShell from "./components/AppShell";
 import ProtectedRoute from "./components/ProtectedRoute";
 import RouterProgress from "./components/RouterProgress";
+import RouteScroll from "./components/RouteScroll";
+import ThemeToggle from "./components/ThemeToggle";
 import { AuthProvider } from "./contexts/AuthContext";
-import { ThemeProvider, useTheme } from "./contexts/ThemeContext";
+import { ThemeProvider } from "./contexts/ThemeContext";
 import { shellRoutes, standaloneRoutes } from "./routes/routeConfig";
 
-function ThemeToggle() {
-  const { theme, toggle } = useTheme();
-  return (
-    <button
-      onClick={toggle}
-      aria-label="Toggle theme"
-      className="fixed bottom-6 left-6 z-50 p-2.5 bg-gray-800 border border-gray-700 text-gray-400 hover:text-gray-200 hover:border-gray-500 transition-colors shadow-lg"
-    >
-      {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-    </button>
-  );
+function FloatingThemeToggle() {
+  const { pathname } = useLocation();
+  if ([
+    "/",
+    "/get-started",
+    "/community",
+    "/research",
+    "/research/charter",
+    "/opensource-blog",
+    "/ctf/safaricom-2025",
+    "/ctf/safaricom-2025/real-ip-heist",
+    "/pricing",
+    "/terms-of-service",
+    "/changelog",
+    "/forgotten-secret-lab",
+  ].includes(pathname)) return null;
+  return <ThemeToggle floating />;
 }
 
 const App = () => {
@@ -27,13 +34,20 @@ const App = () => {
       <AuthProvider>
         <Router>
           <RouterProgress />
-          <ThemeToggle />
+          <RouteScroll />
+          <FloatingThemeToggle />
           <Routes>
             {standaloneRoutes.map((route) => (
               <Route
                 key={route.path}
                 path={route.path}
-                element={<route.Component />}
+                element={
+                  route.protected ? (
+                    <ProtectedRoute>
+                      <route.Component />
+                    </ProtectedRoute>
+                  ) : <route.Component />
+                }
               />
             ))}
 
@@ -59,4 +73,3 @@ const App = () => {
 };
 
 export default App;
-
