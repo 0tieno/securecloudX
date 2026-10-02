@@ -1,10 +1,13 @@
 import { Link } from "react-router-dom";
 import { ChevronLeft } from "lucide-react";
+import PageNav from "../components/PageNav";
+import Footer from "../components/Footer";
 
 const ForgottenSecretLab = () => {
   return (
     <div className="min-h-screen bg-gray-900 text-gray-300 font-mono">
-      <div className="max-w-3xl mx-auto px-4 py-10">
+      <PageNav compact />
+      <main className="w-full max-w-4xl mx-auto px-5 sm:px-6 py-10">
 
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-gray-600 text-xs mb-8">
@@ -259,7 +262,8 @@ const ForgottenSecretLab = () => {
           </Link>
         </div>
 
-      </div>
+      </main>
+      <Footer />
     </div>
   );
 };
