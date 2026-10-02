@@ -6,6 +6,7 @@ import ThemeToggle from "./ThemeToggle";
 
 const LINKS = [
   { label: "Curriculum", path: "/get-started" },
+  { label: "Hacktivities", path: "/hacktivities" },
   { label: "Community", path: "/community" },
 ];
 
