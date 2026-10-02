@@ -1,5 +1,6 @@
-import { useNavigate } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Terminal } from "lucide-react";
+import SiteNavbar from "./SiteNavbar";
 
 const maxWidthClasses = {
   "4xl": "max-w-4xl",
@@ -20,23 +21,23 @@ export default function PageNav({
   subtitle,
   command,
   maxWidth = "6xl",
+  compact = false,
   links = [],
 }) {
-  const navigate = useNavigate();
+  const { pathname } = useLocation();
   const widthClass = maxWidthClasses[maxWidth] ?? "max-w-4xl";
+  if (compact) return <SiteNavbar />;
 
   return (
-    <nav className="bg-gray-900 border-b border-gray-700 px-4 sm:px-6 py-4">
+    <nav aria-label="Main navigation" className="bg-gray-900 border-b border-gray-700 px-5 sm:px-6 py-4 font-mono">
       <div className={`${widthClass} mx-auto`}>
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
           {/* Logo */}
           <div className="flex flex-col">
             <div className="flex items-center">
-              <Terminal className="w-6 h-6 sm:w-8 sm:h-8 text-red-400 mr-2 sm:mr-3" />
-              <h1
-                className="text-xl sm:text-2xl font-bold text-gray-300 cursor-pointer"
-                onClick={() => navigate("/")}
-              >
+              <Terminal className="w-6 h-6 sm:w-8 sm:h-8 text-red-400 mr-2 sm:mr-3" aria-hidden="true" />
+              <h1 className="text-xl sm:text-2xl font-bold text-gray-300">
+                <Link to="/" className="focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-400">
                 {variant === "personal" ? (
                   <>
                     I&apos;m <span className="text-red-400">$!rr0nn3y</span>
@@ -46,6 +47,7 @@ export default function PageNav({
                     secure<span className="text-red-400">cloud</span>X
                   </>
                 )}
+                </Link>
               </h1>
             </div>
             {(subtitle || command) && (
@@ -61,25 +63,20 @@ export default function PageNav({
           </div>
 
           {/* Nav links */}
-          <div className="flex items-center justify-start sm:justify-end space-x-4 sm:space-x-6 ml-8 sm:ml-0">
-            {links.map((link) =>
-              link.active ? (
-                <span
+          <div className="flex flex-wrap items-center justify-start sm:justify-end gap-x-4 sm:gap-x-6 gap-y-1 ml-8 sm:ml-0">
+            {links.map((link) => {
+              const active = link.active ?? pathname === link.path;
+              return (
+                <Link
                   key={link.label}
-                  className="text-red-400 text-xs sm:text-sm font-mono cursor-default whitespace-nowrap"
+                  to={link.path}
+                  aria-current={active ? "page" : undefined}
+                  className={`py-2 transition-colors duration-200 text-xs sm:text-sm font-mono whitespace-nowrap focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-400 ${active ? "text-red-400" : "text-gray-300 hover:text-red-400"}`}
                 >
                   {link.label}
-                </span>
-              ) : (
-                <button
-                  key={link.label}
-                  className="text-gray-300 hover:text-red-400 transition-colors duration-200 text-xs sm:text-sm font-mono whitespace-nowrap"
-                  onClick={() => navigate(link.path)}
-                >
-                  {link.label}
-                </button>
-              )
-            )}
+                </Link>
+              );
+            })}
           </div>
         </div>
       </div>
