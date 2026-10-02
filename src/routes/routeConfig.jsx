@@ -8,6 +8,7 @@ import BrokenByDesign from "../pages/BrokenByDesign";
 import CertMap from "../pages/CertMap";
 import CertificatePage from "../pages/CertificatePage";
 import Changelog from "../pages/Changelog";
+import CommunityPage from "../pages/CommunityPage";
 import Glossary from "../pages/Glossary";
 import Module1 from "../pages/modules/module1/Overview";
 import Module2 from "../pages/modules/module2/Overview";
@@ -57,8 +58,10 @@ export const standaloneRoutes = [
   { path: "/refund-policy", Component: RefundPolicyPage },
   { path: "/terms-of-service", Component: TermsOfService },
   { path: "/get-started", Component: GetStartedPage },
+  { path: "/community", Component: CommunityPage },
   { path: "/changelog", Component: Changelog },
   { path: "/pricing", Component: Pricing },
+  { path: "/forgotten-secret-lab", Component: ForgottenSecretLab, protected: true },
   { path: "/about", Component: AboutAuthor },
   { path: "/story", Component: Story },
   { path: "/work", Component: Work },
@@ -80,7 +83,6 @@ export const shellRoutes = [
   { path: "/home", Component: Home },
   { path: "/admin", Component: Admin },
   { path: "/certificate", Component: CertificatePage },
-  { path: "/forgotten-secret-lab", Component: ForgottenSecretLab },
   { path: "/module1", Component: Module1 },
   { path: "/module1/task", Component: ModuleTask1 },
   { path: "/module2", Component: Module2 },
