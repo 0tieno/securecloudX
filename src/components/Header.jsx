@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { Search, Terminal } from "lucide-react";
-import { useAuth } from "../contexts/AuthContext";
+import { Search } from "lucide-react";
 import SearchModal from "./SearchModal";
 import SiteNavbar from "./SiteNavbar";
 
@@ -16,8 +14,8 @@ function HeaderActions({ onSearch }) {
         <Search size={13} />
         <span className="hidden sm:inline">Search</span>
         <span className="hidden sm:flex items-center gap-0.5 text-gray-600">
-          <kbd className="text-[10px] bg-gray-700 border border-gray-600 px-1 py-0.5 rounded">Ctrl</kbd>
-          <kbd className="text-[10px] bg-gray-700 border border-gray-600 px-1 py-0.5 rounded">K</kbd>
+          <kbd className="text-xs font-medium bg-gray-700 border border-gray-600 px-1 py-0.5 rounded">Ctrl</kbd>
+          <kbd className="text-xs font-medium bg-gray-700 border border-gray-600 px-1 py-0.5 rounded">K</kbd>
         </span>
       </button>
       <a
@@ -35,9 +33,7 @@ function HeaderActions({ onSearch }) {
   );
 }
 
-const Header = ({ compact = false }) => {
-  const { user, signOut } = useAuth();
-  const navigate = useNavigate();
+const Header = () => {
   const [searchOpen, setSearchOpen] = useState(false);
 
   // Global Ctrl+K / Cmd+K shortcut
@@ -50,61 +46,12 @@ const Header = ({ compact = false }) => {
     };
     document.addEventListener("keydown", handler);
     return () => document.removeEventListener("keydown", handler);
-  });
-
-  const handleSignOut = async () => {
-    await signOut();
-    navigate("/");
-  };
+  }, []);
 
   return (
     <>
       {searchOpen && <SearchModal onClose={() => setSearchOpen(false)} />}
-      {compact ? (
-        <SiteNavbar actions={<HeaderActions onSearch={() => setSearchOpen(true)} />} />
-      ) : (
-      <header className="w-full bg-gray-900 border-b border-gray-700 px-4 py-3 text-gray-300 flex items-center justify-between font-mono">
-
-        {/* Brand */}
-        <div className="flex items-center gap-2">
-          <Terminal className="w-4 h-4 text-red-400 flex-shrink-0" />
-          <Link
-            to="/home"
-            className="text-sm font-bold tracking-tight hover:opacity-80 transition-opacity"
-          >
-            secure<span className="text-red-400">cloud</span><span className="text-gray-100">X</span>
-          </Link>
-          <span className="hidden sm:block text-gray-700 text-xs">~/dashboard</span>
-        </div>
-
-        {/* Actions */}
-        <div className="flex items-center gap-3">
-          <HeaderActions onSearch={() => setSearchOpen(true)} />
-
-          {/* User */}
-          {user && (
-            <div className="flex items-center gap-2 border-l border-gray-700 pl-3">
-              {user.user_metadata?.avatar_url && (
-                <img
-                  src={user.user_metadata.avatar_url}
-                  alt={user.user_metadata?.user_name ?? "avatar"}
-                  className="w-6 h-6 rounded-full border border-gray-600"
-                />
-              )}
-              <span className="text-xs text-gray-400 hidden sm:block">
-                {user.user_metadata?.user_name ?? user.email}
-              </span>
-              <button
-                onClick={handleSignOut}
-                className="text-xs text-red-400 hover:text-red-300 border border-red-500/40 hover:border-red-400 px-2 py-0.5 transition-colors"
-              >
-                logout
-              </button>
-            </div>
-          )}
-        </div>
-      </header>
-      )}
+      <SiteNavbar actions={<HeaderActions onSearch={() => setSearchOpen(true)} />} />
     </>
   );
 };
