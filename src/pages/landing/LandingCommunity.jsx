@@ -12,9 +12,9 @@ const STORIES = [
     description: "Explore the securecloudX curriculum, build your skills in practical labs, and take on real-world cloud security challenges.",
     action: "Explore the Curriculum",
     href: "/get-started",
-    image: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1800&q=85",
-    detail: "/images/security-in-depth.png",
-    alt: "A bright shared workspace with desks and computers",
+    image: "/images/cloud-security-network.svg",
+    detail: "/images/cloud-security-network.svg",
+    alt: "Cloud security illustration with a shield, connected servers, and network monitoring",
   },
   {
     label: "COMMUNITY KNOWLEDGE",
@@ -22,9 +22,9 @@ const STORIES = [
     description: "Discover community-written guides on cloud security, secure coding, and the lessons learned along the way.",
     action: "Explore the Blog",
     href: "/opensource-blog",
-    image: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1800&q=85",
-    detail: "/images/a-blog-a-day.jpg",
-    alt: "People working together around a table",
+    image: "/images/security-code-review.svg",
+    detail: "/images/security-code-review.svg",
+    alt: "Cybersecurity illustration of a code review terminal and security checks",
   },
 ];
 
@@ -88,11 +88,11 @@ export default function LandingCommunity() {
   const rightMembers = members.filter((_, index) => index % 2 === 1);
 
   return (
-    <div className="landing-community">
+    <div id="community" className="landing-community scroll-mt-32 md:scroll-mt-24">
       <section className="community-section" aria-labelledby="community-heading">
         <div className="community-intro">
           <p className="community-eyebrow">JOIN THE COMMUNITY</p>
-          <h2 id="community-heading">Join Our Community and Be Part of<br className="community-desktop-break" /> Our Cloud Security Journey.</h2>
+          <h1 id="community-heading">Join Our Community and Be Part of<br className="community-desktop-break" /> Our Cloud Security Journey.</h1>
           <p className="community-description">Connect with cloud security learners, builders, and researchers.<br className="community-desktop-break" /> Together, we build stronger skills and better opportunities.</p>
           <button type="button" className="community-join" onClick={() => user ? navigate("/get-started") : signIn()}>
             Join Community <span><ArrowUpRight size={15} /></span>
