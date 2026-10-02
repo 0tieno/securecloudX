@@ -35,7 +35,7 @@ const AppShell = () => {
     "there";
 
   return (
-    <div className="flex h-screen bg-gray-900">
+    <div className="learning-shell flex h-screen bg-gray-900 font-medium">
       {showWelcome && (
         <WelcomeModal user={user} onClose={() => setShowWelcome(false)} />
       )}
@@ -47,7 +47,7 @@ const AppShell = () => {
       )}
       <Sidebar />
       <div className="flex flex-1 flex-col h-screen overflow-hidden">
-        <Header compact={pathname === "/home"} />
+        <Header />
         <div className="flex-1 overflow-y-auto border-l border-gray-700 bg-gray-900 p-6 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
           <div key={pathname} style={{ animation: "pageFadeIn 240ms ease-out forwards" }}>
             <Outlet />
