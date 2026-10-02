@@ -11,7 +11,7 @@ const ForgottenSecretLab = () => {
 
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-gray-600 text-xs mb-8">
-          <Link to="/home" className="hover:text-gray-400 transition-colors">// phases</Link>
+          <Link to="/hacktivities#hackathons" className="hover:text-gray-400 transition-colors">// hacktivities</Link>
           <span>/</span>
           <span className="text-gray-400">forgotten-secret-lab</span>
         </div>
@@ -254,8 +254,8 @@ const ForgottenSecretLab = () => {
 
         {/* Navigation */}
         <div className="mt-10 flex items-center justify-between text-xs text-gray-500 border-t border-gray-800 pt-6">
-          <Link to="/home" className="inline-flex items-center gap-1 hover:text-gray-300 transition-colors">
-            <ChevronLeft size={14} /> back to modules
+          <Link to="/hacktivities#hackathons" className="inline-flex items-center gap-1 hover:text-gray-300 transition-colors">
+            <ChevronLeft size={14} /> back to hacktivities
           </Link>
           <Link to="/module1" className="hover:text-gray-300 transition-colors">
             Module 1 →
