@@ -25,7 +25,6 @@ dist-ssr
 
 
 .env
-.env.example
 
 # Supabase local CLI state — contains project ref, org ID, pooler URL
 supabase/.temp/

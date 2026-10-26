@@ -58,7 +58,6 @@ export default function LandingCommunity() {
   const [memberStatus, setMemberStatus] = useState("loading");
   const [storyIndex, setStoryIndex] = useState(0);
   const [joining, setJoining] = useState(false);
-  const [joinError, setJoinError] = useState("");
   const selectedMember = members[memberIndex];
   const story = STORIES[storyIndex];
 
@@ -99,13 +98,8 @@ export default function LandingCommunity() {
       return;
     }
     setJoining(true);
-    setJoinError("");
     try {
-      const { error } = await signIn();
-      if (error) throw error;
-    } catch (error) {
-      console.error("Unable to join the community:", error);
-      setJoinError("We couldn't start sign-in. Please try again.");
+      await signIn();
     } finally {
       setJoining(false);
     }
@@ -123,7 +117,6 @@ export default function LandingCommunity() {
             <ArrowUpRight size={18} aria-hidden="true" />
           </button>
           <p className="community-join-hint">{user ? "Explore the curriculum and put your skills into practice." : "Sign in with GitHub to get started."}</p>
-          {joinError && <p className="community-join-error" role="alert">{joinError}</p>}
         </div>
 
         <section className="community-members" aria-labelledby="community-members-heading">

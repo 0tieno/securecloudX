@@ -41,7 +41,7 @@ export default function TermsOfService() {
             <p className="text-gray-500 max-w-3xl leading-relaxed">
               // Terms of use for securecloudX open source project
               <br />
-              // Last updated: April 19, 2026
+              // Last updated: October 26, 2026
             </p>
           </div>
 
@@ -263,10 +263,11 @@ export default function TermsOfService() {
                 <li>Module and step completion progress stored in our database</li>
                 <li>Certificate records when you complete the program</li>
                 <li>Basic analytics for improving user experience</li>
+                <li>Device, browser, and network risk signals processed by Keverd when you initiate GitHub sign-in, including IP-derived risk and location data when available</li>
               </ul>
               <div className="bg-gray-900 border border-blue-600 p-3 rounded mt-3">
                 <div className="text-blue-400 text-sm">
-                  [NOTE] We do not sell or share your data with third parties. Your progress data is visible only to you and platform administrators.
+                  [NOTE] We do not sell personal data. Service providers including Supabase, GitHub, and Keverd process data needed for authentication and security. Your progress data is visible only to you and platform administrators.
                 </div>
               </div>
               <div className="text-xs text-gray-400 mt-3">

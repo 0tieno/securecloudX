@@ -57,7 +57,7 @@ export default function SiteNavbar({ actions }) {
     setAuthError("");
     try {
       const { error } = await (action === "in" ? signIn() : signOut());
-      if (error) throw error;
+      if (error && action === "out") throw error;
       if (action === "out") {
         setOpen(false);
         navigate("/");

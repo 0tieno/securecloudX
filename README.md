@@ -21,6 +21,21 @@ npm run dev
 
 Open [http://localhost:5173](http://localhost:5173).
 
+## Keverd sign-in verification
+
+GitHub sign-in first collects a Keverd device event in the browser and verifies that event through the `keverd-verify` Supabase Edge Function. Only Keverd's server-verified `allow` decision proceeds through this app's sign-in UI; challenge and block decisions stop sign-in because this app does not currently implement a challenge flow. The Keverd secret key is only configured on the Supabase server. This client-side gate does not prevent a determined user from initiating Supabase OAuth outside the app, so it must not be treated as server-side authorization for sensitive data or actions; enforce those separately with Supabase RLS or server policies.
+
+For local frontend development against a development Supabase project:
+
+1. Add a Keverd **test public key** to `.env` as `VITE_KEVERD_PUBLIC_KEY`.
+2. Set the test secret key on the development Supabase project: `supabase secrets set KEVERD_SECRET_API_KEY=kv_sk_test_...`.
+3. Deploy the verifier there: `supabase functions deploy keverd-verify`.
+4. If using a non-default local or preview origin, add it to `KEVERD_ALLOWED_ORIGINS` as a comma-separated Supabase function secret.
+5. Start the frontend with `npm run dev` and test GitHub sign-in. A Keverd verification failure or any non-`allow` action must not redirect to OAuth.
+
+The function permits `localhost:5173`, `127.0.0.1:5173`, and the production site by default. Local Supabase function serving requires the Supabase CLI and Docker; this repository does not currently include a local Supabase project configuration.
+
+For production, configure a live public key in the frontend host's `VITE_KEVERD_PUBLIC_KEY` environment and a live secret key in Supabase Edge Function secrets. Never prefix the secret with `VITE_` or put it in a frontend `.env` file.
 
 ## Modules
 

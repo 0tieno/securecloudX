@@ -5,7 +5,7 @@ import LatestBlogsPanel from "./LatestBlogsPanel";
 
 export default function LandingHeader() {
   const navigate = useNavigate();
-  const { user, signIn } = useAuth();
+  const { user, signIn, signInPending } = useAuth();
 
   return (
     <section className="font-mono" aria-labelledby="landing-heading">
@@ -31,10 +31,12 @@ export default function LandingHeader() {
             <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
               <button
                 type="button"
+                disabled={!user && signInPending}
+                aria-busy={!user && signInPending}
                 className="bg-red-600 hover:bg-red-500 text-white text-sm font-semibold px-5 py-3 transition-colors inline-flex items-center gap-5 group focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-red-400"
                 onClick={() => user ? navigate("/get-started") : signIn()}
               >
-                {user ? "Continue Learning" : "Get Started"}
+                {user ? "Continue Learning" : signInPending ? "Checking device..." : "Get Started"}
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-0.5 transition-transform motion-reduce:transition-none" aria-hidden="true" />
               </button>
               <Link
